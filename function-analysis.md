@@ -1,10 +1,22 @@
 # Functions across `grammar-zoo-flavie`: definitions, calls, and parameters
 
-An analysis of how each of the 14 languages with real function/procedure
+An analysis of how each of the 17 languages with real function/procedure
 syntax (excluding the three data-schema grammars — `cobol-bruneliere`,
-`ml-ocaml-amble`, `pl1-bruneliere` — which have no such production) handles
+`ml-ocaml-amble`, `pl1-bruneliere` — which have no such production; the
+corpus's *other*, much richer PL/I and COBOL grammars,
+`pl1-os-v2r3-lammel-verhoef` and `cobol-vscobolii-lammel-gdk`, are used
+throughout this document instead) handles
 function definition, invocation, parameter passing, and return values,
 based on the actual productions in `normalized-ebnf-flavie-adapted/`.
+
+One honesty note specific to PL/I: its grammar leaves `parameter`,
+`parameter-list`, and `parameter-descriptor-list` themselves undefined (one
+of roughly 160 genuine extraction gaps this source's own upstream
+disclaimer admits to — see `adapt_lexical_grammar.py`'s docstring), so PL/I
+only appears in the sections below where the grammar actually has evidence
+to offer (§1, §2, §5) and is deliberately left out of §3, §4, §6–§8, where
+this specific extraction simply doesn't show anything one way or the
+other.
 
 ## 1. Procedure vs. function: one keyword or two?
 
@@ -26,8 +38,23 @@ incidental detail of one unified category.
 | Language | Evidence |
 |---|---|
 | Modula-3 | `ProcedureHead ::= "PROCEDURE" Ident Signature`, and `Signature ::= "(" Formals ")" [":" Type] [...]` — the `: Type` is bracketed (optional) directly on the *same* production. There is no `FUNCTION` keyword anywhere in the grammar. |
+| PL/I | `(entry-constant ":")+ "PROCEDURE" [(...)] [("RETURNS" "(" (attribute)+ ")")] ...` — one keyword, an optional `RETURNS` clause distinguishes a function-like procedure from a plain one, same shape as Modula-3. PL/I additionally lets a *variable* carry an `ENTRY [...] [RETURNS (...)]` attribute, making "this value is a callable, optionally returning X" an ordinary declarable property of data rather than a separate function-pointer syntax |
 | C99/C++98/C# | `function-definition`/`method-declaration` always exists once; `void` is a type like any other, not a grammatical fork |
 | Java, JS, Python, PHP, Dart | same — a single definition production, "no return value" expressed at the type/body level, not the grammar level |
+| Haskell | goes a full step further: there isn't even a definition keyword to drop. `decl ::= gendecl | (funlhs rhs) | (pat0n rhs)` — a multi-parameter binding (`funlhs ::= (var apat ...) | ...`, at least one `apat`) and a zero-parameter binding (`pat0n rhs`, an ordinary pattern binding) are two alternatives of the *same* `decl` production, with no keyword anywhere distinguishing "this introduces a function" from "this introduces a value." `add x y = x + y` and `pi = 3.14159` are grammatically the same kind of thing, differing only in whether the left-hand side happens to carry parameters |
+
+**COBOL doesn't fit either camp — it has no user-defined function/procedure
+concept at this grammar version at all.** The closest things COBOL has are
+`paragraph`/`section` (a named label followed by a run of statements,
+invoked via `PERFORM` — see §2) and whole separate, independently-compiled
+*programs* invoked via `CALL`; neither takes a formal parameter list the
+way every other language in this section does (`CALL` passes data via
+`USING`, covered in §3, but a paragraph has no parameter list
+whatsoever — see §2). `cobol_source_program`'s `PROCEDURE DIVISION
+USING ...` also has no `RETURNING` clause in this grammar, consistent
+with VS COBOL II (1985) predating COBOL 2002's `FUNCTION` and
+intrinsic-function additions — another instance of this analysis's
+recurring "absence is often a dating artifact" theme (§6).
 
 This is a real lineage signal: every language on the "two keywords" side
 (Ada, Fortran, Pascal, Basic) predates or was contemporaneous with the
@@ -37,7 +64,16 @@ procedure whose body assigns to its own name). Modula-3 — designed by
 Wirth's collaborators specifically as a cleanup of Pascal-family clutter —
 is the one member of that lineage that deliberately *dropped* the
 distinction. Every other language in the corpus (all younger, and outside
-that direct lineage) never had it to drop.
+that direct lineage) never had it to drop. Haskell sits a further step
+beyond even Modula-3: Modula-3 still spells `PROCEDURE` on every
+definition, it simply doesn't fork into two keyword categories; Haskell has
+no definition keyword at all for this, callable or not. That's not a small
+difference in degree — it's only possible because a Haskell function
+*body* is a single expression (`rhs ::= "=" exp wheredecls | ...`), so a
+"function" is, structurally, nothing but a named value whose left-hand
+side happens to pattern-match some arguments before yielding that
+expression; there's no separate grammatical machinery for "callable thing"
+to need its own keyword in the first place.
 
 ## 2. Function calls: a dedicated node, or folded into expression grammar?
 
@@ -51,10 +87,33 @@ more kind of expression."
 |---|---|
 | Ada | `procedure_call_statement ::= procedure_name ";" \| procedure_prefix actual_parameter_part ";"` — note this is a genuinely distinct rule from `function_call`, because Ada's grammar-level procedure/function split (§1) carries all the way through to call sites |
 | Fortran-90 | `CallStmt ::= "call" SubroutineNameUse [( "(" SubroutineArgList ")" )]` — the `call` *keyword* itself is required, unlike everywhere else in the corpus |
+| PL/I | `"CALL" (entry-reference \| generic-name \| built-in-name) [("(" sep*(argument, ",") ")")] [TASK(...)] [EVENT(...)] [PRIORITY(...)] ";"` — textually close to Fortran-90's mandatory-keyword shape, consistent with the two languages' shared 1960s scientific/business-computing lineage, plus PL/I-specific concurrency options (`TASK`, `EVENT`, `PRIORITY`) folded directly into the same statement |
 | Modula-3 | `CallStmt ::= Expr "(" [Actual, ...] ")"` |
 | Basic (VB6) | `call_statement ::= ["call"] reference [subroutine_bracketless_params]` — keyword is *optional*, a vestige of older Basic dialects that required it |
 | Eiffel | `Call ::= Object_call | Non_object_call`, further split into `Unqualified_call`/`Explicit_creation_call`/`Non_object_call` — the richest call taxonomy in the corpus, reflecting Eiffel's object-call-centric design (every call is conceptually "send a message to a target") |
 | PHP | `CallParams ::= "(" CallParam,* ")"` as its own node, referenced from a general `VariableOrFunctionCall` |
+
+**A fourth variant: a dedicated call keyword that genuinely has no
+argument list at all**
+
+| Language | Production |
+|---|---|
+| COBOL | `perform_statement_format_i ::= "PERFORM" ((procedure_name [(("THROUGH" \| "THRU") procedure_name)]) \| ([series_of_imperative_statements] "END-PERFORM"))` |
+
+Every language in the first table above at least has an argument list in
+its dedicated call node, even the ones with mandatory keywords (Fortran's
+`CallStmt`, PL/I's `CALL`). COBOL's `PERFORM procedure-name` has none —
+not optional, genuinely absent from the production — because a COBOL
+paragraph or section isn't a subroutine with its own parameters at all;
+it's a named label that operates directly on whatever `DATA DIVISION`
+variables are already in scope, closer to a structured `GOSUB` than a
+call in the sense every other language in this document means it. Real
+parameter passing in COBOL exists, but only one level up, at the
+`CALL ... USING` statement that invokes an entirely separate, independently
+compiled *program* (§3) — COBOL keeps "jump to a label within this
+program" and "invoke another program with data" as two structurally
+unrelated mechanisms, rather than one generalized function-call concept
+covering both.
 
 **No dedicated call node — folded into the primary/postfix expression chain**
 
@@ -66,13 +125,37 @@ more kind of expression."
 | Dart | folded into `selector`/`arguments` off of `postfixExpression` |
 | Python | `trailer ::= "(" arglist ")" | "[" ... "]" | "." id` — a call is one of three possible *trailers* on an atom, exactly parallel to indexing and attribute access |
 
+**No delimiter at all — a call is bare juxtaposition**
+
+| Language | Production |
+|---|---|
+| Haskell | `fexp ::= (fexp aexp) | aexp` |
+
+This is a third category, structurally distinct from both groups above —
+not "its own dedicated node" and not "folded in as one more postfix
+operator alongside `[]`/`.`" either, since there's no operator token at
+all. `f x y` parses, by this left-recursive production alone, as
+`(f x) y`: an expression immediately followed by another expression *is* a
+call, with nothing — no parenthesis, no comma — marking it as one.
+This is exactly the "whitespace-only, no delimiter" pattern §7 below
+predicted conceptually but couldn't verify against a real grammar in this
+corpus before Haskell was added (the only candidate at the time,
+`ml-ocaml-amble.bgf`, turned out to be the mislabeled process/state-machine
+schema flagged throughout this repository, not real OCaml syntax) — it is
+now directly confirmed. It's also the clean mechanical reason Haskell
+functions are curried by default rather than by special-casing: `f x y` is
+not "one call with two arguments" grammatically, it's two single-argument
+applications in a row, which is precisely why partial application
+(`map (add 1) xs`) needs no special syntax of its own — `add 1` is already
+a complete, ordinary `fexp`.
+
 The second group is a genuine convergent pattern across otherwise unrelated
 lineages (C, Java, Dart, Python) — all of them model "call", "index", and
 "member access" as the *same kind of grammatical thing* (a postfix operator
 chained onto a primary expression), which is precisely why `f(x)[0].y(z)`
-parses uniformly in all of them. The first group (Ada, Fortran, Eiffel, PHP,
-Basic) is exactly the same set of languages that also keep a strict
-statement/expression distinction elsewhere in their grammars.
+parses uniformly in all of them. The first group (Ada, Fortran, PL/I,
+Eiffel, PHP, Basic) is exactly the same set of languages that also keep a
+strict statement/expression distinction elsewhere in their grammars.
 
 ## 3. Parameter-passing mode: explicit in the grammar, or left implicit?
 
@@ -87,7 +170,8 @@ doesn't capture).
 | Modula-3 | `Formal ::= [("VALUE" | "VAR" | "READONLY")] IDList ":" Type ...` — same three-way idea (by-value / by-reference / read-only-reference), inherited straight from Modula-3's Ada-adjacent design lineage |
 | Basic (VB6) | `byref_or_byval ::= "byref" | "byval"` — binary choice, appears on `subprogram_argument`, `event_argument`, and `property_argument` alike |
 | C# | `parameter-modifier ::= "ref" | "out" | "this"` — binary reference modifiers, plus the C#-specific `this` marking an extension-method receiver |
-| C99, C++98, Java, JS, Python, PHP, Dart, Eiffel | **no such production at all** — parameter passing convention isn't expressed in the syntax; it's a fixed, non-negotiable semantic rule of the language (C/Java/JS: always by value, or by reference-to-object for objects; Python: same; PHP has an explicit `&` reference-sigil, see below) |
+| COBOL | `call_using_phrase ::= "USING" ((([("BY")] "REFERENCE") (identifier \| ("ADDRESS" "OF" identifier) \| file_name)+) \| (["BY"] "CONTENT" (([("LENGTH" "OF")] identifier) \| ("ADDRESS" "OF" identifier) \| literal)+))+` — `BY REFERENCE` (the default) and `BY CONTENT` (pass a copy) are explicit per-group modifiers on `CALL ... USING`'s argument list, textually closest in spirit to Ada's/Modula-3's mode keywords despite COBOL predating both — note this is only ever on the separate-program `CALL`, never on a parameterless `PERFORM` (§2), since paragraphs have no parameters to mark a mode on in the first place |
+| C99, C++98, Java, JS, Python, PHP, Dart, Eiffel, Haskell | **no such production at all** — parameter passing convention isn't expressed in the syntax; it's a fixed, non-negotiable semantic rule of the language (C/Java/JS: always by value, or by reference-to-object for objects; Python: same; PHP has an explicit `&` reference-sigil, see below). Haskell's case is the most settled of the group: under lazy evaluation every argument is passed as an unevaluated thunk regardless of type, so there is nothing a by-value/by-reference distinction could even apply to at the call site |
 
 PHP is a partial exception worth calling out on its own: `Param ::= (
 [TypeHint] ["&"] TVariable [EqualsStaticScalar] ) | ...` — the `&` here
@@ -104,11 +188,14 @@ not as an inline annotation on the parameter list itself the way Ada's
 both concepts (mode and optionality); it just can't attach them at the
 parameter-list production the way the others do.
 
-The pattern: **only Ada, Modula-3, Basic, and C# make parameter-passing
-mode syntactically explicit on the parameter itself**, and three of those
-four are again the "two-keyword" structured-programming lineage from §1 —
-a language family that consistently treats things other languages leave to
-convention as worth spelling out in the grammar itself. C# is the
+The pattern: **only Ada, Modula-3, Basic, C#, and COBOL make
+parameter-passing mode syntactically explicit on the parameter itself**
+(COBOL's case is on `CALL`'s argument group rather than a function's own
+parameter list, since that's the only place COBOL has arguments to mark
+at all — §2), and most of those are again the "two-keyword" structured-
+programming lineage from §1 — a language family that consistently treats
+things other languages leave to convention as worth spelling out in the
+grammar itself. C# is the
 interesting outlier, reaching for the same idea for entirely different,
 much later reasons (interop with unmanaged code, LINQ extension methods).
 
@@ -150,6 +237,21 @@ syntactically valid — a default without `Optional` would be, per this
 grammar, a parse error even though every other language would treat it as
 redundant-but-fine).
 
+**Haskell has neither** — `funlhs`'s parameter list is a flat sequence of
+`apat`s with no `...`-style or sigil-based variadic form and no `[... =
+default]` slot anywhere in sight. This isn't a gap so much as a
+consequence of §2's juxtaposition model: since `f x y` is really `(f x)
+y`, there's no single "parameter list" node for a variadic marker or a
+default value to attach to in the first place, only a chain of
+one-argument applications. Both of the problems variadics and defaults
+usually solve are instead handled at the *type* level in idiomatic
+Haskell — a variable number of values becomes an ordinary list argument
+(`sum :: [Int] -> Int`), and an "optional" argument becomes a `Maybe`-typed
+one — pushing what other languages treat as a syntax feature into
+Haskell's general-purpose algebraic-data-type mechanism instead (the same
+move shows up again for nullable types in `types-and-generics-analysis.md`
+§3).
+
 ## 5. Returning a value: explicit statement vs. implicit convention
 
 This is the sharpest three-way split in the whole analysis.
@@ -157,7 +259,10 @@ This is the sharpest three-way split in the whole analysis.
 **Explicit `return` keyword, a real statement production**
 
 Ada (`simple_return_statement`/`extended_return_statement`), C99, C++98,
-C#, Java, JS, Dart, PHP, Python, Modula-3, Fortran-90, and VB6 (which
+C#, Java, JS, Dart, PHP, Python, Modula-3, Fortran-90, PL/I
+(`"RETURN" [("(" expression ")")] ";"` — the parenthesized expression is
+itself optional, letting the same statement serve a value-returning
+`PROCEDURE` and a plain one), and VB6 (which
 *also* has a bare `return_statement ::= "return"`, with no expression
 slot at all — because VB6 uses the mechanism below for the value itself
 and `Return` alone only unwinds control) all have a dedicated statement
@@ -178,6 +283,21 @@ node containing the literal keyword `return`/`RETURN`.
   Delphi's added `Result :=` are both just ordinary uses of that one
   generic assignment rule; the grammar can't tell a return-value
   assignment from any other assignment.
+- **Haskell**: grepping the entire grammar for the literal terminal
+  `"return"` turns up nothing at all — not even as a keyword, because
+  there's no keyword to be. A function's body is `rhs ::= "=" exp
+  wheredecls | gdrhs wheredecls` — simply an expression, full stop. There
+  is no statement sequence for a `return` to jump out of, and so,
+  structurally, no exit point for a keyword to mark: the body doesn't
+  *compute and then return* a value, it *is* the value. This is a step
+  further than Eiffel's and Pascal's implicit convention below — both of
+  those still have an ordinary statement sequence and a magic name you
+  assign into partway through it; Haskell has no statement sequence at
+  all for a value to escape from early. (Haskell programmers do write
+  something spelled `return` inside `do`-blocks, but it is an ordinary
+  value of the `Monad` typeclass looked up like any other identifier — in
+  this grammar it is just a `qvar`, reached through the completely generic
+  `aexp`/`fexp` chain, with zero special-cased syntax of its own.)
 - **VB6** actually straddles both camps: it has *both* a bare `Return`
   keyword (control-only, no value) *and* the classic Basic convention of
   assigning to the function's own name via the fully generic
@@ -188,7 +308,14 @@ node containing the literal keyword `return`/`RETURN`.
 
 The implicit-convention languages (Eiffel, Pascal) are a direct
 illustration of *why* the explicit-`return` design eventually won almost
-everywhere else: a return value that's just "whatever a magic variable
+everywhere else, and Haskell is worth keeping distinct from both of them
+even though it also lacks `return`: Eiffel and Pascal lack a keyword
+because their designers left an older convention in place or chose not to
+flag an exit point explicitly; Haskell lacks one because the thing a
+keyword would mark — a mid-body exit from a sequence of statements —
+doesn't exist in its grammar at all once every function body is a single
+expression. One is an absence of marking; the other is an absence of the
+thing being marked. a return value that's just "whatever a magic variable
 holds at the end" can be silently produced by control flow the reader
 didn't expect (an exception handler, a nested block, an early `if`) with no
 `return` keyword anywhere nearby to flag it — exactly the kind of
@@ -205,6 +332,7 @@ own design.
 | Language | Form | Notable detail |
 |---|---|---|
 | Python | `lambdef ::= "lambda" [varargslist] ":" test` | body restricted to a single *expression* (`test`), not a full statement block — Python's lambda is deliberately weaker than a `def` |
+| Haskell | `exp10n ::= ("\\" pat (pat)+ "->" exp) \| ("\\" pat "->" exp) \| ...` | not weaker than a named binding at all — a named function's body is `rhs ::= "=" exp ...` and a lambda's is `"->" exp`; both terminate in the identical bare `exp`. A lambda and a top-level definition differ only in whether there's a name and an `=` or a `->` immediately before that shared expression, which is the purest version of the JS convergence in the row below: here the two forms aren't just *structurally parallel*, they share one actual nonterminal |
 | C# 4.0 | `lambda-expression ::= anonymous-function-signature "=>" anonymous-function-body`, plus a *separate*, older `anonymous-method-expression ::= "delegate" [signature] block` | C# 4.0 grammar preserves **two** anonymous-function forms side by side — the pre-3.0 `delegate { }` syntax and the newer `=>` lambda — rather than replacing one with the other |
 | Dart | `functionExpression` — an unnamed function literal usable as an expression, structurally identical to a named `functionDeclaration` minus the name | |
 | JS (this Cordy grammar) | `js_function_expn ::= "function" [id] "(" ... ")" ... "{" ... "}"` | the *same* production optionally takes a name — JS's function-expression and named-function-declaration are one grammar rule apart, differing only in whether `id` is present |
@@ -248,6 +376,18 @@ grammar versions, consistent with their era and design goals.
   language's later addition of the feature. Reading an absence in this
   corpus as "language X can't do Y" needs the grammar's vintage checked
   first.
+- **Haskell is the corpus's single clearest demonstration that "everything
+  is an expression" is a spectrum, not a binary flag** — C/Java/Dart/Python
+  commit to it for calls/indexing/member-access (§2) and stop there, still
+  keeping a visible call operator (`()`) and a separate definition keyword
+  nowhere in sight for Haskell. Haskell pushes the identical commitment one
+  level further in three unrelated productions at once — no definition
+  keyword (§1), no call operator at all, just juxtaposition (§2), and no
+  parameter-list delimiter, also juxtaposition (§7) — which is why its
+  lambda and named-function syntax collapse into the same nonterminal
+  (§6): once application and the trailing expression are both just "more
+  expression, no decoration," there's very little left for distinct
+  function-defining syntax to add.
 
 ## Why each design was chosen
 
@@ -295,6 +435,19 @@ later closures/first-class functions): a single "callable" grammatical
 category is much easier to give a consistent type/pointer syntax to than
 two.
 
+**Why Haskell doesn't even keep one keyword.** Haskell takes the
+C/Modula-3 unification argument to its logical end point rather than
+stopping at "one keyword for both procedures and functions": if a function
+body is simply an expression and functions are ordinary first-class
+values (never a separate pointer-like category needing its own notation,
+unlike C), there's no grammatical work left for a definition keyword to
+do — a name is bound to a value, and whether that value happens to be
+something you can apply more arguments to is a property of its type, not
+of how it was introduced. This is downstream of Haskell's core design
+commitment to purity and first-class functions as the central
+abstraction mechanism, rather than a deliberate rejection of Ada-style
+machinery for its own sake.
+
 ### Calls as a dedicated node vs. a postfix operator (§2)
 
 **Why Ada/Fortran/Eiffel/PHP/Basic keep calls separate from expressions.**
@@ -331,6 +484,19 @@ function pointers and, later, first-class/higher-order functions and
 fluent/chained APIs, all of which need "whatever this expression evaluates
 to, call it" without a separate call-statement wrapper for every possible
 kind of callable expression.
+
+**Why Haskell drops the operator token too.** Haskell's `fexp ::= (fexp
+aexp) | aexp` is this same "everything is an expression" commitment
+pushed one step further than C/Java/Dart/Python go: since every function
+of more than one argument is really a chain of single-argument
+applications (currying), application needs to be the single most
+lightweight, most frequently-written operation in the entire grammar — far
+more frequent than any other operator, including ordinary infix ones. Not
+even requiring a parenthesis or a dot for it is a direct, deliberate
+consequence of committing to curried, higher-order functions as the
+language's primary abstraction mechanism from the start, rather than
+adding them as a library feature on top of an already-parenthesized call
+syntax the way C-family languages with function pointers do.
 
 ### Explicit parameter-passing mode (§3)
 
@@ -509,6 +675,19 @@ consistency.
 
 ### Lambdas / anonymous functions (§6)
 
+**Why Haskell's lambda and named-function syntax are the same expression
+with different dressing.** This isn't really an addition at all, unlike
+every other language in this section — it's the base case. Haskell's
+theoretical ancestor, the untyped lambda calculus, has exactly one
+function-forming construct (`λx. e`) and gets named bindings by convention
+(`let`/letrec) on top of it, never the reverse; Haskell's grammar mirrors
+that lineage directly, which is exactly why `rhs`'s `"=" exp` and a
+lambda's `"->" exp` land on the identical nonterminal (§6's table above).
+Every other lambda-supporting language in this list added anonymous
+functions to a grammar that already had named-function definitions as the
+primary, older construct; Haskell is the one language here where the
+historical and grammatical order is reversed.
+
 **Why Python, C#, Dart, JS, and Eiffel have some form.** Each added it for
 a distinct, language-specific reason: Python's `lambda` supports its
 functional-programming-adjacent idioms (`map`/`filter`/`sorted(key=...)`)
@@ -579,20 +758,26 @@ is exactly the same Algol/Pascal/Ada lineage responsible for §1 and §3
 above — the same underlying trait (a parameter is *a declaration*, not
 *a typed slot*) showing up a third time.
 
-**Whitespace-only, no delimiter at all — not verifiable in this corpus.**
-The real examples of this pattern (OCaml/Haskell-style curried
-`let add a b = a + b`; Lisp/Scheme `(defn add [a b] ...)`) belong to
-languages not present in `grammar-zoo-flavie`, and the one file that could
-have been a candidate, `ml-ocaml-amble.bgf`, is the mislabeled
-process/state-machine schema already flagged elsewhere in this repo — not
-real OCaml syntax. Conceptually, the reason the pattern works at all: in a
-truly curried ML-family function, `add a b` is not a two-argument call —
-it desugars to `(add a) b`, one single-argument function applied twice in
-a row. There is no "parameter list" node in the grammar for a delimiter to
-live in, because each "parameter" is really the argument of its own
-separate, nested single-argument function; juxtaposition is just repeated
-function application, not a list construct, so there is nothing for a
-comma to separate.
+**Whitespace-only, no delimiter at all — now directly confirmed by
+Haskell.** This pattern was previously only a conceptual prediction in
+this analysis: the obvious real examples (OCaml/Haskell-style curried
+`let add a b = a + b`; Lisp/Scheme `(defn add [a b] ...)`) belonged to
+languages not present in `grammar-zoo-flavie` at the time, and the one file
+that could have been a candidate, `ml-ocaml-amble.bgf`, turned out to be
+the mislabeled process/state-machine schema flagged elsewhere in this
+repo — not real OCaml syntax. With Haskell now in the corpus, the
+prediction is directly verifiable:
+`funlhs ::= (var apat (apat)* ) | ...` — a function's declared parameters
+are simply juxtaposed `apat`s, one after another, with no comma, no
+parenthesis, nothing. `add a b = a + b` is not "one binding with a
+two-element parameter list" grammatically; `funlhs` has no list node at
+all, just repeated single patterns, which matches exactly the call-site
+juxtaposition already confirmed in §2. There is no "parameter list" node
+in the grammar for a delimiter to live in, because each "parameter" really
+corresponds to its own separate, nested single-argument function once
+curried; juxtaposition is just repeated application, not a list
+construct, so there's nothing for a comma to separate on either side of
+the definition.
 
 ### A related question: are the parens themselves ever optional?
 
@@ -630,6 +815,23 @@ call is happening from the surrounding statement shape, without needing
 necessary once a language has committed to calls-as-postfix-expressions;
 the languages that never made that commitment never needed the
 disambiguator either.
+
+**Haskell makes a third move on this same question**: there is no
+parenthesized parameter-list production at all to be optional or
+mandatory, since `funlhs` is just juxtaposed `apat`s with nothing
+bracketing them (§7 above). And yet Haskell never runs into the
+"bare-name-vs-zero-arg-call" ambiguity C/Java/Dart/Python avoid with
+mandatory parens, for a more fundamental reason than any grammar rule: a
+reference to any value, callable or not, is the identical production
+(`aexp ::= qvar | ...`), and there is no such thing as "calling a function
+with no arguments" to begin with, since `fexp ::= (fexp aexp) | aexp`
+always consumes exactly one more argument per application. A zero-argument
+"function" in Haskell isn't a function at all — it's just an ordinary
+value — so `f` is never ambiguous between "the function" and "call it with
+nothing," because the second reading simply doesn't exist as an operation
+in the language. The disambiguation problem the other four languages solve
+with mandatory parens doesn't need solving here, because currying removes
+the very notion the parens would otherwise be needed to distinguish.
 
 ## 8. Function modifiers: how strictly does the grammar constrain them?
 
@@ -696,6 +898,25 @@ attached to it. Fortran-90 lands halfway between this and a per-declaration
 modifier: it has a genuine `AccessSpec ::= "public" | "private"` keyword,
 but it names a whole list of module entities in one statement rather than
 annotating each subprogram individually.
+
+**Haskell has no per-declaration visibility keyword at all — visibility is
+a single module-level whitelist, not a property of the binding itself.**
+`modul ::= ("module" modid exportspec "where" body) | ("module" modid
+"where" body)` — the *first* alternative's `exportspec ::= "(" exports
+")"` names exactly the identifiers a module exposes; everything else
+declared inside it is private by omission, with no `private`/`public`
+keyword ever attached to the binding in question. The *second*
+alternative — the one with no export list at all — is itself a real,
+citable design decision: writing `module Foo where ...` with nothing
+further exports *everything*, the opposite default from Java's
+package-private-unless-marked or C#'s private-unless-marked instinct.
+This is one further point on the same axis Ada and Fortran-90 sit on
+(visibility as a property of *where*/*whether* something is listed, not
+*what keyword* decorates it) but landing on a different mechanism again:
+Ada's is purely positional within one file (before/after `private`),
+Haskell's is an explicit, named list sitting apart from every declaration
+it governs, closer in spirit to Eiffel's whitelist below except coarser —
+visible-or-not to everyone, with no per-client targeting.
 
 **Eiffel's visibility mechanism is the most expressive thing in the
 corpus.** Rather than a fixed set of visibility levels, Eiffel names the

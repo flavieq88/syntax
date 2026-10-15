@@ -24,6 +24,65 @@ Pascal/Delphi, Modula-3, and Eiffel all require a type in the grammar
 itself — there's no path through a variable, parameter, or field
 declaration that skips it.
 
+**A fifth category PL/I adds: an open-ended, genuinely optional
+*attribute list*, not a single type slot at all.**
+
+```
+pl1: statement ::= ... | ("DECLARE" sep+(([level] name (attribute)* ["SYSTEM"]), ",") ";") | ...
+```
+
+`(attribute)*` is zero-or-more — a bare `DECLARE x;` with no attributes
+at all is syntactically valid, which is a genuinely different shape from
+every category above: not one mandatory type keyword (C99), not one
+dynamically-typed absence (Python), not VB6's single optional `as_type`
+slot with one named fallback. PL/I instead accumulates an open set of
+independent, freely-ordered descriptors — `FIXED`, `DECIMAL`,
+`CHARACTER(10)`, `STATIC`, `CONTROLLED`, and dozens more (the full 45-way
+`attribute` choice is worth a look in `grammar-zoo-flavie-adapted/` —
+it's the richest single production in the whole corpus) — any subset of
+which, including none, is grammatically acceptable on one declaration.
+Real PL/I's semantics for the empty case are a well-documented piece of
+language-design history worth citing even though this CFG can't show
+it: an undeclared or under-declared identifier gets a *default* type
+based on the **first letter of its own name** (`I` through `N` default to
+`FIXED BINARY`, every other starting letter defaults to `FLOAT BINARY`) —
+a rule with no grammatical trace at all, since it depends on reading the
+identifier's own spelled-out text, not any structural property a
+production could condition on. It's frequently cited as one of the more
+notorious implicit-typing design missteps in language history, and it's
+a clean example of this document's opening caveat: the CFG shows that an
+attribute list *can* be empty, but what filling that emptiness in
+actually means is semantics, invisible here by construction.
+
+**COBOL — PL/I's exact contemporary and fellow 1960s IBM mainframe
+language — independently arrives at the identical open-ended-clause-list
+shape**, via a structurally near-identical production:
+
+```
+cobol: data_description_entry_format_i ::= level_number [data_name | "FILLER"]
+                                            [redefines_clause] data_clauses ["."]
+       data_clauses ::= (blank_when_zero_clause | ... | occurs_clause | picture_clause
+                        | sign_clause | ... | usage_clause | value_clause_format_ii
+                        | renames_clause)*
+```
+
+Same shape as PL/I's `(attribute)*`: an accumulating, freely-ordered,
+zero-or-more set of independent descriptors, with `PICTURE` (the closest
+thing COBOL has to "a type") sitting as just one more optional clause
+among `OCCURS` (array dimensioning), `SIGN`, `USAGE`, `VALUE`, and others —
+not a single mandatory type keyword the way C99's grammar has one. The
+empty case means something different from PL/I's implicit-default-type
+rule, though: a COBOL data item with no `PICTURE` and no `USAGE` clause
+isn't given a silent default elementary type at all — it becomes a
+*group item*, a pure structural container whose "type" is just the
+concatenation of whatever elementary items are declared under it at the
+next level number. COBOL and PL/I solve the "declaration is a list of
+orthogonal properties" problem the same way at the grammar level, for the
+same era-and-institution reason (both are IBM mainframe languages from
+the same decade, built for the same category of large, record-heavy
+business data), but land on different semantics for what an empty list
+actually denotes.
+
 **Entirely absent — no type-annotation production exists anywhere in the
 grammar:**
 
@@ -68,6 +127,32 @@ typing, not an escape hatch from it, and is worth keeping distinct from
 both VB6's Variant fallback and Python's total absence of type syntax,
 even though all three surface as "no type written" at a glance.
 
+**A fourth category Haskell adds: optional, fully static, and structurally
+detached from the definition it describes.**
+
+```
+haskell: decl    ::= gendecl | (funlhs rhs) | (pat0n rhs)
+         gendecl ::= (vars "::" qualtype) | ...
+```
+
+A Haskell type signature (`add :: Int -> Int -> Int`) and the binding it
+describes (`add x y = x + y`) are two *separate* alternatives of the same
+`decl` production — two independent top-level declarations that happen to
+share a name, not one declaration with an optional type slot. Nothing in
+the grammar requires both to be present, requires them to be adjacent, or
+even forbids writing the signature without ever supplying a matching
+binding at all (a parse error waits until a later compiler phase, not
+here). This is a genuinely different shape from every other category
+above: it isn't "mandatory" (C99's `type` token is bolted directly onto
+the one declaration there is), isn't "absent" (the slot for a full type
+exists and is routinely used), and isn't VB6's "optional with a named
+fallback type" either, since omitting it doesn't select any particular
+concrete type — the compiler still infers one, every time, exactly as
+precisely as if the signature had been written. In that sense Haskell's
+inference goes further than C#'s `var`, which still requires a placeholder
+token to be present; Haskell requires nothing at all, in either the type
+or value slot, for inference to kick in.
+
 ## 2. Generics and templates: real divergence in sophistication and philosophy
 
 | Language | Mechanism |
@@ -79,6 +164,44 @@ even though all three surface as "no type written" at a glance.
 | Eiffel | `Formal_generics ::= "[" Formal_generic_list "]"` — square brackets, not angle brackets: `LIST [INTEGER]` rather than `List<Integer>`. `Formal_generic ::= ["frozen"] Formal_generic_name [Constraint]`, with `Formal_generic_name ::= ["?"] Identifier` |
 | Dart | `typeParameter ::= identifier [(EXTENDS type)]` — the same simple single-bound shape as Java, no variance mechanism captured |
 | Modula-3 | **no generics production anywhere in the grammar** — not an extraction gap: Modula-3 generics are instantiated by the `m3makefile` build system through textual substitution of whole source files, entirely outside the core language's expression/declaration grammar this corpus captures |
+| Haskell | `simpletype ::= (tycon simpletype_1_1) | tycon`, `simpletype_1_1 ::= (tyvar simpletype_1_1) | tyvar` — no brackets of any kind. `data Tree a = ...` applies the type variable `a` to `Tree` by plain juxtaposition, the exact same mechanism `function-analysis.md` §2/§7 already documents for *value*-level application (`fexp ::= (fexp aexp) | aexp`) and parameter lists. Ordinary type application reuses it too: `btype ::= (btype atype) | atype` is what makes `Maybe Int` or `Either String Int` well-formed, with no angle brackets, square brackets, or commas anywhere in the production |
+
+Haskell is the one language in this table with no dedicated generics
+syntax at all, for the same reason it has no dedicated call syntax in
+`function-analysis.md`: applying a type constructor to a type argument and
+applying a function to a value argument are, grammatically, not two
+features — they're the same juxtaposition idiom showing up at two
+different syntactic levels (types and values) of one uniform language
+design. No other language in this corpus shares that property; everywhere
+else, "declare a generic parameter" and "call a function" are handled by
+visibly different grammar machinery.
+
+Haskell's constrained polymorphism (ad-hoc rather than parametric, and
+covered properly in `classes-and-inheritance-analysis.md`) attaches
+differently from any constraint mechanism above, too:
+
+```
+haskell: qualtype   ::= optcontext type
+         optcontext ::= epsilon | (context "=>")
+         context    ::= type
+```
+
+`(Eq a, Ord a) => a -> a -> Bool` puts the constraint in a dedicated
+prefix clause on the *whole type*, ahead of a `=>` token, rather than as
+an annotation attached to the generic parameter itself the way Java's
+`<T extends Comparable<T>>` or C#'s `where T : IComparable` or Eiffel's
+bracketed `Constraint` do. It's a fourth distinct attachment point for the
+same general idea (bound a type parameter to an interface/contract it
+must satisfy), on top of the parameter-annotation and `where`-clause
+styles already covered below. One nuance invisible at this level of the
+grammar: `context` and the `scontext` used for `class`/`instance`
+declarations are written as literally the same production here
+(`N("scontext") ::= N("type")`), but the Haskell 98 Report's own prose
+restricts `scontext` to simple, single-type-variable class applications
+only (`C a`, never `C (Maybe a)`) — exactly the kind of rule a
+context-free grammar can't express that this whole document keeps running
+into (the strong/weak-typing caveat at the top of this file, the "nearest
+if" convention in `dangling-else-analysis.md`).
 
 The Java/C# contrast is the sharpest single data point here: **both solve
 the identical generic-variance problem — can `List<Cat>` be used where
@@ -110,8 +233,35 @@ No other language in the corpus (C99, C++98, Java 5, Dart, Python, PHP,
 this JS grammar, Pascal, Fortran-90, Modula-3, Basic, PL/I, COBOL) has any
 comparable mechanism at these grammar versions.
 
+**Haskell needs no mechanism here at all, for a reason worth stating
+precisely: not because it lacks the concept "a value might be absent,"
+but because it has no special-cased `null`/`nil` to begin with.** Absence
+is expressed with the ordinary `data`/`constrs` machinery covered in §4
+below (`data Maybe a = Nothing | Just a`), the same general-purpose
+sum-type production every other variant type in the language goes
+through — no dedicated nullable-type grammar rule exists because none is
+needed. This is the clearest illustration in this whole document of why
+C#, Ada, and Eiffel each had to *invent* a special-purpose annotation:
+their base type systems have no general "one of these alternatives,
+possibly carrying data" construct built into ordinary type declarations,
+so "might be absent" had to be bolted on as its own dedicated piece of
+syntax. A language whose data declarations already express arbitrary
+tagged unions gets nullability for free, as one unremarkable instance of a
+mechanism it needed for other reasons anyway.
+
 ## 4. Union/variant types — a visible safety gradient
 
+- **COBOL**: `redefines_clause ::= "REDEFINES" data_name`, attached
+  optionally to any `data_description_entry`. This is more primitive than
+  every other mechanism below, not just less safe: it isn't a grouped
+  choice between named alternative shapes at all (there's no `union`-style
+  keyword gathering alternatives together) — it's a pairwise declaration
+  that one *new* data item simply occupies the same storage as one
+  *already-declared* item, with no shared "this is a variant" wrapper, no
+  discriminant of any kind, and no limit on how many items can redefine
+  the same storage in sequence. Even C's union groups its alternatives
+  under one declaration; COBOL's `REDEFINES` doesn't even do that much —
+  it's closer to a raw storage alias than a type.
 - **C99**: `struct-or-union ::= "struct" | "union"`. A C `union` carries
   **no discriminant at all** — the grammar offers no way to know which
   member was written last, and reading the wrong one is undefined
@@ -126,10 +276,30 @@ comparable mechanism at these grammar versions.
   record's `discriminant_part`. The most structurally rigorous of the
   three.
 
-This is a clean three-point safety gradient — untagged (C), tagged by an
-expression (Pascal), tagged by a real typed discriminant field (Ada) —
-visible entirely in how much grammatical structure each language wraps
-around the same underlying "one of several possible shapes" idea.
+- **Haskell**: `constrs ::= (constr)+ | ...`, each `constr` a named
+  constructor with its own argument types (`con (atype)* | con "{"
+  fielddecls "}"`). The discriminant here isn't a separate field at all —
+  it's the constructor name itself, which must be supplied at every
+  construction site and named again at every pattern-match site
+  (`pat10n ::= apat | (gcon apat (apat)*)`, `alt ::= (pat "->" exp
+  ...) | ...`). There is no way to produce a `Tree` value without
+  committing to `Leaf` or `Node` up front, and no way to inspect one
+  without naming which constructor is expected — tag and data are the same
+  syntactic act, at both ends, rather than a tag the grammar lets you
+  attach loosely (Pascal) or declare once and forget to check (Ada, in
+  principle, if a case arm goes unhandled). The grammar itself can't show
+  exhaustiveness-checking, but the structural fact that reading a field
+  always goes through naming a specific constructor is what makes
+  exhaustiveness checkable by a compiler at all.
+
+This is a five-point safety gradient — pairwise storage aliasing with no
+grouping or discriminant at all (COBOL), untagged but at least grouped
+(C), tagged by an expression (Pascal), tagged by a real typed discriminant
+field (Ada), tagged by the constructor name itself at both construction
+and read sites (Haskell) — visible entirely in how much grammatical
+structure each
+language wraps around the same underlying "one of several possible
+shapes" idea.
 
 ## Why each design was chosen
 
@@ -205,6 +375,17 @@ syntax before angle-bracket generics became the near-universal convention
 via C++ and its many descendants — the bracket choice reflects Eiffel's
 independent design lineage rather than any technical constraint.
 
+**Haskell's lack of any dedicated generics syntax.** This traces to the
+same source as its lack of dedicated call syntax in
+`function-analysis.md`: a language built around a small set of maximally
+general, uniformly-applied mechanisms (juxtaposition for application,
+algebraic data types for data) doesn't need a special case for
+"parameterize this by a type" once ordinary application already covers
+"apply this to an argument," whatever kind of thing is on each side.
+Introducing bracket syntax specifically for generics, the way C++/Java/C#
+all did, would have been adding a second application mechanism to a
+language whose entire design bet is that one, uniform mechanism is enough.
+
 **Nullable/optional-type mechanisms (C#, Ada, Eiffel) all trace to the
 same motivation: null-pointer errors are a well-documented, extremely
 common class of runtime failure**, and each of the three built a different
@@ -215,10 +396,22 @@ in one direction (Ada: access types are nullable by default, opt into
 `not null`; C#: value types are non-nullable by default, opt into `T?`).
 Eiffel's two-symbol `?`/`!` scheme is the most explicit of the three,
 letting either direction be stated directly rather than leaving one
-direction as an unmarked default.
+direction as an unmarked default. Haskell targets the identical underlying
+failure mode and reaches a cheaper fix by solving it one level up: rather
+than add syntax to mark absence on existing types, it makes "a type that
+can also be absent" an ordinary value of an ordinary algebraic data type
+(`Maybe a`), paying for the general sum-type mechanism exactly once and
+getting nullability as one unremarkable consequence of it, rather than a
+fourth bespoke mechanism solving the same problem a fourth separate way.
 
-**The union/variant safety gradient (C, Pascal, Ada).** This tracks each
-language's era and general safety philosophy directly. C's untagged
+**The union/variant safety gradient (COBOL, C, Pascal, Ada).** This tracks
+each language's era and general safety philosophy directly. COBOL's
+`REDEFINES` reflects 1959 batch data-processing's core concern — the
+exact physical layout of a fixed-width record, often shared across
+programs and even hardware generations — treating "reinterpret this
+storage" as an ordinary, low-ceremony declarative tool for working with
+externally-imposed record formats, not a language feature that needed any
+safety apparatus wrapped around it. C's untagged
 `union` reflects its systems-programming, close-to-the-machine design —
 a union is essentially "reinterpret these bytes as a different type,"
 with safety entirely the programmer's responsibility, consistent with C's
@@ -227,7 +420,16 @@ and Ada both wanted the safety of knowing which variant is active, and
 Ada — true to its now-familiar pattern throughout this analysis — went
 further than Pascal by tying the variant to a genuinely typed,
 declared discriminant field rather than an arbitrary expression, making
-the association checkable rather than merely conventional.
+the association checkable rather than merely conventional. Haskell goes
+further again, for a reason specific to its own design history: algebraic
+data types (and pattern matching against them) were a foundational feature
+of the ML lineage Haskell draws its data-declaration syntax from, not a
+safety feature retrofitted onto an existing record/union mechanism the way
+Ada's discriminant was. Because construction and inspection were designed
+together as two views of the same constructor-tagged value from the
+start, there was never a separate, looser "union" concept in the language
+for the safer, constructor-tagged form to be added alongside — this is the
+only form the language ever had.
 
 ## Summary of cross-cutting patterns
 
@@ -254,7 +456,21 @@ the association checkable rather than merely conventional.
   generic type's author, once, or every caller, every time).
 - **Type inference (`var`) and dynamic typing produce visually similar
   "no type written" syntax but are not the same feature**, and conflating
-  them is an easy category error — the corpus offers a clean three-way
+  them is an easy category error — the corpus now offers a clean four-way
   contrast (Python: no type system at that slot at all; VB6: a real
   static/dynamic fallback choice; C#: sugar over an unchanged static
-  system) that's worth keeping distinct.
+  system; Haskell: a fully separate, fully optional declaration that, when
+  omitted entirely, still leaves inference with no placeholder token
+  needed at all) that's worth keeping distinct.
+- **Haskell is this analysis's second confirmation (after
+  `function-analysis.md`) that one uniform mechanism can quietly replace
+  several features other languages treat as separate grammar
+  constructs** — plain juxtaposition does the job of both generic-type
+  application and function application (§2), and one general sum-type
+  mechanism (`data`) does the job that nullable types, union/variant
+  types, and (per `function-analysis.md` §4) optional parameters are each
+  given their own bespoke syntax for everywhere else in the corpus. The
+  pattern is the same each time: a feature that looks absent in a
+  feature-by-feature table usually isn't absent at all, it's been
+  generalized into a different, more general feature the table doesn't
+  have its own row for.

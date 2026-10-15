@@ -49,9 +49,47 @@ Every addition here is sourced, not invented:
   rendered as `value("Unicode category Lu")` etc., citing Ada 2005 RM 2.1's
   own use of Unicode General Category codes; enumerating the underlying
   code points would not add precision.
-- Dart's `EOF` is ANTLR's built-in end-of-token-stream marker; Modula-3's
-  `DQUOTE` is the literal `"` character used inside its string-escape
-  productions.
+- Dart's `EOF` (and Erlang's, Lua's, Swift's, and Smalltalk's, below) is
+  ANTLR's built-in end-of-token-stream marker; Modula-3's `DQUOTE` is the
+  literal `"` character used inside its string-escape productions.
+- Haskell's twelve lexer-class gaps (`varid`, `conid`, `qvarid`, `qconid`,
+  `varsym`, `consym`, `qvarsym`, `qconsym`, `integer`, `float`, `char`,
+  `string`) come from `HaskellLexer.x`, the Alex lexer fetched alongside
+  `HaskellParser.y` itself -- every `^X`/`%X` regex macro in that file is
+  transcribed here directly, not re-derived from the Haskell 98 Report (the
+  two agree almost everywhere, since the parser's own README says it mirrors
+  the Report, but this lexer is stricter in two places -- no leading
+  underscore in `varid`, and `float` requires a literal decimal point -- and
+  the concrete fetched artifact wins over the abstract spec where they
+  differ).
+- `pl1-os-v2r3-lammel-verhoef.bgf` gets a deliberately **partial** pass,
+  unlike every grammar above. Its own upstream source says of itself that
+  it is "not yet corrected nor completed" and that "it does not make
+  sense to derive a parser from the current version automatically" -- 167
+  of its nonterminals are referenced but never defined, and most of those
+  are not lexical gaps at all: about a third are the same underlying
+  concept reported twice under two different spellings
+  (`characteristic-list` vs `characteristic_list`, 26 such pairs), a
+  cluster are visible automatic-recovery-tool artifacts (`exp1`..`exp6`,
+  `unit1`, `unit2`, bare single letters `n`/`p`/`q`/`r`/`x`/`y`/`z`), and
+  the rest are substantial missing phrase-structure productions
+  (`variable`, `reference`, `expression`, `parameter-list`, ...) that
+  would need the actual IBM *OS PL/I V2R3 Language Reference* text to fill
+  in responsibly -- this recovered HTML page admits it never captured
+  them either. Only the handful of names that are unambiguous, single-answer
+  lexical primitives are patched here (`identifier`, `letter`, `integer`,
+  `hex_digit`, `character`, `graphic_symbol`/`graphic-symbol`, `text`):
+  PL/I's identifier rule (a letter or one of the three "break characters"
+  `$`/`#`/`@`, then letters/digits/break characters/underscore) is
+  standard and stable across PL/I implementations, unlike the 167 missing
+  phrase-structure sorts above, which this script leaves alone rather than
+  guess at.
+- COBOL's (`cobol-vscobolii-lammel-gdk.bgf`) seven gaps are all genuine
+  lexical bottom sorts (`cobol_word`, `numeric`, `nonnumeric`, `dbcs`,
+  `character_string`, `comment_entry`, `quoted_pseudo_text`) and come from
+  standard ISO/ANSI COBOL word- and literal-formation rules, stable across
+  dialects -- see the comment immediately above `COBOL_ADDITIONS` for the
+  two ISO nuances left deliberately unenforced.
 
 Three files are substituted wholesale before the additions below are
 applied, because the Grammar Zoo project already publishes a more mature
@@ -338,6 +376,22 @@ DART_ADDITIONS = [
     prod("EOF", eps()),
 ]
 
+# ============================================================ ERLANG, LUA, SWIFT, SMALLTALK (ANTLR's built-in
+# end-of-stream token; each grammar's own lexer rules already cover
+# everything else -- this is the only gap in all four)
+ERLANG_ADDITIONS = [
+    prod("EOF", eps()),
+]
+LUA_ADDITIONS = [
+    prod("EOF", eps()),
+]
+SWIFT_ADDITIONS = [
+    prod("EOF", eps()),
+]
+SMALLTALK_ADDITIONS = [
+    prod("EOF", eps()),
+]
+
 # ============================================================ C99 (ISO/IEC 9899:1999 Annex A.1.3/A.1.5-7)
 C99_ADDITIONS = [
     prod("identifier", seq(n("identifier-nondigit"), star(ch(n("identifier-nondigit"), n("digit"))))),
@@ -452,6 +506,85 @@ CSHARP_ADDITIONS = [
     prod("right-shift-assignment", t(">>=")),
 ]
 
+# ============================================================ HASKELL (Haskell 98)
+# Source: zoo/haskell/cactus/happy/fetched/HaskellLexer.x (decoded: `^`+letter
+# names one of that file's own macros; `^`+punctuation escapes that literal
+# character within a macro body)
+HS_SMALL, HS_LARGE = chars(LOWER), chars(UPPER)                        # ^S, ^L
+HS_SYMBOL = chars("!#$%&*+./<=>?@\\^|-~")                               # ^c
+HS_CHARESC = ch(chars("abfnrtv"), t("\\"), t('"'), t("'"), t("&"))      # ^C
+HS_CTRLCHAR = ch(HS_LARGE, chars("@[\\]^_"))                            # ^g
+HS_ASCII_MNEMONIC = Choice(tuple(t(code) for code in (
+    "NUL SOH STX ETX EOT ENQ ACK BEL BS HT LF VT FF CR SO SI DLE DC1 DC2 DC3 "
+    "DC4 NAK SYN ETB CAN EM SUB ESC FS GS RS US SP DEL").split()))
+HS_ASCII_ESCAPE = ch(seq(t("^"), HS_CTRLCHAR), HS_ASCII_MNEMONIC)       # %A
+HS_ESCAPE = seq(t("\\"), ch(HS_CHARESC, HS_ASCII_ESCAPE, plus(digit),
+                            seq(t("o"), plus(octdigit)), seq(t("x"), plus(hexdigit))))  # %E
+HS_WHITECHAR = ch(t(" "), t("\t"), t("\n"), val("carriage-return character"),
+                  val("vertical-tab character"), val("form-feed character"))
+# \r, \v, \f can't be held as literal XML text: XML 1.0 (sec 2.11) mandates
+# that a raw, unescaped CR byte is normalized away to \n on any parse, and \v/\f
+# aren't legal XML characters at all -- so all three go through value() instead.
+HS_GAP = seq(t("\\"), plus(HS_WHITECHAR), t("\\"))                      # %G
+HS_QUALIFIER = opt(seq(n("modid"), t(".")))                             # (%C ^.)?
+
+HASKELL_ADDITIONS = [
+    prod("conid", seq(HS_LARGE, star(ch(HS_SMALL, HS_LARGE, digit, t("'"))))),  # %C
+    prod("varid", seq(HS_SMALL, star(ch(HS_SMALL, HS_LARGE, digit, t("'"))))),  # %I
+    prod("qconid", seq(HS_QUALIFIER, n("conid"))),
+    prod("qvarid", seq(HS_QUALIFIER, n("varid"))),
+    prod("varsym", seq(HS_SYMBOL, star(ch(HS_SYMBOL, t(":"))))),         # %V
+    prod("consym", seq(t(":"), star(ch(HS_SYMBOL, t(":"))))),            # %a
+    prod("qvarsym", seq(HS_QUALIFIER, n("varsym"))),
+    prod("qconsym", seq(HS_QUALIFIER, n("consym"))),
+    prod("integer", ch(plus(digit),
+                       seq(t("0"), chars("oO"), plus(octdigit)),
+                       seq(t("0"), chars("xX"), plus(hexdigit)))),
+    prod("float", seq(plus(digit), t("."), plus(digit),
+                      opt(seq(chars("eE"), opt(chars("+-")), plus(digit))))),
+    prod("char", seq(t("'"), ch(val("character"), t(" "), HS_ESCAPE), t("'"))),
+    prod("string", seq(t('"'), star(ch(val("character"), t(" "), HS_ESCAPE, HS_GAP)), t('"'))),
+]
+
+# ============================================================ PL/I (OS PL/I V2R3)
+# Deliberately partial -- see the module docstring. Only the unambiguous
+# single-answer lexical primitives are patched; the other ~160 missing
+# bottom sorts (duplicate spellings, recovery-tool artifacts, and genuine
+# phrase-structure gaps) are left undefined on purpose.
+PL1_ADDITIONS = [
+    prod("letter", ch(chars(UPPER), chars("$#@"))),  # PL/I's three "break characters" count as letters
+    prod("identifier", seq(n("letter"), star(ch(n("letter"), digit, t("_"))))),
+    prod("integer", plus(digit)),
+    prod("hex_digit", hexdigit),
+    prod("character", val("character")),
+    prod("graphic_symbol", val("DBCS graphic character")),  # PL/I 'G' graphic-string constants
+    prod("graphic-symbol", val("DBCS graphic character")),  # same concept, reported under the other spelling
+    prod("text", star(val("character"))),  # comment body, up to the closing */
+]
+
+# ============================================================ COBOL (IBM VS COBOL II, GDK "connected" tier)
+# Source: standard ISO/ANSI COBOL word- and literal-formation rules, stable
+# across COBOL dialects including the IBM reference this grammar was itself
+# recovered from. Two ISO nuances are left unenforced on `cobol_word`,
+# flagged rather than silently approximated away: "must contain at least
+# one alphabetic character" and "must not end in a hyphen" are both
+# context-sensitive constraints a context-free production can't express
+# without combinatorial blow-up, the same kind of gap already noted for
+# C#'s `scontext` restriction and Ada's Unicode categories elsewhere in
+# this file.
+COBOL_WORD_CHAR = ch(letter, digit, t("-"))
+COBOL_ADDITIONS = [
+    prod("cobol_word", seq(ch(letter, digit), star(COBOL_WORD_CHAR))),
+    prod("numeric", seq(opt(chars("+-")), plus(digit), opt(seq(t("."), plus(digit))))),
+    prod("nonnumeric", ch(
+        seq(t('"'), star(ch(t('""'), val("character"))), t('"')),
+        seq(t("'"), star(ch(t("''"), val("character"))), t("'")))),
+    prod("dbcs", seq(ch(t("G"), t("N")), t('"'), star(val("DBCS character")), t('"'))),  # Graphic/National literal
+    prod("character_string", plus(ch(chars("9XAVSPZ+-*,./;()"), digit, t("CR"), t("DB")))),  # PICTURE clause symbols
+    prod("comment_entry", star(val("character"))),  # free-form text, e.g. AUTHOR/INSTALLATION paragraphs
+    prod("quoted_pseudo_text", seq(t("=="), star(val("character")), t("=="))),  # COPY ... REPLACING pseudo-text
+]
+
 ADDITIONS_BY_FILE = {
     "ada-ada2005-lncs-4348.bgf": ADA_ADDITIONS,
     "basic-visual-concrete.bgf": BASIC_ADDITIONS,
@@ -466,6 +599,13 @@ ADDITIONS_BY_FILE = {
     "c-c99-iso-9899-tc3.bgf": C99_ADDITIONS,
     "cpp-cpp98-iso-14882-1998.bgf": CPP_ADDITIONS,
     "csharp-v4.0-microsoft.bgf": CSHARP_ADDITIONS,
+    "haskell-haskell98-hallgren-cactus.bgf": HASKELL_ADDITIONS,
+    "pl1-os-v2r3-lammel-verhoef.bgf": PL1_ADDITIONS,
+    "erlang-r16b01-fenoll-parr.bgf": ERLANG_ADDITIONS,
+    "cobol-vscobolii-lammel-gdk.bgf": COBOL_ADDITIONS,
+    "lua-5.2-sakamoto.bgf": LUA_ADDITIONS,
+    "swift-parr.bgf": SWIFT_ADDITIONS,
+    "smalltalk-redline-ladd.bgf": SMALLTALK_ADDITIONS,
 }
 
 

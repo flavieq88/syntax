@@ -4,11 +4,23 @@ An analysis of how the languages in `grammar-zoo-flavie` with real
 object-oriented syntax handle class definition, inheritance, interfaces,
 and constructors, based on the actual productions in
 `normalized-ebnf-flavie-adapted/`. Not every language in the corpus has a
-class concept at all: C99, Fortran-90, COBOL, and PL/I genuinely have none
+class concept at all: C99, Fortran-90, and both COBOL (the data-schema
+`cobol-bruneliere` and the much richer, genuinely-syntax
+`cobol-vscobolii-lammel-gdk` alike) and PL/I (both the
+data-schema `pl1-bruneliere` and the much richer, genuinely-syntax
+`pl1-os-v2r3-lammel-verhoef`) genuinely have none
 (consistent with their era and non-OO design), and this JS grammar has none
 for a different reason — it's a pre-ES6 (2015) grammar, predating JS
 classes entirely, the same vintage caveat already flagged for lambdas in
-`function-analysis.md` §6.
+`function-analysis.md` §6. Haskell adds a third, distinct flavor of
+absence to that list, covered on its own in §7 below: not too old
+(Haskell 98 is contemporaneous with Java and C#'s early versions, both
+very much already "OOP languages" by then) and not too early a grammar
+snapshot, but built on a different paradigm entirely, where the whole
+notion of a mutable object with identity that methods get dispatched
+against was never part of the design. Haskell does have a production
+literally spelled `"class"`, and it is not this — §7 exists specifically
+to pin down why.
 
 ## 1. Not every language even says "class"
 
@@ -205,6 +217,103 @@ be used as an ordinary identifier — a design choice that trades a small
 amount of grammar ambiguity for never permanently reserving a word an
 existing program might already use as a variable name.
 
+## 7. Haskell: no classes, and why `class`/`instance` are not the same idea
+
+**First, the negative case, stated as precisely as the grammar allows.**
+Every mechanism this document has surveyed so far — a class/object
+keyword, an inheritance clause, a constructor production, a visibility
+modifier on a member, a dot-based call on a receiver — is absent from
+Haskell's grammar, and not just by missing keyword:
+
+- There is no member-access or method-dispatch production anywhere. Every
+  alternative of `aexp` is `qvar | gcon | literal | (parenthesized/list
+  expressions) | (sections) | (aexp "{" fbinds "}")` — that last one is
+  *record update* syntax (producing a new, independent value with one
+  field changed), not `receiver.method()` dispatch. There is no `aexp "."
+  name` alternative anywhere in the grammar for a method or field lookup
+  to live in.
+- There is no `"new"` terminal anywhere in the grammar. Values of a `data`
+  type are produced by writing a constructor applied to arguments
+  (`con atype*`, via the ordinary juxtaposition in `fexp`/`aexp`) — the
+  same mechanism that builds every other value in the language, not a
+  dedicated allocation-and-initialization step.
+- There is no `this`/`self` anywhere, because there is no implicit
+  receiver for a method body to be implicitly scoped against — every
+  Haskell function, including one that happens to be part of an
+  `instance`, takes every one of its arguments explicitly.
+
+Modula-3 and Ada (§1 above) avoid the *word* "class" but still have
+objects, dot-style field/method access, and an `Ancestor`/`new ... with`
+inheritance relationship underneath a different name. Haskell is a level
+further out: it has neither the word nor any of the underlying mechanism
+that word would otherwise be naming.
+
+**Second, what `class`/`instance` actually are.**
+
+```
+haskell: topdecl ::= ... | ("class" optscontext tycls tyvar "where" cdecls) | ...
+         topdecl ::= ... | ("instance" optscontext qtycls inst "where" idecls) | ...
+         cdecl   ::= decl
+```
+
+A Haskell `class` declares a set of operations some as-yet-unspecified
+type must support — a compile-time *predicate over types* ("any `a` you
+plug in here must provide these functions"), resolved by the compiler
+passing an implicit dictionary of those functions around, not by runtime
+dispatch through an object's identity. `cdecls` reuses the fully generic
+`decl` production for default method bodies — a default implementation is
+an ordinary function definition, not a distinct "virtual method" grammar
+category the way C#'s `virtual`/`override` modifiers are.
+
+An `instance` declaration is where the real contrast with every
+inheritance mechanism in §2–§4 shows up. `instance Eq Int where ...`
+supplies the operations `Eq` requires *for the already-existing type
+`Int`* — it does not derive a new type from anything, does not add fields
+to `Int`, and `Int`'s own definition (wherever it lives) never has to
+mention `Eq` at all. Compare this directly to Java's
+`class Foo implements Comparable`: Java's coupling is mandatory and
+declared at the type's *own* definition site; a type and the interfaces it
+satisfies must be written together, by the same author, in the same
+place. Haskell's `instance` can be written anywhere — in a completely
+different module, by a completely different author, long after both the
+type and the class were independently defined — making Haskell's
+polymorphism **open and retroactive** where Java's is **closed and
+declaration-site-only**. This is the same "who has to coordinate, and
+when" axis `types-and-generics-analysis.md` §2 already uses to contrast
+Java's use-site generic variance with C#'s declaration-site variance —
+here it's the same question applied to interface conformance itself
+rather than to variance specifically.
+
+**Third, the part that genuinely does look like inheritance, and why it
+isn't.** `optscontext`/`scontext` let a class declaration itself carry a
+constraint: `class Eq a => Ord a where ...`. Haskell's own community
+jargon calls this "`Ord` is a subclass of `Eq`," and the resemblance to
+§2's "base class plus interfaces" shape is real enough that the loose
+description sticks. But structurally it means something different: it's
+a *constraint* — "you are only permitted to write `instance Ord T` once
+`instance Eq T` already exists" — not an is-a relationship between
+objects, and not a code-reuse mechanism (no method bodies, fields, or
+dispatch tables are inherited by writing this constraint; each `instance`
+still independently supplies everything its own class requires). There is
+no object whose runtime type is "an `Ord` that also happens to be an
+`Eq`," because there are no runtime objects with identity here to begin
+with — only ordinary values and compiler-resolved dictionaries. Calling it
+"subclassing" is a convenient analogy, not an accurate description of the
+grammar underneath it.
+
+**Fourth, the closest thing to a built-in "write the common boilerplate
+for me" mechanism**, and why it still isn't inheritance: `deriving ::=
+"deriving" dclasses`, attached optionally to a `data`/`newtype`
+declaration. `data Color = Red | Green | Blue deriving (Eq, Show)` asks
+the compiler to synthesize an `Eq`/`Show` instance automatically rather
+than writing one by hand. It's the one place Haskell's grammar offers
+something like "get this behavior for free without writing it yourself,"
+the same motivating itch that inheritance satisfies elsewhere in this
+document — but what gets generated is still an ordinary, independent
+`instance` for that one specific type; nothing resembling a hierarchy, an
+`Ancestor`, or a shared implementation slot other types could further
+override exists on the other end of it.
+
 ## Why each design was chosen
 
 **Avoiding the word "class" (Modula-3, Ada).** Both reflect what kind of
@@ -274,6 +383,27 @@ COM itself has no notion of inheriting an existing object's code). VB6's
 the platform it was designed to be a thin, approachable layer over, not an
 arbitrary limitation of the language's own grammar design.
 
+**Why Haskell has no class/object model at all, and why `class`/`instance`
+exist anyway.** This is a paradigm-level decision, not an oversight or a
+dating artifact: Haskell's entire design commits to values that never
+mutate and functions with no hidden state, which removes the one thing an
+object-oriented method-dispatch model is fundamentally organized around —
+a persistent, mutable, identity-bearing receiver that a method call is
+"sent to." With no such receiver, there is nothing for `this`/`self`, for
+a dot-call operator, or for an inheritance-of-implementation mechanism to
+attach to. The `class`/`instance` keywords exist to solve a real,
+separate problem Haskell still has despite rejecting objects entirely:
+ad-hoc polymorphism, i.e. letting one function name (`==`, `show`, `+`)
+work differently depending on the type it's applied to, without requiring
+every type to be known in advance the way a single global case-dispatch
+function would. Reusing the word "class" for this was a deliberate,
+if arguably confusing in hindsight, choice by Haskell's designers (the
+mechanism was introduced specifically in the paper that coined the term
+"type class," by Wadler and Blott) to signal "a classification of types
+by shared capability," by analogy with an OOP class's "classification of
+objects by shared capability" — the analogy is in what problem the
+mechanism addresses, not in how it's built or how it behaves.
+
 **The constructor spectrum.** This tracks the same "how much does the
 grammar encode vs. leave to convention" axis seen throughout this whole
 analysis. C# and Dart's fully dedicated constructor productions reflect
@@ -313,4 +443,20 @@ with treating essentially everything else about the object model
 - **Feature absence keeps needing an era check before it's read as a
   design statement** — this JS grammar's missing classes are a vintage
   artifact (pre-ES6), not evidence JS can't do OOP, exactly the same
-  caveat already established for lambdas.
+  caveat already established for lambdas. Haskell's absence of classes is
+  the one genuine exception to "always check the era" in this entire set
+  of analyses: Haskell 98 is contemporaneous with Java and early C#, both
+  unambiguously object-oriented languages by then, so there is no vintage
+  story available here — the absence is a direct consequence of paradigm,
+  confirmed by §7's structural evidence (no dot-call production, no
+  `"new"`, no implicit receiver), not a feature the grammar simply
+  predates.
+- **A superficial keyword match (`class`) is weaker evidence than a
+  structural one** — the single clearest instance across all four of
+  these companion analyses of why "grep the grammar for a familiar word"
+  isn't the same as "the same mechanism is present." Haskell's `class` and
+  `instance` solve ad-hoc polymorphism, a real and recognizable problem
+  from the OOP survey above, but do so with open, retroactive, receiver-
+  free dictionary-passing rather than inheritance, dispatch, or object
+  identity — every grammar production that would evidence an actual object
+  model is the one that's missing.

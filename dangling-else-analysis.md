@@ -10,8 +10,16 @@ Three grammars in the corpus — `cobol-bruneliere`, `ml-ocaml-amble`, and
 `pl1-bruneliere` — turned out to be abstract data-model schemas (COBOL/PL-I
 record layouts, and a process/state-machine model in the file labeled
 "OCaml"), not full language syntax. They have no if-statement production at
-all and are excluded below. That leaves **14 languages** with a real
-conditional-statement production.
+all and are excluded below. That leaves **17 languages** with a real
+conditional-statement production, out of 21 grammars now in the corpus —
+including a second, much richer PL/I grammar
+(`pl1-os-v2r3-lammel-verhoef.bgf`) that genuinely does have one, discussed
+in its own subsection below with an important caveat attached, and a
+second, genuinely complete COBOL grammar
+(`cobol-vscobolii-lammel-gdk.bgf`, IBM VS COBOL II) that replaces the
+original data-schema file for every purpose in this document. (Erlang is
+also real syntax newly added to the corpus but isn't folded into this
+particular comparison yet.)
 
 ## Three resolution strategies, cleanly split
 
@@ -49,8 +57,9 @@ is needed.
 | Dart | identical shape |
 | JavaScript (Synytskyy/Cordy) | identical shape |
 | Pascal/Delphi | `"if" expr "then" nested_stm [else_stm]`, where `nested_stm` recurses straight back to `statement` with no bracketing |
+| PL/I | `"IF" expression "THEN" unit1 [("ELSE" unit2)]` — the textbook two-alternative shape again, but see the dedicated subsection below for a real caveat on what this particular grammar can and can't prove |
 
-All seven share the textbook two-alternative shape with no
+All eight share the textbook two-alternative shape with no
 "matched/open-statement" split (the classical Algol-60-revised fix isn't used
 anywhere in this corpus). The BGF files can't show *how* it's resolved —
 that information isn't part of a context-free grammar — but by
@@ -58,7 +67,64 @@ convention/spec prose it's always "attach `else` to the nearest `if` still
 missing one," enforced in real parsers as a shift preference (LALR default)
 or hand-coded lookahead. No BGF file in the corpus carries any
 disambiguation annotation (the format has no precedence/priority markup), so
-this really is invisible at the grammar level for all seven.
+this really is invisible at the grammar level for all eight.
+
+### PL/I: a caveat this corpus hasn't needed before — the grammar is too incomplete to prove its own ambiguity
+
+PL/I's `unit1` and `unit2` — the "then" and "else" bodies — are both
+undefined in `pl1-os-v2r3-lammel-verhoef.bgf`, one of the roughly 160
+genuine phrase-structure gaps this grammar's own upstream source admits it
+never captured (see `adapt_lexical_grammar.py`'s docstring for the full
+accounting). That matters specifically here: the standard argument for why
+`if`/`then`/`else` is ambiguous needs *both* an optional trailing clause
+*and* a body slot that can recurse back into another `if` with no
+delimiter (the "Generalizing the pattern" section below spells this out
+precisely). This grammar shows the first half directly — `[("ELSE"
+unit2)]` is visibly optional — but it structurally cannot show the second
+half, because `unit1` has no production at all in this file. A grammar
+this incomplete can state the problem but not prove it.
+
+Real PL/I is well-documented, outside this specific extraction, as having
+exactly the classic ambiguity (`unit` expands to an ordinary statement,
+which can itself be another `IF`, with no `END` required), resolved by the
+same nearest-unmatched-`IF` convention as C — PL/I is in fact one of the
+languages dangling-else is traditionally illustrated with in compiler
+textbooks, alongside Algol 60 and Pascal. That's general language
+knowledge, not something this particular BGF file can back up, and it's
+worth being as explicit about that gap here as this document already is
+elsewhere about the "nearest if" convention being invisible to every CFG
+in strategy 3's camp.
+
+One more detail worth flagging on its own, independent of the above: this
+grammar's `%`-prefixed preprocessor sublanguage (PL/I has a genuine
+textual, compile-time macro layer, using `%` the way C uses `#`) has its
+*own*, separate if/then/else form with the identical shape:
+`"%" "IF" preprocessor_expression "%" "THEN" preprocessor-unit1 [("%"
+"ELSE" preprocessor-unit2)]`. No other language in this corpus has two
+independent conditional-statement grammars living side by side in one
+file — a real, citable PL/I structural feature, even though (same caveat)
+its own body slots are equally undefined here.
+
+### 4. No optional clause to dangle — the ambiguity precondition itself is absent
+
+- **Haskell**:
+  `exp10n ::= ... | ("if" exp "then" exp "else" exp) | ...`
+  — a Haskell `if` is an *expression*, not a statement, and critically
+  `else` is not bracketed as `[else exp]` anywhere in this production. It is
+  mandatory, full stop. Nested `if`s absolutely still recurse (`then`'s and
+  `else`'s own slots are both plain `exp`, which can itself expand back to
+  `exp10n` and another `if`), so
+  `if a then if b then s1 else s2 else s3` is perfectly legal and perfectly
+  unambiguous — there is no dangling clause because there is no optional
+  clause. This isn't strategy 1 wearing a different keyword either: Ada's
+  `end if` is a *terminator*, something added specifically to close off an
+  otherwise-open construct; Haskell's `else` was never an optional add-on to
+  begin with; it's exactly as mandatory as `then`. The reason this works at
+  all without feeling restrictive is semantic, not syntactic: since `if` must
+  produce a value usable in surrounding context, a branch that silently does
+  nothing (what an omitted `else` would mean) isn't a coherent option in the
+  first place — unlike C's `if (x) foo();`, where "do nothing otherwise" is
+  a perfectly normal thing for a *statement* to mean.
 
 ## Mixed/hybrid cases
 
@@ -76,6 +142,24 @@ this really is invisible at the grammar level for all seven.
   `if (...): ... endif;` alt-syntax in PHP) that sidesteps the problem
   entirely. These read as "give the ambiguous form for convenience, but
   provide an unambiguous one too."
+- **COBOL** has the same duality, but far more systematically than VB6 or
+  PHP's one-off exception: `statements ::= ... | (if_statement
+  [("END-IF" [statements])]) | ...`, where `if_statement` itself is
+  `"IF" condition [THEN] (statements | "NEXT" "SENTENCE") [("ELSE"
+  (statements | "NEXT" "SENTENCE"))]`. `END-IF` is bracketed — fully
+  optional — so a nested, unterminated `IF` inside an `IF` is exactly as
+  ambiguous as C's, resolved the same "nearest if" way; adding `END-IF`
+  removes the ambiguity completely for that one `IF`, the same trade a
+  VB6 programmer makes with `end if`. What makes COBOL distinct is that
+  this exact `[END-XXX [statements]]` shape isn't special-cased for `IF`
+  at all — it's the *uniform* pattern `statements` uses for roughly twenty
+  different statement kinds alike (`END-ADD`, `END-COMPUTE`,
+  `END-DELETE`, `END-DIVIDE`, `END-MULTIPLY`, `END-READ`, `END-REWRITE`,
+  `END-START`, `END-STRING`, `END-SUBTRACT`, `END-UNSTRING`, `END-WRITE`,
+  …), all independently optional. COBOL doesn't give `IF` a special
+  carve-out the way VB6/PHP do — it applies the identical "ambiguous by
+  default, opt into an explicit terminator" trade-off everywhere a
+  compound statement can embed another one.
 
 ## The pattern
 
@@ -99,6 +183,29 @@ The split runs along **language lineage, not decade**:
   tend to pair a delimited one with a C-style compact one, suggesting
   compact-but-ambiguous and safe-but-verbose are seen as a deliberate
   trade-off, not just a legacy accident.
+- **COBOL (1959)**, the oldest language in this entire corpus, shows the
+  "give both forms" accommodation in its most systematic version —
+  optional `END-IF` alongside the ambiguous fallback, applied uniformly
+  to nearly every compound statement rather than as a special exception
+  carved out just for `IF`. `END-IF` itself (like most of COBOL's
+  `END-XXX` scope terminators) was a later standard addition, retrofitted
+  onto a language whose original 1959 design relied on the terminating
+  period and "nearest if" convention alone — directly parallel to
+  Fortran's own later `END IF` retrofit in strategy 1 below.
+- **PL/I (1964)** inherited the same ambiguous shape as Pascal did, for a
+  similar reason: it was an IBM committee design unifying COBOL- and
+  Fortran-style business/scientific programming under one Algol-flavored
+  control-flow syntax, prioritizing a familiar `IF`/`THEN`/`ELSE` shape
+  over a clean fix the field already knew about by 1964 — the same
+  "known but minor, not worth a clean break" calculus Pascal's designers
+  made a decade later.
+- **Haskell** is a fourth lineage entirely, and it solves the problem for a
+  reason none of the other three groups share: `if` is an *expression*
+  there, not a *statement*. Once every branch of a conditional has to
+  produce a usable value, "what if one branch is just skipped" stops being
+  a sensible question to ask, and the mandatory-`else` shape falls out as a
+  consequence of that choice rather than a dangling-else fix bolted on
+  separately.
 
 ## Pros, cons, and design motivation for each strategy
 
@@ -230,6 +337,38 @@ break from Pascal/Algol compatibility — suggesting it was seen as a real
 but minor flaw, worth correcting only when a clean break was already on the
 table.
 
+### 4. Mandatory `else` via expression-oriented design (Haskell)
+
+**Pros**
+
+- The ambiguity doesn't need fixing because it structurally cannot arise —
+  stronger even than strategy 1's guarantee, since there isn't even an
+  optional terminator to forget or mismatch during a refactor.
+- Forces every conditional to actually decide both outcomes, which rules
+  out an entire class of "forgot the else branch" logic bugs for free,
+  as a side effect of the type system rather than a style-guide rule.
+
+**Cons**
+
+- A guard-clause idiom that's one line in C (`if (x) return;`) has no
+  direct equivalent — you're always writing both branches, even when one
+  of them is semantically "do nothing," which in an expression language has
+  to be spelled out as some explicit value (`Nothing`, `()`, the `do`-block
+  it was already in) rather than simply omitted.
+- Only works because the language made conditionals expressions in the
+  first place; it isn't a strategy retrofittable onto a statement-oriented
+  language without that deeper design commitment.
+
+**Why it was chosen this way**: this isn't a dangling-else fix at all — it's
+a side effect of Haskell committing, from first principles, to "everything
+is an expression, nothing is a statement" (the same commitment C/Java/Dart
+make only for calls, per `function-analysis.md` §2, Haskell makes for
+control flow itself). Once a language goes that far, a conditional that
+could silently produce nothing in one branch isn't just stylistically
+risky, it's not well-typed — the fix is a consequence of the type
+discipline, not a grammar patch aimed at this specific ambiguity the way
+Ada's `end if` or Python's layout rule are.
+
 ## Generalizing the pattern: what actually causes this class of ambiguity
 
 Dangling-else is one instance of a broader, precise phenomenon: it is
@@ -285,6 +424,22 @@ name-assignment-plus-bare-`Return` duplication and its
 `Optional`-plus-independent-default-value duplication in
 `function-analysis.md`). This is now a third confirmed instance of that
 same VB6 signature.
+
+### Case 3: Haskell — the same rule, broken from the *other* side
+
+Every case above fixes the ambiguity by denying condition (2): giving the
+body its own unambiguous delimiter (`end if`, braces, layout). Haskell
+instead denies condition (1) directly — there never was an optional
+trailing clause to misattach, since `else` in
+`"if" exp "then" exp "else" exp` is mandatory. The recursive containment
+(condition 2) is still fully present — `exp` can absolutely contain another
+`if` — but with no optionality on the outer construct's own trailing
+clause, there's nothing for the recursion to create ambiguity *about*.
+Together with the counter-example just below (which denies condition 2
+while leaving an optional clause fully in place), these two cases confirm
+the "two necessary conditions" framing from opposite directions: break
+either one, and the ambiguity provably cannot occur, regardless of what
+happens to the other.
 
 ### The counter-example that sharpens the rule: `try`/`catch`/`finally` and `switch`/`default`
 

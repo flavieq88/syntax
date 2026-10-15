@@ -1,0 +1,163 @@
+# BGF production shape analysis
+source: java-java-5-jls-impl.bgf
+productions: 245
+distinct_shapes: 154
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+52	N
+13	sequence(N, N)
+5	sequence(N, optional(N))
+5	sequence(N, star(sequence(",", N)))
+4	";"
+3	sequence(star(N), N)
+3	star(N)
+2	"+"
+2	"++"
+2	"-"
+2	"--"
+2	sequence(".", N, optional(N))
+2	sequence("<", N, star(sequence(",", N)), ">")
+2	sequence("case", N, ":")
+2	sequence("super", N)
+2	sequence("void", N, N)
+2	sequence("{", star(N), "}")
+2	sequence(N, ";")
+2	sequence(N, ";", optional(N), ";", optional(N))
+2	sequence(N, N, N)
+1	"!"
+1	"!="
+1	"%"
+1	"%="
+1	"&"
+1	"&&"
+1	"&="
+1	"*"
+1	"*="
+1	"+="
+1	"-="
+1	"/"
+1	"/="
+1	"<"
+1	"<<"
+1	"<<="
+1	"<="
+1	"="
+1	"=="
+1	">"
+1	">="
+1	">>"
+1	">>="
+1	">>>"
+1	">>>="
+1	"^"
+1	"^="
+1	"abstract"
+1	"boolean"
+1	"byte"
+1	"char"
+1	"double"
+1	"final"
+1	"float"
+1	"int"
+1	"long"
+1	"native"
+1	"private"
+1	"protected"
+1	"public"
+1	"short"
+1	"static"
+1	"strictfp"
+1	"synchronized"
+1	"transient"
+1	"volatile"
+1	"|"
+1	"|="
+1	"||"
+1	"~"
+1	optional(N)
+1	optional(sequence("final", optional(N), N, N))
+1	sequence("(", ")", optional(N))
+1	sequence("(", N, ")")
+1	sequence("(", choice(N, N), ")", N)
+1	sequence("(", optional(N), ")")
+1	sequence("(", optional(sequence(N, star(sequence(",", N)))), ")")
+1	sequence(".", "new", optional(N), N)
+1	sequence(".", "super", N)
+1	sequence(".", "this")
+1	sequence(".", N)
+1	sequence(".", choice("class", N, "this", sequence("super", N), sequence("new", optional(N), N)))
+1	sequence("...", N)
+1	sequence(":", N)
+1	sequence(";", star(N))
+1	sequence("<", N, ">")
+1	sequence("?", N, ":", N)
+1	sequence("?", optional(sequence(choice("extends", "super"), N)))
+1	sequence("@", "interface", N, N)
+1	sequence("@", N, optional(sequence("(", optional(sequence(N, "=")), N, ")")))
+1	sequence("[", choice(sequence("]", star(sequence("[", "]")), ".", "class"), sequence(N, "]")))
+1	sequence("[", choice(sequence("]", star(sequence("[", "]")), N), sequence(N, "]", star(sequence("[", N, "]")), star(sequence("[", "]")))))
+1	sequence("assert", N, optional(sequence(":", N)), ";")
+1	sequence("break", optional(N))
+1	sequence("catch", "(", N, ")", N)
+1	sequence("class", N, optional(N), optional(sequence("extends", N)), optional(sequence("implements", N)), N)
+1	sequence("continue", optional(N))
+1	sequence("default", ":")
+1	sequence("default", N)
+1	sequence("do", N, "while", N, ";")
+1	sequence("enum", N, optional(sequence("implements", N)), N)
+1	sequence("for", "(", N, ")", N)
+1	sequence("if", N, N, optional(sequence("else", N)))
+1	sequence("import", optional("static"), N, star(sequence(".", N)), optional(sequence(".", "*")), ";")
+1	sequence("interface", N, optional(N), optional(sequence("extends", N)), N)
+1	sequence("new", N)
+1	sequence("return", optional(N), ";")
+1	sequence("switch", N, "{", N, "}")
+1	sequence("synchronized", N, N)
+1	sequence("this", optional(N))
+1	sequence("throw", N, ";")
+1	sequence("try", N, choice(N, sequence(optional(N), "finally", N)))
+1	sequence("void", ".", "class")
+1	sequence("while", N, N)
+1	sequence("{", optional(N), optional(","), "}")
+1	sequence(N, ",", N)
+1	sequence(N, ":", N)
+1	sequence(N, "instanceof", N)
+1	sequence(N, N, N, ";")
+1	sequence(N, N, optional(N), optional(N))
+1	sequence(N, choice(N, "void"), N, N)
+1	sequence(N, choice(N, sequence("this", N)))
+1	sequence(N, optional(N), star(sequence(".", N, optional(N))))
+1	sequence(N, optional(N), star(sequence(".", N, optional(N))), star(sequence("[", "]")))
+1	sequence(N, optional(sequence(",", N)))
+1	sequence(N, optional(sequence("extends", N)))
+1	sequence(N, optional(sequence("throws", N)), ";")
+1	sequence(N, optional(sequence("throws", N)), N)
+1	sequence(N, optional(sequence("throws", N)), choice(N, ";"))
+1	sequence(N, optional(sequence(N, N)))
+1	sequence(N, star(N))
+1	sequence(N, star(N), star(N))
+1	sequence(N, star(sequence("&", N)))
+1	sequence(N, star(sequence(".", N)))
+1	sequence(N, star(sequence(".", N)), optional(N))
+1	sequence(N, star(sequence("[", "]")))
+1	sequence(N, star(sequence("[", "]")), ".", "class")
+1	sequence(N, star(sequence("[", "]")), optional(sequence("throws", N)), ";")
+1	sequence(N, star(sequence("[", "]")), optional(sequence("throws", N)), choice(N, ";"))
+1	sequence(choice(N, "void"), N, N)
+1	sequence(optional("final"), N, N, ";")
+1	sequence(optional("final"), optional(N), N, N, N)
+1	sequence(optional("static"), N)
+1	sequence(optional(N), N, choice(N, N))
+1	sequence(optional(sequence(N, ":")), N)
+1	sequence(optional(sequence(optional(N), "package", N, ";")), star(N), star(N))
+1	sequence(star(N), choice(N, N))
+1	sequence(star(sequence("[", "]")), "=", N)
+1	sequence(star(sequence("[", "]")), optional(sequence("=", N)))
+1	star(optional(N))
+1	star(optional(sequence(N, star(sequence(",", N)), optional(","))))
+1	star(sequence(",", N))
+1	star(sequence(N, N))
+1	star(sequence(optional(N), optional(","), optional(N)))

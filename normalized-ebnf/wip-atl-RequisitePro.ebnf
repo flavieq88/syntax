@@ -1,0 +1,13 @@
+N("DescribedElt") ::= N("Document");
+N("DescribedElt") ::= N("ContainerElt");
+N("NamedElt") ::= N("ContainerElt");
+N("NamedElt") ::= N("Requirement");
+N("ContainerElt") ::= N("Project");
+N("ContainerElt") ::= N("Package");
+N("Project") ::= ((select("content", N("ContainedElt")))+ (select("packages", N("Package")))+);
+N("Package") ::= select("parentPackage", N("ContainerElt"));
+N("TypedElt") ::= N("Attribute");
+N("Document") ::= (select("description", N("String")));
+N("Attribute") ::= select("value", N("String"));
+N("Requirement") ::= (select("text", N("String")) (select("attributes", N("Attribute")))+ select("location", N("Document")) select("parent", N("Requirement")) (select("children", N("Requirement")))+ (select("coverLink", N("Requirement")))+);
+N("String") ::= value("string");

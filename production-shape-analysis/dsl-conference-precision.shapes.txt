@@ -1,0 +1,50 @@
+# BGF production shape analysis
+source: dsl-conference-precision.bgf
+productions: 1216
+distinct_shapes: 41
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+728	N
+209	epsilon
+41	sequence(N, N)
+37	sequence(N, N, N, N)
+30	choice(N, N)
+20	sequence(N, N, plus(N), N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+16	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, plus(N), plus(N), N, N, N, plus(N), N, N, N, plus(N), N, N, N, N, N, N, N, N, plus(N), plus(N), N, N, N, plus(N), N, plus(N), N, N, N, N, N, N, N)
+13	sequence(N, N, N, plus(N), N, N, N, N, N)
+12	sequence(N, N, N)
+9	choice(N, N, N)
+8	sequence(N, N, N, N, N, N, N, N, N, N, plus(N), N, N)
+7	choice(N, N, N, N)
+7	plus(N)
+7	sequence(plus(N), N)
+6	sequence(N, N, N, N, N, N, N, N, N)
+5	choice(N, N, N, N, N)
+5	choice(N, N, N, N, N, N)
+5	sequence(N, N, N, N, N)
+5	sequence(N, N, N, N, N, N, N, N)
+5	sequence(N, N, N, N, N, N, N, N, N, N, N, N)
+5	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+4	sequence(N, N, N, N, N, N, N)
+4	sequence(N, N, N, N, plus(N), N, N, plus(N), N, N, N, N, N)
+4	sequence(N, plus(N), N, N)
+3	choice(N, N, N, N, N, N, N)
+3	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+3	sequence(N, N, N, plus(N), N)
+2	sequence(N, N, plus(N), N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	choice("true", "false")
+1	choice(N, N, N, N, N, N, N, N)
+1	choice(N, N, N, N, N, N, N, N, N)
+1	choice(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	sequence(N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, plus(N), plus(N), N, N, N, plus(N), N, N, N, plus(N), N, N, N, N, N, N, N, N, plus(N), plus(N), N, N, N, plus(N), N, plus(N), N, N, N, N, N, N, N, N, N)
+1	sequence(N, plus(N), N)
+1	sequence(N, plus(N), N, N, N, N, N, N, N, N, N, N)
+1	value("int")
+1	value("string")

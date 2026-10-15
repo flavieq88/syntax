@@ -1,0 +1,10 @@
+# BGF production shape analysis
+source: automata-petri-pnml-standard-anyElement.bgf
+productions: 1
+distinct_shapes: 1
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	sequence(star(choice(any, value("string"), N)))

@@ -1,0 +1,23 @@
+# BGF production shape analysis
+source: wip-atl-XMorphLanguage_abstractSyntax.bgf
+productions: 63
+distinct_shapes: 14
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+39	N
+4	sequence(N)
+4	sequence(N, N)
+4	sequence(plus(N))
+2	sequence(N, N, N)
+2	sequence(N, plus(N))
+1	choice("true", "false")
+1	plus(N)
+1	sequence(N, plus(N), N)
+1	sequence(plus(N), N)
+1	sequence(plus(N), plus(N))
+1	sequence(plus(N), plus(N), N, plus(N), plus(N), N, plus(N))
+1	sequence(plus(N), plus(N), plus(N), plus(N))
+1	value("string")

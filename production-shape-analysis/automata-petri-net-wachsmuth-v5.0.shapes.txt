@@ -1,0 +1,16 @@
+# BGF production shape analysis
+source: automata-petri-net-wachsmuth-v5.0.bgf
+productions: 9
+distinct_shapes: 7
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	N
+2	sequence(any, any)
+1	any
+1	sequence(any, plus(any), plus(any))
+1	sequence(any, plus(any), plus(any), plus(any))
+1	sequence(plus(any), plus(any))
+1	value("int")

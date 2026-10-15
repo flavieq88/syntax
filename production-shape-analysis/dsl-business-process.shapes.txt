@@ -1,0 +1,20 @@
+# BGF production shape analysis
+source: dsl-business-process.bgf
+productions: 45
+distinct_shapes: 11
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+23	N
+8	epsilon
+5	plus(N)
+2	sequence(plus(N), plus(N), N)
+1	choice("true", "false")
+1	choice(N, N)
+1	choice(N, N, N)
+1	choice(N, N, N, N, N)
+1	sequence(N, N)
+1	value("int")
+1	value("string")

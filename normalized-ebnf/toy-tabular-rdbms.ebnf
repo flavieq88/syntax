@@ -1,0 +1,4 @@
+N("Table") ::= (select("name", N("String")) (select("fkeys", N("FKey")))+ (select("pkey", N("Column")))+ (select("cols", N("Column")))+);
+N("Column") ::= (select("name", N("String")) select("type", N("String")));
+N("FKey") ::= (select("references", N("Table")) (select("cols", N("Column")))+);
+N("String") ::= value("string");

@@ -1,0 +1,1 @@
+N("Message") ::= (select("error", (marked("msg", value("string")) marked("at", value("string")))) | select("warning", (marked("msg", value("string")) marked("at", value("string")))) | select("info", (marked("msg", value("string")) marked("at", value("string")))));

@@ -1,0 +1,17 @@
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("Group") ::= (select("subjectGroup", N("Subject")))+;
+N("User") ::= (select("group", N("Group")) (select("role", N("Role")))+);
+N("Subject") ::= N("Group");
+N("Subject") ::= N("User");
+N("Subject") ::= (select("group", N("Group")) (select("role", N("Role")))+);
+N("Role") ::= ((select("roleHierarchy", N("Role")))+ (select("subjectAssignment", N("Subject")))+ (select("permissionAssignment", N("Permission")))+);
+N("Permission") ::= ((select("role", N("Role")))+ select("constraintAssignment", N("AuthorizationConstraint")) (select("actionAssignment", N("Action")))+);
+N("AuthorizationConstraint") ::= (select("permission", N("Permission")))+;
+N("AtomicAction") ::= ((select("permission", N("Permission")))+ select("resource", N("Resource")) (select("actionHyerarchy", N("CompositeAction")))+);
+N("CompositeAction") ::= (select("subordinatedAction", N("Action")))+;
+N("Action") ::= N("AtomicAction");
+N("Action") ::= N("CompositeAction");
+N("Action") ::= ((select("permission", N("Permission")))+ select("resource", N("Resource")) (select("actionHyerarchy", N("CompositeAction")))+);
+N("Resource") ::= (select("resourceAction", N("Action")))+;

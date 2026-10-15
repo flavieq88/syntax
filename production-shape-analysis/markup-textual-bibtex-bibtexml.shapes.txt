@@ -1,0 +1,21 @@
+# BGF production shape analysis
+source: markup-textual-bibtex-bibtexml.bgf
+productions: 45
+distinct_shapes: 12
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+30	N
+3	sequence(N, N, N, N)
+2	sequence(N, N)
+2	sequence(N, N, N)
+1	plus(N)
+1	sequence(N)
+1	sequence(N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N)
+1	sequence(plus(N))
+1	sequence(plus(N), N, N, N)
+1	sequence(plus(N), N, N, N, N, N)
+1	value("string")

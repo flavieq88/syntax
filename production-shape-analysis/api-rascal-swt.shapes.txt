@@ -1,0 +1,10 @@
+# BGF production shape analysis
+source: api-rascal-swt.bgf
+productions: 1
+distinct_shapes: 1
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice(sequence(marked("left", value("int")), marked("top", value("int")), marked("width", value("int")), marked("height", value("int"))), sequence(marked("left", value("int")), marked("top", value("int")), marked("width", value("int")), marked("height", value("int"))), sequence(marked("fromX", value("int")), marked("fromY", value("int")), marked("toX", value("int")), marked("toY", value("int"))), marked("color", value("int")), marked("color", value("int")), marked("weight", value("int")), sequence(marked("title", value("string")), marked("left", value("int")), marked("top", value("int"))), marked("color", value("int")), sequence(marked("font", value("string")), marked("size", value("int"))), marked("size", value("int")))

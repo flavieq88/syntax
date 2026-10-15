@@ -1,0 +1,11 @@
+N("Node") ::= N("Attribute");
+N("Node") ::= N("Text");
+N("Node") ::= N("Element");
+N("Attribute") ::= (select("startLine", N("Integer")) select("startColumn", N("Integer")) select("endLine", N("Integer")) select("endColumn", N("Integer")) select("name", N("String")) select("value", N("String")) select("parent", N("Element")));
+N("Text") ::= (select("startLine", N("Integer")) select("startColumn", N("Integer")) select("endLine", N("Integer")) select("endColumn", N("Integer")) select("name", N("String")) select("value", N("String")) select("parent", N("Element")));
+N("Element") ::= N("Root");
+N("Element") ::= (select("children", N("Node")))+;
+N("Root") ::= ((select("children", N("Node")))+);
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");

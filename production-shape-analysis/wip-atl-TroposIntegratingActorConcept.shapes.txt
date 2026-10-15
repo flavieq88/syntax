@@ -1,0 +1,14 @@
+# BGF production shape analysis
+source: wip-atl-TroposIntegratingActorConcept.bgf
+productions: 7
+distinct_shapes: 5
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+3	N
+1	choice(N, N, N)
+1	epsilon
+1	plus(N)
+1	sequence(N, plus(N))

@@ -1,0 +1,10 @@
+N("SortDeclaration") ::= N("Partition");
+N("OperatorDeclaration") ::= N("PartitionElement");
+N("BuiltInOperator") ::= N("PartitionOperator");
+N("Partition") ::= select("partition", (N("SortDeclaration.content") N("Sort") (N("PartitionElement"))+));
+N("PartitionElement") ::= select("partitionelement", (N("OperatorDeclaration.content") (N("Term"))+));
+N("PartitionOperator.content") ::= N("BuiltInOperator.content");
+N("PartitionOperator") ::= (N("PartitionLessThan") | N("PartitionGreaterThan") | N("PartitionElementOf"));
+N("PartitionLessThan") ::= select("ltp", N("PartitionOperator.content"));
+N("PartitionGreaterThan") ::= select("gtp", N("PartitionOperator.content"));
+N("PartitionElementOf") ::= select("partitionelementof", (select("refpartition", value("string")) N("PartitionOperator.content")));

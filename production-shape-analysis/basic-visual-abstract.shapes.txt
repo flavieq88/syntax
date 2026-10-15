@@ -1,0 +1,36 @@
+# BGF production shape analysis
+source: basic-visual-abstract.bgf
+productions: 122
+distinct_shapes: 27
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+75	N
+6	sequence(N, N)
+6	sequence(N, plus(N))
+4	epsilon
+3	choice(epsilon, epsilon, epsilon)
+2	choice(epsilon, epsilon)
+2	plus(N)
+2	sequence(N, N, N)
+2	sequence(N, N, plus(N))
+2	sequence(N, N, plus(N), N, plus(N))
+2	sequence(N, plus(N), plus(N))
+1	choice("true", "false")
+1	sequence(N, N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, plus(N), N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, plus(N), N, plus(N), plus(N))
+1	sequence(N, N, N, N, N, N, N, plus(N))
+1	sequence(N, N, N, N, N, N, N, plus(N), N)
+1	sequence(N, N, N, N, N, N, plus(N))
+1	sequence(N, N, N, N, N, N, plus(N), N, plus(N), plus(N))
+1	sequence(N, N, N, N, plus(N), N, plus(N))
+1	sequence(N, N, N, N, plus(N), plus(N), plus(N))
+1	sequence(N, N, N, plus(N), N, N)
+1	sequence(N, N, plus(N), plus(N))
+1	sequence(N, plus(N), N, N)
+1	sequence(plus(N), N, plus(N))
+1	value("int")
+1	value("string")

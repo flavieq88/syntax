@@ -1,0 +1,42 @@
+# BGF production shape analysis
+source: wip-atl-mlhim2.bgf
+productions: 210
+distinct_shapes: 33
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+117	N
+32	any
+11	epsilon
+9	plus(N)
+5	sequence(any, any, any)
+4	sequence(N, N, N)
+3	sequence(N, N)
+2	sequence(N, N, N, N)
+2	sequence(N, N, N, N, N, N)
+2	sequence(N, plus(N))
+1	choice(N)
+1	choice(N, N)
+1	choice(N, N, N)
+1	choice(N, N, N, N)
+1	choice(N, N, N, N, N)
+1	plus(value("string"))
+1	sequence(N)
+1	sequence(N, N, N, N, N, plus(N))
+1	sequence(N, N, N, plus(N))
+1	sequence(N, N, any, any, any, any)
+1	sequence(N, N, plus(N))
+1	sequence(N, plus(N), N)
+1	sequence(N, plus(N), N, N, N)
+1	sequence(N, plus(N), N, N, N, N, N, N, N, N, N)
+1	sequence(N, plus(N), N, plus(N), N)
+1	sequence(any, any)
+1	sequence(any, any, value("string"))
+1	sequence(any, value("string"))
+1	sequence(plus(value("string")), plus(value("string")), plus(value("string")), plus(value("string")), plus(N))
+1	sequence(value("string"), plus(N))
+1	sequence(value("string"), value("string"))
+1	value("int")
+1	value("string")

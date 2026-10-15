@@ -1,0 +1,22 @@
+# BGF production shape analysis
+source: meta-syntax-relaxng.bgf
+productions: 15
+distinct_shapes: 13
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	sequence(N, N)
+2	sequence(N, plus(N))
+1	choice(sequence(N, value("string")), sequence(N, N), sequence(N, N), sequence(N, N))
+1	choice(sequence(choice(value("string"), N), N, N), sequence(N, choice(value("string"), N), sequence(N, optional(N))), sequence(N, N), sequence(N, N), sequence(N, N), sequence(N, N), sequence(N, N), sequence(N, N), sequence(N, N), sequence(N, N), sequence(value("string"), N, N), sequence(value("string"), N, N), sequence(N, N), sequence(N, N), sequence(optional(value("string")), N, value("string")), sequence(value("string"), N, sequence(N, sequence(star(sequence(value("string"), N, value("string"))), optional(sequence(N, N))))), sequence(N, N), sequence(value("string"), N, N), sequence(N, N))
+1	optional(choice("choice", "interleave"))
+1	sequence(N, N, N)
+1	sequence(N, optional(N))
+1	sequence(N, star(choice(N, N, sequence(N, N))))
+1	sequence(N, star(choice(N, N, sequence(N, N), sequence(value("string"), N, N))))
+1	sequence(optional(value("string")), optional(value("string")), star(any))
+1	sequence(star(choice(any, value("string"), N)))
+1	sequence(value("string"), N, N, N)
+1	star(sequence(star(choice(any, value("string"), N))))

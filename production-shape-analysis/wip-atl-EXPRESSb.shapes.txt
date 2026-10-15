@@ -1,0 +1,39 @@
+# BGF production shape analysis
+source: wip-atl-EXPRESSb.bgf
+productions: 142
+distinct_shapes: 30
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+34	epsilon
+27	sequence(N, N)
+21	N
+17	sequence(N, N, N)
+6	plus(N)
+6	sequence(N, N, N, N)
+3	sequence(N, plus(N), N)
+3	sequence(plus(N), N, N)
+2	sequence(N, plus(N))
+2	sequence(plus(N), N)
+2	sequence(plus(N), plus(N), N, plus(N), N, N)
+1	choice("true", "false")
+1	sequence(N, N, N, N, N)
+1	sequence(N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, plus(N))
+1	sequence(N, N, plus(N), N)
+1	sequence(N, plus(N), N, N)
+1	sequence(N, plus(N), plus(N))
+1	sequence(N, plus(N), plus(N), N, N, N)
+1	sequence(plus(N), N, plus(N), N, N, N)
+1	sequence(plus(N), plus(N))
+1	sequence(plus(N), plus(N), N, N, N)
+1	sequence(plus(N), plus(N), N, plus(N), N)
+1	sequence(plus(N), plus(N), plus(N))
+1	sequence(plus(N), plus(N), plus(N), N, N)
+1	sequence(plus(N), plus(N), plus(N), plus(N), N, N)
+1	sequence(plus(N), plus(N), plus(N), plus(N), N, plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), N)
+1	value("int")
+1	value("string")

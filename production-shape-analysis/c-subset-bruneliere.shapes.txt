@@ -1,0 +1,19 @@
+# BGF production shape analysis
+source: c-subset-bruneliere.bgf
+productions: 67
+distinct_shapes: 10
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+34	N
+17	epsilon
+4	choice(N, N, N)
+4	plus(N)
+2	choice(N, N, N, N)
+2	sequence(N, N)
+1	choice("true", "false")
+1	choice(N, N)
+1	value("int")
+1	value("string")

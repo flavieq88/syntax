@@ -1,0 +1,12 @@
+N("Program") ::= (select("function", N("Function")))+;
+N("Function") ::= (select("name", value("string")) (select("argument", N("Argument")))+ select("definition", N("Exp")));
+N("Argument") ::= select("name", value("string"));
+N("Exp") ::= (N("LiteralExp") | N("ArgumentExp") | N("IfThenElseExp") | N("ApplyExp") | N("BinaryExp"));
+N("LiteralExp") ::= select("value", value("int"));
+N("ArgumentExp") ::= select("argument", N("Argument"));
+N("IfThenElseExp") ::= (select("if", N("Exp")) select("then", N("Exp")) select("else", N("Exp")));
+N("ApplyExp") ::= (select("function", N("Function")) (select("argument", N("Exp")))+);
+N("BinaryExp") ::= (N("PlusExp") | N("MinusExp") | N("EqualExp"));
+N("PlusExp") ::= (select("left", N("Exp")) select("right", N("Exp")));
+N("MinusExp") ::= (select("left", N("Exp")) select("right", N("Exp")));
+N("EqualExp") ::= (select("left", N("Exp")) select("right", N("Exp")));

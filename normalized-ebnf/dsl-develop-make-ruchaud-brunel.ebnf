@@ -1,0 +1,13 @@
+N("Makefile") ::= (select("name", N("String")) select("comment", N("Comment")) (select("elements", N("Element")))+);
+N("Element") ::= N("Rule");
+N("Element") ::= N("Macro");
+N("Rule") ::= ((select("dependencies", N("Dependency")))+ (select("shellLines", N("ShellLine")))+);
+N("Macro") ::= select("value", N("String"));
+N("ShellLine") ::= (select("command", N("String")) select("display", N("Boolean")) select("ruleShellLine", N("Rule")));
+N("Comment") ::= select("text", N("String"));
+N("Dependency") ::= N("RuleDep");
+N("Dependency") ::= N("FileDep");
+N("RuleDep") ::= select("ruledep", N("Rule"));
+N("FileDep") ::= select("name", N("String"));
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");

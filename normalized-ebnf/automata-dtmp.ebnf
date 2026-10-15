@@ -1,0 +1,6 @@
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("State") ::= (select("name", N("String")) select("isStart", N("Boolean")) select("isEnd", N("Boolean")) select("isFail", N("Boolean")) (select("incoming", N("Transition")))+ (select("outGoing", N("Transition")))+ (select("formalParam", N("Parameter")))+);
+N("Transition") ::= ((select("transProb", N("String")))+ select("to", N("State")) select("from", N("State")));
+N("Parameter") ::= ((select("name", N("String")))+ (select("type", N("String")))+ select("state", N("State")));

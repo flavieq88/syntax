@@ -1,0 +1,35 @@
+# BGF production shape analysis
+source: dsl-architecture-agate.bgf
+productions: 117
+distinct_shapes: 26
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+72	N
+6	plus(N)
+6	sequence(N, N, N, plus(N), plus(N))
+6	sequence(plus(N), plus(N))
+3	sequence(N, N, N, N, N, N, N)
+2	sequence(N, N)
+2	sequence(N, N, N, N)
+2	sequence(N, N, plus(N))
+1	choice("true", "false")
+1	epsilon
+1	sequence(N, N, N)
+1	sequence(N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N))
+1	sequence(N, N, N, N, N, N, N, N, plus(N), N, plus(N))
+1	sequence(N, N, N, N, plus(N))
+1	sequence(N, N, plus(N), N, plus(N), N)
+1	sequence(N, plus(N))
+1	sequence(plus(N), plus(N), plus(N))
+1	sequence(plus(N), plus(N), plus(N), N, N, plus(N))
+1	sequence(plus(N), plus(N), plus(N), plus(N), plus(N))
+1	value("int")
+1	value("string")

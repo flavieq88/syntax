@@ -1,0 +1,15 @@
+# BGF production shape analysis
+source: markup-textual-csv-parr.bgf
+productions: 6
+distinct_shapes: 6
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	N
+1	choice(N, N, epsilon)
+1	plus(not(choice(",", "\\n", "\\r", N)))
+1	sequence(N, plus(N))
+1	sequence(N, star(choice(sequence(N, N), not(N))), N)
+1	sequence(N, star(sequence(",", N)), optional("\\r"), "\\n")

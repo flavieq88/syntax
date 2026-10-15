@@ -1,0 +1,10 @@
+N("net.labels") ::= (N("HLDeclaration"))*;
+N("page.labels") ::= (N("HLDeclaration"))*;
+N("place.labels") ::= ([N("Type")] [N("HLMarking")]);
+N("transition.labels") ::= [N("Condition")];
+N("arc.labels") ::= [N("HLAnnotation")];
+N("HLDeclaration") ::= select("declaration", (N("simpletextlabel.content") [select("structure", N("Declarations"))]));
+N("Type") ::= select("type", (N("simpletextlabel.content") [select("structure", N("Sort"))]));
+N("HLMarking") ::= select("hlinitialMarking", (N("simpletextlabel.content") [select("structure", N("Term"))]));
+N("Condition") ::= select("condition", (N("simpletextlabel.content") [select("structure", N("Term"))]));
+N("HLAnnotation") ::= select("hlinscription", (N("simpletextlabel.content") [select("structure", N("Term"))]));

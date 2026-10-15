@@ -1,0 +1,23 @@
+# BGF production shape analysis
+source: dsl-business-bpmn-jouault.bgf
+productions: 47
+distinct_shapes: 14
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+25	N
+6	sequence(plus(N), N)
+3	plus(N)
+3	sequence(N, N, N)
+1	choice("true", "false")
+1	choice(epsilon, epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	sequence(N, N, N, N)
+1	sequence(plus(N), plus(N))
+1	sequence(plus(N), plus(N), N)
+1	sequence(plus(N), plus(N), N, N)
+1	sequence(plus(N), plus(N), plus(N), plus(N), N, N, N, N)
+1	value("int")
+1	value("string")

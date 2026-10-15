@@ -1,0 +1,10 @@
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("LocatedElement") ::= N("Network");
+N("LocatedElement") ::= N("Services");
+N("Network") ::= ((select("services", N("Services")))+ select("name", N("String")));
+N("Services") ::= N("WebService");
+N("Services") ::= N("RSS");
+N("WebService") ::= (select("linkedServices", N("Services")))+;
+N("RSS") ::= (select("name", N("String")) select("URL", N("String")) select("descriptions", N("String")));

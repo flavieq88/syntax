@@ -1,0 +1,9 @@
+@root N("configuration");
+
+N("configuration") ::= ((select("shortcut", N("shortcuttype")) | select("action", N("actiontype")) | select("source", N("sourcetype")) | select("target", N("targettype")) | select("comment", N("mixedType"))))*;
+N("actiontype") ::= ([select("comment", value("string"))] (select("name", value("string")))+ select("definition", (select("command", N("commandtype")))+));
+N("shortcuttype") ::= (select("name", value("string")) select("definition", ((N("expansion") | value("string")))*));
+N("expansion") ::= (select("expand", value("string")) | select("expand-type", epsilon) | select("expand-arguments", epsilon) | select("expand-source", epsilon) | select("expand-action", epsilon) | select("expand-first", epsilon) | select("expand-second", epsilon) | select("expand-context", epsilon) | select("expand-sample", epsilon) | select("expand-parsed", epsilon) | select("expand-yields", epsilon));
+N("commandtype") ::= (((N("expansion") | value("string")))* [select("err", value("string"))] [select("out", value("string"))]);
+N("sourcetype") ::= (select("name", value("string")) select("type", value("string")) select("arguments", (select("argument", ((N("expansion") | value("string")))*))+) [select("parser", (select("command", N("commandtype")))+)] [select("evaluator", (select("command", N("commandtype")))+)]);
+N("targettype") ::= (select("name", value("string")) (select("branch", (select("take", value("string")) (select("perform", value("string")))*)))+);

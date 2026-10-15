@@ -1,0 +1,12 @@
+# BGF production shape analysis
+source: api-rascal-boolean.bgf
+productions: 5
+distinct_shapes: 3
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+3	marked("b", value("boolean"))
+1	epsilon
+1	marked("s", value("string"))

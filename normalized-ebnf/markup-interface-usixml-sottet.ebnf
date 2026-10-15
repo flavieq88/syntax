@@ -1,0 +1,12 @@
+N("Task") ::= (select("id", N("String")) select("name", N("String")) select("category", N("String")) select("frequency", N("Integer")) select("importance", N("Integer")) select("structurationLevel", N("Integer")) select("complexityLevel", N("Integer")) select("criticity", N("Integer")) select("centrality", N("Integer")) select("terminationValue", N("String")) select("taskType", N("String")) select("taskItem", N("String")) (select("decompositionTasks", N("Task")))+ select("decomposedTask", N("Task")) select("leftOperator", N("BinaryOperator")) select("rightOperator", N("BinaryOperator")) select("decoration", N("UnaryOperator")));
+N("Operator") ::= N("BinaryOperator");
+N("Operator") ::= N("UnaryOperator");
+N("BinaryOperator") ::= (select("type", N("BinaryType")) select("leftTask", N("Task")) select("rightTask", N("Task")));
+N("UnaryOperator") ::= N("FiniteInteration");
+N("UnaryOperator") ::= (select("UnaryType", N("UnaryType")) select("decoratedTask", N("Task")));
+N("FiniteInteration") ::= select("interation", N("Integer"));
+N("BinaryType") ::= (select("Enabling", epsilon) | select("Disabling", epsilon) | select("SuspendResume", epsilon) | select("OrderIndependence", epsilon) | select("IndependentConcurrency", epsilon) | select("ConcurencyWithInformationPassing", epsilon) | select("UnderterministicChoice", epsilon) | select("EnablingWithInformationPassing", epsilon));
+N("UnaryType") ::= (select("Optional", epsilon) | select("Iteration", epsilon) | select("finitIteration", epsilon));
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");

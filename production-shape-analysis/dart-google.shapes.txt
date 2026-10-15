@@ -1,0 +1,167 @@
+# BGF production shape analysis
+source: dart-google.bgf
+productions: 187
+distinct_shapes: 158
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+10	choice(N, N)
+7	sequence(N, N)
+5	sequence(N, star(sequence(",", N)))
+3	choice(sequence(N, star(sequence(N, N))), sequence(N, plus(sequence(N, N))))
+3	sequence(N, optional(sequence("=", N)))
+2	N
+2	choice(any, sequence("\\\\", any))
+2	sequence(N, "=", "[", optional(N), "]")
+2	sequence(N, optional(sequence("=", N)), star(sequence(",", N)))
+2	sequence(N, star(N))
+2	sequence(N, star(sequence(",", N)), optional(","))
+1	"abstract"
+1	"assert"
+1	"break"
+1	"case"
+1	"catch"
+1	"class"
+1	"const"
+1	"continue"
+1	"default"
+1	"do"
+1	"else"
+1	"extends"
+1	"factory"
+1	"false"
+1	"final"
+1	"finally"
+1	"for"
+1	"get"
+1	"if"
+1	"implements"
+1	"import"
+1	"in"
+1	"interface"
+1	"is"
+1	"library"
+1	"native"
+1	"negate"
+1	"new"
+1	"null"
+1	"operator"
+1	"return"
+1	"set"
+1	"source"
+1	"static"
+1	"super"
+1	"switch"
+1	"this"
+1	"throw"
+1	"true"
+1	"try"
+1	"typedef"
+1	"var"
+1	"void"
+1	"while"
+1	choice("!", "~")
+1	choice("&", "^", "|")
+1	choice("*", "/", "%", "~/")
+1	choice("+", "-")
+1	choice("++", "--")
+1	choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
+1	choice("<<", ">>>", ">>")
+1	choice("=", "*=", "/=", "~/=", "%=", "+=", "-=", "<<=", ">>>=", ">>=", "&=", "^=", "|=")
+1	choice("==", "!=", "===", "!==")
+1	choice(">=", ">", "<=", "<")
+1	choice("\\n", "\\r")
+1	choice("a", "b", "c", "d", "e", "f", "A", "B", "C", "D", "E", "F", N)
+1	choice("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+1	choice(N, "$")
+1	choice(N, "_")
+1	choice(N, N, N)
+1	choice(N, N, N, N, N, "==", "~", N, sequence("[", "]"), sequence("[", "]", "="))
+1	choice(N, N, N, N, N, N)
+1	choice(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	choice(N, N, N, sequence(N, N), sequence(optional(N), N, N, N, N), sequence(N, optional(N), N, ";"), sequence(N, ";"))
+1	choice(N, sequence(N, ";"), N, N, N, sequence(N, optional(N), ";"), sequence(N, optional(N), ";"), sequence(N, optional(N), ";"), sequence(N, optional(N), ";"), sequence(optional(N), ";"), sequence(N, "(", N, ")", ";"), sequence(N, N))
+1	choice(N, sequence(N, N), N, N, sequence(optional(N), optional(N), N), sequence(choice(N, N), N, optional(sequence(".", N)), N), N)
+1	choice(N, sequence(N, N), N, sequence(N, optional(N)), sequence(N, optional(N)))
+1	choice(N, sequence(N, N), sequence(N, N), sequence("-", N), sequence(N, N))
+1	choice(sequence("(", optional(N), ")"), sequence("(", N, optional(N), ")"))
+1	choice(sequence(",", N), sequence(",", N, optional(N)))
+1	choice(sequence(".", plus(N)), epsilon)
+1	choice(sequence("0x", plus(N)), sequence("0X", plus(N)))
+1	choice(sequence("=>", N), N)
+1	choice(sequence("=>", N, ";"), N)
+1	choice(sequence("[", N, "]"), sequence(".", N))
+1	choice(sequence("\"", star(N), "\""), sequence("\\'", star(N), "\\'"), sequence("@", "\\'", star(any), "\\'"), sequence("@", "\"", star(any), "\""))
+1	choice(sequence("\"\"\"", star(any), "\"\"\""), sequence("\\'\\'\\'", star(any), "\\'\\'\\'"))
+1	choice(sequence(N, "(", N, ")", N), sequence(N, N, N, "(", N, ")", ";"), sequence(N, "(", N, ")", N))
+1	choice(sequence(N, "(", N, ")", N, optional(sequence(N, N))), sequence(N, "(", N, ")", "{", star(N), optional(N), "}"))
+1	choice(sequence(N, ";"), sequence(N, ";"), sequence(N, N), sequence(N, N, N))
+1	choice(sequence(N, ";"), sequence(optional(N), ";"))
+1	choice(sequence(N, N), N, N)
+1	choice(sequence(N, N), sequence(N, ".", N, N), N)
+1	choice(sequence(N, N), sequence(N, star(N)))
+1	choice(sequence(N, N, N), N)
+1	choice(sequence(N, N, optional(N), N, ";"), sequence(N, ";"), sequence(N, ";"), sequence(N, ";"), sequence(N, ";"), sequence(N, ";"))
+1	choice(sequence(N, N, optional(N), optional(N), optional(N), "{", star(N), "}"), sequence(N, N, optional(N), optional(N), N, N, "{", star(N), "}"))
+1	choice(sequence(N, N, optional(choice(N, N))), sequence(N, optional(choice(N, N))))
+1	choice(sequence(N, optional(N)), N, N)
+1	choice(sequence(N, optional(N), ";", optional(N)), sequence(N, N, N), sequence(N, N, N))
+1	choice(sequence(N, optional(N), N), sequence(N, N), sequence(N, N))
+1	choice(sequence(N, optional(choice(N, N))), sequence(N, N), sequence(N, N), sequence(N, N), sequence(N, N), sequence(N, N, optional(N), N), sequence(optional(N), N))
+1	choice(sequence(N, optional(choice(sequence(N, N), sequence(N, N)))), sequence(N, N, N))
+1	choice(sequence(N, optional(sequence(N, N))), sequence(N, N, N))
+1	choice(sequence(N, plus(sequence(star(N), N))), sequence(N, N), N)
+1	choice(sequence(N, star(sequence("&", N))), sequence(N, plus(sequence("&", N))))
+1	choice(sequence(N, star(sequence(",", N))), sequence(N, star(sequence(",", N))))
+1	choice(sequence(N, star(sequence("^", N))), sequence(N, plus(sequence("^", N))))
+1	choice(sequence(N, star(sequence("|", N))), sequence(N, plus(sequence("|", N))))
+1	choice(sequence(optional("@"), N), N)
+1	choice(sequence(optional(N), optional(N), N, N, N), sequence(optional(N), N, N, N))
+1	choice(sequence(plus(N), N, optional(N), N), sequence(".", plus(N), optional(N), N))
+1	epsilon
+1	sequence("#!", star(any), optional(N))
+1	sequence("#", N, N, ";")
+1	sequence("(", N, ")")
+1	sequence("(", optional(N), ")")
+1	sequence(":", N, optional(sequence(".", N)), N)
+1	sequence(":", N, star(sequence(",", N)))
+1	sequence("<", N, ">")
+1	sequence("<", N, star(sequence(",", N)), ">")
+1	sequence("[", N, star(sequence(",", N)), "]")
+1	sequence("[", optional(sequence(N, optional(","))), "]")
+1	sequence("{", N, "}")
+1	sequence("{", optional(sequence(N, star(sequence(",", N)), optional(","))), "}")
+1	sequence(N, "(", N, optional(sequence(",", N)), ")", N)
+1	sequence(N, ".", N, N)
+1	sequence(N, ":")
+1	sequence(N, ":", N)
+1	sequence(N, "=", N)
+1	sequence(N, "{", N, "}")
+1	sequence(N, N, N)
+1	sequence(N, N, choice(sequence(plus(N), optional(N)), N))
+1	sequence(N, N, optional(N), N, ";")
+1	sequence(N, N, optional(N), optional(N), optional(N), "{", star(N), "}")
+1	sequence(N, N, optional(N), optional(sequence(".", N)), N)
+1	sequence(N, optional("!"))
+1	sequence(N, optional(N))
+1	sequence(N, optional(N), ";")
+1	sequence(N, optional(sequence(".", N)))
+1	sequence(N, optional(sequence("?", N, ":", N)))
+1	sequence(N, optional(sequence(N, N)))
+1	sequence(N, star(sequence("&&", N)))
+1	sequence(N, star(sequence("||", N)))
+1	sequence(choice("e", "E"), optional(choice("+", "-")), plus(N))
+1	sequence(optional(N), N)
+1	sequence(optional(N), N, ".", N)
+1	sequence(optional(N), N, N)
+1	sequence(optional(N), optional(N))
+1	sequence(optional(N), plus(sequence(N, N, ":")), N)
+1	sequence(optional(N), star(N), star(N), N)
+1	sequence(optional(N), star(sequence(N, N, ":")), N, ":", N)
+1	sequence(optional(sequence(N, ".")), N, "=", N)
+1	sequence(optional(sequence(N, ":")), N)
+1	sequence(optional(sequence(optional(N), N)), N, N)
+1	sequence(star(N), N)
+1	star(N)

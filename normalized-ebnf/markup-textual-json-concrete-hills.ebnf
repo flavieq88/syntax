@@ -1,0 +1,12 @@
+N("JSONText") ::= N("Object");
+N("JSONText") ::= N("Array");
+N("Value") ::= N("NumericLiteral");
+N("Value") ::= N("StringLiteral");
+N("Value") @label("True") ::= "true";
+N("Value") ::= N("Object");
+N("Value") ::= N("Array");
+N("Value") @label("Null") ::= "null";
+N("Value") @label("False") ::= "false";
+N("Object") @label("Object") ::= ("{" select("members", sep*(N("Member"), ",")) "}");
+N("Member") @label("Member") ::= (select("memberName", N("StringLiteral")) ":" select("memberValue", N("Value")));
+N("Array") @label("Array") ::= ("[" select("values", sep*(N("Value"), ",")) "]");

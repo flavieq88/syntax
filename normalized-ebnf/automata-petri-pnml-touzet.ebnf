@@ -1,0 +1,12 @@
+N("String") ::= value("string");
+N("Integer") ::= value("int");
+N("Element") ::= N("PetriNet");
+N("Element") ::= N("Place");
+N("Element") ::= N("Transition");
+N("PetriNet") ::= ((select("places", N("Place")))+ (select("transitions", N("Transition")))+ (select("arcs", N("Arc")))+);
+N("Place") ::= ((select("incoming", N("TransToPlaceArc")))+ (select("outgoing", N("PlaceToTransArc")))+);
+N("Transition") ::= ((select("incoming", N("PlaceToTransArc")))+ (select("outgoing", N("TransToPlaceArc")))+);
+N("Arc") ::= N("PlaceToTransArc");
+N("Arc") ::= N("TransToPlaceArc");
+N("PlaceToTransArc") ::= (select("source", N("Place")) select("target", N("Transition")));
+N("TransToPlaceArc") ::= (select("source", N("Transition")) select("target", N("Place")));

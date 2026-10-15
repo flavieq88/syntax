@@ -1,0 +1,6 @@
+N("Contact") ::= (select("nom", N("String")) select("prenom", N("String")) (select("num_fixes", N("Num_fixe")))+ (select("num_portables", N("Num_portable")))+);
+N("Num_fixe") ::= (select("numero", N("String")) select("contact_fixe", N("Contact")));
+N("Num_portable") ::= (select("numero", N("String")) select("contact_portable", N("Contact")));
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");

@@ -1,0 +1,43 @@
+# BGF production shape analysis
+source: xmlware-xpath-xpath-1-w3c-w3c-19991116.bgf
+productions: 37
+distinct_shapes: 34
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+4	N
+1	"*"
+1	choice("(", ")", "[", "]", ".", "..", "@", ",", "::", N, N, N, N, N, N, N, N)
+1	choice("*", sequence(N, ":", "*"), N)
+1	choice(".", "..")
+1	choice("ancestor", "ancestor-or-self", "attribute", "child", "descendant", "descendant-or-self", "following", "following-sibling", "namespace", "parent", "preceding", "preceding-sibling", "self")
+1	choice("and", "or", "mod", "div")
+1	choice("comment", "text", "processing-instruction", "node")
+1	choice(N, N)
+1	choice(N, N, "/", "//", "|", "+", "-", "=", "!=", "<", "<=", ">", ">=")
+1	choice(N, N, sequence(N, "/", N), sequence(N, "//", N))
+1	choice(N, sequence("(", N, ")"), N, N, N)
+1	choice(N, sequence("-", N))
+1	choice(N, sequence(N, "(", ")"), sequence("processing-instruction", "(", N, ")"))
+1	choice(N, sequence(N, "+", N), sequence(N, "-", N))
+1	choice(N, sequence(N, "/", N), N)
+1	choice(N, sequence(N, "<", N), sequence(N, ">", N), sequence(N, "<=", N), sequence(N, ">=", N))
+1	choice(N, sequence(N, "=", N), sequence(N, "!=", N))
+1	choice(N, sequence(N, "and", N))
+1	choice(N, sequence(N, "or", N))
+1	choice(N, sequence(N, "|", N))
+1	choice(N, sequence(N, N))
+1	choice(N, sequence(N, N, N), sequence(N, "div", N), sequence(N, "mod", N))
+1	choice(sequence("/", optional(N)), N)
+1	choice(sequence(N, "::"), N)
+1	choice(sequence(N, N, star(N)), N)
+1	choice(sequence(N, optional(sequence(".", optional(N)))), sequence(".", N))
+1	optional("@")
+1	plus(choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"))
+1	sequence("$", N)
+1	sequence("//", N)
+1	sequence("[", N, "]")
+1	sequence(N, "(", optional(sequence(N, star(sequence(",", N)))), ")")
+1	sequence(N, "//", N)

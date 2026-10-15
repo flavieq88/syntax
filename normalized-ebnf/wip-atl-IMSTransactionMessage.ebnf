@@ -1,0 +1,16 @@
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");
+N("OIMAPrefixFormats") ::= (select("opp_one", epsilon) | select("opp_two", epsilon));
+N("TwoByteField") ::= epsilon;
+N("VariableLengthField") ::= epsilon;
+N("IMSTransactionMessage") ::= (select("OIMAPrefixFormat", N("OIMAPrefixFormats")) select("standardFieldsFlag", N("Boolean")) select("OIMAPrefixComponent", N("OIMAPrefix")) select("standardFieldComponent", N("StandardFields")) select("messageComponent", N("ApplicationData")));
+N("OIMAPrefix") ::= (select("controlDataComponent", N("ControlData")) select("stateDataComponent", N("StateData")) select("securityDataComponent", N("SecurityData")) select("userDataComponent", N("UserData")));
+N("ControlData") ::= epsilon;
+N("StateData") ::= epsilon;
+N("SecurityData") ::= epsilon;
+N("UserData") ::= epsilon;
+N("StandardFields") ::= (select("length", N("TwoByteField")) select("reservedField", N("TwoByteField")) select("transactionCode", N("VariableLengthField")));
+N("ApplicationData") ::= ((select("languageElements", N("TDLangElement")))+ (select("fieldComponents", N("Field")))+);
+N("Field") ::= select("fieldContainer", N("ApplicationData"));
+N("TDLangElement") ::= epsilon;

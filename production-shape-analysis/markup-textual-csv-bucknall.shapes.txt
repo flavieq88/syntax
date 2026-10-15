@@ -1,0 +1,20 @@
+# BGF production shape analysis
+source: markup-textual-csv-bucknall.bgf
+productions: 11
+distinct_shapes: 11
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice(" ", "\\t")
+1	choice(N, N)
+1	plus(not(choice("\\n", N, "\\t", " ", ",", N)))
+1	plus(not(choice(N, N)))
+1	sequence(N, N, N)
+1	sequence(N, choice("\\n", "EOF"))
+1	sequence(N, optional(sequence(",", N)))
+1	sequence(N, optional(sequence(N, N)))
+1	sequence(N, optional(sequence(N, N, N)))
+1	sequence(star(N), "EOF")
+1	star(N)

@@ -1,0 +1,14 @@
+N("NamedElement") ::= N("Attribute");
+N("NamedElement") ::= N("Project");
+N("NamedElement") ::= N("Target");
+N("NamedElement") ::= N("TaskElement");
+N("CommentableElement") ::= N("TaskElement");
+N("Project") ::= ((select("properties", N("Property")))+ (select("targets", N("Target")))+ select("defaultTarget", N("Target")));
+N("Property") ::= (select("name", N("String")) select("value", N("String")) select("location", N("String")) select("refid", N("String")) select("resource", N("String")) select("file", N("String")) select("url", N("String")) select("environment", N("String")) select("classpath", N("String")) select("classpathref", N("String")) select("prefix", N("String")));
+N("Target") ::= (select("if", N("String")) select("unless", N("String")) (select("tasks", N("Task")))+ (select("depends", N("Target")))+);
+N("TaskElement") ::= N("Task");
+N("TaskElement") ::= N("TaskParameter");
+N("Attribute") ::= select("value", N("String"));
+N("Task") ::= ((select("attributes", N("Attribute")))+ (select("elements", N("TaskElement")))+);
+N("TaskParameter") ::= ((select("attributes", N("Attribute")))+ (select("elements", N("TaskElement")))+);
+N("String") ::= value("string");

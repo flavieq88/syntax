@@ -1,0 +1,5 @@
+N("DXF") ::= (select("meshes", N("Mesh")))+;
+N("Mesh") ::= (select("name", N("String")) (select("points", N("Point")))+);
+N("Point") ::= (select("name", N("String")) select("mesh", N("Mesh")) select("x", N("Double")) select("y", N("Double")) select("z", N("Double")));
+N("Integer") ::= value("int");
+N("String") ::= value("string");

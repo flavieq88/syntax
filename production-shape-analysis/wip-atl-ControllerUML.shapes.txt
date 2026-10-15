@@ -1,0 +1,18 @@
+# BGF production shape analysis
+source: wip-atl-ControllerUML.bgf
+productions: 14
+distinct_shapes: 9
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+4	N
+2	epsilon
+2	sequence(plus(N), N, plus(N), plus(N))
+1	choice("true", "false")
+1	plus(N)
+1	sequence(N, N, N, N)
+1	sequence(plus(N), N)
+1	value("int")
+1	value("string")

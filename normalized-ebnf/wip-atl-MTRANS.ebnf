@@ -1,0 +1,11 @@
+N("MetaClass") ::= epsilon;
+N("MetaModel") ::= epsilon;
+N("Module") ::= (select("name", N("String")) select("mode", N("String")) (select("metaDest", N("MetaModel")))+ (select("metaSource", N("MetaModel")))+ (select("rules", N("Rule")))+);
+N("Rule") ::= (select("isAbstract", N("Boolean")) select("isEntryPoint", N("Boolean")) select("name", N("String")) select("module", N("Module")) select("target", N("MetaClass")) select("source", N("MetaClass")) select("declaration", N("Variable")) (select("sections", N("Section")))+ select("guard", N("Expression")) (select("inheritances", N("Inheritance")))+);
+N("Inheritance") ::= (select("rule", N("Rule")) (select("expressions", N("Expression")))+ (select("inheritedRules", N("Rule")))+);
+N("Expression") ::= (select("operator", N("String")) select("inheritance", N("Inheritance")) select("rule", N("Rule")) select("instruction", N("Instruction")));
+N("Section") ::= (select("kind", N("String")) select("rule", N("Rule")) (select("instructions", N("Instruction")))+);
+N("Instruction") ::= (select("body", N("Expression")) select("section", N("Section")));
+N("Variable") ::= (select("name", N("String")) select("rule", N("Rule")));
+N("Boolean") ::= ("true" | "false");
+N("String") ::= value("string");

@@ -1,0 +1,16 @@
+# BGF production shape analysis
+source: markup-textual-bibtex-bibtex-hillairet.bgf
+productions: 87
+distinct_shapes: 7
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+42	N
+29	sequence(N)
+12	sequence(N, plus(N))
+1	choice("true", "false")
+1	plus(N)
+1	value("int")
+1	value("string")

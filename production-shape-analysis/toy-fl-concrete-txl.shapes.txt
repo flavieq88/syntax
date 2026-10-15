@@ -1,0 +1,13 @@
+# BGF production shape analysis
+source: toy-fl-concrete-txl.bgf
+productions: 4
+distinct_shapes: 4
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice("+", "-", "==")
+1	choice(sequence(N, N, N), sequence(N, plus(N)), sequence("if", N, "then", N, "else", N), sequence("(", N, ")"), N, N)
+1	plus(N)
+1	sequence(N, plus(N), "=", N, N)

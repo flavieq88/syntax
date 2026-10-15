@@ -1,0 +1,11 @@
+N("BuiltInOperator") ::= (N("Cardinality") | N("CardinalityOf") | N("Contains"));
+N("MultisetOperator") ::= (N("Add") | N("All") | N("NumberOf") | N("Subtract") | N("ScalarProduct") | N("Empty"));
+N("Add") ::= select("add", N("MultisetOperator.content"));
+N("Subtract") ::= select("subtract", N("MultisetOperator.content"));
+N("All") ::= select("all", (N("MultisetOperator.content") N("Sort")));
+N("Empty") ::= select("empty", (N("MultisetOperator.content") N("Sort")));
+N("ScalarProduct") ::= select("scalarproduct", N("MultisetOperator.content"));
+N("NumberOf") ::= select("numberof", N("MultisetOperator.content"));
+N("Cardinality") ::= select("cardinality", N("BuiltInOperator.content"));
+N("CardinalityOf") ::= select("cardinalityof", N("BuiltInOperator.content"));
+N("Contains") ::= select("contains", N("BuiltInOperator.content"));

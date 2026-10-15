@@ -1,0 +1,9 @@
+N("Actor") ::= ((select("dependencyE", N("Dependency")))+ (select("dependencyR", N("Dependency")))+ (select("goal", N("Goal")))+ (select("plan", N("Plan")))+ (select("resource", N("Resource")))+);
+N("Goal") ::= N("SoftGoal");
+N("Goal") ::= N("HardGoal");
+N("Goal") ::= (select("wanter", N("Actor")) (select("plan", N("Plan")))+ (select("dependencyWG", N("Dependency")))+ (select("dependencyG", N("Dependency")))+);
+N("SoftGoal") ::= (select("wanter", N("Actor")) (select("plan", N("Plan")))+ (select("dependencyWG", N("Dependency")))+ (select("dependencyG", N("Dependency")))+);
+N("HardGoal") ::= (select("wanter", N("Actor")) (select("plan", N("Plan")))+ (select("dependencyWG", N("Dependency")))+ (select("dependencyG", N("Dependency")))+);
+N("Dependency") ::= (select("dependee", N("Actor")) select("depender", N("Actor")) select("goal", N("Goal")) select("WhyG", N("Goal")) select("WhyR", N("Resource")) select("resourceD", N("Resource")) select("WhyP", N("Plan")) select("plan", N("Plan")));
+N("Plan") ::= (select("isFulfilled", N("Goal")) select("capableOf", N("Actor")) (select("dependencyWP", N("Dependency")))+ (select("dependencyP", N("Dependency")))+);
+N("Resource") ::= (select("use", N("Actor")) select("dependencyWR", N("Dependency")) select("dependencyR", N("Dependency")));

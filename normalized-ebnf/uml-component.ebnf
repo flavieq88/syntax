@@ -1,0 +1,8 @@
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("Entity") ::= ((select("methods", N("Method")))+ (select("attributes", N("Attribute")))+ (select("associationEnds", N("AssociationEnd")))+);
+N("AssociationEnd") ::= (select("type", N("Entity")) select("association", N("Association")));
+N("Association") ::= select("associationEnds", N("AssociationEnd"));
+N("Method") ::= select("entity", N("Entity"));
+N("Attribute") ::= select("entity", N("Entity"));

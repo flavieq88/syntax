@@ -1,0 +1,9 @@
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("Named") ::= N("Table");
+N("Named") ::= N("Column");
+N("Named") ::= N("Type");
+N("Table") ::= ((select("col", N("Column")))+ (select("key", N("Column")))+);
+N("Column") ::= (select("owner", N("Table")) select("keyOf", N("Table")) select("type", N("Type")));
+N("Type") ::= (select("name", N("String")));

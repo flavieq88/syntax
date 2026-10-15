@@ -1,0 +1,9 @@
+N("Application") ::= (select("name", N("String")) select("version", N("String")) select("author", N("String")) (select("extensionPoints", N("ExtensionPoint")))+);
+N("ExtensionPoint") ::= (select("name", N("String")) select("id", N("String")) select("application", N("Application")) (select("descriptions", N("Description")))+ select("plugIn", N("PlugIn")));
+N("Description") ::= (select("xmlSchema", N("String")) (select("extensionPoints", N("ExtensionPoint")))+);
+N("Extension") ::= (select("name", N("String")) select("id", N("String")) select("isConfiguredInto", N("ExtensionPoint")));
+N("PlugIn") ::= (select("id", N("String")) select("displayableName", N("String")) select("version", N("String")) select("supplier", N("String")) (select("configures", N("Extension")))+ (select("extensionPoints", N("ExtensionPoint")))+ (select("requires", N("PlugIn")))+ (select("uses", N("Librairy")))+);
+N("Librairy") ::= (select("name", N("String")) select("plugIn", N("PlugIn")) (select("classes", N("Class")))+);
+N("Class") ::= (select("name", N("String")) select("librairy", N("Librairy")));
+N("Integer") ::= value("int");
+N("String") ::= value("string");

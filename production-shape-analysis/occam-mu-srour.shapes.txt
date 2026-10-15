@@ -1,0 +1,19 @@
+# BGF production shape analysis
+source: occam-mu-srour.bgf
+productions: 85
+distinct_shapes: 10
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+52	N
+16	sequence(N, N)
+9	sequence(N)
+2	epsilon
+1	choice("true", "false")
+1	choice(N, N, N, N, N)
+1	sequence(N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	value("int")
+1	value("string")

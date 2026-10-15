@@ -1,0 +1,8 @@
+N("LocatedElement") ::= N("Entry");
+N("Query") ::= ((select("entries", N("Entry")))+ (select("predicates", N("Predicate")))+);
+N("Entry") ::= (select("name", N("String")) select("type", N("String")) select("allFields", N("Boolean")) (select("fields", N("Field")))+ select("predicate", N("Predicate")));
+N("Field") ::= (select("name", N("String")) select("entry", N("Entry")));
+N("Predicate") ::= (select("entry", N("Entry")) (select("expression", N("Expression")))+);
+N("Expression") ::= (select("field", N("String")) select("value", N("String")));
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");

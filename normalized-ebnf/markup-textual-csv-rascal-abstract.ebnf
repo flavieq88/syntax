@@ -1,0 +1,3 @@
+N("Table") @label("table") ::= marked("records", (N("Record"))*);
+N("Record") @label("record") ::= marked("fields", (N("Field"))*);
+N("Field") ::= (select("unquoted", marked("text", value("string"))) | select("quoted", marked("text", value("string"))));

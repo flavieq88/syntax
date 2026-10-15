@@ -1,0 +1,19 @@
+# BGF production shape analysis
+source: wip-atl-TroposGoalAndPlanConcepts.bgf
+productions: 15
+distinct_shapes: 10
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+4	N
+3	sequence(N, N, N)
+1	plus(N)
+1	sequence(N, N, N, N)
+1	sequence(N, N, N, N, N)
+1	sequence(N, N, N, plus(N))
+1	sequence(plus(N), N, plus(N))
+1	sequence(plus(N), plus(N), plus(N))
+1	sequence(plus(N), plus(N), plus(N), plus(N), N, plus(N))
+1	value("string")

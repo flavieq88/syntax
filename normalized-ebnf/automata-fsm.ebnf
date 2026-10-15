@@ -1,0 +1,11 @@
+N("MgaObject") ::= N("Transition");
+N("MgaObject") ::= N("State");
+N("MgaObject") ::= N("StateMachine");
+N("MgaObject") ::= (select("name", N("String")) select("position", N("String")));
+N("Transition") ::= (select("stateMachine", N("StateMachine")) select("associationStateState", N("AssociationStateState")));
+N("State") ::= (select("stateMachine", N("StateMachine")) (select("associationStateStatedst", N("AssociationStateState")))+ (select("associationStateStatesrc", N("AssociationStateState")))+);
+N("StateMachine") ::= (select("rootFolder", N("RootFolder")) (select("state", N("State")))+ (select("transition", N("Transition")))+);
+N("RootFolder") ::= (select("name", N("String")) (select("rootFolders", N("RootFolder")))+ (select("stateMachine", N("StateMachine")))+);
+N("AssociationStateState") ::= (select("transition", N("Transition")) (select("dstTransition", N("State")))+ (select("srcTransition", N("State")))+);
+N("String") ::= value("string");
+N("Integer") ::= value("int");

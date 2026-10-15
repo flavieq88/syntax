@@ -1,0 +1,17 @@
+N("LocatedElement") ::= N("NamedElement");
+N("NamedElement") ::= N("Graph");
+N("NamedElement") ::= N("GraphElement");
+N("NamedElement") ::= N("Node");
+N("Graph") ::= N("SubGraph");
+N("Graph") ::= (select("type", N("String")) select("rankDir", N("String")) select("dim", N("Integer")) (select("contents", N("GraphElement")))+);
+N("GraphElement") ::= N("DirectedArc");
+N("GraphElement") ::= N("Constraint");
+N("GraphElement") ::= N("Node");
+N("GraphElement") ::= N("SubGraph");
+N("Node") ::= (select("shape", N("String")) select("style", N("String")));
+N("DirectedArc") ::= (select("sourceNode", N("String")) select("sourcePart", N("String")) select("targetNode", N("String")) select("targetPart", N("String")) select("shape", N("String")));
+N("Constraint") ::= (select("val", N("String")) (select("refers", N("String")))+);
+N("SubGraph") ::= (select("type", N("String")) select("rankDir", N("String")) select("dim", N("Integer")) (select("contents", N("GraphElement")))+ select("label", N("String")) select("color", N("String")) select("z", N("Integer")) select("graph", N("Graph")));
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");

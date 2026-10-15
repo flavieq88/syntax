@@ -1,0 +1,11 @@
+# BGF production shape analysis
+source: transform-xbgf-xoutcome.bgf
+productions: 2
+distinct_shapes: 2
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice(epsilon, value("string"), sequence(value("string"), N), sequence(value("string"), N), sequence(value("string"), N, N), sequence(value("string"), N, star(N)), sequence(value("string"), star(N)), sequence(value("string"), star(N), star(N)), sequence(value("string"), N), sequence(value("string"), N, N), sequence(value("string"), value("string")), sequence(value("string"), value("string"), value("string")), sequence(value("string"), star(value("string"))), sequence(value("string"), N))
+1	sequence(N, N)

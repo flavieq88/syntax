@@ -1,0 +1,16 @@
+N("IUmlType") ::= N("ICdeComponentSpec");
+N("IUmlType") ::= N("IUmlClass");
+N("IUmlType") ::= (select("members", N("IUmlMember")))+;
+N("ICdeComponentSpec") ::= (select("members", N("IUmlMember")))+;
+N("IUmlClass") ::= N("IUmlComponent");
+N("IUmlComponent") ::= N("ICdeServer");
+N("IUmlComponent") ::= N("ICdeComponent");
+N("IUmlComponent") ::= (N("ICdeServer") | N("ICdeComponent"));
+N("ICdeServer") ::= (select("implements", N("ICdeComponent")))+;
+N("ICdeComponent") ::= epsilon;
+N("IUmlMember") ::= N("ICdeMember");
+N("ICdeMember") ::= epsilon;
+N("ICdeMemberExe") ::= (select("executionPerformance", N("String")) select("resourceNeeded", N("String")) select("executionDetails", N("String")));
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");

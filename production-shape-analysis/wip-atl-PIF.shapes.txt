@@ -1,0 +1,13 @@
+# BGF production shape analysis
+source: wip-atl-PIF.bgf
+productions: 25
+distinct_shapes: 4
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+13	N
+10	epsilon
+1	choice(N, N, N, N)
+1	choice(N, N, N, N, N, N, N)

@@ -1,0 +1,13 @@
+# BGF production shape analysis
+source: toy-miningmart-simplified.bgf
+productions: 28
+distinct_shapes: 4
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+18	N
+5	sequence(N, N)
+3	sequence(N, plus(N))
+2	choice(N, N)

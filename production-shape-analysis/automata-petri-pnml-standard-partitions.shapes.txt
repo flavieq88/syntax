@@ -1,0 +1,14 @@
+# BGF production shape analysis
+source: automata-petri-pnml-standard-partitions.bgf
+productions: 10
+distinct_shapes: 5
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+6	N
+1	choice(N, N, N)
+1	sequence(N, N, plus(N))
+1	sequence(N, plus(N))
+1	sequence(value("string"), N)

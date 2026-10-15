@@ -1,0 +1,5 @@
+N("FiniteAutomaton") ::= ((select("alphabet", N("String")))+ (select("transitionSet", N("Transition")))+ select("initialState", N("State")) (select("finalStateSet", N("State")))+ (select("StateSet", N("State")))+);
+N("Transition") ::= (select("letter", N("String")) select("source", N("State")) select("target", N("State")));
+N("State") ::= (select("name", N("String")) select("combination", N("State")));
+N("String") ::= value("string");
+N("Integer") ::= value("int");

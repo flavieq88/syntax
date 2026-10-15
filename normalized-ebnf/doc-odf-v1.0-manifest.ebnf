@@ -1,0 +1,17 @@
+@root N("manifest");
+
+N("manifest") ::= select("manifest:manifest", (N("file-entry"))+);
+N("file-entry") ::= select("manifest:file-entry", (N("file-entry-attlist") [N("encryption-data")]));
+N("file-entry-attlist") ::= select("manifest:full-path", value("string"));
+N("file-entry-attlist") ::= [select("manifest:size", value("int"))];
+N("file-entry-attlist") ::= select("manifest:media-type", value("string"));
+N("encryption-data") ::= select("manifest:encryption-data", (N("encryption-data-attlist") N("algorithm") N("key-derivation")));
+N("encryption-data-attlist") ::= select("manifest:checksum-type", value("string"));
+N("encryption-data-attlist") ::= select("manifest:checksum", value("string"));
+N("algorithm") ::= select("manifest:algorithm", N("algorithm-attlist"));
+N("algorithm-attlist") ::= select("manifest:algorithm-name", value("string"));
+N("algorithm-attlist") ::= select("manifest:initialisation-vector", value("string"));
+N("key-derivation") ::= select("manifest:key-derivation", N("key-derivation-attlist"));
+N("key-derivation-attlist") ::= select("manifest:key-derivation-name", value("string"));
+N("key-derivation-attlist") ::= select("manifest:salt", value("string"));
+N("key-derivation-attlist") ::= select("manifest:iteration-count", value("int"));

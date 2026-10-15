@@ -1,0 +1,10 @@
+N("Company") ::= (select("corporateHQ", N("CorporateHQ")) (select("Store", N("Store")))+);
+N("CorporateHQ") ::= ((select("manages", N("Store")))+ select("corporateHQBackOffice", N("CorporateHQBackOffice")));
+N("Store") ::= (select("storeBackOffice", N("StoreBackOffice")) (select("employee", N("Employee")))+ (select("cashRegister", N("CashRegister")))+);
+N("CorporateHQBackOffice") ::= epsilon;
+N("StoreBackOffice") ::= epsilon;
+N("Employee") ::= epsilon;
+N("CashRegister") ::= epsilon;
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");

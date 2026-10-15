@@ -1,0 +1,15 @@
+# BGF production shape analysis
+source: automata-dtmp.bgf
+productions: 6
+distinct_shapes: 6
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice("true", "false")
+1	sequence(N, N, N, N, plus(N), plus(N), plus(N))
+1	sequence(plus(N), N, N)
+1	sequence(plus(N), plus(N), N)
+1	value("int")
+1	value("string")

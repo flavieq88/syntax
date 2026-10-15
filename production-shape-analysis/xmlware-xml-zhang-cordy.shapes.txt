@@ -1,0 +1,60 @@
+# BGF production shape analysis
+source: xmlware-xml-zhang-cordy.bgf
+productions: 74
+distinct_shapes: 51
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+10	choice(N, N)
+5	N
+3	choice(N, N, N, N)
+3	sequence(N, "|", N, N)
+3	sequence(N, N)
+2	choice(N, N, N)
+2	choice(N, N, N, N, N, N)
+2	sequence("(", N, N, star(N), N, ")")
+2	sequence(N, optional(N))
+1	"CDATA"
+1	"]]>"
+1	choice("#REQUIRED", "#IMPLIED", sequence(optional(N), N))
+1	choice("?", "*", "+")
+1	choice("EMPTY", "ANY", N, N)
+1	choice("ID", "IDREF", "IDREFS", "ENTITY", "ENTITIES", "NMTOKEN", "NMTOKENS")
+1	choice(N, sequence("%", N, ";"), N)
+1	choice(N, sequence("PUBLIC", N, N))
+1	choice(N, sequence(N, optional(N)))
+1	choice(sequence("&", N, ";"), N)
+1	choice(sequence(N, N), sequence(N, N))
+1	sequence("#FIXED", N)
+1	sequence("'", star(N), "'")
+1	sequence("(", N, "#PCDATA", N, ")")
+1	sequence("(", N, "#PCDATA", star(N), N, ")*")
+1	sequence("(", N, N, N, star(N), N, ")")
+1	sequence("<!ATTLIST", N, N, star(N), N, ">", N)
+1	sequence("<!DOCTYPE", N, N, N, optional(N), N, optional(N), N, ">", N)
+1	sequence("<!ELEMENT", N, N, N, N, N, ">", N)
+1	sequence("<!ENTITY", N, "%", N, N, N, N, N, ">", N)
+1	sequence("<!ENTITY", N, N, N, N, N, ">", N)
+1	sequence("<!NOTATION", N, N, N, N, N, ">", N)
+1	sequence("<![CDATA[", star(N), N)
+1	sequence("<", N, N, star(N), "/>")
+1	sequence("<", N, N, star(N), ">")
+1	sequence("</", N, N, ">")
+1	sequence("<?", N, optional(N), "?>")
+1	sequence("NOTATION", N, "(", N, N, star(N), N, ")")
+1	sequence("PUBLIC", N, N, N, N)
+1	sequence("SYSTEM", N, N)
+1	sequence("[", star(N), "]")
+1	sequence("\"", star(N), "\"")
+1	sequence(N, ",", N, N)
+1	sequence(N, "?>", N)
+1	sequence(N, "NDATA", N, N)
+1	sequence(N, N, "=", N, N)
+1	sequence(N, N, N, N, N)
+1	sequence(N, N, N, N, N, N)
+1	sequence(N, N, N, star(N), N)
+1	sequence(N, star(N), N, star(N), N)
+1	sequence(star(N), optional(N))
+1	star(N)

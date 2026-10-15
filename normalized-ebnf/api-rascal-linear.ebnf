@@ -1,0 +1,8 @@
+N("Coefficients") ::= ((marked("var", value("string")) marked("coef", value("int"))))*;
+N("LinearExpression") @label("linearExp") ::= (marked("coefficients", N("Coefficients")) marked("const", value("int")));
+N("ObjectiveFun") ::= N("LinearExpression");
+N("ConstraintType") ::= (select("leq", epsilon) | select("eq", epsilon) | select("geq", epsilon));
+N("Constraint") @label("constraint") ::= (marked("coefficients", N("Coefficients")) marked("ctype", N("ConstraintType")) marked("const", value("int")));
+N("Constraints") ::= (N("Constraint"))*;
+N("VariableVals") ::= ((marked("var", value("string")) marked("val", value("int"))))*;
+N("Solution") @label("solution") ::= (marked("varVals", N("VariableVals")) marked("funVal", value("int")));

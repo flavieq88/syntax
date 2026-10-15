@@ -1,0 +1,21 @@
+# BGF production shape analysis
+source: java-eclipse-plugin-venisse.bgf
+productions: 30
+distinct_shapes: 12
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+16	N
+2	choice(epsilon, epsilon)
+2	sequence(N, N, N)
+2	sequence(N, N, N, N)
+1	choice("true", "false")
+1	plus(N)
+1	sequence(N, N, N, plus(N), N, plus(N), plus(N), plus(N))
+1	sequence(N, plus(N), N)
+1	sequence(plus(N), N)
+1	sequence(plus(N), plus(N))
+1	value("int")
+1	value("string")

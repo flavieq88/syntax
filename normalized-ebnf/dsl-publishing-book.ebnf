@@ -1,0 +1,5 @@
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");
+N("Book") ::= (select("title", N("String")) (select("chapters", N("Chapter")))+);
+N("Chapter") ::= (select("title", N("String")) select("nbPages", N("Integer")) select("author", N("String")) select("book", N("Book")));

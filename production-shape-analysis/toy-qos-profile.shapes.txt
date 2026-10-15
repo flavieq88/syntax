@@ -1,0 +1,18 @@
+# BGF production shape analysis
+source: toy-qos-profile.bgf
+productions: 11
+distinct_shapes: 9
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	N
+2	epsilon
+1	choice("true", "false")
+1	sequence(N, N, N)
+1	sequence(N, plus(N))
+1	sequence(plus(N), N, N, N)
+1	sequence(plus(N), plus(N))
+1	value("int")
+1	value("string")

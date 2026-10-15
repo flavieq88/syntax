@@ -1,0 +1,9 @@
+# BGF production shape analysis
+source: java-java-1-jls-read2.bgf
+productions: 0
+distinct_shapes: 0
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape

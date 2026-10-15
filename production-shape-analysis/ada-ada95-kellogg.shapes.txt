@@ -1,0 +1,215 @@
+# BGF production shape analysis
+source: ada-ada95-kellogg.bgf
+productions: 315
+distinct_shapes: 206
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+21	sequence(N, N)
+12	sequence(N, N, N)
+11	N
+11	choice(N, N)
+10	sequence(N, N, N, N)
+10	sequence(N, star(sequence(N, N)))
+9	optional(N)
+6	sequence(N, N, N, N, N)
+5	optional(sequence(N, N))
+4	sequence(N, N, N, N, N, N, N)
+4	sequence(N, N, star(sequence(N, N)), N)
+4	star(choice(N, N))
+3	choice(sequence(N, N), epsilon)
+3	choice(sequence(N, N, N, N), sequence(N, N))
+3	optional(sequence(N, N, star(sequence(N, N)), N))
+3	plus(choice(N, N))
+2	epsilon
+2	optional(choice(N, N))
+2	plus(N)
+2	sequence(N, N, optional(sequence(N, N)), N)
+2	sequence(N, optional(N), N)
+2	star(choice(N, N, N))
+1	"&"
+1	"'"
+1	"("
+1	")"
+1	"*"
+1	"**"
+1	"+"
+1	","
+1	"-"
+1	"--"
+1	"."
+1	".."
+1	"/"
+1	"/="
+1	":"
+1	":="
+1	";"
+1	"<"
+1	"<<"
+1	"<="
+1	"<>"
+1	"="
+1	"=>"
+1	">"
+1	">="
+1	">>"
+1	"abort"
+1	"abs"
+1	"abstract"
+1	"accept"
+1	"access"
+1	"aliased"
+1	"all"
+1	"and"
+1	"array"
+1	"at"
+1	"begin"
+1	"body"
+1	"case"
+1	"constant"
+1	"declare"
+1	"delay"
+1	"delta"
+1	"digits"
+1	"do"
+1	"else"
+1	"elsif"
+1	"end"
+1	"entry"
+1	"exception"
+1	"exit"
+1	"for"
+1	"function"
+1	"generic"
+1	"goto"
+1	"if"
+1	"in"
+1	"is"
+1	"limited"
+1	"loop"
+1	"mod"
+1	"new"
+1	"not"
+1	"null"
+1	"of"
+1	"or"
+1	"others"
+1	"out"
+1	"package"
+1	"pragma"
+1	"private"
+1	"procedure"
+1	"protected"
+1	"raise"
+1	"range"
+1	"record"
+1	"rem"
+1	"renames"
+1	"requeue"
+1	"return"
+1	"reverse"
+1	"select"
+1	"separate"
+1	"subtype"
+1	"tagged"
+1	"task"
+1	"terminate"
+1	"then"
+1	"type"
+1	"until"
+1	"use"
+1	"when"
+1	"while"
+1	"with"
+1	"xor"
+1	"|"
+1	choice(" ", "\\t", "\\f", "\\r\\n", "\\r", "\\n")
+1	choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
+1	choice(N, "a", "b", "c", "d", "e", "f")
+1	choice(N, N, N)
+1	choice(N, N, N, N, N)
+1	choice(N, N, N, N, N, N, sequence(N, optional(N)))
+1	choice(N, N, epsilon)
+1	choice(N, N, sequence(N, N))
+1	choice(N, epsilon)
+1	choice(N, sequence(N, N, N, N), sequence(N, N, N, N), N, N)
+1	choice(sequence(N, N), sequence(N, N), N)
+1	choice(sequence(N, N), sequence(N, N), sequence(N, optional(sequence(N, N))))
+1	choice(sequence(N, N), sequence(N, optional(N)), sequence(N, N))
+1	choice(sequence(N, N, N), sequence(N, N), sequence(N, N), sequence(N, N, N), sequence(N, N, choice(sequence(N, N), sequence(N, N, N))), N, N, sequence(N, N))
+1	choice(sequence(N, N, N), sequence(N, N), sequence(N, N, N), N, N)
+1	choice(sequence(N, N, N), sequence(N, optional(sequence(N, N))))
+1	choice(sequence(N, N, N, N), sequence(N, N), sequence(N, N))
+1	choice(sequence(N, N, N, N), sequence(N, N), sequence(N, choice(N, N)))
+1	choice(sequence(N, N, N, N, N), N)
+1	choice(sequence(N, N, N, N, N), epsilon)
+1	choice(sequence(N, N, N, N, N), sequence(N, N), N)
+1	choice(sequence(N, N, N, N, N, N), sequence(N, N, N, N, N))
+1	choice(sequence(N, N, N, choice(sequence(N, N), epsilon), N), sequence(N, N, N, choice(sequence(N, N), epsilon), N))
+1	choice(sequence(N, N, choice(N, sequence(N, choice(N, N), N))), sequence(N, N, choice(N, sequence(N, choice(N, N), N))))
+1	choice(sequence(N, N, choice(N, sequence(N, choice(N, sequence(N, choice(N, N)), epsilon), N))), sequence(N, N, choice(N, sequence(N, choice(N, sequence(N, choice(N, N)), epsilon), N))))
+1	choice(sequence(N, N, choice(sequence(N, N), sequence(N, choice(sequence(N, N), epsilon)), N), N), sequence(N, N, N, N, N), N, N, sequence(N, choice(sequence(N, N), sequence(N, N, N)), N), sequence(N, N, N, N, N), sequence(N, N, N, N, N), sequence(N, N, choice(N, sequence(N, N), sequence(N, choice(sequence(N, N), sequence(N, N)))), N))
+1	choice(sequence(N, choice(sequence(N, choice(N, sequence(N, N)), N), sequence(N, N))), sequence(N, choice(sequence(N, choice(N, N), N), N)), sequence(N, choice(sequence(N, choice(N, sequence(N, N))), N), N), N, N)
+1	optional(choice(N, N, N, N, N))
+1	optional(choice(sequence(N, N), sequence(N, N, N, N, N)))
+1	optional(choice(sequence(N, optional(N)), N, N))
+1	optional(sequence(N, N, N))
+1	optional(sequence(N, N, N, N))
+1	optional(sequence(N, N, N, star(N)))
+1	optional(sequence(N, choice(N, N)))
+1	optional(sequence(N, choice(N, N), N))
+1	optional(sequence(N, choice(sequence(N, N), N)))
+1	optional(sequence(N, plus(N)))
+1	optional(sequence(N, star(N), N))
+1	sequence("'", any, "'")
+1	sequence("\"", star(any), "\"")
+1	sequence("e", optional(choice("+", "-")), plus(N))
+1	sequence(N, N, N, N, N, N)
+1	sequence(N, N, N, N, choice(N, N, N, N))
+1	sequence(N, N, N, N, choice(sequence(N, N, N, N), N))
+1	sequence(N, N, N, optional(sequence(N, N, N)))
+1	sequence(N, N, choice(sequence(N, N, choice(N, sequence(N, N))), sequence(N, N, N, choice(N, epsilon)), sequence(N, N, N, choice(N, epsilon))), N)
+1	sequence(N, N, optional(sequence(N, N, N)))
+1	sequence(N, choice(N, N))
+1	sequence(N, choice(N, N), N)
+1	sequence(N, choice(N, N), star(N))
+1	sequence(N, choice(N, N, N))
+1	sequence(N, choice(N, N, N, N, N, N, N, N, N, N, N, N, sequence(N, N), sequence(N, N, N), sequence(N, choice(sequence(N, N, N), sequence(N, N, N))), N))
+1	sequence(N, choice(sequence(N, N), epsilon), N)
+1	sequence(N, choice(sequence(N, N), sequence(N, N)), N)
+1	sequence(N, choice(sequence(N, N, N), N, sequence(N, choice(sequence(N, N), sequence(N, N)))), N, N, N)
+1	sequence(N, choice(sequence(N, N, N, N, N, N), sequence(N, N)))
+1	sequence(N, choice(sequence(N, N, star(sequence(N, N))), N), N)
+1	sequence(N, choice(sequence(N, choice(sequence(N, N), sequence(N, N, N, N))), sequence(N, N)))
+1	sequence(N, optional(N), optional(sequence(N, N)), N)
+1	sequence(N, optional(choice(sequence(N, N), sequence(N, N))))
+1	sequence(N, optional(choice(sequence(N, N), sequence(N, N, N), sequence(N, N), sequence(N, N), sequence(N, N), sequence(N, N), sequence(N, N), sequence(N, N))))
+1	sequence(N, optional(choice(sequence(N, N), sequence(N, choice(N, N)))))
+1	sequence(N, optional(sequence(N, N)))
+1	sequence(N, optional(sequence(N, N)), N)
+1	sequence(N, star(any), choice("\\n", sequence("\\r", optional("\\n"))))
+1	sequence(N, star(choice(sequence(N, N), sequence(N, N), sequence(N, N))))
+1	sequence(N, star(choice(sequence(N, N), sequence(N, N), sequence(N, N), sequence(N, N))))
+1	sequence(N, star(choice(sequence(N, choice(N, N)), sequence(N, N, N))))
+1	sequence(N, star(choice(sequence(N, choice(N, N, N, N)), sequence(N, N, N), sequence(N, N))))
+1	sequence(N, star(choice(sequence(N, choice(N, N, N, N)), sequence(N, N, N), sequence(N, choice(N, N)))))
+1	sequence(N, star(choice(sequence(N, optional(N), N), sequence(N, optional(N), N), sequence(N, N))))
+1	sequence(N, star(sequence(N, N)), N)
+1	sequence(N, star(sequence(optional("_"), N)))
+1	sequence(choice("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"), star(sequence(optional("_"), choice("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"))))
+1	sequence(choice(N, N), N)
+1	sequence(choice(sequence(N, N, choice(sequence(N, choice(sequence(N, N, N), sequence(N, N), sequence(N, N), sequence(N, N, choice(sequence(N, N), epsilon)), sequence(N, N), N, N, sequence(N, N))), sequence(N, N, N))), sequence(N, choice(sequence(N, N, N, N), sequence(N, N, N, N), sequence(N, N, N, N, N, N))), N), N)
+1	sequence(choice(sequence(N, choice(N, N)), N), N)
+1	sequence(optional(N), optional(N))
+1	sequence(optional(choice(sequence(N, N), N)), optional(N))
+1	sequence(optional(sequence(N, N)), N)
+1	sequence(plus(N), optional(choice(sequence("#", N, optional(sequence(".", N)), "#"), plus(sequence("_", plus(N))))), optional(choice(sequence(".", plus(N), star(sequence("_", plus(N))), optional(N)), N)))
+1	sequence(star(N), N)
+1	sequence(star(N), star(sequence(N, star(choice(N, N)))))
+1	star(N)
+1	star(choice(N, sequence(N, N, N, N, N, N)))
+1	star(sequence(N, N))
+1	star(sequence(N, N, N))
+1	star(sequence(N, star(choice(N, N))))

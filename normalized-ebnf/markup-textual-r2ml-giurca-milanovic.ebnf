@@ -1,0 +1,17 @@
+N("CollectionTypes") ::= (select("individual", epsilon) | select("set", epsilon) | select("orderedSet", epsilon) | select("bag", epsilon) | select("sequence", epsilon));
+N("PredicateCategory") ::= (select("closed", epsilon) | select("open", epsilon) | select("partial", epsilon));
+N("ExternalVocabularyLanguage") ::= (select("RDFS", epsilon) | select("UML", epsilon) | select("OWL", epsilon));
+N("PredicateType") ::= (select("ObjectClassificationPredicate", epsilon) | select("AttributionPredicate", epsilon) | select("AssociationPredicate", epsilon) | select("ReferencePropertyPredicate", epsilon) | select("EqualityPredicate", epsilon) | select("InequalityPredicate", epsilon) | select("DatatypePredicate", epsilon) | select("DataClassificationPredicate", epsilon));
+N("ReactionRuleSet") ::= (select("rules", N("Rules/ReactionRule")))+;
+N("ProductionRuleSet") ::= (select("rules", N("Rules/ProductionRule")))+;
+N("EventType") ::= select("eventTypeID", N("String"));
+N("RuleSet") ::= N("ReactionRuleSet");
+N("RuleSet") ::= N("ProductionRuleSet");
+N("RuleSet") ::= N("IntegrityRuleSet");
+N("RuleSet") ::= N("DerivationRuleSet");
+N("RuleBase") ::= (select("vocabularies", N("Vocabulary/VocBasic/Vocabulary")) (select("externalVocabulaires", N("Vocabulary/VocBuiltin/ExternalVocabulary")))+ (select("rules", N("RuleSet")))+ select("ruleBaseID", N("String")));
+N("IntegrityRuleSet") ::= (select("rules", N("Rules/IntegrityRule")))+;
+N("DerivationRuleSet") ::= (select("rules", N("Rules/DerivationRule")))+;
+N("Integer") ::= value("int");
+N("Boolean") ::= ("true" | "false");
+N("String") ::= value("string");

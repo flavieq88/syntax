@@ -1,0 +1,38 @@
+# BGF production shape analysis
+source: doc-ldf-v23.0-xsd.bgf
+productions: 45
+distinct_shapes: 29
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+8	N
+4	plus(N)
+3	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+3	value("string")
+2	sequence(N, plus(N))
+2	star(choice(any, value("string")))
+1	choice(N, N, N)
+1	choice(N, N, N, N, N, N)
+1	choice(N, N, N, sequence(value("string"), value("string")), sequence(optional(choice(N, N)), N))
+1	choice(epsilon, N, N, N, N, N, plus(choice(N, N, N, N, N, N, N, N, any)), sequence(star(choice(any, value("string"))), value("string")))
+1	choice(epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	epsilon
+1	plus(any)
+1	sequence(N, N)
+1	sequence(N, N, N)
+1	sequence(N, N, plus(N))
+1	sequence(N, choice(value("string"), value("string")))
+1	sequence(optional(value("string")), choice(value("string"), value("string"), value("string")))
+1	sequence(optional(value("string")), optional(value("string")), star(value("string")))
+1	sequence(sequence(optional(choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)), optional(value("string")), star(N), value("string"), choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon), choice(value("string"), value("string")), star(N), value("string")), plus(N))
+1	sequence(sequence(optional(value("string")), choice(epsilon, epsilon, epsilon, epsilon), optional(value("string")), star(N)), plus(N))
+1	sequence(sequence(optional(value("string")), choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon), optional(choice(epsilon, epsilon)), optional(value("string")), star(N)), choice(plus(N), any, plus(N)))
+1	sequence(sequence(optional(value("string")), choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon), optional(choice(epsilon, epsilon)), optional(value("string")), star(N)), choice(plus(N), any, plus(N)))
+1	sequence(star(N), plus(N))
+1	sequence(value("string"), N)
+1	sequence(value("string"), optional(choice(value("string"), value("string"))), optional(value("string")))
+1	sequence(value("string"), optional(value("string")), optional(value("string")))

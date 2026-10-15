@@ -1,0 +1,15 @@
+# BGF production shape analysis
+source: automata-petri-pnml-standard-strings.bgf
+productions: 16
+distinct_shapes: 6
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+11	N
+1	choice(N, N, N, N, N, N, N, N)
+1	epsilon
+1	sequence(N, N)
+1	sequence(value("int"), value("int"), N)
+1	value("string")

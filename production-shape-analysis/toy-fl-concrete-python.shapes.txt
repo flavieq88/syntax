@@ -1,0 +1,23 @@
+# BGF production shape analysis
+source: toy-fl-concrete-python.bgf
+productions: 14
+distinct_shapes: 14
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	"else"
+1	"if"
+1	"then"
+1	N
+1	choice("==", "+", "-")
+1	choice(N, N, N)
+1	choice(N, N, sequence("(", N, ")"))
+1	sequence(N, N, N, N, N, N)
+1	sequence(N, plus(N))
+1	sequence(N, plus(N), "=", N)
+1	sequence(N, star(sequence(N, N)))
+1	sequence(optional("-"), value("int"))
+1	sequence(plus(N), N)
+1	value("string")

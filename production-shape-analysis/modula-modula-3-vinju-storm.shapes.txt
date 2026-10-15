@@ -1,0 +1,139 @@
+# BGF production shape analysis
+source: modula-modula-3-vinju-storm.bgf
+productions: 180
+distinct_shapes: 130
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+33	N
+5	optional(sequence(sequence(N, star(sequence(";", N))), optional(";")))
+5	sequence(N, ":=", N)
+3	sequence(N, N, N)
+2	choice(N, choice(N, N))
+2	sequence("(", N, ")")
+2	sequence("(", optional(N), ")")
+2	sequence("+", N)
+2	sequence("-", N)
+2	sequence(N, ":", N)
+2	sequence(N, ":", N, ":=", N)
+2	sequence(sequence(N, star(sequence(",", N))), optional(sequence("(", sequence(N, ")"))), "=>", N)
+1	"ABS"
+1	"ADDRESS"
+1	"ADR"
+1	"ADRSIZE"
+1	"BITSIZE"
+1	"BOOLEAN"
+1	"BYTESIZE"
+1	"CARDINAL"
+1	"CEILING"
+1	"CHAR"
+1	"DEC"
+1	"DISPOSE"
+1	"EXIT"
+1	"FALSE"
+1	"FIRST"
+1	"FLOAT"
+1	"FLOOR"
+1	"INC"
+1	"INTEGER"
+1	"ISTYPE"
+1	"LAST"
+1	"LONGFLOAT"
+1	"LONGREAL"
+1	"LOOPHOLE"
+1	"MAX"
+1	"MIN"
+1	"MUTEX"
+1	"NARROW"
+1	"NEW"
+1	"NIL"
+1	"NOT"
+1	"NULL"
+1	"NUMBER"
+1	"ORD"
+1	"REAL"
+1	"REFANY"
+1	"ROOT"
+1	"ROUND"
+1	"SUBARRAY"
+1	"TEXT"
+1	"TRUE"
+1	"TRUNC"
+1	"TYPECODE"
+1	"VAL"
+1	"^"
+1	choice("*", choice("/", choice("DIV", "MOD")))
+1	choice("+", choice("-", "&"))
+1	choice("=", choice("#", choice("<", choice("<=", choice(">", choice(">=", "IN"))))))
+1	choice("ROOT", sequence("UNTRACED", "ROOT"))
+1	choice("VALUE", choice("VAR", "READONLY"))
+1	choice(N, sequence(N, sequence("AS", N)))
+1	choice(N, sequence(optional(sequence(N, ":=")), N))
+1	choice(sequence("{", sequence(optional(sequence(N, star(sequence(",", N)))), "}")), "ANY")
+1	sequence("(", N, ")", optional(sequence(":", N)), optional(sequence("RAISES", N)))
+1	sequence("(", optional(sequence(N, star(sequence(",", N)))), ")")
+1	sequence(".", N)
+1	sequence("ARRAY", optional(sequence(N, star(sequence(",", N)))), "OF", N)
+1	sequence("BITS", N, "FOR", N)
+1	sequence("BRANDED", optional(N))
+1	sequence("CASE", N, "OF", optional("|"), sequence(N, star(sequence("|", N))), optional(sequence("ELSE", N)), "END")
+1	sequence("CONST", star(sequence(N, ";")))
+1	sequence("EVAL", N)
+1	sequence("EXCEPTION", star(sequence(N, ";")))
+1	sequence("FOR", N, ":=", N, "TO", N, optional(sequence("BY", N)), "DO", N, "END")
+1	sequence("FROM", N, "IMPORT", N, ";")
+1	sequence("GENERIC", "INTERFACE", N, N, ";", star(N), star(N), "END", N, ".")
+1	sequence("GENERIC", "MODULE", N, N, ";", star(N), N, N, ".")
+1	sequence("IF", N, "THEN", N, star(sequence("ELSIF", sequence(N, sequence("THEN", N)))), optional(sequence("ELSE", N)), "END")
+1	sequence("IMPORT", sequence(N, star(sequence(",", N))), ";")
+1	sequence("INTERFACE", N, ";", star(N), star(N), "END", N, ".")
+1	sequence("INTERFACE", N, "=", N, N, "END", N, ".")
+1	sequence("LOCK", N, "DO", N, "END")
+1	sequence("LOOP", N, "END")
+1	sequence("MODULE", N, optional(sequence("EXPORTS", N)), ";", star(N), N, N, ".")
+1	sequence("MODULE", N, optional(sequence("EXPORTS", N)), "=", N, N, "END", N, ".")
+1	sequence("NOT", N)
+1	sequence("PROCEDURE", N)
+1	sequence("PROCEDURE", N, N)
+1	sequence("RAISE", N, optional(sequence("(", sequence(N, ")"))))
+1	sequence("RECORD", N, "END")
+1	sequence("REPEAT", N, "UNTIL", N)
+1	sequence("RETURN", optional(N))
+1	sequence("REVEAL", star(sequence(N, sequence(choice("=", "<:"), sequence(N, ";")))))
+1	sequence("SET", "OF", N)
+1	sequence("TRY", N, "EXCEPT", optional("|"), sequence(N, star(sequence("|", N))), optional(sequence("ELSE", N)), "END")
+1	sequence("TRY", N, "FINALLY", N, "END")
+1	sequence("TYPE", star(sequence(N, ";")))
+1	sequence("TYPECASE", N, "OF", optional("|"), sequence(N, star(sequence("|", N))), optional(sequence("ELSE", N)), "END")
+1	sequence("VAR", star(sequence(N, ";")))
+1	sequence("WHILE", N, "DO", N, "END")
+1	sequence("WITH", sequence(N, star(sequence(",", N))), "DO", N, "END")
+1	sequence("[", N, "..", N, "]")
+1	sequence("[", sequence(N, star(sequence(",", N))), "]")
+1	sequence("{", optional(N), "}")
+1	sequence(N, "(", optional(sequence(N, star(sequence(",", N)))), ")")
+1	sequence(N, "..", N)
+1	sequence(N, "=", N)
+1	sequence(N, "AND", N)
+1	sequence(N, "OR", N)
+1	sequence(N, "{", optional(N), "}")
+1	sequence(N, N)
+1	sequence(N, N, optional(sequence(":=", N)))
+1	sequence(N, choice("=", "<:"), N)
+1	sequence(N, optional(sequence("(", sequence(N, ")"))))
+1	sequence(N, optional(sequence(".", N)))
+1	sequence(N, optional(sequence("..", N)))
+1	sequence(N, optional(sequence(":", N)), "=", N)
+1	sequence(N, optional(sequence("=", sequence(N, N))), ";")
+1	sequence(N, star(sequence(",", N)))
+1	sequence(optional("UNSAFE"), choice(N, choice(N, choice(N, N))))
+1	sequence(optional("UNTRACED"), optional(N), "REF", N)
+1	sequence(optional(N), N, ":", N)
+1	sequence(optional(N), N, ":", N, ":=", N)
+1	sequence(optional(N), N, ":=", N)
+1	sequence(optional(N), optional(N), "OBJECT", N, optional(sequence("METHODS", N)), optional(sequence("OVERRIDES", N)), "END")
+1	sequence(sequence(N, star(sequence(",", N))), "=>", N)
+1	sequence(sequence(N, star(sequence(",", N))), optional(sequence(",", "..")))
+1	sequence(star(N), "BEGIN", N, "END")

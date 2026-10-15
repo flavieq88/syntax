@@ -1,0 +1,13 @@
+N("Project") ::= (select("name", N("String")) select("company", N("String")) select("viewDate", N("Date")) select("viewIndex", N("Date")) select("ganttDividerLocation", N("Integer")) select("ressourceDividerLocation", N("Integer")) select("webLink", N("String")) select("tasks", N("Tasks")) (select("ressources", N("Ressource")))+ (select("allocations", N("Allocation")))+);
+N("Tasks") ::= (select("color", N("String")) (select("tasks", N("Task")))+);
+N("Task") ::= (select("id", N("String")) select("name", N("String")) select("meeting", N("Boolean")) select("color", N("String")) select("expand", N("Boolean")) select("complete", N("Integer")) select("duration", N("Integer")) select("priority", N("Integer")) select("start", N("Date")) (select("depends", N("Depend")))+);
+N("Depend") ::= (select("id", N("String")) select("type", N("Integer")) select("difference", N("Integer")) select("hardness", N("String")) select("task", N("Task")));
+N("Ressource") ::= (select("Id", N("String")) select("name", N("String")) select("fonction", N("String")) select("contact", N("String")) select("phone", N("String")));
+N("Date") ::= (select("year", N("Integer")) select("month", N("Integer")) select("day", N("Integer")));
+N("Allocation") ::= (select("taskId", N("String")) select("ressourceId", N("String")) select("name", N("String")) select("function", N("String")) select("responsible", N("Boolean")) select("load", N("Integer")));
+N("Vacation") ::= epsilon;
+N("Description") ::= epsilon;
+N("Previous") ::= epsilon;
+N("String") ::= value("string");
+N("Integer") ::= value("int");
+N("Boolean") ::= ("true" | "false");

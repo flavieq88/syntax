@@ -1,0 +1,7 @@
+N("BusinessTemplate") ::= epsilon;
+N("BusinessContact") ::= epsilon;
+N("BusinessService") ::= epsilon;
+N("BusinessEntity") ::= ((select("businessContacts", N("BusinessContact")))+ (select("businessServices", N("BusinessService")))+ select("identifierBag", N("IdentifierBag")));
+N("IdentifierBag") ::= epsilon;
+N("TModel") ::= ((select("overviewDocuments", N("OverviewDocument")))+ select("identifierBag", N("IdentifierBag")));
+N("OverviewDocument") ::= epsilon;

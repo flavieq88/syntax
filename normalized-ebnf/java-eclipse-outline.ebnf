@@ -1,0 +1,13 @@
+N("LocatedElement") ::= N("Outline");
+N("LocatedElement") ::= N("Node");
+N("LocatedElement") ::= N("Label");
+N("LocatedElement") ::= N("LabelSuite");
+N("LocatedElement") ::= N("Map");
+N("Outline") ::= (select("extension", N("String")) (select("nodes", N("Node")))+);
+N("Node") ::= (select("name", N("String")) select("label", N("Label")) select("icon", N("String")) select("outline", N("Outline")) (select("mapping", N("Map")))+);
+N("Label") ::= (select("label", N("String")) select("methodCall", N("String")) (select("labelSuite", N("LabelSuite")))+);
+N("LabelSuite") ::= (select("label", N("String")) select("methodCall", N("String")));
+N("Map") ::= select("mapString", N("String"));
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");

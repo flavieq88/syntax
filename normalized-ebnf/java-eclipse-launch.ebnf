@@ -1,0 +1,14 @@
+N("LaunchConfiguration") ::= (select("type", N("String")) (select("attributes", N("Attribute")))+);
+N("Attribute") ::= N("StringAttribute");
+N("Attribute") ::= N("BooleanAttribute");
+N("Attribute") ::= N("MapAttribute");
+N("Attribute") ::= N("ListAttribute");
+N("StringAttribute") ::= N("MapEntry");
+N("StringAttribute") ::= select("value", N("String"));
+N("BooleanAttribute") ::= select("value", N("Boolean"));
+N("MapAttribute") ::= (select("entries", N("MapEntry")))+;
+N("MapEntry") ::= select("mapAttribute", N("MapAttribute"));
+N("ListAttribute") ::= (select("entries", N("ListEntry")))+;
+N("ListEntry") ::= (select("listAttribute", N("ListAttribute")) select("value", N("String")));
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");

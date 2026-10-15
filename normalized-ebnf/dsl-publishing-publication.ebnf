@@ -1,0 +1,4 @@
+N("Publication") ::= (select("title", N("String")) select("authors", N("String")) select("nbPages", N("Integer")));
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");

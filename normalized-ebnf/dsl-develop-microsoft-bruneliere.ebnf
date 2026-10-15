@@ -1,0 +1,12 @@
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("MSPProject") ::= ((select("resource", N("MSPResource")))+ (select("link", N("MSPLink")))+ (select("task", N("MSPTask")))+);
+N("MSPTask") ::= (select("finishDate", N("Date")) select("startDate", N("Date")) select("project", N("MSPProject")) select("superTask", N("MSPTask")) (select("subTask", N("MSPTask")))+ (select("assignment", N("MSPAssignment")))+ (select("inLink", N("MSPLink")))+ (select("outLink", N("MSPLink")))+);
+N("MSPLink") ::= (select("project", N("MSPProject")) select("succ", N("MSPTask")) select("pred", N("MSPTask")));
+N("MSPAssignment") ::= (select("task", N("MSPTask")) select("resource", N("MSPResource")));
+N("MSPResource") ::= N("MSPHumanResource");
+N("MSPResource") ::= N("MSPMachine");
+N("MSPResource") ::= (select("cost", N("Double")) select("project", N("MSPProject")) (select("assignment", N("MSPAssignment")))+);
+N("MSPHumanResource") ::= select("email", N("String"));
+N("MSPMachine") ::= (select("cost", N("Double")) select("project", N("MSPProject")) (select("assignment", N("MSPAssignment")))+);
+N("Date") ::= (select("day", N("Integer")) select("month", N("Integer")) select("year", N("Integer")));

@@ -1,0 +1,39 @@
+# BGF production shape analysis
+source: transform-cbgf-xsd.bgf
+productions: 129
+distinct_shapes: 30
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+38	N
+10	plus(N)
+10	sequence(N, N)
+8	sequence(N, N, optional(N))
+8	value("string")
+7	sequence(N, optional(N))
+6	choice(N, N)
+3	choice(N, N, N, N, N)
+3	choice(N, N, N, N, N, N, N, N)
+3	sequence(plus(N), value("string"))
+2	choice(N, N, N)
+2	choice(N, N, N, N)
+2	choice(N, N, N, N, N, N, N, N, N, N, N, N)
+2	choice(epsilon, epsilon)
+2	choice(epsilon, epsilon, N, epsilon, N, N, sequence(N, N), N, plus(N), plus(N), plus(N), N, N, N, N, sequence(N, N), sequence(N, N))
+2	choice(sequence(N, N), sequence(N, N), sequence(optional(N), N, N), sequence(N, N))
+2	epsilon
+2	sequence(N, N, optional(N), value("string"))
+2	sequence(N, value("string"))
+2	sequence(optional(N), N, N)
+2	sequence(plus(N), N, plus(N))
+2	sequence(plus(N), plus(N), plus(N))
+2	star(N)
+1	choice(N, N, N, N, N, N)
+1	choice(N, N, N, N, N, N, N, N, N, N)
+1	choice(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	choice(N, epsilon, N, epsilon, N, epsilon)
+1	sequence(N, plus(N), optional(N))
+1	sequence(N, plus(N), star(N))
+1	star(choice(N, N))

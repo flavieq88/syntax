@@ -1,0 +1,9 @@
+@root N("configuration");
+
+N("configuration") ::= ((select("shortcut", N("shortcutType")) | select("tool", N("toolType")) | select("source", N("sourceType")) | select("target", N("targetType"))))*;
+N("shortcutType") ::= (select("name", value("string")) select("definition", ((select("expand", value("string")) | value("string")))*));
+N("commandtype") ::= ((select("expand", value("string")) | value("string")))*;
+N("sourceType") ::= (select("name", value("string")) select("extraction", (select("name", ((select("expand", value("string")) | value("string")))*) select("arguments", (select("argument", ((select("expand", value("string")) | value("string")))*))+))) [select("parsing", select("command", N("commandtype")))] [select("evaluation", select("command", N("commandtype")))]);
+N("targetType") ::= (select("name", value("string")) (select("branch", (select("input", value("string")) (select("perform", value("string")))*)))+);
+N("toolType") ::= (select("name", N("tools")) select("command", N("commandtype")));
+N("tools") ::= (select("validation", epsilon) | select("comparison", epsilon) | select("testset", epsilon) | select("transformation", epsilon));

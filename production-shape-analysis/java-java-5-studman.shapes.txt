@@ -1,0 +1,139 @@
+# BGF production shape analysis
+source: java-java-5-studman.bgf
+productions: 161
+distinct_shapes: 130
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+11	sequence(N, star(sequence(N, N)))
+7	choice(N, N)
+4	sequence(N, N, N)
+4	sequence(N, star(choice(N, N)), N)
+2	choice(N, N, N)
+2	optional(N)
+2	sequence(N, N, N, N, N)
+2	sequence(N, N, star(sequence(N, N)), optional(N))
+2	sequence(N, optional(N))
+2	sequence(N, optional(sequence(N, star(sequence(N, N)), optional(N))), N)
+2	sequence(N, star(sequence(choice(N, N), N)))
+2	sequence(N, star(sequence(choice(N, N, N), N)))
+2	star(N)
+1	"!"
+1	"!="
+1	"%"
+1	"%="
+1	"&"
+1	"&&"
+1	"&="
+1	"("
+1	")"
+1	"*"
+1	"*="
+1	"+"
+1	"++"
+1	"+="
+1	","
+1	"-"
+1	"--"
+1	"-="
+1	"."
+1	"..."
+1	"/"
+1	"/="
+1	":"
+1	";"
+1	"<"
+1	"<<"
+1	"<<="
+1	"<="
+1	"="
+1	"=="
+1	">"
+1	">="
+1	">>"
+1	">>="
+1	">>>"
+1	">>>="
+1	"?"
+1	"@"
+1	"["
+1	"]"
+1	"^"
+1	"^="
+1	"{"
+1	"|"
+1	"|="
+1	"||"
+1	"}"
+1	"~"
+1	N
+1	choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "a", "b", "c", "d", "e", "f")
+1	choice("f", "F", "d", "D")
+1	choice("private", "public", "protected", "static", "transient", "final", "abstract", "native", "threadsafe", "synchronized", "volatile", "strictfp")
+1	choice("void", "boolean", "byte", "char", "short", "int", "float", "long", "double")
+1	choice(N, N, N, N)
+1	choice(N, N, N, N, N, N)
+1	choice(N, epsilon)
+1	choice(N, sequence(N, N), sequence(N, N), sequence(N, N), sequence(N, N, N), sequence("if", N, N, N, N, optional(sequence("else", N))), N, sequence("while", N, N, N, N), sequence("do", N, "while", N, N, N, N), sequence("break", optional(N), N), sequence("continue", optional(N), N), sequence("return", optional(N), N), sequence("switch", N, N, N, N, star(N), N), N, sequence("throw", N, N), sequence("synchronized", N, N, N, N), sequence("assert", N, optional(sequence(N, N)), N), N)
+1	choice(sequence(".", optional(choice(sequence(plus(choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")), optional(N), optional(N)), ".."))), sequence(choice(sequence("0", optional(choice(sequence(choice("x", "X"), plus(N)), plus(choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")), plus(choice("0", "1", "2", "3", "4", "5", "6", "7"))))), sequence(choice("1", "2", "3", "4", "5", "6", "7", "8", "9"), star(choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")))), optional(choice("l", "L", sequence(".", star(choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")), optional(N), optional(N)), sequence(N, optional(N)), N))))
+1	choice(sequence(".", plus(choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")), optional(N), choice("d", "D")), sequence("0", plus(choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")), choice(".", N, "d", "D")), sequence(plus(choice("1", "2", "3", "4", "5", "6", "7", "8", "9")), star(choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")), choice(sequence(optional(sequence(".", star(choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")))), optional(N), choice("d", "D")), N)))
+1	choice(sequence(".", plus(choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")), optional(N), choice("f", "F")), sequence("0", plus(choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")), choice(".", N, "f", "F")), sequence(plus(choice("1", "2", "3", "4", "5", "6", "7", "8", "9")), star(choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")), choice(sequence(optional(sequence(".", star(choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")))), optional(N), choice("f", "F")), N)))
+1	choice(sequence(N, N), N)
+1	choice(sequence(N, N), sequence(N, N), sequence(N, N), sequence(N, N), N)
+1	choice(sequence(N, N), sequence(N, N), sequence(N, N, N, N), sequence(N, N, N, N), N)
+1	choice(sequence(N, choice(N, sequence(optional(N), N, choice(sequence(N, N, N, N, N, optional(N), choice(N, N)), sequence(N, N))))), N)
+1	choice(sequence(N, choice(N, sequence(optional(N), choice(sequence(N, N), sequence(N, choice(sequence(N, N, N, N, N, optional(N), choice(N, N)), sequence(N, N))))))), sequence("static", N), N)
+1	choice(sequence(N, optional(sequence(N, "class"))), N, "true", "false", "null", N, "this", "super", sequence(N, N, N), sequence(N, star(sequence(N, N)), N, "class"))
+1	optional(choice(N, N))
+1	optional(choice(sequence(N, star(sequence(N, N)), optional(sequence(N, N))), N))
+1	optional(sequence("extends", N))
+1	optional(sequence("extends", N, star(sequence(N, N))))
+1	optional(sequence("implements", N, star(sequence(N, N))))
+1	optional(sequence(N, N))
+1	plus(sequence(N, optional(N), N))
+1	sequence("\"", star(choice(N, value("string"))), "\"")
+1	sequence("\\'", choice(N, value("string")), "\\'")
+1	sequence("\\\\", choice("n", "r", "t", "b", "f", "\"", "\\'", "\\\\", sequence(plus("u"), N, N, N, N), sequence(choice("0", "1", "2", "3"), optional(sequence(choice("0", "1", "2", "3", "4", "5", "6", "7"), optional(choice("0", "1", "2", "3", "4", "5", "6", "7"))))), sequence(choice("4", "5", "6", "7"), optional(choice("0", "1", "2", "3", "4", "5", "6", "7")))))
+1	sequence("catch", N, N, N, N)
+1	sequence("class", N, optional(N), N, N, N)
+1	sequence("enum", N, N, N)
+1	sequence("extends", N, star(sequence(N, N)))
+1	sequence("finally", N)
+1	sequence("for", N, choice(N, N), N, N)
+1	sequence("import", optional("static"), N, N)
+1	sequence("interface", N, optional(N), N, N)
+1	sequence("new", optional(N), N, choice(sequence(N, N, N, optional(N)), sequence(N, optional(N))))
+1	sequence("throws", N, star(sequence(N, N)))
+1	sequence("try", N, star(N), optional(N))
+1	sequence(N, "interface", N, N)
+1	sequence(N, "package", N, N)
+1	sequence(N, N, N, N)
+1	sequence(N, N, N, N, optional(N))
+1	sequence(N, N, optional(sequence(N, N, N)), optional(N))
+1	sequence(N, N, optional(sequence(N, optional(N), N)))
+1	sequence(N, choice(N, sequence(N, choice(sequence(N, N, N, N, optional(sequence("default", N)), N), sequence(N, N)))))
+1	sequence(N, choice(N, sequence(optional(N), N, choice(sequence(N, N, N, N, N, optional(N), N), sequence(N, N)))))
+1	sequence(N, choice(star(sequence(choice(N, N, N, N), N)), sequence("instanceof", N)))
+1	sequence(N, optional(N), star(N), N)
+1	sequence(N, optional(N), star(sequence(N, N, optional(N))))
+1	sequence(N, optional(sequence(N, N, N, N)))
+1	sequence(N, optional(sequence(N, star(sequence(N, N)), optional(N))), optional(sequence(N, star(choice(N, N)))), N)
+1	sequence(N, optional(sequence(choice(N, N, N, N, N, N, N, N, N, N, N, N), N)))
+1	sequence(N, plus(sequence(N, N)))
+1	sequence(N, star(N), N)
+1	sequence(N, star(choice(sequence(N, optional(N), choice(sequence(N, optional(sequence(N, N, N))), sequence("super", choice(sequence(N, N, N), sequence(N, optional(N), N, optional(sequence(N, N, N))))))), sequence(N, "this"), sequence(N, N), sequence(N, N, N))), optional(choice(N, N)))
+1	sequence(N, star(sequence(N, N)), optional(sequence(N, N)))
+1	sequence(choice("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_", "$"), star(choice("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "$")))
+1	sequence(choice("e", "E"), optional(choice("+", "-")), plus(choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")))
+1	sequence(choice("extends", "super"), N)
+1	sequence(choice(N, epsilon), star(N), star(N))
+1	sequence(choice(sequence("case", N), "default"), N)
+1	sequence(optional(N), N, star(choice(sequence(N, optional(N), N), epsilon)), optional(choice(sequence(N, N, N), plus(sequence(N, N)))))
+1	sequence(optional(N), choice(sequence("this", N, N, N, N), sequence("super", N, N, N, N)))
+1	sequence(plus(N), N)
+1	sequence(plus(choice("1", "2", "3", "4", "5", "6", "7", "8", "9")), star(choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")), choice("l", "L"))
+1	sequence(star(N), optional("final"), star(N))
+1	star(choice(N, N))
+1	star(sequence(N, N))

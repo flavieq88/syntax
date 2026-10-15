@@ -1,0 +1,52 @@
+# BGF production shape analysis
+source: meta-syntax-antlr-antlr4-zaytsev.bgf
+productions: 73
+distinct_shapes: 43
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+17	N
+8	sequence(N, optional(N))
+2	seplistplus(N, "|")
+2	sequence("(", seplistplus(N, "|"), ")")
+2	sequence(".", optional(N))
+2	sequence("~", choice(N, N))
+2	sequence(N, choice("=", "+="), choice(N, N))
+2	sequence(N, optional("?"))
+2	sequence(choice(N, N), optional(N))
+1	"fragment"
+1	"lexer"
+1	"parser"
+1	"private"
+1	"protected"
+1	"public"
+1	sequence("(", optional(sequence(optional(N), star(N), ":")), N, ")")
+1	sequence("->", seplistplus(N, ","))
+1	sequence("<", seplistplus(N, ","), ">")
+1	sequence("@", N, N)
+1	sequence("@", optional(sequence(N, "::")), N, N)
+1	sequence("import", seplistplus(N, ","), ";")
+1	sequence("locals", N)
+1	sequence("mode", N, ";", star(N))
+1	sequence("options", "{", star(sequence(N, ";")), "}")
+1	sequence("returns", N)
+1	sequence("throws", seplistplus(N, ","))
+1	sequence("tokens", "{", seplistplus(N, ","), "}")
+1	sequence(N, "..", N)
+1	sequence(N, "=", N)
+1	sequence(N, N, ";", star(N), star(N), star(N))
+1	sequence(N, optional(N), optional(N))
+1	sequence(N, optional(sequence("#", N)))
+1	sequence(N, optional(sequence("=", N)))
+1	sequence(N, optional(sequence("=", choice(N, N))))
+1	sequence(N, star(sequence(".", N)))
+1	sequence(choice("+", "*", "?"), optional("?"))
+1	sequence(choice(N, "mode"), optional(sequence("(", choice(N, N), ")")))
+1	sequence(optional("fragment"), N, ":", seplistplus(N, "|"), ";")
+1	sequence(optional(N), star(N))
+1	sequence(optional(choice("lexer", "parser")), "grammar")
+1	sequence(plus(N), optional(N))
+1	sequence(star(N), N, optional(N), optional(N), optional(N), optional(N), star(N), ":", N, ";", N)
+1	sequence(star(sequence("catch", N, N)), optional(sequence("finally", N)))

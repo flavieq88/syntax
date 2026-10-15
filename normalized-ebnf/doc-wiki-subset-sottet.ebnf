@@ -1,0 +1,11 @@
+N("LocatedElement") ::= N("Table");
+N("LocatedElement") ::= N("Caption");
+N("LocatedElement") ::= N("Row");
+N("LocatedElement") ::= N("Cell");
+N("Table") ::= (select("border", N("Integer")) select("style", N("String")) select("class", N("String")) select("caption", N("Caption")) (select("rows", N("Row")))+);
+N("Caption") ::= select("content", N("String"));
+N("Row") ::= (select("cells", N("Cell")))+;
+N("Cell") ::= (select("isHeading", N("Boolean")) select("align", N("String")) select("style", N("String")) select("content", N("String")));
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");

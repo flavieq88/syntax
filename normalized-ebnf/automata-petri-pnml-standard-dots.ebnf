@@ -1,0 +1,4 @@
+N("BuiltInSort") ::= N("Dot");
+N("BuiltInConstant") ::= N("DotConstant");
+N("Dot") ::= select("dot", epsilon);
+N("DotConstant") ::= select("dotconstant", epsilon);

@@ -1,0 +1,13 @@
+# BGF production shape analysis
+source: dsl-develop-microsoft-touzet.bgf
+productions: 4
+distinct_shapes: 4
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	N
+1	plus(N)
+1	sequence(N, plus(N))
+1	value("string")

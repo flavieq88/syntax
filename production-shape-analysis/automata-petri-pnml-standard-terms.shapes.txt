@@ -1,0 +1,21 @@
+# BGF production shape analysis
+source: automata-petri-pnml-standard-terms.bgf
+productions: 29
+distinct_shapes: 12
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+9	N
+6	epsilon
+3	star(N)
+2	sequence(N, N)
+2	value("string")
+1	choice(N, N)
+1	choice(N, N, N)
+1	choice(N, N, N, N)
+1	choice(N, N, N, N, N)
+1	sequence(N, star(N), N)
+1	sequence(value("string"), N)
+1	sequence(value("string"), value("string"))

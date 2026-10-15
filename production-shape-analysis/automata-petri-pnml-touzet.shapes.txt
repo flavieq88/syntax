@@ -1,0 +1,15 @@
+# BGF production shape analysis
+source: automata-petri-pnml-touzet.bgf
+productions: 12
+distinct_shapes: 6
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+5	N
+2	sequence(N, N)
+2	sequence(plus(N), plus(N))
+1	sequence(plus(N), plus(N), plus(N))
+1	value("int")
+1	value("string")

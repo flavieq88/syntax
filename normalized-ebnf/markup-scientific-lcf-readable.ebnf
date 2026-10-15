@@ -1,0 +1,17 @@
+@root N("scenario");
+
+N("scenario") ::= ((N("shortcut"))* N("tools") (N("source"))+ (N("target"))+ (N("testset"))*);
+N("tools") ::= (select("transformer", N("tool")) select("comparator", N("tool")) [select("validator", N("tool"))] (N("generator"))*);
+N("shortcut") ::= (select("name", value("string")) select("expansion", N("xstring")));
+N("generator") ::= (select("name", value("string")) select("command", N("xstring")));
+N("source") ::= (select("name", value("string")) [N("derived")] N("source-grammar") [N("source-tree")] select("test-set", (N("xstring"))*));
+N("target") ::= (select("name", value("string")) (N("branch"))+);
+N("phase") ::= (select("step", (select("perform-transformation", value("string")) | N("automated-transformation"))))+;
+N("testset") ::= (select("name", value("string")) select("command", N("xstring")));
+N("tool") ::= (select("grammar", N("xstring")) [select("tree", N("xstring"))]);
+N("xstring") ::= ((select("expand", value("string")) | value("string")))*;
+N("derived") ::= (select("from", value("string")) select("using", value("string")));
+N("source-grammar") ::= (select("extraction", N("xstring")) [select("parsing", N("xstring"))] [select("evaluation", N("xstring"))]);
+N("source-tree") ::= (select("extraction", N("xstring")) [select("evaluation", N("xstring"))]);
+N("branch") ::= (select("input", value("string")) [select("preparation", N("phase"))] [select("nominal-matching", N("phase"))] [select("normalizing", N("phase"))] [select("structural-matching", N("phase"))] ((select("extension", N("phase")) | select("correction", N("phase")) | select("relaxation", N("phase"))))*);
+N("automated-transformation") ::= (select("method", value("string")) select("result", value("string")));

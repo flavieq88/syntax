@@ -1,0 +1,11 @@
+# BGF production shape analysis
+source: automata-petri-pnml-standard-dots.bgf
+productions: 4
+distinct_shapes: 2
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	N
+2	epsilon

@@ -1,0 +1,22 @@
+# BGF production shape analysis
+source: dsl-architecture-dodaf-ov5.bgf
+productions: 60
+distinct_shapes: 13
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+32	N
+9	sequence(N, N, N)
+5	plus(N)
+3	sequence(plus(N), plus(N))
+2	sequence(plus(N), plus(N), plus(N))
+2	sequence(plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N))
+1	sequence(N, N)
+1	sequence(N, plus(N), plus(N))
+1	sequence(N, plus(N), plus(N), plus(N))
+1	sequence(N, plus(N), plus(N), plus(N), plus(N))
+1	sequence(N, plus(N), plus(N), plus(N), plus(N), plus(N))
+1	sequence(plus(N), N, N, N)
+1	value("string")

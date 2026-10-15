@@ -1,0 +1,49 @@
+# BGF production shape analysis
+source: dsl-conference-zakongroup.bgf
+productions: 1132
+distinct_shapes: 40
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+676	N
+202	epsilon
+34	sequence(N, N)
+31	sequence(N, N, N, N)
+29	choice(N, N)
+19	sequence(N, N, plus(N), N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+14	sequence(plus(N), plus(N), N, N, N, plus(N), N, plus(N), N, N, N, N, N, N, N, N, N, N, N, plus(N), plus(N), N, N, N, plus(N), N, N, N, plus(N), N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+13	sequence(N, N, N, plus(N), N, N, N)
+9	choice(N, N, N)
+8	sequence(N, N, N)
+7	choice(N, N, N, N)
+7	plus(N)
+7	sequence(N, N, N, N, N, plus(N), N, N, N, N, N)
+7	sequence(plus(N), N)
+6	choice(N, N, N, N, N)
+6	sequence(plus(N), N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+5	sequence(N, N, N, N, N)
+5	sequence(N, N, N, N, N, N, N, N, N, N)
+4	choice(N, N, N, N, N, N)
+4	sequence(N, N, N, N, N, N, N)
+4	sequence(N, N, N, N, N, N, N, N)
+4	sequence(N, N, N, N, N, N, N, N, N)
+4	sequence(N, N, N, N, N, N, N, N, plus(N), N, N, plus(N), N)
+4	sequence(N, plus(N), N, N)
+3	choice(N, N, N, N, N, N, N)
+3	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+3	sequence(N, N, N, plus(N), N)
+2	sequence(N, N, N, N, N, N, N, plus(N), N, N, N, N, N, N, N, N, N, N, N, N)
+1	choice("true", "false")
+1	choice(N, N, N, N, N, N, N, N)
+1	choice(N, N, N, N, N, N, N, N, N, N)
+1	choice(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	sequence(N, plus(N), N)
+1	sequence(N, plus(N), N, N, N, N, N, N, N, N, N, N)
+1	sequence(plus(N), plus(N), N, N, N, plus(N), N, plus(N), N, N, N, N, N, N, N, N, N, N, N, plus(N), plus(N), N, N, N, plus(N), N, N, N, plus(N), N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	value("int")
+1	value("string")

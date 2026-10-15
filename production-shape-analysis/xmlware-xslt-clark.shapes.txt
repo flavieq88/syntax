@@ -1,0 +1,47 @@
+# BGF production shape analysis
+source: xmlware-xslt-clark.bgf
+productions: 61
+distinct_shapes: 38
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+8	value("string")
+7	sequence(N, N)
+4	N
+4	sequence(N, N, N)
+3	sequence(N, N, choice(N, N))
+2	sequence(N, value("string"))
+2	star(value("string"))
+1	"1.0"
+1	choice(N, N, N, N, N, N, N, N, N, N, N)
+1	choice(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	choice(value("string"), "#default")
+1	sequence(N, N, N, N)
+1	sequence(N, N, optional(N), star(N))
+1	sequence(N, N, optional(choice("yes", "no")))
+1	sequence(N, N, star(N))
+1	sequence(N, N, star(N), N)
+1	sequence(N, choice(N, N), optional(choice(value("string"), N)), N)
+1	sequence(N, choice(N, N), optional(choice(value("string"), N)), optional(N), N)
+1	sequence(N, choice(value("string"), N), N)
+1	sequence(N, optional(N))
+1	sequence(N, optional(N), N)
+1	sequence(N, optional(N), optional(N), optional(N), optional(N), star(N), N)
+1	sequence(N, optional(N), optional(N), optional(N), optional(value("string")), optional(N), optional(value("string")), optional(N), optional(N), optional(N), optional(N), optional(N))
+1	sequence(N, optional(N), optional(N), star(choice(N, N)))
+1	sequence(N, optional(N), optional(choice(value("string"), N)), optional(choice("text", "number", N, N)), optional(choice("ascending", "descending", N)), optional(choice("upper-first", "lower-first", N)))
+1	sequence(N, optional(choice("single", "multiple", "any")), optional(N), optional(N), optional(N), optional(N), optional(choice(value("string"), N)), optional(choice("alphabetic", "traditional", N)), optional(choice(N, N)), optional(choice(N, N)))
+1	sequence(N, optional(choice("xml", "html", "text", N)), optional(value("string")), optional(value("string")), optional(choice("yes", "no")), optional(choice("yes", "no")), optional(value("string")), optional(value("string")), optional(N), optional(choice("yes", "no")), optional(value("string")))
+1	sequence(N, optional(choice("yes", "no")), N)
+1	sequence(N, optional(choice("yes", "no")), value("string"))
+1	sequence(N, optional(value("string")), optional(N), optional(N), N, star(N), N)
+1	sequence(N, plus(N), optional(N))
+1	star(any)
+1	star(choice(N, N))
+1	star(choice(N, N, N, N))
+1	star(choice(N, N, value("string")))
+1	star(choice(any, value("string"), N))
+1	star(choice(value("string"), "#default"))
+1	value("int")

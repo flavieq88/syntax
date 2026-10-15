@@ -1,0 +1,20 @@
+# BGF production shape analysis
+source: wip-atl-SimulinkStateFlow.bgf
+productions: 27
+distinct_shapes: 11
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+11	N
+3	choice(epsilon, epsilon)
+3	sequence(N, N)
+2	epsilon
+2	sequence(N, N, N)
+1	choice(N, N)
+1	plus(N)
+1	sequence(N, N, N, N, N, plus(N), plus(N), plus(N), plus(N), N)
+1	sequence(N, N, N, N, plus(N))
+1	value("int")
+1	value("string")

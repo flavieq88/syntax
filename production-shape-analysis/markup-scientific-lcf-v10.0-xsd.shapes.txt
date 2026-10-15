@@ -1,0 +1,16 @@
+# BGF production shape analysis
+source: markup-scientific-lcf-v10.0-xsd.bgf
+productions: 7
+distinct_shapes: 7
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice(value("string"), epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	sequence(optional(value("string")), plus(value("string")), plus(N))
+1	sequence(star(choice(N, value("string"))), optional(value("string")), optional(value("string")))
+1	sequence(value("string"), plus(sequence(value("string"), star(value("string")))))
+1	sequence(value("string"), star(choice(N, value("string"))))
+1	sequence(value("string"), value("string"), plus(star(choice(N, value("string")))), optional(plus(N)), optional(plus(N)))
+1	star(choice(N, N, N, N, N))

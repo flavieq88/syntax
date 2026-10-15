@@ -1,0 +1,12 @@
+# BGF production shape analysis
+source: toy-tabular-table.bgf
+productions: 4
+distinct_shapes: 3
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	plus(N)
+1	N
+1	value("string")

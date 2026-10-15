@@ -1,0 +1,18 @@
+# BGF production shape analysis
+source: dsl-multi-agent-adelfe-simon.bgf
+productions: 28
+distinct_shapes: 9
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+14	N
+7	sequence(N)
+1	choice(N, N)
+1	epsilon
+1	plus(N)
+1	sequence(N, N)
+1	sequence(N, N, N)
+1	sequence(N, N, plus(N), plus(N), plus(N), plus(N), plus(N), plus(N))
+1	sequence(N, plus(N))

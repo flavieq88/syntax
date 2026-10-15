@@ -1,0 +1,8 @@
+N("String") ::= value("string");
+N("NamedElement") ::= N("File");
+N("File") ::= N("Directory");
+N("File") ::= N("TextFile");
+N("Directory") ::= N("FileSystemRoot");
+N("Directory") ::= (select("contents", N("File")))+;
+N("FileSystemRoot") ::= ((select("contents", N("File")))+);
+N("TextFile") ::= (select("owner", N("String")) select("group", N("String")));

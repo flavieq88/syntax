@@ -1,0 +1,13 @@
+# BGF production shape analysis
+source: toy-fl-abstract-rascal.bgf
+productions: 4
+distinct_shapes: 4
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice(epsilon, epsilon, epsilon)
+1	choice(sequence(N, N, N), sequence(value("string"), star(N)), sequence(N, N, N), value("string"), value("int"))
+1	sequence(value("string"), star(N), N)
+1	star(N)

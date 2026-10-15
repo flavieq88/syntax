@@ -1,0 +1,10 @@
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("NamedElt") ::= N("Classifier");
+N("NamedElt") ::= N("Attribute");
+N("Classifier") ::= N("DataType");
+N("Classifier") ::= N("Class");
+N("DataType") ::= epsilon;
+N("Class") ::= ((select("super", N("Class")))+ (select("attr", N("Attribute")))+ select("isAbstract", N("Boolean")));
+N("Attribute") ::= (select("multiValued", N("Boolean")) select("type", N("Classifier")) select("owner", N("Class")));

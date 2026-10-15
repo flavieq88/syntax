@@ -1,0 +1,6 @@
+N("String") ::= value("string");
+N("Element") ::= N("PathExp");
+N("Element") ::= N("Transition");
+N("PathExp") ::= ((select("states", N("State")))+ (select("transitions", N("Transition")))+);
+N("State") ::= ((select("incoming", N("Transition")))+ (select("outgoing", N("Transition")))+);
+N("Transition") ::= (select("source", N("State")) select("target", N("State")));

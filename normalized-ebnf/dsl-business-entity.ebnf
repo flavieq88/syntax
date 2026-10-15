@@ -1,0 +1,14 @@
+N("DataType") ::= N("BusinessEntityPropertySet");
+N("Action") ::= N("BusinessRole");
+N("Class") ::= N("BusinessEntity");
+N("BusinessRole") ::= N("ArtifactRole");
+N("BusinessRole") ::= N("PerformerRole");
+N("BusinessRole") ::= N("OrganisationalUnit");
+N("Task") ::= ((select("associatedWith", N("BusinessRole")))+ (select("needs", N("ArtifactRole")))+);
+N("ArtifactRole") ::= (select("characterisedby", N("BusinessEntityPropertySet")) select("typ", N("Class")) (select("task", N("Task")))+ (select("fille", N("BusinessEntity")))+);
+N("PerformerRole") ::= select("perform", N("Task"));
+N("OrganisationalUnit") ::= (select("characterisedby", N("BusinessEntityPropertySet")) select("typ", N("Class")) (select("task", N("Task")))+ (select("fille", N("BusinessEntity")))+);
+N("BusinessEntity") ::= (select("placehold", N("BusinessRole")))+;
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");

@@ -1,0 +1,17 @@
+N("ModelElement") ::= N("Classifier");
+N("ModelElement") ::= N("Operation");
+N("ModelElement") ::= N("BusinessRule");
+N("ModelElement") ::= N("Flow");
+N("Classifier") ::= N("Service");
+N("Classifier") ::= N("BusinessObject");
+N("Operation") ::= N("ServiceOperation");
+N("Operation") ::= N("BusinessObjectOperation");
+N("Operation") ::= (N("ServiceOperation") | N("BusinessObjectOperation"));
+N("Service") ::= (select("operations", N("ServiceOperation")))+;
+N("BusinessObject") ::= (select("operations", N("BusinessObjectOperation")))+;
+N("ServiceOperation") ::= ((select("BOFlows", N("Service2BusinessObjectFlow")))+ (select("rules", N("BusinessRule")))+);
+N("BusinessObjectOperation") ::= (select("rules", N("BusinessRule")))+;
+N("BusinessRule") ::= select("expr", N("String"));
+N("Flow") ::= N("Service2BusinessObjectFlow");
+N("Service2BusinessObjectFlow") ::= (select("source", N("String")) select("target", N("String")));
+N("String") ::= value("string");

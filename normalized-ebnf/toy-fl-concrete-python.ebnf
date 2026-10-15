@@ -1,0 +1,14 @@
+N("_Literal") ::= N("Literal");
+N("_IF") ::= "if";
+N("_THEN") ::= "then";
+N("_ELSE") ::= "else";
+N("name") ::= value("string");
+N("literal") ::= (["-"] value("int"));
+N("atom") ::= (N("name") | N("literal") | ("(" N("expr") ")"));
+N("ifThenElse") ::= (N("_IF") N("expr") N("_THEN") N("expr") N("_ELSE") N("expr"));
+N("operators") ::= ("==" | "+" | "-");
+N("binary") ::= (N("atom") ((N("operators") N("atom")))*);
+N("apply") ::= (N("name") (N("atom"))+);
+N("expr") ::= (N("binary") | N("apply") | N("ifThenElse"));
+N("function") ::= (N("name") (N("name"))+ "=" N("expr"));
+N("program") ::= ((N("function"))+ N("StringEnd"));

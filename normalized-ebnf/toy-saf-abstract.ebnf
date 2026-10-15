@@ -1,0 +1,4 @@
+N("Fighter") @label("fighter") ::= (marked("name", value("string")) marked("specs", (N("Spec"))*));
+N("Spec") ::= (select("attribute", (marked("name", value("string")) marked("strength", value("int")))) | select("behavior", (marked("cond", N("Cond")) marked("move", N("Action")) marked("fight", N("Action")))));
+N("Cond") ::= (select("const", marked("name", value("string"))) | select("and", (marked("lhs", N("Cond")) marked("rhs", N("Cond")))) | select("or", (marked("lhs", N("Cond")) marked("rhs", N("Cond")))));
+N("Action") ::= (select("action", marked("name", value("string"))) | select("choose", marked("actions", (value("string"))*)));

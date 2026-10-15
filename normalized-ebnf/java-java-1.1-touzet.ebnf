@@ -1,0 +1,7 @@
+N("JavaSource") ::= (select("classes", N("ClassDeclaration")))+;
+N("NamedElement") ::= N("ClassDeclaration");
+N("NamedElement") ::= N("MethodDefinition");
+N("ClassDeclaration") ::= (select("superclass", N("ClassDeclaration")) (select("methods", N("MethodDefinition")))+);
+N("MethodDefinition") ::= (select("class", N("ClassDeclaration")) (select("invocations", N("MethodInvocation")))+);
+N("MethodInvocation") ::= select("method", N("MethodDefinition"));
+N("String") ::= value("string");

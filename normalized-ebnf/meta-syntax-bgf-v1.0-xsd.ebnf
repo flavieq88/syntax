@@ -1,0 +1,11 @@
+@root N("grammar");
+@root N("production");
+@root N("expression");
+
+N("grammar") ::= ([select("name", value("string"))] (select("root", N("nonterminal")))* (N("production"))*);
+N("production") ::= ([select("label", N("label"))] select("nonterminal", N("nonterminal")) N("expression"));
+N("expression") ::= (select("epsilon", epsilon) | select("empty", epsilon) | select("any", epsilon) | select("terminal", N("terminal")) | select("nonterminal", N("nonterminal")) | select("selectable", (select("selector", N("selector")) N("expression"))) | select("sequence", (N("expression"))*) | select("choice", (N("expression"))*) | select("optional", N("expression")) | select("plus", N("expression")) | select("star", N("expression")));
+N("label") ::= value("string");
+N("nonterminal") ::= value("string");
+N("selector") ::= value("string");
+N("terminal") ::= value("string");

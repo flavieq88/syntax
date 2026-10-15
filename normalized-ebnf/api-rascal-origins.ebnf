@@ -1,0 +1,1 @@
+N("Origin") ::= (select("literal", marked("location", value("string"))) | select("expression", marked("location", value("string"))) | select("none", epsilon));

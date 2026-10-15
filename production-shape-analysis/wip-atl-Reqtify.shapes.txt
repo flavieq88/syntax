@@ -1,0 +1,15 @@
+# BGF production shape analysis
+source: wip-atl-Reqtify.bgf
+productions: 17
+distinct_shapes: 6
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+11	N
+2	plus(N)
+1	sequence(N, N, plus(N), plus(N))
+1	sequence(N, plus(N))
+1	sequence(N, plus(N), N, plus(N))
+1	value("string")

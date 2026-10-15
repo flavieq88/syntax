@@ -1,0 +1,10 @@
+N("Element") ::= N("Newspaper");
+N("Element") ::= N("News");
+N("Newspaper") ::= (select("language", N("String")) select("copyright", N("String")) select("pubDate", N("Date")) select("category", N("Category")) (select("news", N("News")))+);
+N("News") ::= (select("author", N("String")) select("comments", N("String")) select("pubDate", N("Date")) select("category", N("Category")) select("newspaper", N("Newspaper")));
+N("Category") ::= select("value", N("String"));
+N("Date") ::= (select("eDay", N("DayKind")) select("day", N("Integer")) select("month", N("Integer")) select("year", N("Integer")) select("hours", N("Integer")) select("minutes", N("Integer")) select("seconds", N("Integer")));
+N("DayKind") ::= (select("Monday", epsilon) | select("Tuesday", epsilon) | select("Wednesday", epsilon) | select("Thursday", epsilon) | select("Friday", epsilon) | select("Saturday", epsilon) | select("Sunday", epsilon));
+N("String") ::= value("string");
+N("Integer") ::= value("int");
+N("Boolean") ::= ("true" | "false");

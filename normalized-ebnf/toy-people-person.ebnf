@@ -1,0 +1,4 @@
+N("Person") ::= (select("name", N("String")) select("firstName", N("String")) select("phone", N("String")));
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");

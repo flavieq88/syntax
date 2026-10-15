@@ -1,0 +1,16 @@
+# BGF production shape analysis
+source: toy-saf-concrete.bgf
+productions: 8
+distinct_shapes: 7
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	N
+1	sequence("choose", "(", marked("actions", star(N)), ")")
+1	sequence(marked("cond", N), "[", marked("move", N), marked("fight", N), "]")
+1	sequence(marked("lhs", N), "and", marked("rhs", N))
+1	sequence(marked("lhs", N), "or", marked("rhs", N))
+1	sequence(marked("name", N), "=", marked("strength", N))
+1	sequence(marked("name", N), "{", marked("specs", star(N)), "}")

@@ -1,0 +1,37 @@
+# BGF production shape analysis
+source: dsl-conference-conftool.bgf
+productions: 399
+distinct_shapes: 28
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+243	N
+53	epsilon
+24	sequence(N, N)
+14	choice(N, N)
+11	sequence(N, N, N)
+7	sequence(N, N, N, N, N, N)
+7	sequence(N, N, N, N, N, N, N, N, N, N, N, N)
+5	sequence(plus(N), N)
+5	sequence(plus(N), plus(N), N, N, N, plus(N), N, plus(N), N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+4	sequence(N, N, N, N, N, N, N)
+3	plus(N)
+3	sequence(N, N, N, N, N, N, N, N)
+2	choice(N, N, N)
+2	choice(N, N, N, N, N)
+2	sequence(N, N, N, N, N)
+2	sequence(N, N, plus(N), N, N, N, N, N, N)
+1	choice("true", "false")
+1	choice(N, N, N, N)
+1	choice(N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	sequence(N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	sequence(N, plus(N), N)
+1	sequence(plus(N), plus(N), N, N, N, plus(N), N, plus(N), N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	value("int")
+1	value("string")

@@ -1,0 +1,16 @@
+N("String") ::= value("string");
+N("Integer") ::= value("int");
+N("Port") ::= N("InputPort");
+N("Port") ::= N("OutputPort");
+N("Port") ::= N("LocalPort");
+N("Port") ::= (select("asso_Port_Signalsrc", N("Asso_Port_Signal")) select("asso_Port_Signaldst", N("Asso_Port_Signal")));
+N("Signal") ::= (select("base", N("Base")) select("asso_Port_Signal", N("Asso_Port_Signal")));
+N("Base") ::= N("Compound");
+N("Base") ::= N("Primitive");
+N("Base") ::= (select("compound", N("Compound")) (select("inputPort", N("InputPort")))+ (select("outputPort", N("OutputPort")))+ (select("signal", N("Signal")))+);
+N("Compound") ::= ((select("localPort", N("LocalPort")))+ (select("base", N("Base")))+);
+N("InputPort") ::= select("base", N("Base"));
+N("OutputPort") ::= select("base", N("Base"));
+N("LocalPort") ::= select("compound", N("Compound"));
+N("Primitive") ::= (select("compound", N("Compound")) (select("inputPort", N("InputPort")))+ (select("outputPort", N("OutputPort")))+ (select("signal", N("Signal")))+);
+N("Asso_Port_Signal") ::= ((select("src", N("Port")))+ (select("dst", N("Port")))+ select("signal", N("Signal")));

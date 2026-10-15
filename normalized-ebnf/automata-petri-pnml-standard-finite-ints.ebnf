@@ -1,0 +1,11 @@
+N("BuiltInSort") ::= N("FiniteIntRange");
+N("BuiltInOperator") ::= N("FiniteIntRangeOperator");
+N("BuiltInConstant") ::= N("FiniteIntRangeConstant");
+N("FiniteIntRange") ::= select("finiteintrange", (select("start", value("int")) select("end", value("int"))));
+N("FiniteIntRangeOperator.content") ::= N("BuiltInOperator.content");
+N("FiniteIntRangeOperator") ::= (N("FIRLessThan") | N("FIRLessThanOrEqual") | N("FIRGreaterThan") | N("FIRGreaterThanOrEqual"));
+N("FIRLessThan") ::= select("lessthan", N("FiniteIntRangeOperator.content"));
+N("FIRLessThanOrEqual") ::= select("lessthanorequal", N("FiniteIntRangeOperator.content"));
+N("FIRGreaterThan") ::= select("greaterthan", N("FiniteIntRangeOperator.content"));
+N("FIRGreaterThanOrEqual") ::= select("greaterthanorequal", N("FiniteIntRangeOperator.content"));
+N("FiniteIntRangeConstant") ::= select("finiteintrangeconstant", (select("value", value("int")) N("FiniteIntRange") N("BuiltInConstant.content")));

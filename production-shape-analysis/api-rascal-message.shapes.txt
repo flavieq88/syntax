@@ -1,0 +1,10 @@
+# BGF production shape analysis
+source: api-rascal-message.bgf
+productions: 1
+distinct_shapes: 1
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice(sequence(marked("msg", value("string")), marked("at", value("string"))), sequence(marked("msg", value("string")), marked("at", value("string"))), sequence(marked("msg", value("string")), marked("at", value("string"))))

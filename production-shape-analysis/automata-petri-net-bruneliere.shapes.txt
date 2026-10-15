@@ -1,0 +1,18 @@
+# BGF production shape analysis
+source: automata-petri-net-bruneliere.bgf
+productions: 19
+distinct_shapes: 9
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+8	N
+3	sequence(N, N)
+2	sequence(plus(N), plus(N))
+1	sequence(N, N, N, N)
+1	sequence(N, plus(N))
+1	sequence(N, plus(N), plus(N))
+1	sequence(plus(N), plus(N), plus(N))
+1	value("int")
+1	value("string")

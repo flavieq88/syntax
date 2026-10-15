@@ -1,0 +1,17 @@
+# BGF production shape analysis
+source: python-indentation-cordy.bgf
+productions: 12
+distinct_shapes: 8
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+3	choice(N, N)
+3	choice(N, N, N)
+1	choice(sequence("{", star(N), "}"), sequence("[", star(N), "]"), sequence("(", star(N), ")"))
+1	sequence("DEDENT", N)
+1	sequence(N, "INDENT")
+1	sequence(star(N), optional(N), N)
+1	sequence(star(N), star(N), optional(N), plus(N), star(N))
+1	star(N)

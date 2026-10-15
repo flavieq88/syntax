@@ -1,0 +1,19 @@
+# BGF production shape analysis
+source: wip-atl-USECASE1.bgf
+productions: 22
+distinct_shapes: 10
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+7	plus(N)
+3	N
+3	sequence(plus(N), plus(N))
+3	sequence(plus(N), plus(N), plus(N))
+1	choice("true", "false")
+1	epsilon
+1	sequence(N, plus(N), plus(N), plus(N))
+1	sequence(plus(N))
+1	value("int")
+1	value("string")

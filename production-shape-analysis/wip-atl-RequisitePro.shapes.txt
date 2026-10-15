@@ -1,0 +1,14 @@
+# BGF production shape analysis
+source: wip-atl-RequisitePro.bgf
+productions: 13
+distinct_shapes: 5
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+9	N
+1	sequence(N)
+1	sequence(N, plus(N), N, N, plus(N), plus(N))
+1	sequence(plus(N), plus(N))
+1	value("string")

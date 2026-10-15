@@ -1,0 +1,18 @@
+# BGF production shape analysis
+source: markup-interface-usixml-sottet.bgf
+productions: 12
+distinct_shapes: 9
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+4	N
+1	choice("true", "false")
+1	choice(epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	sequence(N, N)
+1	sequence(N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N, N, plus(N), N, N, N, N)
+1	value("int")
+1	value("string")

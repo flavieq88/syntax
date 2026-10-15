@@ -1,0 +1,14 @@
+N("Operator") ::= (N("Equality") | N("Inequality"));
+N("BuiltInSort") ::= N("Bool");
+N("BuiltInOperator") ::= N("BooleanOperator");
+N("BuiltInConstant") ::= N("BooleanConstant");
+N("Bool") ::= select("bool", epsilon);
+N("BooleanOperator.content") ::= N("BuiltInOperator.content");
+N("BooleanOperator") ::= (N("And") | N("Or") | N("Imply") | N("Not"));
+N("And") ::= select("and", N("BooleanOperator.content"));
+N("Or") ::= select("or", N("BooleanOperator.content"));
+N("Not") ::= select("not", N("BooleanOperator.content"));
+N("Imply") ::= select("imply", N("BooleanOperator.content"));
+N("Equality") ::= select("equality", N("Operator.content"));
+N("Inequality") ::= select("inequality", N("Operator.content"));
+N("BooleanConstant") ::= select("booleanconstant", (select("value", ("true" | "false")) N("BuiltInConstant.content")));

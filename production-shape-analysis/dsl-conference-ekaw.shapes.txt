@@ -1,0 +1,43 @@
+# BGF production shape analysis
+source: dsl-conference-ekaw.bgf
+productions: 691
+distinct_shapes: 34
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+420	N
+92	epsilon
+27	sequence(N, N, N)
+25	sequence(N, N)
+20	sequence(N, N, N, plus(N), N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+19	choice(N, N)
+12	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, plus(N), plus(N), N, N, N, plus(N), N, plus(N), N, N, N)
+9	sequence(N, N, N, N, N, N, N)
+7	sequence(plus(N), N, N, N, N, N, N)
+5	plus(N)
+5	sequence(N, N, N, N, N, N)
+4	choice(N, N, N)
+4	sequence(N, plus(N), N, N)
+4	sequence(plus(N), N)
+4	sequence(plus(N), N, N, plus(N), N, N, N, N, N, N, N, N, N)
+3	choice(N, N, N, N)
+3	choice(N, N, N, N, N)
+3	sequence(N, N, N, N, N, N, N, N)
+3	sequence(N, N, N, N, N, N, N, N, N)
+3	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+3	sequence(N, plus(N))
+2	sequence(N, N, N, N)
+2	sequence(N, N, N, N, N)
+2	sequence(N, N, N, N, N, N, N, N, plus(N), N, N)
+1	choice("true", "false")
+1	choice(N, N, N, N, N, N, N, N)
+1	choice(N, N, N, N, N, N, N, N, N, N, N, N)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, plus(N), plus(N), N, N, N, plus(N), N, plus(N), N, N, N, N)
+1	sequence(N, plus(N), N)
+1	value("int")
+1	value("string")

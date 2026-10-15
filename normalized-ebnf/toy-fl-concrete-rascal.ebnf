@@ -1,0 +1,11 @@
+N("Program") @label("prg") ::= select("functions", sep+(N("Function"), "\\n"));
+N("Expr") @label("ifThenElse") ::= ("if" select("cond", N("Expr")) "then" select("thenbranch", N("Expr")) "else" select("elsebranch", N("Expr")));
+N("Expr") ::= ("(" select("e", N("Expr")) ")");
+N("Expr") @label("literal") ::= select("i", N("Int"));
+N("Expr") @label("argument") ::= select("a", N("Name"));
+N("Expr") @label("binary") ::= (select("lexpr", N("Expr")) select("op", N("Ops")) select("rexpr", N("Expr")));
+N("Expr") @label("apply") ::= (select("f", N("Name")) select("vargs", (N("Expr"))+));
+N("Ops") @label("plus") ::= "+";
+N("Ops") @label("equal") ::= "==";
+N("Ops") @label("minus") ::= "-";
+N("Function") @label("fun") ::= (select("f", N("Name")) select("args", (N("Name"))+) "=" select("body", N("Expr")));

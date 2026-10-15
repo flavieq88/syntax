@@ -1,0 +1,11 @@
+N("Actor") ::= (select("name", N("String")));
+N("UseCase") ::= ((select("include", N("Include")))+ (select("extend", N("Extend")))+);
+N("Extend") ::= (select("extension", N("UseCase")))+;
+N("Include") ::= (select("includingCase", N("UseCase")))+;
+N("UseCaseContainer") ::= (select("ownedElement", N("NamedElement")))+;
+N("BehavioredClassifier") ::= epsilon;
+N("NamedElement") ::= N("Actor");
+N("NamedElement") ::= N("UseCase");
+N("NamedElement") ::= N("Association");
+N("Association") ::= (select("actor", N("Actor")) select("useCase", N("UseCase")));
+N("String") ::= value("string");

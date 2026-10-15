@@ -1,0 +1,11 @@
+N("RModelElement") ::= N("Schema");
+N("RModelElement") ::= N("Table");
+N("RModelElement") ::= N("Column");
+N("RModelElement") ::= N("Key");
+N("RModelElement") ::= N("ForeignKey");
+N("Schema") ::= (select("tables", N("Table")))+;
+N("Table") ::= (select("schema", N("Schema")) (select("column", N("Column")))+ (select("key", N("Key")))+ (select("foreignKey", N("ForeignKey")))+);
+N("Column") ::= (select("type", N("String")) select("owner", N("Table")) (select("key", N("Key")))+ (select("foreignKey", N("ForeignKey")))+);
+N("Key") ::= (select("owner", N("Table")) (select("column", N("Column")))+ (select("refersToOpposite", N("ForeignKey")))+);
+N("ForeignKey") ::= ((select("column", N("Column")))+ select("owner", N("Table")) select("refersTo", N("Key")));
+N("String") ::= value("string");

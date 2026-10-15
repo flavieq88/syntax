@@ -1,0 +1,5 @@
+N("OperatorDeclaration") ::= N("FEConstant");
+N("BuiltInSort") ::= N("FiniteEnumeration");
+N("FiniteEnumeration.content") ::= (N("FEConstant"))*;
+N("FiniteEnumeration") ::= select("finiteenumeration", N("FiniteEnumeration.content"));
+N("FEConstant") ::= select("feconstant", N("OperatorDeclaration.content"));

@@ -1,0 +1,16 @@
+N("Condition") ::= ((select("partCompositeMembers", N("PartCompositeMember")))+ (select("actCompositeMembers", N("ActCompositeMember")))+);
+N("CompositeParDef") ::= (select("partCompositeMember", N("PartCompositeMember")))+;
+N("ElementaryPartDef") ::= ((select("partCompositeMembers", N("PartCompositeMember")))+);
+N("ElementaryActDef") ::= (select("actCompositeMember", N("ActCompositeMember")));
+N("CompositeActDef") ::= (select("actCompositeMembers", N("ActCompositeMember")))+;
+N("ActCompositeMember") ::= (select("activityDefinitions", N("ActivityDefinition")))+;
+N("ActivityDefinition") ::= N("ElementaryActDef");
+N("ActivityDefinition") ::= N("CompositeActDef");
+N("ActivityDefinition") ::= select("actCompositeMember", N("ActCompositeMember"));
+N("PartDefinition") ::= N("CompositeParDef");
+N("PartDefinition") ::= N("ElementaryPartDef");
+N("PartDefinition") ::= (select("partCompositeMembers", N("PartCompositeMember")))+;
+N("PartCompositeMember") ::= select("partDefinitions", N("PartDefinition"));
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");

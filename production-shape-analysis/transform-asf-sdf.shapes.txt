@@ -1,0 +1,25 @@
+# BGF production shape analysis
+source: transform-asf-sdf.bgf
+productions: 19
+distinct_shapes: 16
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	sequence(N, N)
+2	sequence(N, N, "when", N)
+2	sequence(N, N, N, N)
+1	sequence("[", "]")
+1	sequence("[", N, "]")
+1	sequence("amb", "(", optional(sequence(N, star(sequence(",", N)))), ")")
+1	sequence("equations", star(N))
+1	sequence("tests", star(N))
+1	sequence(N, "!:=", N)
+1	sequence(N, "!=", N)
+1	sequence(N, "(", star(N), ")")
+1	sequence(N, ":=", N)
+1	sequence(N, "=", N)
+1	sequence(N, "==", N)
+1	sequence(N, star(sequence(",", N)))
+1	star(N)

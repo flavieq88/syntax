@@ -1,0 +1,17 @@
+@root N("pattern");
+
+N("pattern") ::= (select("element", ((select("name", value("string")) | N("open-name-class")) N("common-atts") N("open-patterns"))) | select("attribute", (N("common-atts") (select("name", value("string")) | N("open-name-class")) (N("other") [N("pattern")]))) | select("group", (N("common-atts") N("open-patterns"))) | select("interleave", (N("common-atts") N("open-patterns"))) | select("choice", (N("common-atts") N("open-patterns"))) | select("optional", (N("common-atts") N("open-patterns"))) | select("zeroOrMore", (N("common-atts") N("open-patterns"))) | select("oneOrMore", (N("common-atts") N("open-patterns"))) | select("list", (N("common-atts") N("open-patterns"))) | select("mixed", (N("common-atts") N("open-patterns"))) | select("ref", (select("name", value("string")) N("common-atts") N("other"))) | select("parentRef", (select("name", value("string")) N("common-atts") N("other"))) | select("empty", (N("common-atts") N("other"))) | select("text", (N("common-atts") N("other"))) | select("value", ([select("type", value("string"))] N("common-atts") value("string"))) | select("data", (select("type", value("string")) N("common-atts") (N("other") ((select("param", (select("name", value("string")) N("common-atts") value("string"))))* [select("except", (N("common-atts") N("open-patterns")))])))) | select("notAllowed", (N("common-atts") N("other"))) | select("externalRef", (select("href", value("string")) N("common-atts") N("other"))) | select("grammar", (N("common-atts") N("grammar-content"))));
+N("grammar-content") ::= (N("other") ((N("start-element") | N("define-element") | select("div", (N("common-atts") N("grammar-content"))) | select("include", (select("href", value("string")) N("common-atts") N("include-content")))))*);
+N("include-content") ::= (N("other") ((N("start-element") | N("define-element") | select("div", (N("common-atts") N("include-content")))))*);
+N("start-element") ::= select("start", (N("combine-att") N("common-atts") N("open-pattern")));
+N("define-element") ::= select("define", (select("name", value("string")) N("combine-att") N("common-atts") N("open-patterns")));
+N("combine-att") ::= [select("combine", ("choice" | "interleave"))];
+N("open-patterns") ::= (N("other") (N("pattern"))+);
+N("open-pattern") ::= (N("other") N("pattern"));
+N("name-class") ::= (select("name", (N("common-atts") value("string"))) | select("anyName", (N("common-atts") N("except-name-class"))) | select("nsName", (N("common-atts") N("except-name-class"))) | select("choice", (N("common-atts") N("open-name-classes"))));
+N("except-name-class") ::= (N("other") [select("except", N("open-name-classes"))]);
+N("open-name-classes") ::= (N("other") (N("name-class"))+);
+N("open-name-class") ::= (N("other") N("name-class"));
+N("common-atts") ::= ([select("ns", value("string"))] [select("datatypeLibrary", value("string"))] (any)*);
+N("other") ::= ((((any | value("string") | N("any")))*))*;
+N("any") ::= (((any | value("string") | N("any")))*);

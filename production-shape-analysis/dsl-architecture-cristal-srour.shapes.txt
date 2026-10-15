@@ -1,0 +1,17 @@
+# BGF production shape analysis
+source: dsl-architecture-cristal-srour.bgf
+productions: 16
+distinct_shapes: 8
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+6	N
+4	plus(N)
+1	choice("true", "false")
+1	sequence(N)
+1	sequence(plus(N))
+1	sequence(plus(N), plus(N))
+1	value("int")
+1	value("string")

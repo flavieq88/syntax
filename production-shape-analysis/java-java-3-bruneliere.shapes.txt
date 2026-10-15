@@ -1,0 +1,19 @@
+# BGF production shape analysis
+source: java-java-3-bruneliere.bgf
+productions: 18
+distinct_shapes: 10
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+8	N
+2	epsilon
+1	choice("true", "false")
+1	choice(N, N)
+1	sequence(N, N, N)
+1	sequence(N, N, N, N, N)
+1	sequence(N, N, N, N, plus(N))
+1	sequence(N, plus(N), plus(N), plus(N))
+1	sequence(plus(N), plus(N), plus(N), plus(N))
+1	value("string")

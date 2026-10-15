@@ -1,0 +1,12 @@
+@root N("configuration");
+
+N("configuration") ::= ((select("shortcut", N("shortcut")))* select("tools", N("tools")) (select("source", N("source")))+ (select("target", N("target")))+ (select("testset", N("testset")))*);
+N("tools") ::= (select("transformer", N("tool")) select("comparator", N("tool")) [select("validator", N("tool"))] (select("generator", N("generator")))*);
+N("shortcut") ::= (select("name", value("string")) select("expansion", N("xstring")));
+N("generator") ::= (select("name", value("string")) select("command", N("xstring")));
+N("source") ::= (select("name", value("string")) [select("derived", (select("from", value("string")) select("using", value("string"))))] select("grammar", (select("extraction", N("xstring")) [select("parsing", N("xstring"))] [select("evaluation", N("xstring"))])) [select("tree", (select("extraction", N("xstring")) [select("evaluation", N("xstring"))]))] [select("testing", (select("set", N("xstring")))+)]);
+N("target") ::= (select("name", value("string")) (select("branch", (select("input", value("string")) [select("preparation", N("phase"))] [select("nominal-matching", N("phase"))] [select("normalizing", N("phase"))] [select("structural-matching", N("phase"))] ((select("extension", N("phase")) | select("correction", N("phase")) | select("relaxation", N("phase"))))*)))+);
+N("phase") ::= ((select("perform", value("string")) | select("automated", (select("method", value("string")) select("result", value("string"))))))+;
+N("testset") ::= (select("name", value("string")) select("command", N("xstring")));
+N("tool") ::= (select("grammar", N("xstring")) [select("tree", N("xstring"))]);
+N("xstring") ::= ((select("expand", value("string")) | value("string")))*;

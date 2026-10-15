@@ -1,0 +1,7 @@
+N("LLCoefficients") ::= (value("int"))*;
+N("LLObjectiveFun") @label("llObjFun") ::= (marked("coefficients", N("LLCoefficients")) marked("const", value("int")));
+N("ConstraintType") ::= (select("leq", epsilon) | select("eq", epsilon) | select("geq", epsilon));
+N("LLConstraint") @label("llConstraint") ::= (marked("coefficients", N("LLCoefficients")) marked("ctype", N("ConstraintType")) marked("const", value("int")));
+N("LLConstraints") ::= (N("LLConstraint"))*;
+N("LLVariableVals") ::= (value("int"))*;
+N("LLSolution") @label("llSolution") ::= (marked("varVals", N("LLVariableVals")) marked("funVal", value("int")));

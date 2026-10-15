@@ -1,0 +1,28 @@
+# BGF production shape analysis
+source: uml-umldi-statemachine.bgf
+productions: 89
+distinct_shapes: 19
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+57	N
+8	sequence(N, N)
+4	sequence(plus(N), N, N, N, N, N)
+2	choice(epsilon, epsilon, epsilon, epsilon)
+2	sequence(N, N, N, N)
+2	sequence(N, N, N, N, N)
+2	sequence(plus(N), plus(N), N, N, N, N)
+1	choice("true", "false")
+1	choice(N)
+1	choice(epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	epsilon
+1	plus(N)
+1	sequence(N, N, N, N, N, N)
+1	sequence(N, plus(N), N, plus(N))
+1	sequence(plus(N), N)
+1	value("int")
+1	value("string")

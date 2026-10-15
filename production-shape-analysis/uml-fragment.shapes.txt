@@ -1,0 +1,17 @@
+# BGF production shape analysis
+source: uml-fragment.bgf
+productions: 21
+distinct_shapes: 8
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+7	N
+5	sequence(N, N)
+3	sequence(N, N, N)
+2	epsilon
+1	choice("true", "false")
+1	sequence(N)
+1	value("int")
+1	value("string")

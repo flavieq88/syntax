@@ -1,0 +1,6 @@
+@root N("Table");
+
+N("Record") @label("record") ::= sep+(N("Field"), ",");
+N("Table") @label("table") ::= sep*(N("Record"), N("EOL"));
+N("Field") @label("quoted") ::= N("QStr");
+N("Field") @label("unquoted") ::= N("UQStr");

@@ -1,0 +1,21 @@
+# BGF production shape analysis
+source: meta-mof-cwm-core.bgf
+productions: 31
+distinct_shapes: 12
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+16	N
+3	plus(N)
+3	sequence(plus(N))
+1	choice("true", "false")
+1	choice(epsilon, epsilon, epsilon)
+1	sequence(N)
+1	sequence(N, N, plus(N), plus(N), plus(N), N, plus(N))
+1	sequence(N, plus(N))
+1	sequence(N, plus(N), plus(N))
+1	sequence(plus(N), plus(N))
+1	value("int")
+1	value("string")

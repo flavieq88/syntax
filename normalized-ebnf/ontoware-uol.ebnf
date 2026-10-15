@@ -1,0 +1,12 @@
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");
+N("Node") ::= N("Resource");
+N("Node") ::= N("Literal");
+N("Node") ::= (N("Resource") | N("Literal"));
+N("Resource") ::= N("Package");
+N("Resource") ::= select("context", N("Package"));
+N("Literal") ::= epsilon;
+N("Fact") ::= (select("object", N("Node")) select("subject", N("Resource")) select("predicate", N("Resource")) select("context", N("Package")));
+N("Package") ::= N("Ontology");
+N("Ontology") ::= (select("imports", N("Package")))+;

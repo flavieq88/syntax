@@ -1,0 +1,19 @@
+# BGF production shape analysis
+source: markup-scientific-cml-guyard.bgf
+productions: 58
+distinct_shapes: 10
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+26	N
+12	epsilon
+12	plus(N)
+2	choice(epsilon, epsilon)
+1	choice("true", "false")
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	value("int")
+1	value("string")

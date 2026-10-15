@@ -1,0 +1,13 @@
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");
+N("BooleanExpression") ::= select("value", N("String"));
+N("StateMachine") ::= ((select("transitions", N("Transition")))+ (select("top", N("State")))+);
+N("State") ::= N("CompositeState");
+N("State") ::= (select("state_container", N("StateMachine")) (select("internalTransitions", N("Transition")))+ (select("deferrableEvents", N("Event")))+);
+N("CompositeState") ::= ((select("subVertexes", N("StateVertex")))+ select("isConcurrent", N("Boolean")));
+N("Transition") ::= (select("transSM_container", N("StateMachine")) select("transS_container", N("State")) select("trigger", N("Event")) select("guard", N("Guard")) select("source", N("StateVertex")) select("target", N("StateVertex")));
+N("StateVertex") ::= N("State");
+N("StateVertex") ::= (select("sv_container", N("CompositeState")) (select("outgoing", N("Transition")))+ (select("incoming", N("Transition")))+);
+N("Guard") ::= (select("gua_container", N("Transition")) select("expression", N("BooleanExpression")));
+N("Event") ::= ((select("evt_container", N("Transition")))+ (select("targets", N("State")))+);

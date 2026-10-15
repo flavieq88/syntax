@@ -1,0 +1,16 @@
+N("JavaElement") ::= N("ClassFeature");
+N("JavaElement") ::= N("Package");
+N("ClassFeature") ::= N("ClassMember");
+N("ClassFeature") ::= N("JavaClass");
+N("ClassFeature") ::= N("FeatureParameter");
+N("ClassMember") ::= N("Field");
+N("ClassMember") ::= N("Method");
+N("Field") ::= (select("owner", N("JavaClass")) select("type", N("JavaClass")) select("isStatic", N("Boolean")) select("isPublic", N("Boolean")));
+N("JavaClass") ::= N("PrimitiveType");
+N("JavaClass") ::= ((select("members", N("ClassMember")))+ select("package", N("Package")) (select("typedElements", N("ClassMember")))+ (select("parameters", N("FeatureParameter")))+ select("isAbstract", N("Boolean")) select("isStatic", N("Boolean")) select("isPublic", N("Boolean")));
+N("Method") ::= (select("parameters", N("FeatureParameter")))+;
+N("Package") ::= (select("classes", N("JavaClass")))+;
+N("PrimitiveType") ::= ((select("members", N("ClassMember")))+ select("package", N("Package")) (select("typedElements", N("ClassMember")))+ (select("parameters", N("FeatureParameter")))+ select("isAbstract", N("Boolean")) select("isStatic", N("Boolean")) select("isPublic", N("Boolean")));
+N("FeatureParameter") ::= (select("type", N("JavaClass")) select("method", N("Method")));
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");

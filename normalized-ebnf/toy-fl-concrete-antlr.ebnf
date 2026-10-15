@@ -1,0 +1,8 @@
+N("program") ::= (select("f", N("function")))+;
+N("function") ::= (select("n", N("ID")) (select("a", N("ID")))+ "=" select("e", N("expr")) (N("NEWLINE"))+);
+N("expr") ::= (select("b", N("binary")) | select("a", N("apply")) | select("i", N("ifThenElse")));
+N("binary") ::= (select("l", N("atom")) ((select("o", N("ops")) select("r", N("atom"))))*);
+N("apply") ::= (select("i", N("ID")) (select("a", N("atom")))+);
+N("ifThenElse") ::= ("if" select("c", N("expr")) "then" select("e1", N("expr")) "else" select("e2", N("expr")));
+N("atom") ::= (N("ID") | N("INT") | ("(" select("e", N("expr")) ")"));
+N("ops") ::= ("==" | "+" | "-");

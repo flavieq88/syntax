@@ -1,0 +1,11 @@
+@root N("configuration");
+
+N("configuration") ::= (N("definition"))*;
+N("definition") ::= (select("shortcut", N("shortcutType")) | select("tool", N("toolType")) | select("source", N("sourceType")) | select("target", N("targetType")) | select("testset", N("testsetType")));
+N("shortcutType") ::= (select("name", value("string")) select("expansion", N("xstring")));
+N("sourceType") ::= (select("name", value("string")) select("grammar", (select("extraction", N("xstring")) [select("parsing", N("xstring"))] [select("evaluation", N("xstring"))])) [select("tree", (select("extraction", N("xstring")) [select("evaluation", N("xstring"))]))] [select("testing", select("set", N("xstring")))]);
+N("targetType") ::= (select("name", value("string")) (select("branch", (select("input", value("string")) (select("perform", value("string")))*)))+);
+N("testsetType") ::= (select("name", value("string")) select("command", N("xstring")));
+N("toolType") ::= (select("name", N("tool")) select("grammar", N("xstring")) [select("tree", N("xstring"))]);
+N("tool") ::= (select("validation", epsilon) | select("comparison", epsilon) | select("transformation", epsilon));
+N("xstring") ::= ((select("expand", value("string")) | value("string")))*;

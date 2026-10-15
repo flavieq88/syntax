@@ -1,0 +1,16 @@
+# BGF production shape analysis
+source: csharp-v3.0-antoniol.bgf
+productions: 9
+distinct_shapes: 7
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	sequence(optional("//"), N, N, star(N))
+2	star(N)
+1	choice(N, N, N, N)
+1	choice(N, sequence(N))
+1	choice(N, sequence(optional("//"), N, N), sequence(optional("//"), N, N))
+1	plus(N)
+1	sequence(optional("//"), N, N, star(N), star(N), optional(N), optional("//"), N, N)

@@ -1,0 +1,8 @@
+N("TextualPathExp") ::= select("path", N("Path"));
+N("Path") ::= (select("transitions", N("Transition")))+;
+N("Transition") ::= N("AlternativeTrans");
+N("Transition") ::= N("PrimitiveTrans");
+N("AlternativeTrans") ::= (select("altPaths", N("Path")))+;
+N("PrimitiveTrans") ::= select("name", N("String"));
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");

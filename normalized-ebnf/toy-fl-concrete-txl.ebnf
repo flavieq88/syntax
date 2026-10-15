@@ -1,0 +1,6 @@
+@root N("program");
+
+N("program") ::= (N("fun"))+;
+N("fun") ::= (N("id") (N("id"))+ "=" N("expression") N("newline"));
+N("expression") ::= ((N("expression") N("op") N("expression")) | (N("id") (N("expression"))+) | ("if" N("expression") "then" N("expression") "else" N("expression")) | ("(" N("expression") ")") | N("id") | N("number"));
+N("op") ::= ("+" | "-" | "==");

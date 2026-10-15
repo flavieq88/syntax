@@ -1,0 +1,13 @@
+# BGF production shape analysis
+source: toy-saf-abstract.bgf
+productions: 4
+distinct_shapes: 4
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice(marked("name", value("string")), marked("actions", star(value("string"))))
+1	choice(marked("name", value("string")), sequence(marked("lhs", N), marked("rhs", N)), sequence(marked("lhs", N), marked("rhs", N)))
+1	choice(sequence(marked("name", value("string")), marked("strength", value("int"))), sequence(marked("cond", N), marked("move", N), marked("fight", N)))
+1	sequence(marked("name", value("string")), marked("specs", star(N)))

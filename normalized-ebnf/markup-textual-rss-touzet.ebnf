@@ -1,0 +1,13 @@
+N("RSS") ::= (select("version", N("String")) select("channel", N("Channel")));
+N("Channel") ::= (select("title", N("String")) select("link", N("String")) select("description", N("String")) select("language", N("String")) select("copyright", N("String")) select("managingEditor", N("String")) select("webmaster", N("String")) select("generator", N("String")) select("docs", N("String")) select("ttl", N("Integer")) select("rating", N("String")) (select("skipHours", N("Integer")))+ (select("skipDays", N("DayKind")))+ select("rss", N("RSS")) select("pubDate", N("Date")) select("lastBuildDate", N("Date")) select("image", N("Image")) select("textInput", N("TextInput")) select("cloud", N("Cloud")) select("category", N("Category")) (select("items", N("Item")))+);
+N("Item") ::= (select("title", N("String")) select("link", N("String")) select("description", N("String")) select("author", N("String")) select("comments", N("String")) select("guid", N("String")) select("source", N("Source")) select("pubDate", N("Date")) select("enclosure", N("Enclosure")) select("category", N("Category")) select("channel", N("Channel")));
+N("Image") ::= (select("url", N("String")) select("title", N("String")) select("link", N("String")) select("description", N("String")) select("width", N("Integer")) select("height", N("Integer")) select("channel", N("Channel")));
+N("TextInput") ::= (select("title", N("String")) select("description", N("String")) select("name", N("String")) select("link", N("String")) select("channel", N("Channel")));
+N("Cloud") ::= (select("domain", N("String")) select("port", N("Integer")) select("path", N("String")) select("registerProcedure", N("String")) select("protocol", N("String")) select("channel", N("Channel")));
+N("Category") ::= (select("domain", N("String")) select("value", N("String")));
+N("Enclosure") ::= (select("url", N("String")) select("lenght", N("Integer")) select("type", N("String")));
+N("Source") ::= (select("url", N("String")) select("value", N("String")));
+N("Date") ::= (select("eDay", N("DayKind")) select("day", N("Integer")) select("month", N("Integer")) select("year", N("Integer")) select("hours", N("Integer")) select("minutes", N("Integer")) select("seconds", N("Integer")));
+N("DayKind") ::= (select("Monday", epsilon) | select("Tuesday", epsilon) | select("Wednesday", epsilon) | select("Thursday", epsilon) | select("Friday", epsilon) | select("Saturday", epsilon) | select("Sunday", epsilon));
+N("String") ::= value("string");
+N("Integer") ::= value("int");

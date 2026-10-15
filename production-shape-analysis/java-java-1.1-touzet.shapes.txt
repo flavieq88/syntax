@@ -1,0 +1,13 @@
+# BGF production shape analysis
+source: java-java-1.1-touzet.bgf
+productions: 7
+distinct_shapes: 4
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+3	N
+2	sequence(N, plus(N))
+1	plus(N)
+1	value("string")

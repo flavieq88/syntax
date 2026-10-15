@@ -1,0 +1,10 @@
+N("Apply") ::= (select("name", value("string")) select("args", (N("Expr"))*));
+N("Argument") ::= select("name", value("string"));
+N("Binary") ::= (select("ops", N("Ops")) select("left", N("Expr")) select("right", N("Expr")));
+N("Expr") ::= (N("Apply") | N("Argument") | N("Binary") | N("IfThenElse") | N("Literal"));
+N("Function") ::= (select("name", value("string")) select("args", (value("string"))*) select("rhs", N("Expr")));
+N("IfThenElse") ::= (select("ifExpr", N("Expr")) select("thenExpr", N("Expr")) select("elseExpr", N("Expr")));
+N("Literal") ::= select("info", value("int"));
+N("Ops") ::= (select("Equal", epsilon) | select("Plus", epsilon) | select("Minus", epsilon));
+N("Program") ::= select("functions", (N("Function"))*);
+N("Visitor") ::= empty;

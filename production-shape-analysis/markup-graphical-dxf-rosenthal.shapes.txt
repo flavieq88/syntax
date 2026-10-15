@@ -1,0 +1,14 @@
+# BGF production shape analysis
+source: markup-graphical-dxf-rosenthal.bgf
+productions: 5
+distinct_shapes: 5
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	plus(N)
+1	sequence(N, N, N, N, N)
+1	sequence(N, plus(N))
+1	value("int")
+1	value("string")

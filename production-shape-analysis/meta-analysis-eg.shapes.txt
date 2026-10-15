@@ -1,0 +1,17 @@
+# BGF production shape analysis
+source: meta-analysis-eg.bgf
+productions: 27
+distinct_shapes: 8
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+11	N
+7	epsilon
+4	sequence(plus(N), plus(N), N, plus(N))
+1	choice("true", "false")
+1	choice(N, N, N, N, N, N, N)
+1	sequence(plus(N), N)
+1	value("int")
+1	value("string")

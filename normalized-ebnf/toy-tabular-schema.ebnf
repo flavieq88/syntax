@@ -1,0 +1,9 @@
+N("NamedElement") ::= N("DataBase");
+N("NamedElement") ::= N("Table");
+N("NamedElement") ::= N("Column");
+N("DataBase") ::= (select("SGBDname", N("String")) (select("tables", N("Table")))+);
+N("Table") ::= (select("database", N("DataBase")) (select("columns", N("Column")))+ (select("key", N("Column")))+);
+N("Column") ::= (select("dataType", N("String")) select("null", N("Boolean")) select("defaultValue", N("String")) select("owner", N("Table")) select("keyOf", N("Table")));
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");

@@ -1,0 +1,3 @@
+@root N("foo");
+
+N("foo") ::= "bar";

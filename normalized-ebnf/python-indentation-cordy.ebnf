@@ -1,0 +1,14 @@
+@root N("program");
+
+N("program") ::= (N("line"))*;
+N("line") ::= ((N("tab_space"))* (N("linetoken"))* [N("indent")] (N("endofline"))+ (N("dedent"))*);
+N("endofline") ::= ((N("tab_space"))* [N("comment")] N("newline"));
+N("indent") ::= (N("SP") "INDENT");
+N("dedent") ::= ("DEDENT" N("SP"));
+N("tab_space") ::= (N("tab") | N("space"));
+N("linetoken") ::= (N("tab_space") | N("nonblank_token"));
+N("nonblank_token") ::= (N("compound") | N("token"));
+N("compound") ::= (("{" (N("compoundtoken"))* "}") | ("[" (N("compoundtokensquare"))* "]") | ("(" (N("compoundtokenround"))* ")"));
+N("compoundtoken") ::= (N("linetoken") | N("newline") | N("comment"));
+N("compoundtokensquare") ::= (N("linetoken") | N("newline") | N("comment"));
+N("compoundtokenround") ::= (N("linetoken") | N("newline") | N("comment"));

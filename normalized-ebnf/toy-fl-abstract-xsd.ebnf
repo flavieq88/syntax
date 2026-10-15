@@ -1,0 +1,13 @@
+@root N("Program");
+@root N("Fragment");
+
+N("Program") ::= (select("function", N("Function")))+;
+N("Fragment") ::= N("Expr");
+N("Function") ::= (select("name", value("string")) (select("arg", value("string")))+ select("rhs", N("Expr")));
+N("Expr") ::= (N("Literal") | N("Argument") | N("Binary") | N("IfThenElse") | N("Apply"));
+N("Literal") ::= select("info", value("int"));
+N("Argument") ::= select("name", value("string"));
+N("Binary") ::= (select("ops", N("Ops")) select("left", N("Expr")) select("right", N("Expr")));
+N("Ops") ::= (select("Equal", epsilon) | select("Plus", epsilon) | select("Minus", epsilon));
+N("IfThenElse") ::= (select("ifExpr", N("Expr")) select("thenExpr", N("Expr")) select("elseExpr", N("Expr")));
+N("Apply") ::= (select("name", value("string")) (select("arg", N("Expr")))+);

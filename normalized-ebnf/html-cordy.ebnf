@@ -1,0 +1,20 @@
+@root N("program");
+
+N("program") ::= (N("element"))*;
+N("element") ::= (N("singleton_tag") | N("tag") | N("text") | N("comment_tag") | N("tag_beg") | N("tag_end"));
+N("tag") ::= ("<" N("id") N("attributes") ">" (N("NL") N("IN")) N("tag_elements") N("EX") "</" N("id") ">" N("NL"));
+N("tag_elements") ::= (N("element"))*;
+N("singleton_tag") ::= (("<" N("singleton_id") N("attributes") ">" [N("singleton_tag_end")] N("NL")) | ("<" N("id") N("attributes") "/>" N("NL")));
+N("singleton_tag_end") ::= ("</" N("singleton_id") ">");
+N("singleton_id") ::= ("br" | "hr" | ("|" "img") | "meta" | "base" | "basefont" | N("x_id") | "dt");
+N("comment_tag") ::= ("<!" (N("comment_text"))* ">" N("NL"));
+N("comment_text") ::= ((N("punctuation") N("SP")) | N("token"));
+N("tag_beg") ::= ("<" N("id") N("attributes") ">" N("NL"));
+N("tag_end") ::= ("</" N("id") ">" N("NL"));
+N("attributes") ::= (N("SPOFF") (N("attribute"))* N("SPON"));
+N("attribute") ::= (N("SP") N("attribute_id") [N("equals_attribute_value")]);
+N("attribute_id") ::= (N("id") | N("x_id"));
+N("equals_attribute_value") ::= ("=" N("attribute_value"));
+N("attribute_value") ::= (N("stringlit") | N("number") | N("id") | N("url") | N("fileref"));
+N("text") ::= ((N("text_unit"))+ N("NL"));
+N("text_unit") ::= ((N("punctuation") N("SP")) | (")" N("SP")) | (N("SP") "(") | N("token") | ("<" N("number")));

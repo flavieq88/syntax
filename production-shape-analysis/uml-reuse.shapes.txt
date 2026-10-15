@@ -1,0 +1,18 @@
+# BGF production shape analysis
+source: uml-reuse.bgf
+productions: 19
+distinct_shapes: 9
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+8	N
+3	choice(N, N)
+2	epsilon
+1	choice("true", "false")
+1	plus(N)
+1	sequence(N, N)
+1	sequence(N, plus(N))
+1	value("int")
+1	value("string")

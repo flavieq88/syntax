@@ -1,0 +1,16 @@
+# BGF production shape analysis
+source: api-rascal-type.bgf
+productions: 7
+distinct_shapes: 7
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	choice(marked("symbol", N), marked("symbols", star(N)), marked("symbols", star(N)), marked("symbols", star(N)), marked("symbol", N), sequence(marked("from", N), marked("to", N)), marked("symbol", N), sequence(marked("name", value("string")), marked("parameters", star(N))), sequence(marked("adt", N), marked("name", value("string")), marked("parameters", star(N))), sequence(marked("name", value("string")), marked("parameters", star(N)), marked("aliased", N)), sequence(marked("ret", N), marked("parameters", star(N))), sequence(marked("ret", N), marked("parameters", star(N)), marked("varArg", N)), marked("symbol", N))
+1	choice(sequence(marked("def", N), marked("symbols", star(N)), marked("kwTypes", star(N)), marked("kwDefaults", star(sequence(value("string"), star(sequence(value("string"), any))))), marked("attributes", star(N))), sequence(marked("def", N), marked("symbols", star(N)), marked("kwTypes", star(N)), marked("kwDefaults", star(sequence(value("string"), star(sequence(value("string"), any))))), marked("attributes", star(N))), sequence(marked("def", N), marked("alternatives", star(N))))
+1	marked("tag", any)
+1	sequence(marked("from", N), marked("to", empty))
+1	sequence(marked("name", value("string")), marked("bound", N))
+1	sequence(marked("name", value("string")), marked("symbol", N))

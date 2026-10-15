@@ -1,0 +1,16 @@
+# BGF production shape analysis
+source: dsl-develop-maven-project.bgf
+productions: 9
+distinct_shapes: 7
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+3	N
+1	sequence(N, N, N, N, N)
+1	sequence(N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, plus(N), plus(N), N, plus(N))
+1	sequence(N, N, N, plus(N), plus(N))
+1	value("string")

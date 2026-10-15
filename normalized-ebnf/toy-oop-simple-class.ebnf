@@ -1,0 +1,9 @@
+N("Classifier") ::= N("Class");
+N("Classifier") ::= N("PrimitiveDataType");
+N("Classifier") ::= select("name", N("String"));
+N("Class") ::= (select("is_persistent", N("Boolean")) select("parent", N("Class")) (select("attrs", N("Attribute")))+);
+N("PrimitiveDataType") ::= (select("name", N("String")));
+N("Association") ::= (select("name", N("String")) select("src", N("Class")) select("dest", N("Class")));
+N("Attribute") ::= (select("name", N("String")) select("is_primary", N("Boolean")) select("type", N("Classifier")));
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");

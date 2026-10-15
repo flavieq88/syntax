@@ -1,0 +1,14 @@
+# BGF production shape analysis
+source: dsl-system-unixfs.bgf
+productions: 8
+distinct_shapes: 5
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+4	N
+1	plus(N)
+1	sequence(N, N)
+1	sequence(plus(N))
+1	value("string")

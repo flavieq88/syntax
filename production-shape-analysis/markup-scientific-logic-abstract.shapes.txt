@@ -1,0 +1,11 @@
+# BGF production shape analysis
+source: markup-scientific-logic-abstract.bgf
+productions: 2
+distinct_shapes: 2
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice(epsilon, epsilon, N, sequence(N, N), star(N), sequence(N, N), star(N), sequence(N, N), sequence(N, N), sequence(N, N))
+1	value("string")

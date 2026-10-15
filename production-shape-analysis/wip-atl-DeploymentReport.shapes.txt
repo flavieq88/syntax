@@ -1,0 +1,33 @@
+# BGF production shape analysis
+source: wip-atl-DeploymentReport.bgf
+productions: 59
+distinct_shapes: 24
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+19	N
+8	sequence(N)
+6	sequence(plus(N), N, N, N, N, N)
+3	sequence(plus(N), plus(N))
+2	plus(N)
+2	sequence(N, N)
+2	sequence(plus(N), plus(N), N)
+1	choice("true", "false")
+1	choice(epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	sequence(N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N)
+1	sequence(N, N, plus(N), plus(N), plus(N))
+1	sequence(plus(N), N)
+1	sequence(plus(N), N, N)
+1	sequence(plus(N), N, N, N)
+1	sequence(plus(N), N, N, N, N)
+1	sequence(plus(N), N, N, N, N, N, N)
+1	sequence(plus(N), plus(N), N, N, N)
+1	sequence(plus(N), plus(N), plus(N))
+1	sequence(plus(N), plus(N), plus(N), N)
+1	value("int")
+1	value("string")

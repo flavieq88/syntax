@@ -1,0 +1,19 @@
+# BGF production shape analysis
+source: toy-fl-abstract-java-xsd.bgf
+productions: 11
+distinct_shapes: 10
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	sequence(N, N, N)
+1	choice(N, N, N, N, N)
+1	choice(epsilon, epsilon, epsilon)
+1	empty
+1	epsilon
+1	sequence(value("string"), star(N))
+1	sequence(value("string"), star(value("string")), N)
+1	star(N)
+1	value("int")
+1	value("string")

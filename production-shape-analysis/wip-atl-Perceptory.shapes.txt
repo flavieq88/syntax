@@ -1,0 +1,26 @@
+# BGF production shape analysis
+source: wip-atl-Perceptory.bgf
+productions: 44
+distinct_shapes: 17
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+18	N
+4	epsilon
+3	sequence(plus(N), N, plus(N), plus(N), N)
+2	plus(N)
+2	sequence(N, N)
+2	sequence(N, N, N, N)
+2	sequence(N, N, N, N, N, N)
+2	sequence(plus(N), plus(N), plus(N), plus(N), plus(N))
+1	choice("true", "false")
+1	choice(N, N)
+1	sequence(N, N, plus(N))
+1	sequence(N, plus(N), N, plus(N), plus(N), plus(N))
+1	sequence(N, plus(N), plus(N), N, N)
+1	sequence(plus(N))
+1	sequence(plus(N), N, N, plus(N), plus(N), N, plus(N))
+1	value("int")
+1	value("string")

@@ -1,0 +1,12 @@
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("Subsystem") ::= ((select("classes", N("Class")))+ (select("relations", N("Relation")))+);
+N("Relation") ::= (select("subsystem", N("Subsystem")) select("classes", N("Class")));
+N("Class") ::= (select("name", N("String")) select("is_deferred", N("Boolean")) (select("features", N("Feature")))+ select("parentSubsystem", N("Subsystem")) select("subsystem", N("Subsystem")) (select("relations", N("Relation")))+);
+N("Feature") ::= N("Entity");
+N("Feature") ::= N("Routine");
+N("Feature") ::= (select("theClass", N("Class")) select("type", N("Type")));
+N("Type") ::= select("name", N("String"));
+N("Entity") ::= (select("theClass", N("Class")) select("type", N("Type")));
+N("Routine") ::= (select("theClass", N("Class")) select("type", N("Type")));

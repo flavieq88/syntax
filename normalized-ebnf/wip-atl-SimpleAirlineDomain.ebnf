@@ -1,0 +1,9 @@
+N("Airport") ::= (select("name", N("String")) (select("departingFlight", N("Flight")))+ (select("arrivingFlight", N("Flight")))+);
+N("Flight") ::= (select("departTime", N("Time")) select("duration", N("Time")) select("maxnrPassengers", N("Integer")) (select("passenger", N("Passenger")))+ select("airline", N("Airline")) select("origin", N("Airport")) select("destination", N("Airport")));
+N("Airline") ::= (select("name", N("String")) select("nationality", N("String")) (select("flight", N("Flight")))+);
+N("Passenger") ::= (select("name", N("String")) select("age", N("Integer")) select("gender", N("Genre")) select("needsAssistance", N("Boolean")) select("flight", N("Flight")));
+N("Genre") ::= (select("male", epsilon) | select("female", epsilon));
+N("Time") ::= (select("year", N("Integer")) select("month", N("Integer")) select("day", N("Integer")) select("hour", N("Integer")) select("minute", N("Integer")) select("second", N("Integer")));
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");

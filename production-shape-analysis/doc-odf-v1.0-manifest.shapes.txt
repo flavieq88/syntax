@@ -1,0 +1,16 @@
+# BGF production shape analysis
+source: doc-odf-v1.0-manifest.bgf
+productions: 15
+distinct_shapes: 7
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+8	value("string")
+2	N
+1	optional(value("int"))
+1	plus(N)
+1	sequence(N, N, N)
+1	sequence(N, optional(N))
+1	value("int")

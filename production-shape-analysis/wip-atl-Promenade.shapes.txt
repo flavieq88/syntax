@@ -1,0 +1,20 @@
+# BGF production shape analysis
+source: wip-atl-Promenade.bgf
+productions: 39
+distinct_shapes: 11
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+18	N
+9	sequence(plus(N), plus(N))
+4	epsilon
+1	choice("true", "false")
+1	plus(N)
+1	sequence(N, N)
+1	sequence(N, plus(N))
+1	sequence(N, plus(N), N, N)
+1	sequence(plus(N), plus(N), plus(N), plus(N))
+1	value("int")
+1	value("string")

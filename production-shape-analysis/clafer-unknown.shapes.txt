@@ -1,0 +1,52 @@
+# BGF production shape analysis
+source: clafer-unknown.bgf
+productions: 54
+distinct_shapes: 43
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+4	N
+4	choice(sequence(N, N, N), N)
+3	choice(epsilon, sequence(N, N))
+2	choice(N, sequence("(", N, ")"))
+2	choice(N, sequence(N, ",", N))
+2	choice(sequence(N, "++", N), N)
+1	"&&"
+1	"<=>"
+1	"=>"
+1	"xor"
+1	"||"
+1	"~"
+1	choice("*", N)
+1	choice("all", N)
+1	choice("no", "lone", "one", "some")
+1	choice(N, N)
+1	choice(N, N, sequence(N, "|", N))
+1	choice(N, N, sequence(N, N), N, "|", N)
+1	choice(N, sequence("‘", N, N, N), N)
+1	choice(epsilon, "?", "+", "*", N)
+1	choice(epsilon, "abstract")
+1	choice(epsilon, "disj")
+1	choice(epsilon, "xor", "or", "mux", "opt", sequence("<", N, ">"))
+1	choice(epsilon, sequence(":", N), sequence("extends", N), sequence("−>", N, N))
+1	choice(epsilon, sequence("{", N, "}"))
+1	choice(epsilon, sequence(N, "/", N))
+1	choice(sequence("#", N), N, N, sequence("(", N, ")"))
+1	choice(sequence("enum", N, "=", N), N, N)
+1	choice(sequence(N, "&", N), N)
+1	choice(sequence(N, "*", N), N)
+1	choice(sequence(N, "+", N), sequence(N, "−", N), N)
+1	choice(sequence(N, ".", N), N)
+1	choice(sequence(N, ":>", N), N)
+1	choice(sequence(N, "<", N), sequence(N, ">", N), sequence(N, "=", N), sequence(N, "==", N), sequence(N, "<=", N), sequence(N, ">=", N), sequence(N, "!=", N), sequence(N, "/=", N), sequence(N, "in", N), sequence(N, "not", "in", N))
+1	choice(sequence(N, "<:", N), N)
+1	choice(sequence(N, N), N)
+1	choice(sequence(N, N, N), sequence(N, N, N, "else", N), N)
+1	sequence("[", N, "]")
+1	sequence(N, "..", N)
+1	sequence(N, "−", N)
+1	sequence(N, N)
+1	sequence(N, N, N, ":", N)
+1	sequence(N, N, N, N, N, N)

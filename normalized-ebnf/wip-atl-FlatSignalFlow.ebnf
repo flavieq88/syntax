@@ -1,0 +1,12 @@
+N("RootFolder") ::= (select("rootContainer", N("RootContainer")))+;
+N("RootContainer") ::= (select("name", N("String")) select("position", N("String")) select("rootFolder", N("RootFolder")) (select("actor", N("Actor")))+ (select("inputSignal", N("InputSignal")))+ (select("outputSignal", N("OutputSignal")))+ (select("queue", N("Queue")))+);
+N("Actor") ::= (select("memory", N("String")) select("script", N("String")) select("file", N("String")) select("WCET", N("String")) select("name", N("String")) select("position", N("String")) select("rootContainer", N("RootContainer")) (select("transmitter", N("Transmitter")))+ (select("receiver", N("Receiver")))+);
+N("Transmitter") ::= (select("name", N("String")) select("position", N("String")) select("actor", N("Actor")) select("associationQueueTransmitter", N("AssociationQueueTransmitter")));
+N("Receiver") ::= (select("name", N("String")) select("position", N("String")) select("actor", N("Actor")) select("associationReceiverQueue", N("AssociationReceiverQueue")));
+N("InputSignal") ::= (select("name", N("String")) select("position", N("String")) select("rootContainer", N("RootContainer")) select("associationReceiverQueue", N("AssociationReceiverQueue")));
+N("OutputSignal") ::= (select("name", N("String")) select("position", N("String")) select("rootContainer", N("RootContainer")) select("associationQueueTransmitter", N("AssociationQueueTransmitter")));
+N("Queue") ::= (select("name", N("String")) select("position", N("String")) select("rootContainer", N("RootContainer")) select("associationReceiverQueue", N("AssociationReceiverQueue")) select("associationQueueTransmitter", N("AssociationQueueTransmitter")));
+N("AssociationReceiverQueue") ::= ((select("srcqueue", N("Queue")))+ (select("dstreceiver", N("Receiver")))+ select("inputSignal", N("InputSignal")));
+N("AssociationQueueTransmitter") ::= ((select("dstqueue", N("Queue")))+ (select("srctransmitter", N("Transmitter")))+ select("outputSignal", N("OutputSignal")));
+N("String") ::= value("string");
+N("Integer") ::= value("int");

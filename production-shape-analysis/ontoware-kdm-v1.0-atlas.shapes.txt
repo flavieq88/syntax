@@ -1,0 +1,30 @@
+# BGF production shape analysis
+source: ontoware-kdm-v1.0-atlas.bgf
+productions: 277
+distinct_shapes: 21
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+113	epsilon
+85	sequence(N, N)
+32	plus(N)
+18	N
+5	sequence(N, plus(N))
+3	choice(epsilon, epsilon, epsilon, epsilon, epsilon)
+3	sequence(N, plus(N), plus(N))
+3	sequence(plus(N), N)
+2	sequence(plus(N), N, N)
+2	sequence(plus(N), plus(N))
+1	choice("true", "false")
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	sequence(N, N, N)
+1	sequence(N, N, N, N, N, N, N)
+1	sequence(N, N, N, plus(N))
+1	sequence(N, N, plus(N), N)
+1	sequence(plus(N), plus(N), plus(N))
+1	value("int")
+1	value("string")

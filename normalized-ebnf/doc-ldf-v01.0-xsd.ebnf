@@ -1,0 +1,12 @@
+@root N("document");
+@root N("reference");
+@root N("tail");
+
+N("document") ::= (select("title", value("string")) select("author", value("string")) select("abstract", value("string")) select("content", N("contentType")));
+N("contentType") ::= (((select("text", N("mixedType")) | select("grammar", (any select("language", value("string")) [select("version", value("string"))])) | select("sample", N("sampleType")) | select("runnable", N("runnableType"))))* (select("section", N("sectionType")))*);
+N("sampleType") ::= epsilon;
+N("runnableType") ::= (select("context", value("string")) select("main", value("string")) (select("argument", value("string")))* select("yields", value("string")) select("language", value("string")) [select("version", value("string"))]);
+N("sectionType") ::= (select("title", value("string")) select("content", N("contentType")));
+N("mixedType") ::= ((any | value("string")))*;
+N("reference") ::= value("string");
+N("tail") ::= N("mixedType");

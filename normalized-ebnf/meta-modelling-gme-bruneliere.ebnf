@@ -1,0 +1,11 @@
+N("Node") ::= N("Root");
+N("Node") ::= N("Child");
+N("Node") ::= (select("description", N("String")) select("preliminary", N("Boolean")) select("object", N("String")) (select("attributes", N("Attribute")))+ (select("no_dst", N("ORGroup")))+ (select("nx_dst", N("XORGroup")))+ (select("cn_dst", N("Child")))+);
+N("Attribute") ::= (select("description", N("String")) select("editable", N("Boolean")) select("key", N("Boolean")) select("value", N("String")) select("name", N("String")) select("node", N("Node")));
+N("Root") ::= (select("description", N("String")) select("preliminary", N("Boolean")) select("object", N("String")) (select("attributes", N("Attribute")))+ (select("no_dst", N("ORGroup")))+ (select("nx_dst", N("XORGroup")))+ (select("cn_dst", N("Child")))+);
+N("Child") ::= ((select("cn_src", N("Node")))+ (select("cx_src", N("XORGroup")))+ (select("co_src", N("ORGroup")))+);
+N("XORGroup") ::= (select("preliminary", N("Boolean")) select("name", N("String")) (select("nx_src", N("Node")))+ (select("cx_dst", N("Child")))+);
+N("ORGroup") ::= (select("preliminary", N("Boolean")) select("name", N("String")) (select("no_src", N("Node")))+ (select("co_dst", N("Child")))+);
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");

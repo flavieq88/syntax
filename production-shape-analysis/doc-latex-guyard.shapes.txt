@@ -1,0 +1,22 @@
+# BGF production shape analysis
+source: doc-latex-guyard.bgf
+productions: 52
+distinct_shapes: 13
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+23	N
+11	sequence(N)
+5	sequence(N, N)
+3	plus(N)
+2	sequence(plus(N), N)
+1	sequence(N, N, N)
+1	sequence(N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N)
+1	sequence(plus(N), N, N)
+1	sequence(plus(N), N, N, N)
+1	sequence(plus(N), plus(N), N)
+1	value("int")
+1	value("string")

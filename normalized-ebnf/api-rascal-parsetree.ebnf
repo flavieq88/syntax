@@ -1,0 +1,6 @@
+N("void") @label("renderParsetree") ::= marked("t", N("Tree"));
+N("Figure") @label("visParsetree") ::= marked("t", N("Tree"));
+N("FProperty") @label("popup") ::= marked("s", value("string"));
+N("bool") @label("allChars") ::= marked("trees", (N("Tree"))*);
+N("str") @label("getChars") ::= marked("trees", (N("Tree"))*);
+N("void") @label("tree2") ::= epsilon;

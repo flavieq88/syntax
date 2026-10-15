@@ -1,0 +1,38 @@
+# BGF production shape analysis
+source: dsl-architecture-sdm.bgf
+productions: 233
+distinct_shapes: 29
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+180	N
+9	sequence(N, N)
+4	sequence(N, N, N, N)
+4	sequence(plus(N), N)
+3	sequence(N, N, N)
+3	sequence(N, N, N, N, N, N, N, N)
+2	choice(N, N)
+2	choice(epsilon, epsilon, epsilon)
+2	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+2	plus(N)
+2	sequence(N, N, N, N, N, N)
+2	sequence(N, N, plus(N), plus(N), plus(N), N, N, N)
+2	sequence(plus(N), N, N)
+1	choice("true", "false")
+1	choice(N, N, N, N, N)
+1	choice(epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	sequence(N, N, N, N, N, N, N, N, N)
+1	sequence(N, plus(N), N, N, plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), N, N, plus(N), plus(N))
+1	sequence(plus(N), N, plus(N), plus(N), N, N)
+1	sequence(plus(N), plus(N))
+1	sequence(plus(N), plus(N), plus(N))
+1	sequence(plus(N), plus(N), plus(N), N, N, plus(N), plus(N), plus(N), plus(N))
+1	sequence(plus(N), plus(N), plus(N), plus(N), N, N)
+1	sequence(plus(N), plus(N), plus(N), plus(N), N, N, N, N, N, N)
+1	sequence(plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), N, N)
+1	sequence(plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), N, N, N)
+1	value("int")
+1	value("string")

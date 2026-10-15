@@ -1,0 +1,13 @@
+# BGF production shape analysis
+source: doc-odf-v1.2-signature.bgf
+productions: 4
+distinct_shapes: 4
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	"1.2"
+1	N
+1	sequence(N, plus(N))
+1	star(choice(any, value("string"), N))

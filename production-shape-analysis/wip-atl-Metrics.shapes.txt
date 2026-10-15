@@ -1,0 +1,14 @@
+# BGF production shape analysis
+source: wip-atl-Metrics.bgf
+productions: 12
+distinct_shapes: 5
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+8	N
+1	choice("true", "false")
+1	sequence(N, plus(N))
+1	value("int")
+1	value("string")

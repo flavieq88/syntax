@@ -1,0 +1,2 @@
+N("nonnegativeintegerlabel.content") ::= (select("text", value("int")) N("annotationstandard.content"));
+N("positiveintegerlabel.content") ::= (select("text", value("int")) N("annotationstandard.content"));

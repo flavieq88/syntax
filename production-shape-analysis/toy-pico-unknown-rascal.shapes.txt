@@ -1,0 +1,26 @@
+# BGF production shape analysis
+source: toy-pico-unknown-rascal.bgf
+productions: 17
+distinct_shapes: 17
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	"natural"
+1	"nil-type"
+1	"string"
+1	marked("name", N)
+1	marked("natcon", N)
+1	marked("string", N)
+1	sequence("(", marked("e", N), ")")
+1	sequence("begin", marked("decls", N), marked("body", sepliststar(N, ";")), "end")
+1	sequence("declare", marked("decls", sepliststar(N, ",")), ";")
+1	sequence("if", marked("cond", N), "then", marked("thenPart", sepliststar(N, ";")), "else", marked("elsePart", sepliststar(N, ";")), "fi")
+1	sequence("if", marked("cond", N), "then", marked("thenPart", sepliststar(N, ";")), "fi")
+1	sequence("while", marked("cond", N), "do", marked("body", sepliststar(N, ";")), "od")
+1	sequence(marked("id", N), ":", marked("t", N))
+1	sequence(marked("lhs", N), "+", marked("rhs", N))
+1	sequence(marked("lhs", N), "-", marked("rhs", N))
+1	sequence(marked("lhs", N), "||", marked("rhs", N))
+1	sequence(marked("var", N), ":=", marked("val", N))

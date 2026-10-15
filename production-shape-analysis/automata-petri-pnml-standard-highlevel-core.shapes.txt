@@ -1,0 +1,13 @@
+# BGF production shape analysis
+source: automata-petri-pnml-standard-highlevel-core.bgf
+productions: 10
+distinct_shapes: 4
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+5	sequence(N, optional(N))
+2	optional(N)
+2	star(N)
+1	sequence(optional(N), optional(N))

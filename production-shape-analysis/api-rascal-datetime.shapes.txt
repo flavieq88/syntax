@@ -1,0 +1,32 @@
+# BGF production shape analysis
+source: api-rascal-datetime.bgf
+productions: 61
+distinct_shapes: 23
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+15	marked("dt", value("string"))
+14	sequence(marked("dt", value("string")), marked("n", value("int")))
+4	sequence(marked("begin", value("string")), marked("end", value("string")))
+3	marked("i", N)
+2	sequence(marked("inputDate", value("string")), marked("formatString", value("string")))
+2	sequence(marked("inputDate", value("string")), marked("formatString", value("string")), marked("locale", value("string")))
+2	sequence(marked("inputDateTime", value("string")), marked("formatString", value("string")))
+2	sequence(marked("inputDateTime", value("string")), marked("formatString", value("string")), marked("locale", value("string")))
+2	sequence(marked("inputTime", value("string")), marked("formatString", value("string")))
+2	sequence(marked("inputTime", value("string")), marked("formatString", value("string")), marked("locale", value("string")))
+1	epsilon
+1	marked("inputDate", value("string"))
+1	marked("inputDateTime", value("string"))
+1	marked("inputTime", value("string"))
+1	sequence(marked("date", value("string")), marked("time", value("string")))
+1	sequence(marked("hour", value("int")), marked("minute", value("int")), marked("second", value("int")), marked("millisecond", value("int")))
+1	sequence(marked("hour", value("int")), marked("minute", value("int")), marked("second", value("int")), marked("millisecond", value("int")), marked("timezoneHourOffset", value("int")), marked("timezoneMinuteOffset", value("int")))
+1	sequence(marked("inputDate", value("string")), marked("locale", value("string")))
+1	sequence(marked("inputDateTime", value("string")), marked("locale", value("string")))
+1	sequence(marked("inputTime", value("string")), marked("locale", value("string")))
+1	sequence(marked("year", value("int")), marked("month", value("int")), marked("day", value("int")))
+1	sequence(marked("year", value("int")), marked("month", value("int")), marked("day", value("int")), marked("hour", value("int")), marked("minute", value("int")), marked("second", value("int")), marked("millisecond", value("int")))
+1	sequence(marked("year", value("int")), marked("month", value("int")), marked("day", value("int")), marked("hour", value("int")), marked("minute", value("int")), marked("second", value("int")), marked("millisecond", value("int")), marked("timezoneHourOffset", value("int")), marked("timezoneMinuteOffset", value("int")))

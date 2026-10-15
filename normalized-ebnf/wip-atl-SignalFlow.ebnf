@@ -1,0 +1,17 @@
+N("RootFolder") ::= (select("compoundComponent", N("CompoundComponent")))+;
+N("CompoundComponent") ::= (select("rootFolder", N("RootFolder")) (select("baseComponent", N("BaseComponent")))+ (select("localPort", N("LocalPort")))+);
+N("PrimitiveComponent") ::= (select("name", N("String")) select("position", N("String")) (select("signal", N("Signal")))+ (select("outputPort", N("OutputPort")))+ (select("inputPort", N("InputPort")))+ select("compoundComponent", N("CompoundComponent")));
+N("BaseComponent") ::= N("CompoundComponent");
+N("BaseComponent") ::= N("PrimitiveComponent");
+N("BaseComponent") ::= (select("name", N("String")) select("position", N("String")) (select("signal", N("Signal")))+ (select("outputPort", N("OutputPort")))+ (select("inputPort", N("InputPort")))+ select("compoundComponent", N("CompoundComponent")));
+N("InputPort") ::= select("baseComponent", N("BaseComponent"));
+N("LocalPort") ::= select("compoundComponent", N("CompoundComponent"));
+N("OutputPort") ::= select("baseComponent", N("BaseComponent"));
+N("PortBase") ::= N("InputPort");
+N("PortBase") ::= N("LocalPort");
+N("PortBase") ::= N("OutputPort");
+N("PortBase") ::= (select("name", N("String")) select("position", N("String")) select("associationPortBase_PortBasesrc", N("AssociationPortBase_PortBase")) select("associationPortBase_PortBasedst", N("AssociationPortBase_PortBase")));
+N("Signal") ::= (select("name", N("String")) select("position", N("String")) select("baseComponent", N("BaseComponent")) select("associationPortBase_PortBase", N("AssociationPortBase_PortBase")));
+N("AssociationPortBase_PortBase") ::= ((select("srcPortBase", N("PortBase")))+ (select("dstPortBase", N("PortBase")))+ select("signal", N("Signal")));
+N("String") ::= value("string");
+N("Integer") ::= value("int");

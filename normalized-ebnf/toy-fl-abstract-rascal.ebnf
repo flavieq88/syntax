@@ -1,0 +1,4 @@
+N("FLPrg") @label("prg") ::= select("fs", (N("FLFun"))*);
+N("FLFun") @label("fun") ::= (select("f", value("string")) select("args", (N("str"))*) select("body", N("FLExpr")));
+N("FLExpr") ::= (select("binary", (select("e1", N("FLExpr")) select("op", N("FLOp")) select("e2", N("FLExpr")))) | select("apply", (select("f", value("string")) select("vargs", (N("FLExpr"))*))) | select("ifThenElse", (select("c", N("FLExpr")) select("t", N("FLExpr")) select("e", N("FLExpr")))) | select("argument", select("a", value("string"))) | select("literal", select("i", value("int"))));
+N("FLOp") ::= (select("minus", epsilon) | select("plus", epsilon) | select("equal", epsilon));

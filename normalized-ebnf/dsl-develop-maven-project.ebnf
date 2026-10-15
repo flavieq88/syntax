@@ -1,0 +1,9 @@
+N("Project") ::= (select("id", N("String")) select("groupId", N("String")) select("artifactId", N("String")) select("name", N("String")) select("description", N("String")) (select("mailingLists", N("MailingList")))+ (select("developersAndContributors", N("Person")))+ select("build", N("Build")) (select("dependencies", N("Project")))+);
+N("Build") ::= (select("defaultGoal", N("String")) select("sourceDirectory", N("String")) select("unitTestSourceDirectory", N("String")) (select("uniTest", N("Resource")))+ (select("resources", N("Resource")))+);
+N("Resource") ::= (select("targetPath", N("String")) select("filtering", N("String")) select("directory", N("String")) select("includes", N("String")) select("excludes", N("String")));
+N("MailingList") ::= (select("name", N("String")) select("subscribe", N("String")) select("unsubscribe", N("String")) select("post", N("String")) select("archive", N("String")) select("otherArchives", N("String")));
+N("Person") ::= N("Developer");
+N("Person") ::= N("Contributor");
+N("Developer") ::= select("id", N("String"));
+N("Contributor") ::= (select("name", N("String")) select("email", N("String")) select("url", N("String")) select("organization", N("String")) select("organizationUrl", N("String")) select("roles", N("String")) select("timezone", N("String")) select("properties", N("String")));
+N("String") ::= value("string");

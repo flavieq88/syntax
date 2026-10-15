@@ -1,0 +1,40 @@
+# BGF production shape analysis
+source: pascal-delphi-preprocessor-cangas.bgf
+productions: 39
+distinct_shapes: 31
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+4	sequence(N)
+3	choice(N, N, N)
+2	choice(N, sequence(N))
+2	choice(sequence("{$", optional(N), N, star(N), "}"), sequence("(*$", optional(N), N, star(N), "*)"))
+2	sequence(N, star(N))
+1	choice("(", ")", ".", ";", ":", ",", "[", "]", "+", "-", "*", "/", "^", "=", "@", ">", "<", "<>", ">=", "<=", ":=", "//", N, N, N, N)
+1	choice("+", "-", "ON", "OFF")
+1	choice(">", "<", "=", ">=", "<=", "<>")
+1	choice("A1", "A2", "A4", "A8")
+1	choice("AND", "OR", "XOR")
+1	choice("DEFINED", "DECLARED", "OPTION")
+1	choice("ENDIF", "IFEND")
+1	choice("FALSE", "TRUE")
+1	choice("Z1", "Z2", "Z4")
+1	choice(N, N)
+1	choice(N, sequence(N, optional(N), "(", N, ")"), sequence("NOT", optional(N), N), N, sequence(N, "pp_boolopr", N), sequence(N, "pp_compareopr", N), sequence("(", N, ")"))
+1	choice(sequence("DEFINE", N, N), sequence("UNDEF", N, N), sequence("INCLUDE", optional(N), N), sequence("I", optional(N), N), sequence("LINK", optional(N), N), sequence("L", optional(N), N), sequence("RESOURCE", optional(N), N, optional(N), optional(N)), sequence("R", optional(N), N, optional(N), optional(N)), sequence("HPPEMIT", optional(N), N), sequence("EXTERNALSYM", N, N), "NODEFINE", "MINENUMSIZE", "DENYPACKAGEUNIT", "WEAKPACKAGEUNIT", sequence("IMAGEBASE", optional(N), N), sequence("C", N, N), sequence("MINENUMSIZE", N, N), N, sequence("ALIGN", optional(N), N), N, sequence("M", optional(N), sepliststar(N, ",")), sequence("MAXSTACKSIZE", N, N), sequence("MINSTACKSIZE", N, N), sequence("RESOURCERESERVE", N, N), "NOINCLUDE", "WARN", "MESSAGE", "APPTYPE", sequence("LIBPREFIX", optional(N), N), sequence("LIBSUFIX", optional(N), N), sequence("LIBVERSION", optional(N), N), sequence("DESCRIPTION", optional(N), N), sequence("D", optional(N), N), sequence("EXTENSION", N, N), sequence("E", N, N), sequence(N, optional(N)))
+1	choice(sequence("ELSEIF", optional(N), N), sequence("ELSE", optional(N)))
+1	choice(sequence("IF", optional(N), N), sequence("IFDEF", optional(N), N), sequence("IFNDEF", optional(N), N), sequence("IFOPT", optional(N), N))
+1	choice(sequence("{$", optional(N), N, optional(N), star(N), "}"), sequence("(*$", optional(N), N, optional(N), star(N), "*)"))
+1	choice(sequence("{$", optional(N), sepliststar(N, ","), star(N), "}"), sequence("(*$", optional(N), sepliststar(N, ","), star(N), "*)"))
+1	choice(sequence(N), sequence(N), sequence(N))
+1	choice(sequence(N, star(N)), N, N)
+1	sequence("(*", star(N), "*)")
+1	sequence("//", star(N), N)
+1	sequence("{", star(N), "}")
+1	sequence(N, ".")
+1	sequence(N, optional(N), N)
+1	sequence(N, star(N), N)
+1	sequence(N, star(N), N, N)
+1	star(N)

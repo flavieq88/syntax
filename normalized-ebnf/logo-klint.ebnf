@@ -1,0 +1,11 @@
+@root N("Program");
+
+N("Program") ::= N("Commands");
+N("Commands") ::= (N("Command"))*;
+N("Command") ::= (N("BasicCommand") | N("FunctionDef") | N("Call"));
+N("BasicCommand") ::= (("if" N("Exp") N("Block")) | ("ifelse" N("Exp") N("Block") N("Block")) | ("repeat" N("Exp") N("Block")) | ("forward" N("Exp")) | ("back" N("Exp")) | ("left" N("Exp")) | ("right" N("Exp")) | ("setxy" N("Exp") N("Exp")) | ("setx" N("Exp")) | ("sety" N("Exp")) | "home" | "showturtle" | "hideturtle" | "clean" | "clearscreen" | "pendown" | "penup" | ("pencolor" N("Color")) | ("local" N("QuotedId")) | ("make" N("QuotedId") N("Exp")));
+N("Exp") ::= (N("Integer") | N("Formal") | "xcor" | "ycor" | "heading" | ("towards" N("Exp") N("Exp")) | "pendown?" | ("sum" N("Exp") N("Exp")) | ("difference" N("Exp") N("Exp")) | ("product" N("Exp") N("Exp")) | ("quotient" N("Exp") N("Exp")) | ("remainder" N("Exp") N("Exp")) | ("minus" N("Exp")) | ("less?" N("Exp") N("Exp")) | ("greater?" N("Exp") N("Exp")) | ("equal?" N("Exp") N("Exp")) | ("notequal?" N("Exp") N("Exp")));
+N("Block") ::= ("[" (N("Command"))* "]");
+N("FunctionDef") ::= ("to" N("Id") (N("Formal"))* N("Block"));
+N("Id") ::= ("xcor" | "ycor" | "heading" | "towards" | "pendown?" | "sum" | "difference" | "product" | "quotient" | "remainder" | "minus" | "less?" | "greater?" | "equal?" | "notequal?" | "to" | "if" | "ifelse" | "repeat" | "forward" | "back" | "left" | "right" | "setxy" | "setx" | "sety" | "home" | "showturtle" | "hideturtle" | "clean" | "clearscreen" | "pendown" | "penup" | "local" | "make");
+N("Call") ::= (N("Id") (N("Exp"))*);

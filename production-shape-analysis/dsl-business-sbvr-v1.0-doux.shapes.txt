@@ -1,0 +1,28 @@
+# BGF production shape analysis
+source: dsl-business-sbvr-v1.0-doux.bgf
+productions: 108
+distinct_shapes: 19
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+66	N
+13	plus(N)
+5	sequence(N, plus(N))
+4	sequence(N)
+4	sequence(N, N)
+2	choice(epsilon, epsilon)
+2	choice(epsilon, epsilon, epsilon, epsilon)
+1	choice("true", "false")
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	sequence(N, N, N)
+1	sequence(N, N, N, N)
+1	sequence(N, N, N, plus(N), N)
+1	sequence(N, N, plus(N))
+1	sequence(N, N, plus(N), N)
+1	sequence(N, plus(N), N)
+1	value("int")
+1	value("string")

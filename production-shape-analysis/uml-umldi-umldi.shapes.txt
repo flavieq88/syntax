@@ -1,0 +1,46 @@
+# BGF production shape analysis
+source: uml-umldi-umldi.bgf
+productions: 265
+distinct_shapes: 37
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+155	N
+26	sequence(N, N)
+9	plus(N)
+9	sequence(N, N, N)
+7	sequence(plus(N), N)
+7	sequence(plus(N), plus(N))
+4	sequence(N, N, N, N)
+4	sequence(plus(N), N, N, N, N, N)
+4	sequence(plus(N), plus(N), plus(N), N, plus(N), plus(N))
+3	choice(epsilon, epsilon, epsilon)
+3	sequence(N, N, N, N, N)
+3	sequence(N, plus(N), N)
+2	choice(epsilon, epsilon)
+2	choice(epsilon, epsilon, epsilon, epsilon)
+2	epsilon
+2	sequence(N, N, N, N, N, N)
+2	sequence(N, plus(N), N, plus(N))
+2	sequence(plus(N), plus(N), plus(N))
+1	choice("true", "false")
+1	choice(N, N)
+1	choice(N, N, N)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	sequence(N, N, plus(N))
+1	sequence(N, plus(N), N, N)
+1	sequence(N, plus(N), N, N, N)
+1	sequence(N, plus(N), N, N, N, N, N, plus(N))
+1	sequence(N, plus(N), N, plus(N), N, N, N, N, N, N)
+1	sequence(N, plus(N), plus(N), N)
+1	sequence(N, plus(N), plus(N), plus(N), plus(N))
+1	sequence(plus(N), N, N, N)
+1	sequence(plus(N), N, N, N, N)
+1	sequence(plus(N), N, N, plus(N), plus(N))
+1	sequence(plus(N), plus(N), N, N, N, N)
+1	sequence(plus(N), plus(N), N, plus(N))
+1	sequence(plus(N), plus(N), plus(N), plus(N), N)
+1	value("int")
+1	value("string")

@@ -1,0 +1,12 @@
+N("QoSStatement") ::= N("SingleQoSStatement");
+N("QoSStatement") ::= N("CoumpoundQoSStatement");
+N("QoSStatement") ::= (select("relation", N("CoumpoundQoSStatement")) (select("parameter", N("Parameter")))+);
+N("SingleQoSStatement") ::= select("contraint", N("QoSContraint"));
+N("CoumpoundQoSStatement") ::= select("statement", N("QoSStatement"));
+N("Parameter") ::= epsilon;
+N("QoSContraint") ::= select("qualification", N("QualificationKind"));
+N("QualificationKind") ::= select("value", N("String"));
+N("QoSCharacteristic") ::= N("QualificationKind");
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");

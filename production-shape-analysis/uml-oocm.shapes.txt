@@ -1,0 +1,19 @@
+# BGF production shape analysis
+source: uml-oocm.bgf
+productions: 26
+distinct_shapes: 10
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+14	N
+3	sequence(N, N, N)
+2	sequence(N, N, N, N)
+1	choice("true", "false")
+1	choice(epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon)
+1	plus(N)
+1	sequence(N)
+1	value("int")
+1	value("string")

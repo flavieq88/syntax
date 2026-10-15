@@ -1,0 +1,16 @@
+N("mainRule") ::= ([N("contextSection")] [N("defaultMetaclassSection")] (N("mapping"))*);
+N("contextSection") ::= (N("AT") N("CONTEXT") N("instanceName") ((N("COMMA") N("instanceName")))* N("SEMI"));
+N("defaultMetaclassSection") ::= (N("AT") N("DEFAULT_METACLASS") N("ID") N("LPAREN") N("ID") N("RPAREN") N("SEMI"));
+N("mapping") ::= ([N("ENUM")] N("metaclassName") N("COLON") N("instanceName") N("LCURLY") (N("section"))* N("RCURLY"));
+N("metaclassName") ::= N("ID");
+N("instanceName") ::= (N("ID") ((N("DOT") N("ID")))*);
+N("section") ::= (N("newSection") | N("multipleSection") | N("propertySection") | N("valueSection"));
+N("newSection") ::= (N("AT") N("NEW") (N("constructorCall"))*);
+N("multipleSection") ::= (N("AT") N("MULTIPLE") (N("statement"))*);
+N("propertySection") ::= (N("ID") N("COLON") (N("statement"))*);
+N("valueSection") ::= (N("ID") N("COLON") N("instanceName") N("SEMI"));
+N("statement") ::= (N("ID") [(N("LPAREN") N("variable") ((N("COMMA") N("variable")))* N("RPAREN"))] [N("methodCall")] N("SEMI"));
+N("constructorCall") ::= (N("ID") N("LPAREN") [(N("param") ((N("COMMA") N("param")))*)] N("RPAREN") N("SEMI"));
+N("methodCall") ::= (N("ID") [(N("LPAREN") [(N("param") ((N("COMMA") N("param")))*)] N("RPAREN"))]);
+N("variable") ::= N("ID");
+N("param") ::= N("ID");

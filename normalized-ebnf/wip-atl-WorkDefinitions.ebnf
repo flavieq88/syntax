@@ -1,0 +1,15 @@
+N("WorkDefinition") ::= N("Lifecycle");
+N("WorkDefinition") ::= N("Phase");
+N("WorkDefinition") ::= N("Iteration");
+N("WorkDefinition") ::= N("Activity");
+N("WorkDefinition") ::= ((select("parentWorks", N("WorkDefinition")))+ (select("subWorks", N("WorkDefinition")))+ select("owner", N("ProcessPerformer")));
+N("ProcessPerformer") ::= N("Role");
+N("ProcessPerformer") ::= (select("features", N("WorkDefinition")))+;
+N("Role") ::= (select("products", N("WorkProduct")))+;
+N("WorkProduct") ::= select("responsible", N("Role"));
+N("Lifecycle") ::= (select("phases", N("Phase")))+;
+N("Phase") ::= (select("lifeCycle", N("Lifecycle")) (select("iterations", N("Iteration")))+);
+N("Iteration") ::= (select("phase", N("Phase")) (select("activities", N("Activity")))+);
+N("Activity") ::= (select("iteration", N("Iteration")) (select("steps", N("Step")))+);
+N("Step") ::= epsilon;
+N("Boolean") ::= ("true" | "false");

@@ -1,0 +1,8 @@
+N("FCMSource") ::= N("EAISource");
+N("EAISource") ::= (select("resources", N("EAIResource")))+;
+N("FCMSink") ::= N("EAISink");
+N("EAISink") ::= (select("resources", N("EAIResource")))+;
+N("EAIResource") ::= N("EAIQueue");
+N("EAIQueue") ::= (select("maxLength", N("Integer")) select("name", N("String")));
+N("Integer") ::= value("int");
+N("String") ::= value("string");

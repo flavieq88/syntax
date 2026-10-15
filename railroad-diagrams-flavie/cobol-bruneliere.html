@@ -1,0 +1,837 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cobol-bruneliere</title>
+<style>
+:root { color-scheme: light; --ink:#17212b; --muted:#5d6874; --line:#d8dee5;
+  --paper:#fff; --wash:#f4f7f9; --accent:#315e75; }
+* { box-sizing:border-box }
+body { margin:0; color:var(--ink); background:var(--wash); font:15px/1.45 system-ui,sans-serif }
+.layout { display:grid; grid-template-columns:280px 1fr; min-height:100vh }
+nav { border-right:1px solid var(--line); background:var(--paper); padding:20px; overflow-y:auto;
+  max-height:100vh; position:sticky; top:0 }
+nav h1 { font-size:17px; margin:0 0 12px }
+nav ul { list-style:none; margin:0; padding:0 }
+nav li { margin:2px 0 }
+nav a { color:var(--accent); text-decoration:none; font-size:13px }
+nav a:hover { text-decoration:underline }
+.badge { margin-left:6px; font-size:10px; color:var(--accent); border:1px solid var(--accent);
+  border-radius:8px; padding:0 6px; vertical-align:middle }
+main { padding:28px 32px }
+section { background:var(--paper); border:1px solid var(--line); border-radius:9px;
+  margin:0 0 22px; padding:18px 20px; scroll-margin-top:16px }
+h2 { margin:0 0 12px; font-size:16px; font-family:ui-monospace,SFMono-Regular,Consolas,monospace }
+.diagram { overflow-x:auto }
+.diagram svg { display:block }
+.error { color:#a33; font-family:ui-monospace,monospace }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+<h1>cobol-bruneliere</h1>
+<ul>
+<li><a href="#COBOLUsageValue">COBOLUsageValue</a></li><li><a href="#COBOLInitialValueKind">COBOLInitialValueKind</a></li><li><a href="#COBOLElement">COBOLElement</a></li><li><a href="#COBOLElement">COBOLElement</a></li><li><a href="#COBOLClassifier">COBOLClassifier</a></li><li><a href="#COBOLClassifier">COBOLClassifier</a></li><li><a href="#COBOLClassifier">COBOLClassifier</a></li><li><a href="#COBOLSimpleType">COBOLSimpleType</a></li><li><a href="#COBOLComposedType">COBOLComposedType</a></li><li><a href="#COBOLElementInitialValue">COBOLElementInitialValue</a></li><li><a href="#COBOL88Element">COBOL88Element</a></li><li><a href="#COBOL88ElementValue">COBOL88ElementValue</a></li><li><a href="#COBOLRedefiningElement">COBOLRedefiningElement</a></li><li><a href="#COBOL66Element">COBOL66Element</a></li><li><a href="#COBOLSourceText">COBOLSourceText</a></li><li><a href="#COBOLFixedLengthArray">COBOLFixedLengthArray</a></li><li><a href="#COBOLFixedLengthArray">COBOLFixedLengthArray</a></li><li><a href="#COBOLVariableLengthArray">COBOLVariableLengthArray</a></li><li><a href="#Integer">Integer</a></li><li><a href="#String">String</a></li><li><a href="#Boolean">Boolean</a></li>
+</ul>
+</nav>
+<main>
+<section id="COBOLUsageValue"><h2>COBOLUsageValue</h2><div class="diagram"><svg class="railroad-diagram" height="150" viewBox="0 0 120 150" width="120" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 20v20m10 -20v20m-10 -10h20" /></g><g>
+<path d="M40 30h0.0" /><path d="M80.0 30h0.0" /><path d="M40.0 30h20" /><g>
+<path d="M60.0 30h0" /></g><path d="M60.0 30h20" /><path d="M40.0 30a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 50h0" /></g><path d="M60.0 50a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10" /><path d="M40.0 30a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 60h0" /></g><path d="M60.0 60a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10" /><path d="M40.0 30a10 10 0 0 1 10 10v20a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 70h0" /></g><path d="M60.0 70a10 10 0 0 0 10 -10v-20a10 10 0 0 1 10 -10" /><path d="M40.0 30a10 10 0 0 1 10 10v30a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 80h0" /></g><path d="M60.0 80a10 10 0 0 0 10 -10v-30a10 10 0 0 1 10 -10" /><path d="M40.0 30a10 10 0 0 1 10 10v40a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 90h0" /></g><path d="M60.0 90a10 10 0 0 0 10 -10v-40a10 10 0 0 1 10 -10" /><path d="M40.0 30a10 10 0 0 1 10 10v50a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 100h0" /></g><path d="M60.0 100a10 10 0 0 0 10 -10v-50a10 10 0 0 1 10 -10" /><path d="M40.0 30a10 10 0 0 1 10 10v60a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 110h0" /></g><path d="M60.0 110a10 10 0 0 0 10 -10v-60a10 10 0 0 1 10 -10" /><path d="M40.0 30a10 10 0 0 1 10 10v70a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 120h0" /></g><path d="M60.0 120a10 10 0 0 0 10 -10v-70a10 10 0 0 1 10 -10" /><path d="M40.0 30a10 10 0 0 1 10 10v80a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 130h0" /></g><path d="M60.0 130a10 10 0 0 0 10 -10v-80a10 10 0 0 1 10 -10" /></g><path d="M 80 30 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOLInitialValueKind"><h2>COBOLInitialValueKind</h2><div class="diagram"><svg class="railroad-diagram" height="120" viewBox="0 0 120 120" width="120" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 20v20m10 -20v20m-10 -10h20" /></g><g>
+<path d="M40 30h0.0" /><path d="M80.0 30h0.0" /><path d="M40.0 30h20" /><g>
+<path d="M60.0 30h0" /></g><path d="M60.0 30h20" /><path d="M40.0 30a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 50h0" /></g><path d="M60.0 50a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10" /><path d="M40.0 30a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 60h0" /></g><path d="M60.0 60a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10" /><path d="M40.0 30a10 10 0 0 1 10 10v20a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 70h0" /></g><path d="M60.0 70a10 10 0 0 0 10 -10v-20a10 10 0 0 1 10 -10" /><path d="M40.0 30a10 10 0 0 1 10 10v30a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 80h0" /></g><path d="M60.0 80a10 10 0 0 0 10 -10v-30a10 10 0 0 1 10 -10" /><path d="M40.0 30a10 10 0 0 1 10 10v40a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 90h0" /></g><path d="M60.0 90a10 10 0 0 0 10 -10v-40a10 10 0 0 1 10 -10" /><path d="M40.0 30a10 10 0 0 1 10 10v50a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 100h0" /></g><path d="M60.0 100a10 10 0 0 0 10 -10v-50a10 10 0 0 1 10 -10" /></g><path d="M 80 30 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOLElement"><h2>COBOLElement</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 307.0 62" width="307.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M257.0 31h0.0" /><rect height="22" width="207" x="50" y="20"></rect><text x="153.5" y="35">COBOLRedefiningElement</text></g><path d="M257.0 31h10" /><path d="M 267.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOLElement"><h2>COBOLElement</h2><div class="diagram"><svg class="railroad-diagram" height="71" viewBox="0 0 1542.5 71" width="1542.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M1492.5 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M121.0 31h0.0" /><rect height="22" width="71" x="50" y="20"></rect><text x="85.5" y="35">String</text></g><path d="M121.0 31h10" /><path d="M131.0 31h10" /><g class="non-terminal ">
+<path d="M141.0 31h0.0" /><path d="M220.5 31h0.0" /><rect height="22" width="79.5" x="141" y="20"></rect><text x="180.75" y="35">Boolean</text></g><path d="M220.5 31h10" /><path d="M230.5 31h10" /><g class="non-terminal ">
+<path d="M240.5 31h0.0" /><path d="M311.5 31h0.0" /><rect height="22" width="71" x="240.5" y="20"></rect><text x="276" y="35">String</text></g><path d="M311.5 31h10" /><path d="M321.5 31h10" /><g class="non-terminal ">
+<path d="M331.5 31h0.0" /><path d="M479.0 31h0.0" /><rect height="22" width="147.5" x="331.5" y="20"></rect><text x="405.25" y="35">COBOLClassifier</text></g><path d="M479.0 31h10" /><path d="M489.0 31h10" /><g class="non-terminal ">
+<path d="M499.0 31h0.0" /><path d="M663.5 31h0.0" /><rect height="22" width="164.5" x="499" y="20"></rect><text x="581.25" y="35">COBOLComposedType</text></g><path d="M663.5 31h10" /><path d="M673.5 31h10" /><g>
+<path d="M683.5 31h0.0" /><path d="M927.5 31h0.0" /><path d="M683.5 31h10" /><g class="non-terminal ">
+<path d="M693.5 31h0.0" /><path d="M917.5 31h0.0" /><rect height="22" width="224" x="693.5" y="20"></rect><text x="805.5" y="35">COBOLElementInitialValue</text></g><path d="M917.5 31h10" /><path d="M693.5 31a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10" /><g>
+<path d="M693.5 51h224.0" /></g><path d="M917.5 51a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10" /></g><path d="M927.5 31h10" /><path d="M937.5 31h10" /><g>
+<path d="M947.5 31h0.0" /><path d="M1106.5 31h0.0" /><path d="M947.5 31h10" /><g class="non-terminal ">
+<path d="M957.5 31h0.0" /><path d="M1096.5 31h0.0" /><rect height="22" width="139" x="957.5" y="20"></rect><text x="1027" y="35">COBOL88Element</text></g><path d="M1096.5 31h10" /><path d="M957.5 31a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10" /><g>
+<path d="M957.5 51h139.0" /></g><path d="M1096.5 51a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10" /></g><path d="M1106.5 31h10" /><path d="M1116.5 31h10" /><g class="non-terminal ">
+<path d="M1126.5 31h0.0" /><path d="M1274.0 31h0.0" /><rect height="22" width="147.5" x="1126.5" y="20"></rect><text x="1200.25" y="35">COBOLSourceText</text></g><path d="M1274.0 31h10" /><path d="M1284.0 31h10" /><g class="non-terminal ">
+<path d="M1294.0 31h0.0" /><path d="M1492.5 31h0.0" /><rect height="22" width="198.5" x="1294" y="20"></rect><text x="1393.25" y="35">COBOLFixedLengthArray</text></g></g><path d="M1492.5 31h10" /><path d="M 1502.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOLClassifier"><h2>COBOLClassifier</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 247.5 62" width="247.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M197.5 31h0.0" /><rect height="22" width="147.5" x="50" y="20"></rect><text x="123.75" y="35">COBOLSimpleType</text></g><path d="M197.5 31h10" /><path d="M 207.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOLClassifier"><h2>COBOLClassifier</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 264.5 62" width="264.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M214.5 31h0.0" /><rect height="22" width="164.5" x="50" y="20"></rect><text x="132.25" y="35">COBOLComposedType</text></g><path d="M214.5 31h10" /><path d="M 224.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOLClassifier"><h2>COBOLClassifier</h2><div class="diagram"><svg class="railroad-diagram" height="71" viewBox="0 0 432.5 71" width="432.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M382.5 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M129.5 31h0.0" /><rect height="22" width="79.5" x="50" y="20"></rect><text x="89.75" y="35">Boolean</text></g><path d="M129.5 31h10" /><path d="M139.5 31h10" /><g class="non-terminal ">
+<path d="M149.5 31h0.0" /><path d="M220.5 31h0.0" /><rect height="22" width="71" x="149.5" y="20"></rect><text x="185" y="35">String</text></g><path d="M220.5 31h10" /><path d="M230.5 31h10" /><g>
+<path d="M240.5 31h0.0" /><path d="M382.5 31h0.0" /><path d="M240.5 31h10" /><g class="non-terminal ">
+<path d="M250.5 31h0.0" /><path d="M372.5 31h0.0" /><rect height="22" width="122" x="250.5" y="20"></rect><text x="311.5" y="35">COBOLElement</text></g><path d="M372.5 31h10" /><path d="M250.5 31a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10" /><g>
+<path d="M250.5 51h122.0" /></g><path d="M372.5 51a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10" /></g></g><path d="M382.5 31h10" /><path d="M 392.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOLSimpleType"><h2>COBOLSimpleType</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 438.0 62" width="438.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M388.0 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M197.5 31h0.0" /><rect height="22" width="147.5" x="50" y="20"></rect><text x="123.75" y="35">COBOLUsageValue</text></g><path d="M197.5 31h10" /><path d="M207.5 31h10" /><g class="non-terminal ">
+<path d="M217.5 31h0.0" /><path d="M288.5 31h0.0" /><rect height="22" width="71" x="217.5" y="20"></rect><text x="253" y="35">String</text></g><path d="M288.5 31h10" /><path d="M298.5 31h10" /><g class="non-terminal ">
+<path d="M308.5 31h0.0" /><path d="M388.0 31h0.0" /><rect height="22" width="79.5" x="308.5" y="20"></rect><text x="348.25" y="35">Boolean</text></g></g><path d="M388.0 31h10" /><path d="M 398.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOLComposedType"><h2>COBOLComposedType</h2><div class="diagram"><svg class="railroad-diagram" height="71" viewBox="0 0 242.0 71" width="242.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M192.0 31h0.0" /><path d="M50.0 31h10" /><g class="non-terminal ">
+<path d="M60.0 31h0.0" /><path d="M182.0 31h0.0" /><rect height="22" width="122" x="60" y="20"></rect><text x="121" y="35">COBOLElement</text></g><path d="M182.0 31h10" /><path d="M60.0 31a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 51h122.0" /></g><path d="M182.0 51a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10" /></g><path d="M192.0 31h10" /><path d="M 202.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOLElementInitialValue"><h2>COBOLElementInitialValue</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 389.5 62" width="389.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M339.5 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M121.0 31h0.0" /><rect height="22" width="71" x="50" y="20"></rect><text x="85.5" y="35">String</text></g><path d="M121.0 31h10" /><path d="M131.0 31h10" /><g class="non-terminal ">
+<path d="M141.0 31h0.0" /><path d="M339.5 31h0.0" /><rect height="22" width="198.5" x="141" y="20"></rect><text x="240.25" y="35">COBOLInitialValueKind</text></g></g><path d="M339.5 31h10" /><path d="M 349.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOL88Element"><h2>COBOL88Element</h2><div class="diagram"><svg class="railroad-diagram" height="71" viewBox="0 0 392.5 71" width="392.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M342.5 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M121.0 31h0.0" /><rect height="22" width="71" x="50" y="20"></rect><text x="85.5" y="35">String</text></g><path d="M121.0 31h10" /><path d="M131.0 31h10" /><g>
+<path d="M141.0 31h0.0" /><path d="M342.5 31h0.0" /><path d="M141.0 31h10" /><g class="non-terminal ">
+<path d="M151.0 31h0.0" /><path d="M332.5 31h0.0" /><rect height="22" width="181.5" x="151" y="20"></rect><text x="241.75" y="35">COBOL88ElementValue</text></g><path d="M332.5 31h10" /><path d="M151.0 31a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10" /><g>
+<path d="M151.0 51h181.5" /></g><path d="M332.5 51a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10" /></g></g><path d="M342.5 31h10" /><path d="M 352.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOL88ElementValue"><h2>COBOL88ElementValue</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 361.5 62" width="361.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M311.5 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M121.0 31h0.0" /><rect height="22" width="71" x="50" y="20"></rect><text x="85.5" y="35">String</text></g><path d="M121.0 31h10" /><path d="M131.0 31h10" /><g class="non-terminal ">
+<path d="M141.0 31h0.0" /><path d="M212.0 31h0.0" /><rect height="22" width="71" x="141" y="20"></rect><text x="176.5" y="35">String</text></g><path d="M212.0 31h10" /><path d="M222.0 31h10" /><g class="non-terminal ">
+<path d="M232.0 31h0.0" /><path d="M311.5 31h0.0" /><rect height="22" width="79.5" x="232" y="20"></rect><text x="271.75" y="35">Boolean</text></g></g><path d="M311.5 31h10" /><path d="M 321.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOLRedefiningElement"><h2>COBOLRedefiningElement</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 222.0 62" width="222.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M172.0 31h0.0" /><rect height="22" width="122" x="50" y="20"></rect><text x="111" y="35">COBOLElement</text></g><path d="M172.0 31h10" /><path d="M 182.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOL66Element"><h2>COBOL66Element</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 455.0 62" width="455.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M405.0 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M121.0 31h0.0" /><rect height="22" width="71" x="50" y="20"></rect><text x="85.5" y="35">String</text></g><path d="M121.0 31h10" /><path d="M131.0 31h10" /><g class="non-terminal ">
+<path d="M141.0 31h0.0" /><path d="M263.0 31h0.0" /><rect height="22" width="122" x="141" y="20"></rect><text x="202" y="35">COBOLElement</text></g><path d="M263.0 31h10" /><path d="M273.0 31h10" /><g class="non-terminal ">
+<path d="M283.0 31h0.0" /><path d="M405.0 31h0.0" /><rect height="22" width="122" x="283" y="20"></rect><text x="344" y="35">COBOLElement</text></g></g><path d="M405.0 31h10" /><path d="M 415.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOLSourceText"><h2>COBOLSourceText</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 262.0 62" width="262.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M212.0 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M121.0 31h0.0" /><rect height="22" width="71" x="50" y="20"></rect><text x="85.5" y="35">String</text></g><path d="M121.0 31h10" /><path d="M131.0 31h10" /><g class="non-terminal ">
+<path d="M141.0 31h0.0" /><path d="M212.0 31h0.0" /><rect height="22" width="71" x="141" y="20"></rect><text x="176.5" y="35">String</text></g></g><path d="M212.0 31h10" /><path d="M 222.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOLFixedLengthArray"><h2>COBOLFixedLengthArray</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 324.0 62" width="324.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M274.0 31h0.0" /><rect height="22" width="224" x="50" y="20"></rect><text x="162" y="35">COBOLVariableLengthArray</text></g><path d="M274.0 31h10" /><path d="M 284.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOLFixedLengthArray"><h2>COBOLFixedLengthArray</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 179.5 62" width="179.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M129.5 31h0.0" /><rect height="22" width="79.5" x="50" y="20"></rect><text x="89.75" y="35">Integer</text></g><path d="M129.5 31h10" /><path d="M 139.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="COBOLVariableLengthArray"><h2>COBOLVariableLengthArray</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 321.5 62" width="321.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M271.5 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M129.5 31h0.0" /><rect height="22" width="79.5" x="50" y="20"></rect><text x="89.75" y="35">Integer</text></g><path d="M129.5 31h10" /><path d="M139.5 31h10" /><g class="non-terminal ">
+<path d="M149.5 31h0.0" /><path d="M271.5 31h0.0" /><rect height="22" width="122" x="149.5" y="20"></rect><text x="210.5" y="35">COBOLElement</text></g></g><path d="M271.5 31h10" /><path d="M 281.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="Integer"><h2>Integer</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 154.0 62" width="154.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M104.0 31h0.0" /><rect height="22" width="54" x="50" y="20"></rect><text x="77" y="35">#int</text></g><path d="M104.0 31h10" /><path d="M 114.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="String"><h2>String</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 179.5 62" width="179.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M129.5 31h0.0" /><rect height="22" width="79.5" x="50" y="20"></rect><text x="89.75" y="35">#string</text></g><path d="M129.5 31h10" /><path d="M 139.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="Boolean"><h2>Boolean</h2><div class="diagram"><svg class="railroad-diagram" height="92" viewBox="0 0 182.5 92" width="182.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><g>
+<path d="M40 31h0.0" /><path d="M142.5 31h0.0" /><path d="M40.0 31h20" /><g class="terminal ">
+<path d="M60.0 31h4.25" /><path d="M118.25 31h4.25" /><rect height="22" rx="10" ry="10" width="54" x="64.25" y="20"></rect><text x="91.25" y="35">true</text></g><path d="M122.5 31h20" /><path d="M40.0 31a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10" /><g class="terminal ">
+<path d="M60.0 61h0.0" /><path d="M122.5 61h0.0" /><rect height="22" rx="10" ry="10" width="62.5" x="60" y="50"></rect><text x="91.25" y="65">false</text></g><path d="M122.5 61a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10" /></g><path d="M 142.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section>
+</main>
+</div>
+</body>
+</html>

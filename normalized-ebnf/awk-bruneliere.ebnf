@@ -1,0 +1,16 @@
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");
+N("AWKProgram") ::= (select("name", N("String")) select("input", N("File")) select("output", N("File")) select("script", N("Script")));
+N("File") ::= (select("name", N("String")) (select("records", N("Record")))+);
+N("Record") ::= (select("r_file", N("File")) (select("fields", N("Field")))+);
+N("Field") ::= (select("value", N("String")) select("f_record", N("Record")));
+N("Script") ::= (select("name", N("String")) (select("rules", N("Rule")))+);
+N("Rule") ::= N("InitialRule");
+N("Rule") ::= N("FinalRule");
+N("Rule") ::= (select("r_script", N("Script")) select("pattern", N("Pattern")) select("action", N("Action")));
+N("Pattern") ::= select("regularExpression", N("String"));
+N("Action") ::= (select("instructions", N("Instruction")))+;
+N("Instruction") ::= (select("value", N("String")) select("i_action", N("Action")));
+N("InitialRule") ::= (select("r_script", N("Script")) select("pattern", N("Pattern")) select("action", N("Action")));
+N("FinalRule") ::= (select("r_script", N("Script")) select("pattern", N("Pattern")) select("action", N("Action")));

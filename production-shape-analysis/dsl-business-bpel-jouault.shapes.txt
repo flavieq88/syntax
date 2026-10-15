@@ -1,0 +1,48 @@
+# BGF production shape analysis
+source: dsl-business-bpel-jouault.bgf
+productions: 329
+distinct_shapes: 39
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+195	N
+24	sequence(N, N)
+15	sequence(N, N, N)
+12	plus(N)
+12	sequence(N, N, N, N)
+10	choice(epsilon, epsilon, epsilon)
+8	choice(epsilon, epsilon)
+6	sequence(N, N, N, N, N)
+5	sequence(N, N, N, N, plus(N))
+4	choice(epsilon, epsilon, epsilon, epsilon)
+4	sequence(plus(N), N)
+3	sequence(N, N, plus(N))
+2	sequence(N, N, N, N, N, N, N)
+2	sequence(N, plus(N), plus(N))
+2	sequence(plus(N))
+2	sequence(plus(N), plus(N))
+1	epsilon
+1	sequence(N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N, N, plus(N), N, N)
+1	sequence(N, N, N, N, N, N, N, N, plus(N), plus(N), N)
+1	sequence(N, N, N, N, N, N, N, plus(N), N)
+1	sequence(N, N, N, N, N, N, N, plus(N), plus(N))
+1	sequence(N, N, N, N, N, N, plus(N))
+1	sequence(N, N, N, N, N, plus(N))
+1	sequence(N, N, N, N, N, plus(N), plus(N), N, plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), N, N, plus(N), N)
+1	sequence(N, N, N, N, plus(N), N, plus(N), plus(N), plus(N), plus(N), plus(N))
+1	sequence(N, N, N, N, plus(N), plus(N))
+1	sequence(N, N, plus(N), N)
+1	sequence(N, N, plus(N), plus(N))
+1	sequence(N, N, plus(N), plus(N), N, N, N, N)
+1	sequence(N, plus(N))
+1	sequence(N, plus(N), N, N, plus(N), plus(N), plus(N), N, N, N, N, N, plus(N), plus(N), N, N, N, N, N)
+1	sequence(N, plus(N), N, plus(N), N, plus(N))
+1	sequence(N, plus(N), plus(N), N, plus(N), plus(N), N, N, N, N, N, plus(N), N, N, plus(N))
+1	sequence(N, plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), N, N, N, N, N, N, N, N, N, N, N, N, plus(N), plus(N), N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, plus(N))
+1	sequence(plus(N), N, N)
+1	sequence(plus(N), plus(N), plus(N))

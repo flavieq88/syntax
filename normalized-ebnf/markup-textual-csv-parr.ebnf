@@ -1,0 +1,6 @@
+N("file") ::= (N("hdr") (N("row"))+);
+N("hdr") ::= N("row");
+N("row") ::= (N("field") (("," N("field")))* ["\\r"] "\\n");
+N("field") ::= (N("TEXT") | N("STRING") | epsilon);
+N("TEXT") ::= (not(("," | "\\n" | "\\r" | N("DQUOTE"))))+;
+N("STRING") ::= (N("DQUOTE") (((N("DQUOTE") N("DQUOTE")) | not(N("DQUOTE"))))* N("DQUOTE"));

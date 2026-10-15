@@ -1,0 +1,32 @@
+# BGF production shape analysis
+source: dsl-business-xpdl.bgf
+productions: 110
+distinct_shapes: 23
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+61	N
+8	sequence(N, N, N)
+6	epsilon
+6	sequence(N, N)
+5	choice(epsilon, epsilon)
+4	sequence(N, N, N, N)
+3	choice(epsilon, epsilon, epsilon, epsilon)
+2	sequence(N, N, N, N, N)
+1	choice("true", "false")
+1	choice(N, N)
+1	choice(epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	plus(N)
+1	sequence(N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, plus(N), plus(N), N, plus(N), plus(N), plus(N), N, N, N)
+1	sequence(N, N, N, N, N, N, plus(N), N)
+1	sequence(N, N, N, N, plus(N), plus(N), N)
+1	sequence(N, N, N, plus(N))
+1	sequence(N, N, plus(N), N, N, N)
+1	sequence(N, plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N))
+1	value("int")
+1	value("string")

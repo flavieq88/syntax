@@ -1,0 +1,13 @@
+# BGF production shape analysis
+source: dsl-publishing-publication.bgf
+productions: 4
+distinct_shapes: 4
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice("true", "false")
+1	sequence(N, N, N)
+1	value("int")
+1	value("string")

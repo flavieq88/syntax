@@ -1,0 +1,38 @@
+# BGF production shape analysis
+source: java-eclipse-jdt.bgf
+productions: 185
+distinct_shapes: 29
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+94	N
+23	sequence(any, any)
+17	any
+9	sequence(any, any, any)
+5	plus(any)
+5	sequence(plus(any), any, any)
+3	sequence(any)
+3	sequence(any, plus(any))
+2	sequence(any, any, plus(any))
+2	sequence(any, any, plus(any), plus(any))
+2	sequence(plus(any), any, any, plus(any))
+2	sequence(plus(any), plus(any))
+2	sequence(plus(any), plus(any), any)
+1	choice("true", "false")
+1	choice(epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	epsilon
+1	sequence(any, any, any, any, any, any, any, any, any, any, any, any)
+1	sequence(any, any, any, any, any, any, plus(any), plus(any), plus(any))
+1	sequence(plus(any), any)
+1	sequence(plus(any), any, any, any)
+1	sequence(plus(any), any, any, any, any)
+1	sequence(plus(any), any, any, any, plus(any))
+1	sequence(plus(any), any, plus(any))
+1	sequence(plus(any), any, plus(any), plus(any))
+1	value("int")
+1	value("string")

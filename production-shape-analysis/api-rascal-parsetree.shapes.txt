@@ -1,0 +1,13 @@
+# BGF production shape analysis
+source: api-rascal-parsetree.bgf
+productions: 6
+distinct_shapes: 4
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	marked("t", N)
+2	marked("trees", star(N))
+1	epsilon
+1	marked("s", value("string"))

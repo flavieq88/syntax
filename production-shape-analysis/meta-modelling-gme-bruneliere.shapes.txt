@@ -1,0 +1,17 @@
+# BGF production shape analysis
+source: meta-modelling-gme-bruneliere.bgf
+productions: 11
+distinct_shapes: 8
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	N
+2	sequence(N, N, N, plus(N), plus(N), plus(N), plus(N))
+2	sequence(N, N, plus(N), plus(N))
+1	choice("true", "false")
+1	sequence(N, N, N, N, N, N)
+1	sequence(plus(N), plus(N), plus(N))
+1	value("int")
+1	value("string")

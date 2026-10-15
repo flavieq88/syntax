@@ -1,0 +1,13 @@
+# BGF production shape analysis
+source: automata-petri-pnml-standard-finite-ints.bgf
+productions: 11
+distinct_shapes: 4
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+8	N
+1	choice(N, N, N, N)
+1	sequence(value("int"), N, N)
+1	sequence(value("int"), value("int"))

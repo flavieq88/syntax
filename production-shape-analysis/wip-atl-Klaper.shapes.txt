@@ -1,0 +1,22 @@
+# BGF production shape analysis
+source: wip-atl-Klaper.bgf
+productions: 30
+distinct_shapes: 13
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+12	N
+4	sequence(N, N, N, N, N, plus(N), plus(N), plus(N), N, N)
+3	sequence(N, N)
+2	epsilon
+1	choice("true", "false")
+1	choice(N, N, N, N, N)
+1	sequence(N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, plus(N), plus(N), plus(N))
+1	sequence(N, N, N, plus(N), N, N)
+1	sequence(N, plus(N), N, plus(N), N)
+1	value("int")
+1	value("string")

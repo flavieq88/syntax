@@ -1,0 +1,163 @@
+# BGF production shape analysis
+source: java-java-5-jls-read.bgf
+productions: 435
+distinct_shapes: 154
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+181	N
+22	sequence(N, N)
+14	sequence(N, ",", N)
+9	sequence(N, ".", N)
+7	"public"
+6	";"
+5	"final"
+5	"private"
+5	"protected"
+5	"static"
+4	"abstract"
+4	sequence("{", optional(N), "}")
+4	sequence(N, "[", "]")
+3	"strictfp"
+3	sequence("extends", N)
+3	sequence(N, N, N)
+3	sequence(N, optional(N))
+2	sequence("(", N, ")", N)
+2	sequence("<", N, ">")
+2	sequence("case", N, ":")
+2	sequence("for", "(", optional(N), ";", optional(N), ";", optional(N), ")", N)
+2	sequence("if", "(", N, ")", N, "else", N)
+2	sequence("new", N, N, N)
+2	sequence("new", N, N, optional(N))
+2	sequence("while", "(", N, ")", N)
+2	sequence("{", optional(N), optional(N), "}")
+2	sequence(N, "(", optional(N), ")")
+2	sequence(N, ":", N)
+2	sequence(N, ";")
+2	sequence(N, "=", N)
+2	sequence(N, "[", N, "]")
+2	sequence(optional(N), N, N, ";")
+1	"%="
+1	"&="
+1	"*="
+1	"+="
+1	"-="
+1	"/="
+1	"<<="
+1	"="
+1	">>="
+1	">>>="
+1	"^="
+1	"boolean"
+1	"byte"
+1	"char"
+1	"double"
+1	"float"
+1	"int"
+1	"long"
+1	"native"
+1	"short"
+1	"synchronized"
+1	"this"
+1	"transient"
+1	"void"
+1	"volatile"
+1	"|="
+1	sequence("!", N)
+1	sequence("&", N)
+1	sequence("(", N, ")")
+1	sequence("(", N, optional(N), ")", N)
+1	sequence("(", optional(N), ")")
+1	sequence("+", N)
+1	sequence("++", N)
+1	sequence("-", N)
+1	sequence("--", N)
+1	sequence(";", optional(N))
+1	sequence("?", optional(N))
+1	sequence("@", N)
+1	sequence("@", N, "(", N, ")")
+1	sequence("@", N, "(", optional(N), ")")
+1	sequence("ClassName", ".", "this")
+1	sequence("[", "]")
+1	sequence("[", N, "]")
+1	sequence("assert", N, ":", N, ";")
+1	sequence("assert", N, ";")
+1	sequence("break", optional(N), ";")
+1	sequence("catch", "(", N, ")", N)
+1	sequence("continue", optional(N), ";")
+1	sequence("default", ":")
+1	sequence("default", N)
+1	sequence("do", N, "while", "(", N, ")", ";")
+1	sequence("extends", N, optional(N))
+1	sequence("finally", N)
+1	sequence("for", "(", optional(N), N, N, ":", N, ")", N)
+1	sequence("if", "(", N, ")", N)
+1	sequence("implements", N)
+1	sequence("import", "static", N, ".", "*", ";")
+1	sequence("import", "static", N, ".", N, ";")
+1	sequence("import", N, ".", "*", ";")
+1	sequence("import", N, ";")
+1	sequence("new", optional(N), N, "(", optional(N), ")", optional(N))
+1	sequence("return", optional(N), ";")
+1	sequence("static", N)
+1	sequence("super", ".", N)
+1	sequence("super", ".", optional(N), N, "(", optional(N), ")")
+1	sequence("super", N)
+1	sequence("switch", "(", N, ")", N)
+1	sequence("synchronized", "(", N, ")", N)
+1	sequence("throw", N, ";")
+1	sequence("throws", N)
+1	sequence("try", N, N)
+1	sequence("try", N, optional(N), N)
+1	sequence("void", ".", "class")
+1	sequence("{", optional(N), optional(","), "}")
+1	sequence("~", N)
+1	sequence(N, "!=", N)
+1	sequence(N, "%", N)
+1	sequence(N, "&", N)
+1	sequence(N, "&&", N)
+1	sequence(N, "*", N)
+1	sequence(N, "+", N)
+1	sequence(N, "++")
+1	sequence(N, "-", N)
+1	sequence(N, "--")
+1	sequence(N, ".", "class")
+1	sequence(N, ".", "new", optional(N), N, optional(N), "(", optional(N), ")", optional(N))
+1	sequence(N, ".", "super", ".", N)
+1	sequence(N, ".", "super", ".", optional(N), N, "(", optional(N), ")")
+1	sequence(N, ".", N, N, "(", optional(N), ")")
+1	sequence(N, ".", optional(N), "super", "(", optional(N), ")", ";")
+1	sequence(N, ".", optional(N), N, "(", optional(N), ")")
+1	sequence(N, "/", N)
+1	sequence(N, "<", N)
+1	sequence(N, "<<", N)
+1	sequence(N, "<=", N)
+1	sequence(N, "==", N)
+1	sequence(N, ">", N)
+1	sequence(N, ">=", N)
+1	sequence(N, ">>", N)
+1	sequence(N, ">>>", N)
+1	sequence(N, "?", N, ":", N)
+1	sequence(N, "^", N)
+1	sequence(N, "instanceof", N)
+1	sequence(N, "|", N)
+1	sequence(N, "||", N)
+1	sequence(N, N, optional("..."), N)
+1	sequence(N, N, optional(N), optional(N))
+1	sequence(optional(N), "@", "interface", N, N)
+1	sequence(optional(N), "class", N, optional(N), optional(N), optional(N), N)
+1	sequence(optional(N), "enum", N, optional(N), N)
+1	sequence(optional(N), "interface", N, optional(N), optional(N), N)
+1	sequence(optional(N), "package", N, ";")
+1	sequence(optional(N), "super", "(", optional(N), ")", ";")
+1	sequence(optional(N), "this", "(", optional(N), ")", ";")
+1	sequence(optional(N), N, "(", optional(N), ")")
+1	sequence(optional(N), N, N, "(", ")", optional(N), ";")
+1	sequence(optional(N), N, optional(N), N)
+1	sequence(optional(N), optional(N), N, N, optional(N))
+1	sequence(optional(N), optional(N), N, N, optional(N), ";")
+1	sequence(optional(N), optional(N), optional(N))
+1	star(sequence(optional(N), optional(",")))
+1	star(sequence(optional(N), optional(","), optional(N)))

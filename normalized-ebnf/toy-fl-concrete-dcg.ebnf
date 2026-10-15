@@ -1,0 +1,11 @@
+N("program") ::= (N("function"))+;
+N("function") ::= (N("name") (N("name"))+ "=" N("expr") (N("newline"))+);
+N("expr") @label("binary") ::= (N("atom") ((N("ops") N("atom")))*);
+N("expr") @label("apply") ::= (N("name") (N("atom"))+);
+N("expr") @label("ifThenElse") ::= ("if" N("expr") "then" N("expr") "else" N("expr"));
+N("atom") @label("literal") ::= N("int");
+N("atom") @label("argument") ::= N("name");
+N("atom") ::= ("(" N("expr") ")");
+N("ops") @label("equal") ::= "==";
+N("ops") @label("plus") ::= "+";
+N("ops") @label("minus") ::= "-";

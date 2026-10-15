@@ -1,0 +1,10 @@
+N("Fighter") ::= (N("Name") "{" N("Personality") (N("Rule"))* "}");
+N("Personality") ::= (N("Characteristic") "=" N("Value"));
+N("Characteristic") ::= ("punchPower" | "punchReach" | "kickPower" | "kickReach");
+N("Value") ::= ("1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10");
+N("Rule") ::= (N("Conditions") "[" N("MoveAction") N("FightAction") "]");
+N("Conditions") ::= sep+(N("Condition"), N("ComboKeyword"));
+N("Condition") ::= ("far" | "near" | "much_weaker" | "weaker" | "even" | "stronger" | "much_stronger");
+N("ComboKeyword") ::= ("and" | "or");
+N("MoveAction") ::= ("run_towards" | "run_away" | "walk_towards" | "walk_away" | "stand" | "crouch" | ("choose" "(" (N("MoveAction"))+ ")"));
+N("FightAction") ::= ("block_high" | "block_low" | "punch_high" | "punch_low" | "kick_high" | "kick_low" | ("choose" "(" (N("FightAction"))+ ")"));

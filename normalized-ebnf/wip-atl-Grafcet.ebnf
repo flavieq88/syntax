@@ -1,0 +1,15 @@
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");
+N("LocatedElement") ::= N("NamedElement");
+N("NamedElement") ::= N("Grafcet");
+N("NamedElement") ::= N("Element");
+N("NamedElement") ::= N("Connection");
+N("Grafcet") ::= ((select("elements", N("Element")))+ (select("connections", N("Connection")))+);
+N("Element") ::= N("Step");
+N("Element") ::= N("Transition");
+N("Step") ::= (select("isInitial", N("Boolean")) select("isActive", N("Boolean")) select("action", N("String")) (select("incomingConnections", N("TransitionToStep")))+ (select("outgoingConnections", N("StepToTransition")))+);
+N("Transition") ::= (select("condition", N("String")) (select("incomingConnections", N("StepToTransition")))+ (select("outgoingConnections", N("TransitionToStep")))+);
+N("Connection") ::= N("StepToTransition");
+N("Connection") ::= N("TransitionToStep");
+N("StepToTransition") ::= (select("from", N("Step")) select("to", N("Transition")));
+N("TransitionToStep") ::= (select("from", N("Transition")) select("to", N("Step")));

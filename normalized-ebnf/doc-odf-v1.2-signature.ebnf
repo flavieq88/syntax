@@ -1,0 +1,6 @@
+@root N("dsig-document-signatures");
+
+N("dsig-document-signatures") ::= select("dsig:document-signatures", (N("dsig-document-signatures-attlist") (N("ds-signature"))+));
+N("dsig-document-signatures-attlist") ::= select("dsig:version", "1.2");
+N("ds-signature") ::= select("ds:Signature", N("dsMarkup"));
+N("dsMarkup") ::= ((any | value("string") | N("dsMarkup")))*;

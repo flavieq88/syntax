@@ -1,0 +1,12 @@
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("Metric") ::= (select("name", N("String")) (select("values", N("MetricValue")))+);
+N("MetricValue") ::= N("StringMetricValue");
+N("MetricValue") ::= N("BooleanMetricValue");
+N("MetricValue") ::= N("IntegerMetricValue");
+N("MetricValue") ::= N("DoubleMetricValue");
+N("StringMetricValue") ::= select("value", N("String"));
+N("BooleanMetricValue") ::= select("value", N("Boolean"));
+N("IntegerMetricValue") ::= select("value", N("Integer"));
+N("DoubleMetricValue") ::= select("value", N("Double"));

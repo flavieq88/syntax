@@ -1,0 +1,15 @@
+N("JSONObject") ::= ("{" sep*(N("JSONKeyValue"), ",") "}");
+N("JSONData") ::= N("JSONBasicType");
+N("JSONBasicType") ::= N("JSONString");
+N("JSONBasicType") ::= N("JSONNull");
+N("JSONBasicType") ::= N("JSONBoolean");
+N("JSONBasicType") ::= N("JSONNumber");
+N("JSONBasicType") ::= N("JSONArray");
+N("JSONBasicType") ::= N("JSONObject");
+N("JSONBoolean") ::= "false";
+N("JSONBoolean") ::= "true";
+N("JSONArray") ::= ("[" sep*(N("JSONBasicType"), ",") "]");
+N("JSONNumber") ::= (["-"] N("Digits") [("." N("Digits"))]);
+N("JSONNull") ::= "null";
+N("JSONKeyValue") ::= (select("key", N("JSONBasicType")) ":" select("val", N("JSONBasicType")));
+N("JSONString") ::= N("DoubleQuotedString");

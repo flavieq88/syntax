@@ -1,0 +1,23 @@
+# BGF production shape analysis
+source: dsl-business-motivation-v1.0-atlantic1.bgf
+productions: 62
+distinct_shapes: 14
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+32	N
+8	sequence(plus(N), plus(N))
+5	sequence(plus(N), plus(N), plus(N), plus(N))
+4	plus(N)
+4	sequence(plus(N), plus(N), plus(N))
+1	sequence(N, plus(N))
+1	sequence(plus(N), N)
+1	sequence(plus(N), N, plus(N))
+1	sequence(plus(N), plus(N), plus(N), N, plus(N), plus(N), plus(N), plus(N), plus(N))
+1	sequence(plus(N), plus(N), plus(N), plus(N), N, plus(N))
+1	sequence(plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N))
+1	sequence(plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), N, plus(N), plus(N), plus(N))
+1	sequence(plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N))
+1	value("string")

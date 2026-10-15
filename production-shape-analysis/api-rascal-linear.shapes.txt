@@ -1,0 +1,17 @@
+# BGF production shape analysis
+source: api-rascal-linear.bgf
+productions: 8
+distinct_shapes: 8
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	N
+1	choice(epsilon, epsilon, epsilon)
+1	sequence(marked("coefficients", N), marked("const", value("int")))
+1	sequence(marked("coefficients", N), marked("ctype", N), marked("const", value("int")))
+1	sequence(marked("varVals", N), marked("funVal", value("int")))
+1	star(N)
+1	star(sequence(marked("var", value("string")), marked("coef", value("int"))))
+1	star(sequence(marked("var", value("string")), marked("val", value("int"))))

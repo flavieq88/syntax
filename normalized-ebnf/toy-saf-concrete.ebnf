@@ -1,0 +1,10 @@
+@root N("Fighter");
+
+N("Fighter") @label("fighter") ::= (marked("name", N("Id")) "{" marked("specs", (N("Spec"))*) "}");
+N("Action") @label("choose") ::= ("choose" "(" marked("actions", (N("Id"))*) ")");
+N("Action") @label("action") ::= N("Id");
+N("Spec") @label("attribute") ::= (marked("name", N("Id")) "=" marked("strength", N("Number")));
+N("Spec") @label("behavior") ::= (marked("cond", N("Cond")) "[" marked("move", N("Action")) marked("fight", N("Action")) "]");
+N("Cond") @label("and") ::= (marked("lhs", N("Cond")) "and" marked("rhs", N("Cond")));
+N("Cond") @label("const") ::= N("Id");
+N("Cond") @label("or") ::= (marked("lhs", N("Cond")) "or" marked("rhs", N("Cond")));

@@ -1,0 +1,7 @@
+N("Trace") ::= ((select("levels", N("Level")))+ select("name", N("String")));
+N("Level") ::= (select("trace", N("Trace")) (select("calls", N("Call")))+);
+N("Call") ::= (select("level", N("Level")) (select("indexes", N("Index")))+ select("methodName", N("String")) select("DBAccessesNumber", N("Integer")) select("DBRowsNumber", N("Integer")) select("CPUTime", N("Integer")));
+N("Index") ::= select("value", N("Integer"));
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");

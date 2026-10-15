@@ -1,0 +1,16 @@
+# BGF production shape analysis
+source: toy-petstore-webservices.bgf
+productions: 10
+distinct_shapes: 7
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+4	N
+1	choice("true", "false")
+1	plus(N)
+1	sequence(N, N, N)
+1	sequence(plus(N), N)
+1	value("int")
+1	value("string")

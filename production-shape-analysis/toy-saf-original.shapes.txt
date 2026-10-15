@@ -1,0 +1,19 @@
+# BGF production shape analysis
+source: toy-saf-original.bgf
+productions: 10
+distinct_shapes: 10
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
+1	choice("and", "or")
+1	choice("block_high", "block_low", "punch_high", "punch_low", "kick_high", "kick_low", sequence("choose", "(", plus(N), ")"))
+1	choice("far", "near", "much_weaker", "weaker", "even", "stronger", "much_stronger")
+1	choice("punchPower", "punchReach", "kickPower", "kickReach")
+1	choice("run_towards", "run_away", "walk_towards", "walk_away", "stand", "crouch", sequence("choose", "(", plus(N), ")"))
+1	seplistplus(N, N)
+1	sequence(N, "=", N)
+1	sequence(N, "[", N, N, "]")
+1	sequence(N, "{", N, star(N), "}")

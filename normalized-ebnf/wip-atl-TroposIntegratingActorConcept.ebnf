@@ -1,0 +1,7 @@
+N("Actor") ::= N("Agent");
+N("Actor") ::= N("Position");
+N("Actor") ::= N("Role");
+N("Actor") ::= (N("Agent") | N("Position") | N("Role"));
+N("Agent") ::= (select("occupy", N("Position")) (select("play", N("Role")))+);
+N("Position") ::= (select("cover", N("Role")))+;
+N("Role") ::= epsilon;

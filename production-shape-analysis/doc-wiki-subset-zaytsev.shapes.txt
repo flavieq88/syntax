@@ -1,0 +1,13 @@
+# BGF production shape analysis
+source: doc-wiki-subset-zaytsev.bgf
+productions: 5
+distinct_shapes: 4
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	N
+1	sequence("[[", N, "]]")
+1	sequence("[[", N, "|", plus(N), "]]")
+1	star(N)

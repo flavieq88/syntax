@@ -1,0 +1,3 @@
+N("String") ::= value("string");
+N("Severity") ::= (select("error", epsilon) | select("warning", epsilon) | select("critic", epsilon));
+N("Problem") ::= (select("severity", N("Severity")) select("location", N("String")) select("description", N("String")));

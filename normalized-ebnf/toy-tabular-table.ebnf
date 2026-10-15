@@ -1,0 +1,4 @@
+N("String") ::= value("string");
+N("Table") ::= (select("rows", N("Row")))+;
+N("Row") ::= (select("cells", N("Cell")))+;
+N("Cell") ::= select("content", N("String"));

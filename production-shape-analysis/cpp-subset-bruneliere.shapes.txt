@@ -1,0 +1,22 @@
+# BGF production shape analysis
+source: cpp-subset-bruneliere.bgf
+productions: 26
+distinct_shapes: 13
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+11	N
+4	epsilon
+1	choice("true", "false")
+1	choice(N, N, N, N)
+1	choice(epsilon, epsilon, epsilon)
+1	plus(N)
+1	sequence(N, N)
+1	sequence(N, N, N)
+1	sequence(N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, plus(N))
+1	sequence(N, N, N, plus(N), plus(N))
+1	value("int")
+1	value("string")

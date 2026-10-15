@@ -1,0 +1,21 @@
+@root N("manifest");
+
+N("manifest") ::= select("manifest:manifest", (N("manifest-attlist") (N("file-entry"))+));
+N("manifest-attlist") ::= select("manifest:version", "1.2");
+N("file-entry") ::= select("manifest:file-entry", (N("file-entry-attlist") [N("encryption-data")]));
+N("file-entry-attlist") ::= (select("manifest:full-path", N("string")) [select("manifest:size", N("nonNegativeInteger"))] select("manifest:media-type", N("string")) [select("manifest:preferred-view-mode", ("edit" | "presentation-slide-show" | "read-only" | N("namespacedToken")))] [select("manifest:version", N("string"))]);
+N("encryption-data") ::= select("manifest:encryption-data", (N("encryption-data-attlist") N("algorithm") [N("start-key-generation")] N("key-derivation")));
+N("encryption-data-attlist") ::= (select("manifest:checksum-type", ("SHA1/1K" | N("anyURI"))) select("manifest:checksum", N("base64Binary")));
+N("algorithm") ::= select("manifest:algorithm", (N("algorithm-attlist") N("anyElements")));
+N("algorithm-attlist") ::= (select("manifest:algorithm-name", ("Blowfish CFB" | N("anyURI"))) select("manifest:initialisation-vector", N("base64Binary")));
+N("anyAttListOrElements") ::= ((value("string"))* N("anyElements"));
+N("anyElements") ::= (([value("string")] N("anyAttListOrElements") [value("string")]))*;
+N("key-derivation") ::= select("manifest:key-derivation", N("key-derivation-attlist"));
+N("key-derivation-attlist") ::= (select("manifest:key-derivation-name", ("PBKDF2" | N("anyURI"))) select("manifest:salt", N("base64Binary")) select("manifest:iteration-count", N("nonNegativeInteger")) [select("manifest:key-size", N("nonNegativeInteger"))]);
+N("start-key-generation") ::= select("manifest:start-key-generation", N("start-key-generation-attlist"));
+N("start-key-generation-attlist") ::= (select("manifest:start-key-generation-name", ("SHA1" | N("anyURI"))) [select("manifest:key-size", N("nonNegativeInteger"))]);
+N("base64Binary") ::= value("string");
+N("namespacedToken") ::= value("string");
+N("nonNegativeInteger") ::= value("int");
+N("string") ::= value("string");
+N("anyURI") ::= value("string");

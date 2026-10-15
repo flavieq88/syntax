@@ -1,0 +1,16 @@
+N("PROGRAM") ::= ("begin" N("DECLS") [(N("STATEMENT") ((";" N("STATEMENT")))*)] "end");
+N("DECLS") ::= ("declare" [(N("ID-TYPE") (("," N("ID-TYPE")))*)] ";");
+N("ID-TYPE") ::= (N("PICO-ID") ":" N("TYPE"));
+N("STATEMENT") ::= (N("PICO-ID") ":=" N("EXP"));
+N("STATEMENT") ::= ("if" N("EXP") "then" [(N("STATEMENT") ((";" N("STATEMENT")))*)] "else" [(N("STATEMENT") ((";" N("STATEMENT")))*)] "fi");
+N("STATEMENT") ::= ("while" N("EXP") "do" [(N("STATEMENT") ((";" N("STATEMENT")))*)] "od");
+N("EXP") ::= N("PICO-ID");
+N("EXP") ::= N("NatCon");
+N("EXP") ::= N("StrCon");
+N("EXP") ::= (N("EXP") "+" N("EXP"));
+N("EXP") ::= (N("EXP") "-" N("EXP"));
+N("EXP") ::= (N("EXP") "||" N("EXP"));
+N("EXP") ::= ("(" N("EXP") ")");
+N("TYPE") ::= "natural";
+N("TYPE") ::= "string";
+N("TYPE") ::= "nil-type";

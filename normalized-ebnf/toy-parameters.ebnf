@@ -1,0 +1,3 @@
+N("String") ::= value("string");
+N("ParametersList") ::= (select("parameters", N("Parameter")))+;
+N("Parameter") ::= (select("name", N("String")) select("value", N("String")));

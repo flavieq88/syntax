@@ -1,0 +1,20 @@
+# BGF production shape analysis
+source: wip-atl-SQLDML.bgf
+productions: 51
+distinct_shapes: 11
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+34	N
+3	plus(N)
+3	sequence(N, N, N)
+2	sequence(N, N)
+2	sequence(N, plus(N))
+2	sequence(plus(N), N)
+1	choice("true", "false")
+1	sequence(N)
+1	sequence(N, plus(N), N)
+1	value("int")
+1	value("string")

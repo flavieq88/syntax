@@ -1,0 +1,15 @@
+N("ModelKind") ::= (select("KM3", epsilon) | select("UML2", epsilon));
+N("RootMeasureSet") ::= (select("modelType", N("ModelKind")) (select("categories", N("Category")))+ (select("measureSets", N("MeasureSet")))+);
+N("Category") ::= (select("name", N("String")) select("desc", N("String")) (select("metrics", N("Metric")))+ select("root", N("RootMeasureSet")));
+N("Metric") ::= (select("name", N("String")) select("desc", N("String")) select("preferredValue", N("String")) select("category", N("Category")));
+N("ElementKind") ::= (select("metamodel", epsilon) | select("model", epsilon) | select("package", epsilon) | select("interface", epsilon) | select("class", epsilon));
+N("MeasureSet") ::= (select("elementName", N("String")) select("elementType", N("ElementKind")) (select("measures", N("Measure")))+ select("root", N("RootMeasureSet")) (select("subsets", N("MeasureSet")))+ select("parent", N("MeasureSet")));
+N("Measure") ::= N("IntegerMeasure");
+N("Measure") ::= N("DoubleMeasure");
+N("Measure") ::= N("PercentageMeasure");
+N("IntegerMeasure") ::= select("value", N("Integer"));
+N("DoubleMeasure") ::= select("value", N("Double"));
+N("PercentageMeasure") ::= select("value", N("Double"));
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");

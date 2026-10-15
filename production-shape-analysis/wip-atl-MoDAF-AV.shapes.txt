@@ -1,0 +1,23 @@
+# BGF production shape analysis
+source: wip-atl-MoDAF-AV.bgf
+productions: 89
+distinct_shapes: 14
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+49	N
+21	sequence(N)
+7	sequence(N, N)
+2	plus(N)
+1	sequence(N, N, N)
+1	sequence(N, N, N, N)
+1	sequence(N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, plus(N), plus(N), N)
+1	sequence(N, N, N, N, N, N, plus(N))
+1	sequence(N, N, N, plus(N))
+1	sequence(N, N, plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N))
+1	sequence(N, plus(N))
+1	sequence(N, plus(N), N, plus(N))
+1	value("string")

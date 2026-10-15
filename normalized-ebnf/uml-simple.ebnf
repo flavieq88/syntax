@@ -1,0 +1,13 @@
+N("UMLModelElement") ::= N("Attribute");
+N("UMLModelElement") ::= N("Package");
+N("UMLModelElement") ::= N("PackageElement");
+N("Attribute") ::= (select("owner", N("Class")) select("type", N("Classifier")));
+N("Package") ::= (select("elements", N("PackageElement")))+;
+N("PackageElement") ::= N("Classifier");
+N("PackageElement") ::= N("Association");
+N("Classifier") ::= N("Class");
+N("Classifier") ::= N("PrimitiveDataType");
+N("Class") ::= ((select("attribute", N("Attribute")))+ (select("general", N("Class")))+ (select("generalOpposite", N("Class")))+ (select("reverse", N("Association")))+ (select("forward", N("Association")))+);
+N("PrimitiveDataType") ::= ((select("typeOpposite", N("Attribute")))+);
+N("Association") ::= (select("source", N("Class")) select("destination", N("Class")));
+N("String") ::= value("string");

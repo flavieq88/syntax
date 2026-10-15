@@ -1,0 +1,13 @@
+N("graph") ::= (["strict"] ("graph" | "digraph") [N("ID")] "{" N("stmt_list") "}");
+N("stmt_list") ::= [(N("stmt") [";"] [N("stmt_list")])];
+N("stmt") ::= (N("node_stmt") | N("edge_stmt") | N("attr_stmt") | (N("ID") "=" N("ID")) | N("subgraph"));
+N("attr_stmt") ::= (("graph" | "node" | "edge") N("attr_list"));
+N("attr_list") ::= ("[" [N("a_list")] "]" [N("attr_list")]);
+N("a_list") ::= (N("ID") [("=" N("ID"))] [","] [N("a_list")]);
+N("edge_stmt") ::= ((N("node_id") | N("subgraph")) N("edgeRHS") [N("attr_list")]);
+N("edgeRHS") ::= (N("edgeop") (N("node_id") | N("subgraph")) [N("edgeRHS")]);
+N("node_stmt") ::= (N("node_id") [N("attr_list")]);
+N("node_id") ::= (N("ID") [N("port")]);
+N("port") ::= ((":" N("ID") [(":" N("compass_pt"))]) | (":" N("compass_pt")));
+N("subgraph") ::= ([(N("subgraph") [N("ID")])] "{" N("stmt_list") "}");
+N("compass_pt") ::= ("n" | "ne" | "e" | "se" | "s" | "sw" | "w" | "nw" | "c" | "_");

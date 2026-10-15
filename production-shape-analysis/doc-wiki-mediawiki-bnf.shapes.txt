@@ -1,0 +1,142 @@
+# BGF production shape analysis
+source: doc-wiki-mediawiki-bnf.bgf
+productions: 191
+distinct_shapes: 133
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+17	sequence(N, optional(N))
+16	N
+8	choice(N, N)
+7	choice(N, N, N)
+5	choice(N, N, N, N, N)
+4	sequence(N, N)
+3	sequence(N, optional(N), N, optional(N), choice(N, epsilon))
+2	choice(N, N, N, N, N, N, N, N)
+2	choice(N, N, N, sequence(".", ".", ".", "?"))
+2	choice(N, N, sequence(".", ".", ".", "?"))
+2	choice(N, sequence(N, N, N, N, N))
+2	choice(sequence(N, optional(N)), N)
+1	" "
+1	"&"
+1	"''"
+1	"'''"
+1	"'''''"
+1	"/"
+1	"<"
+1	">"
+1	"["
+1	"[["
+1	"]"
+1	"]]"
+1	"_"
+1	"baseline"
+1	"border"
+1	"bottom"
+1	"frameless"
+1	"left"
+1	"middle"
+1	"none"
+1	"right"
+1	"sub"
+1	"text-bottom"
+1	"text-top"
+1	"top"
+1	"|"
+1	choice(" ", "%", "!", "\"", "$", "&", "'", "(", ")", "*", ",", "-", ".", "/", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ":", ";", "=", "?", "@", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "\\", "^", "_", "`", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "~", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", " ", "¡", "¢", "£", "¤", "¥", "¦", "§", "¨", "©", "ª", "«", "¬", "­", "®", "¯", "°", "±", "²", "³", "´", "µ", "¶", "·", "¸", "¹", "º", "»", "¼", "½", "¾", "¿", "À", "Á", "Â", "Ã", "Ä", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï", "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "×", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "Þ", "ß", "à", "á", "â", "ã", "ä", "å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "÷", "ø", "ù", "ú", "û", "ü", "ý", "þ", "ÿ", "+")
+1	choice(" ", N, N, N, N, N)
+1	choice("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
+1	choice("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+1	choice("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
+1	choice("[", "]", "{", "}", "<", ">", "_", "|", "#")
+1	choice("[", "]", "|")
+1	choice("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
+1	choice("center", "centre")
+1	choice("framed", "enframed", "frame")
+1	choice("jpg", "jpeg", "png", "svg", "gif", "bmp")
+1	choice("ogg", "wav")
+1	choice("page=$1", "page $1")
+1	choice("super", "sup")
+1	choice("thumbnail", "thumb")
+1	choice("|", "[", "]", "*", "#", ":", ";", "<", ">", "=", "'", "{", "}")
+1	choice(N, "A", "B", "C", "D", "E", "F", "a", "b", "c", "d", "e", "f")
+1	choice(N, N, ".", ",", sequence(".", ".", "."))
+1	choice(N, N, N, N)
+1	choice(N, N, N, N, N, N)
+1	choice(N, N, N, N, N, N, N, N, N, N, sequence(sequence(N, N, "?"), ".", ".", "."))
+1	choice(N, N, N, sequence(N, N, N), N, sequence(".", ".", "."))
+1	choice(N, sequence("<nowiki>", star(choice("|", "[", "]", "<", ">", "{", "}")), "</nowiki>"), sequence(N, star(" "), choice("*", "#", ":", ";")), sequence(N, optional(" "), "=", optional(" "), N), sequence(N, "'"), sequence(" '", N))
+1	choice(N, sequence(optional(N), N))
+1	choice(sequence("&", N, ";"), sequence("&#", N, ";"), sequence("&#x", N, ";"))
+1	choice(sequence("thumbnail=", N), sequence("thumb=", N))
+1	choice(sequence(N, N), N, N)
+1	choice(sequence(N, N), sequence(N, N), N, N)
+1	choice(sequence(N, N, optional(N), optional(N), N), N)
+1	choice(sequence(N, optional(N)), optional(N))
+1	choice(sequence(optional(choice(N, ":")), optional(N), N), sequence("/", N), sequence(star("../"), optional(N)))
+1	plus(N)
+1	plus(optional(choice(N, "%")))
+1	plus(optional(choice(N, "%", "#")))
+1	sequence(" ", N, N, optional(star(N)))
+1	sequence(" ", optional(N), N)
+1	sequence("#", optional(choice(N, N)))
+1	sequence("&lt;!--", optional(star(N)), "-->")
+1	sequence("&lt;/html", optional(N), "&gt;")
+1	sequence("&lt;/nowiki", optional(N), "&gt;")
+1	sequence("&lt;/pre", optional(N), "&gt;")
+1	sequence("&lt;html", optional(sequence(N, optional(N))), "&gt;")
+1	sequence("&lt;nowiki", optional(sequence(N, optional(N))), "&gt;")
+1	sequence("&lt;pre", optional(sequence(N, optional(N))), "&gt;")
+1	sequence("''", star("'"))
+1	sequence("*", optional(choice(N, N)))
+1	sequence("-", optional(N))
+1	sequence("----", optional(N), optional(N), N)
+1	sequence(":", N)
+1	sequence(":", optional(choice(N, N)))
+1	sequence(";", N, optional(N))
+1	sequence("<gallery>", optional(N), N, star(sequence(optional(N), N)), optional(N), "</gallery>")
+1	sequence("=", N, "=", N, N)
+1	sequence("==", N, "==", N, N)
+1	sequence("===", N, "===", N, N)
+1	sequence("====", N, "====", N, N)
+1	sequence("=====", N, "=====", N, N)
+1	sequence("======", N, "======", N, N)
+1	sequence("?", N, N, ".", ".", ".", "?")
+1	sequence("ISBN", sequence(" ", "+"), N, "?", sequence(N, "/", "\\", N, "/"))
+1	sequence("PMID", N, N)
+1	sequence("RFC", N, N)
+1	sequence("[[", "Image:", N, ".", N, star(sequence(N, N)), "]]")
+1	sequence("[[", "Media:", N, ".", N, "]]")
+1	sequence("__FORCETOC__", N)
+1	sequence("__NOEDITSECTION__", N)
+1	sequence("__NOGALLERY__", N)
+1	sequence("__NOTOC__", N)
+1	sequence("__TOC__", N)
+1	sequence("upright", optional(sequence(optional("="), N)))
+1	sequence("{|", optional(sequence(" ", N)), N, N, "|}")
+1	sequence("|", N, optional(sequence("|", N)))
+1	sequence("|", optional(sequence(N, "|")), N, N, optional(N))
+1	sequence("|-", optional(N), N, N, optional(N))
+1	sequence(N, ",", star(sequence(optional(" "), N)))
+1	sequence(N, ",", star(sequence(optional(choice(" ", "_")), N)))
+1	sequence(N, ".", N)
+1	sequence(N, ":")
+1	sequence(N, ":", ":", "$", N, sequence(N, N), choice(sequence("*", "Aacute"), "aacute", sequence(".", ".", ".", "*")))
+1	sequence(N, ":", N, ".", N, optional(choice(epsilon, N)))
+1	sequence(N, "px")
+1	sequence(N, N, ":", N, optional(sequence(N, N)), N)
+1	sequence(N, N, N, N, choice(N, N, N))
+1	sequence(N, N, optional(sequence("#", N)), optional(sequence(N, optional(N))), N, optional(N))
+1	sequence(N, choice(N, sequence(optional(N), N), sequence(N, N)))
+1	sequence(N, choice(N, sequence(optional(N), N), sequence(choice(N, epsilon), N)))
+1	sequence(N, sequence(N, ".", N, ".", "http://", ",", "mailto:"))
+1	sequence(N, star(N), star(sequence(" ", star(" "), N, star(N))))
+1	sequence(N, star(N), star(sequence(N, star(N), N, star(N))))
+1	sequence(N, star(sequence(optional("_"), N)))
+1	sequence(optional(N), ":")
+1	sequence(optional(choice(N, ":")), optional(N), N)
+1	sequence(sequence("97", choice("8", "9"), choice(" ", "-"), "?"), sequence(N, choice(" ", "-"), "?"), star("9"), choice(N, "X", "x"))
+1	sequence(sequence(N, "="), star(sequence(optional(" "), sequence(N, "="))))
+1	sequence(star(sequence(N, star(" "))), sequence(N, "]"))

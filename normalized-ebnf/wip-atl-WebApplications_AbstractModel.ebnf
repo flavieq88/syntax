@@ -1,0 +1,11 @@
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("HyperLink") ::= (select("server", N("Server/ServerPage")))+;
+N("ClientPage") ::= select("hyperlink", N("HyperLink"));
+N("ClientPageModule") ::= select("consistsOf", N("Client/ClientPage"));
+N("LogicInterface") ::= epsilon;
+N("DesignElement") ::= epsilon;
+N("ServerPage") ::= (select("useBusinessLogic", N("Server/BusinessLogic")) select("useDesignTemplate", N("Server/DesignTemplate")) (select("generates", N("Client/ClientPage")))+ (select("link", N("HyperLink")))+);
+N("BusinessLogic") ::= epsilon;
+N("DesignTemplate") ::= epsilon;

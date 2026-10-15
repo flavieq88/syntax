@@ -1,0 +1,13 @@
+N("BuiltInSort") ::= N("List");
+N("BuiltInOperator") ::= N("ListOperator");
+N("List") ::= select("list", N("Sort"));
+N("BuiltInConstant") ::= N("EmptyList");
+N("ListOperator.content") ::= N("BuiltInOperator.content");
+N("ListOperator") ::= (N("ListAppend") | N("ListConcatenation") | N("MakeList") | N("ListLength") | N("MemberAtIndex") | N("Sublist"));
+N("EmptyList") ::= select("emptylist", (N("Sort") N("BuiltInConstant.content")));
+N("ListLength") ::= select("listlength", N("ListOperator.content"));
+N("MakeList") ::= select("makelist", (N("Sort") N("ListOperator.content")));
+N("ListConcatenation") ::= select("listconcatenation", N("ListOperator.content"));
+N("ListAppend") ::= select("listappend", N("ListOperator.content"));
+N("MemberAtIndex") ::= select("memberatindex", (select("index", value("int")) N("ListOperator.content")));
+N("Sublist") ::= select("sublist", (select("start", value("int")) select("length", value("int")) N("ListOperator.content")));

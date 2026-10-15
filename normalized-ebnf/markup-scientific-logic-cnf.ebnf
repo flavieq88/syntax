@@ -1,0 +1,4 @@
+N("Line") @label("comment") ::= select("comment", N("Comment"));
+N("Line") @label("disjunct") ::= select("disjunct", N("Disjunct"));
+N("Disjuncts") @label("numbers") ::= (N("Number"))+;
+N("Dimacs") ::= (select("prologue", N("Prologue")) select("lines", sep+(N("Line"), "\\n")) "\\n");

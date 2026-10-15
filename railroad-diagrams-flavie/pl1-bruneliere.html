@@ -1,0 +1,1026 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pl1-bruneliere</title>
+<style>
+:root { color-scheme: light; --ink:#17212b; --muted:#5d6874; --line:#d8dee5;
+  --paper:#fff; --wash:#f4f7f9; --accent:#315e75; }
+* { box-sizing:border-box }
+body { margin:0; color:var(--ink); background:var(--wash); font:15px/1.45 system-ui,sans-serif }
+.layout { display:grid; grid-template-columns:280px 1fr; min-height:100vh }
+nav { border-right:1px solid var(--line); background:var(--paper); padding:20px; overflow-y:auto;
+  max-height:100vh; position:sticky; top:0 }
+nav h1 { font-size:17px; margin:0 0 12px }
+nav ul { list-style:none; margin:0; padding:0 }
+nav li { margin:2px 0 }
+nav a { color:var(--accent); text-decoration:none; font-size:13px }
+nav a:hover { text-decoration:underline }
+.badge { margin-left:6px; font-size:10px; color:var(--accent); border:1px solid var(--accent);
+  border-radius:8px; padding:0 6px; vertical-align:middle }
+main { padding:28px 32px }
+section { background:var(--paper); border:1px solid var(--line); border-radius:9px;
+  margin:0 0 22px; padding:18px 20px; scroll-margin-top:16px }
+h2 { margin:0 0 12px; font-size:16px; font-family:ui-monospace,SFMono-Regular,Consolas,monospace }
+.diagram { overflow-x:auto }
+.diagram svg { display:block }
+.error { color:#a33; font-family:ui-monospace,monospace }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+<h1>pl1-bruneliere</h1>
+<ul>
+<li><a href="#PLIClassifier">PLIClassifier</a></li><li><a href="#PLIClassifier">PLIClassifier</a></li><li><a href="#PLIClassifier">PLIClassifier</a></li><li><a href="#PLIClassifier">PLIClassifier</a></li><li><a href="#PLISimpleType">PLISimpleType</a></li><li><a href="#PLISimpleType">PLISimpleType</a></li><li><a href="#PLISimpleType">PLISimpleType</a></li><li><a href="#PLINamedType">PLINamedType</a></li><li><a href="#PLIComposedType">PLIComposedType</a></li><li><a href="#PLIAlias">PLIAlias</a></li><li><a href="#PLIAttribute">PLIAttribute</a></li><li><a href="#PLIComputationalType">PLIComputationalType</a></li><li><a href="#PLINonComputationalType">PLINonComputationalType</a></li><li><a href="#PLIElement">PLIElement</a></li><li><a href="#PLIElementInitialValue">PLIElementInitialValue</a></li><li><a href="#PLISourceText">PLISourceText</a></li><li><a href="#PLIArray">PLIArray</a></li><li><a href="#PLIArray">PLIArray</a></li><li><a href="#PLIArray">PLIArray</a></li><li><a href="#PLIArray">PLIArray</a></li><li><a href="#PLIArray">PLIArray</a></li><li><a href="#PLIFixedBoundArray">PLIFixedBoundArray</a></li><li><a href="#PLIFixedLboundArray">PLIFixedLboundArray</a></li><li><a href="#PLIHBoundArray">PLIHBoundArray</a></li><li><a href="#PLIVariableBoundArray">PLIVariableBoundArray</a></li><li><a href="#String">String</a></li><li><a href="#Integer">Integer</a></li>
+</ul>
+</nav>
+<main>
+<section id="PLIClassifier"><h2>PLIClassifier</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 230.5 62" width="230.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M180.5 31h0.0" /><rect height="22" width="130.5" x="50" y="20"></rect><text x="115.25" y="35">PLISimpleType</text></g><path d="M180.5 31h10" /><path d="M 190.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIClassifier"><h2>PLIClassifier</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 222.0 62" width="222.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M172.0 31h0.0" /><rect height="22" width="122" x="50" y="20"></rect><text x="111" y="35">PLINamedType</text></g><path d="M172.0 31h10" /><path d="M 182.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIClassifier"><h2>PLIClassifier</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 247.5 62" width="247.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M197.5 31h0.0" /><rect height="22" width="147.5" x="50" y="20"></rect><text x="123.75" y="35">PLIComposedType</text></g><path d="M197.5 31h10" /><path d="M 207.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIClassifier"><h2>PLIClassifier</h2><div class="diagram"><svg class="railroad-diagram" height="71" viewBox="0 0 316.0 71" width="316.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M266.0 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M121.0 31h0.0" /><rect height="22" width="71" x="50" y="20"></rect><text x="85.5" y="35">String</text></g><path d="M121.0 31h10" /><path d="M131.0 31h10" /><g>
+<path d="M141.0 31h0.0" /><path d="M266.0 31h0.0" /><path d="M141.0 31h10" /><g class="non-terminal ">
+<path d="M151.0 31h0.0" /><path d="M256.0 31h0.0" /><rect height="22" width="105" x="151" y="20"></rect><text x="203.5" y="35">PLIElement</text></g><path d="M256.0 31h10" /><path d="M151.0 31a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10" /><g>
+<path d="M151.0 51h105.0" /></g><path d="M256.0 51a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10" /></g></g><path d="M266.0 31h10" /><path d="M 276.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLISimpleType"><h2>PLISimpleType</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 290.0 62" width="290.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M240.0 31h0.0" /><rect height="22" width="190" x="50" y="20"></rect><text x="145" y="35">PLIComputationalType</text></g><path d="M240.0 31h10" /><path d="M 250.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLISimpleType"><h2>PLISimpleType</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 315.5 62" width="315.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M265.5 31h0.0" /><rect height="22" width="215.5" x="50" y="20"></rect><text x="157.75" y="35">PLINonComputationalType</text></g><path d="M265.5 31h10" /><path d="M 275.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLISimpleType"><h2>PLISimpleType</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 188.0 62" width="188.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M138.0 31h0.0" /><rect height="22" width="88" x="50" y="20"></rect><text x="94" y="35">PLIAlias</text></g><path d="M138.0 31h10" /><path d="M 148.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLINamedType"><h2>PLINamedType</h2><div class="diagram"><svg class="railroad-diagram" height="71" viewBox="0 0 316.0 71" width="316.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M266.0 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M121.0 31h0.0" /><rect height="22" width="71" x="50" y="20"></rect><text x="85.5" y="35">String</text></g><path d="M121.0 31h10" /><path d="M131.0 31h10" /><g>
+<path d="M141.0 31h0.0" /><path d="M266.0 31h0.0" /><path d="M141.0 31h10" /><g class="non-terminal ">
+<path d="M151.0 31h0.0" /><path d="M256.0 31h0.0" /><rect height="22" width="105" x="151" y="20"></rect><text x="203.5" y="35">PLIElement</text></g><path d="M256.0 31h10" /><path d="M151.0 31a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10" /><g>
+<path d="M151.0 51h105.0" /></g><path d="M256.0 51a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10" /></g></g><path d="M266.0 31h10" /><path d="M 276.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIComposedType"><h2>PLIComposedType</h2><div class="diagram"><svg class="railroad-diagram" height="71" viewBox="0 0 225.0 71" width="225.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M175.0 31h0.0" /><path d="M50.0 31h10" /><g class="non-terminal ">
+<path d="M60.0 31h0.0" /><path d="M165.0 31h0.0" /><rect height="22" width="105" x="60" y="20"></rect><text x="112.5" y="35">PLIElement</text></g><path d="M165.0 31h10" /><path d="M60.0 31a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10" /><g>
+<path d="M60.0 51h105.0" /></g><path d="M165.0 51a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10" /></g><path d="M175.0 31h10" /><path d="M 185.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIAlias"><h2>PLIAlias</h2><div class="diagram"><svg class="railroad-diagram" height="71" viewBox="0 0 392.5 71" width="392.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M342.5 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M180.5 31h0.0" /><rect height="22" width="130.5" x="50" y="20"></rect><text x="115.25" y="35">PLISimpleType</text></g><path d="M180.5 31h10" /><path d="M190.5 31h10" /><g>
+<path d="M200.5 31h0.0" /><path d="M342.5 31h0.0" /><path d="M200.5 31h10" /><g class="non-terminal ">
+<path d="M210.5 31h0.0" /><path d="M332.5 31h0.0" /><rect height="22" width="122" x="210.5" y="20"></rect><text x="271.5" y="35">PLIAttribute</text></g><path d="M332.5 31h10" /><path d="M210.5 31a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10" /><g>
+<path d="M210.5 51h122.0" /></g><path d="M332.5 51a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10" /></g></g><path d="M342.5 31h10" /><path d="M 352.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIAttribute"><h2>PLIAttribute</h2><div class="diagram"><svg class="railroad-diagram" height="60" viewBox="0 0 80 60" width="80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 20v20m10 -20v20m-10 -10h20" /></g><g>
+<path d="M40 30h0" /></g><path d="M 40 30 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIComputationalType"><h2>PLIComputationalType</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 188.0 62" width="188.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M138.0 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M138.0 31h0.0" /><rect height="22" width="88" x="50" y="20"></rect><text x="94" y="35">PLIAlias</text></g></g><path d="M138.0 31h10" /><path d="M 148.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLINonComputationalType"><h2>PLINonComputationalType</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 188.0 62" width="188.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M138.0 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M138.0 31h0.0" /><rect height="22" width="88" x="50" y="20"></rect><text x="94" y="35">PLIAlias</text></g></g><path d="M138.0 31h10" /><path d="M 148.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIElement"><h2>PLIElement</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 1065.5 62" width="1065.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M1015.5 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M121.0 31h0.0" /><rect height="22" width="71" x="50" y="20"></rect><text x="85.5" y="35">String</text></g><path d="M121.0 31h10" /><path d="M131.0 31h10" /><g class="non-terminal ">
+<path d="M141.0 31h0.0" /><path d="M212.0 31h0.0" /><rect height="22" width="71" x="141" y="20"></rect><text x="176.5" y="35">String</text></g><path d="M212.0 31h10" /><path d="M222.0 31h10" /><g class="non-terminal ">
+<path d="M232.0 31h0.0" /><path d="M362.5 31h0.0" /><rect height="22" width="130.5" x="232" y="20"></rect><text x="297.25" y="35">PLIClassifier</text></g><path d="M362.5 31h10" /><path d="M372.5 31h10" /><g class="non-terminal ">
+<path d="M382.5 31h0.0" /><path d="M530.0 31h0.0" /><rect height="22" width="147.5" x="382.5" y="20"></rect><text x="456.25" y="35">PLIComposedType</text></g><path d="M530.0 31h10" /><path d="M540.0 31h10" /><g class="non-terminal ">
+<path d="M550.0 31h0.0" /><path d="M757.0 31h0.0" /><rect height="22" width="207" x="550" y="20"></rect><text x="653.5" y="35">PLIElementInitialValue</text></g><path d="M757.0 31h10" /><path d="M767.0 31h10" /><g class="non-terminal ">
+<path d="M777.0 31h0.0" /><path d="M907.5 31h0.0" /><rect height="22" width="130.5" x="777" y="20"></rect><text x="842.25" y="35">PLISourceText</text></g><path d="M907.5 31h10" /><path d="M917.5 31h10" /><g class="non-terminal ">
+<path d="M927.5 31h0.0" /><path d="M1015.5 31h0.0" /><rect height="22" width="88" x="927.5" y="20"></rect><text x="971.5" y="35">PLIArray</text></g></g><path d="M1015.5 31h10" /><path d="M 1025.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIElementInitialValue"><h2>PLIElementInitialValue</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 171.0 62" width="171.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M121.0 31h0.0" /><rect height="22" width="71" x="50" y="20"></rect><text x="85.5" y="35">String</text></g><path d="M121.0 31h10" /><path d="M 131.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLISourceText"><h2>PLISourceText</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 262.0 62" width="262.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M212.0 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M121.0 31h0.0" /><rect height="22" width="71" x="50" y="20"></rect><text x="85.5" y="35">String</text></g><path d="M121.0 31h10" /><path d="M131.0 31h10" /><g class="non-terminal ">
+<path d="M141.0 31h0.0" /><path d="M212.0 31h0.0" /><rect height="22" width="71" x="141" y="20"></rect><text x="176.5" y="35">String</text></g></g><path d="M212.0 31h10" /><path d="M 222.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIArray"><h2>PLIArray</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 273.0 62" width="273.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M223.0 31h0.0" /><rect height="22" width="173" x="50" y="20"></rect><text x="136.5" y="35">PLIFixedBoundArray</text></g><path d="M223.0 31h10" /><path d="M 233.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIArray"><h2>PLIArray</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 281.5 62" width="281.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M231.5 31h0.0" /><rect height="22" width="181.5" x="50" y="20"></rect><text x="140.75" y="35">PLIFixedLboundArray</text></g><path d="M231.5 31h10" /><path d="M 241.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIArray"><h2>PLIArray</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 239.0 62" width="239.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M189.0 31h0.0" /><rect height="22" width="139" x="50" y="20"></rect><text x="119.5" y="35">PLIHBoundArray</text></g><path d="M189.0 31h10" /><path d="M 199.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIArray"><h2>PLIArray</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 298.5 62" width="298.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M248.5 31h0.0" /><rect height="22" width="198.5" x="50" y="20"></rect><text x="149.25" y="35">PLIVariableBoundArray</text></g><path d="M248.5 31h10" /><path d="M 258.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIArray"><h2>PLIArray</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 205.0 62" width="205.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M155.0 31h0.0" /><rect height="22" width="105" x="50" y="20"></rect><text x="102.5" y="35">PLIElement</text></g><path d="M155.0 31h10" /><path d="M 165.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIFixedBoundArray"><h2>PLIFixedBoundArray</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 404.0 62" width="404.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M354.0 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M129.5 31h0.0" /><rect height="22" width="79.5" x="50" y="20"></rect><text x="89.75" y="35">Integer</text></g><path d="M129.5 31h10" /><path d="M139.5 31h10" /><g class="non-terminal ">
+<path d="M149.5 31h0.0" /><path d="M229.0 31h0.0" /><rect height="22" width="79.5" x="149.5" y="20"></rect><text x="189.25" y="35">Integer</text></g><path d="M229.0 31h10" /><path d="M239.0 31h10" /><g class="non-terminal ">
+<path d="M249.0 31h0.0" /><path d="M354.0 31h0.0" /><rect height="22" width="105" x="249" y="20"></rect><text x="301.5" y="35">PLIElement</text></g></g><path d="M354.0 31h10" /><path d="M 364.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIFixedLboundArray"><h2>PLIFixedLboundArray</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 395.5 62" width="395.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M345.5 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M129.5 31h0.0" /><rect height="22" width="79.5" x="50" y="20"></rect><text x="89.75" y="35">Integer</text></g><path d="M129.5 31h10" /><path d="M139.5 31h10" /><g class="non-terminal ">
+<path d="M149.5 31h0.0" /><path d="M220.5 31h0.0" /><rect height="22" width="71" x="149.5" y="20"></rect><text x="185" y="35">String</text></g><path d="M220.5 31h10" /><path d="M230.5 31h10" /><g class="non-terminal ">
+<path d="M240.5 31h0.0" /><path d="M345.5 31h0.0" /><rect height="22" width="105" x="240.5" y="20"></rect><text x="293" y="35">PLIElement</text></g></g><path d="M345.5 31h10" /><path d="M 355.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIHBoundArray"><h2>PLIHBoundArray</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 395.5 62" width="395.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M345.5 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M129.5 31h0.0" /><rect height="22" width="79.5" x="50" y="20"></rect><text x="89.75" y="35">Integer</text></g><path d="M129.5 31h10" /><path d="M139.5 31h10" /><g class="non-terminal ">
+<path d="M149.5 31h0.0" /><path d="M220.5 31h0.0" /><rect height="22" width="71" x="149.5" y="20"></rect><text x="185" y="35">String</text></g><path d="M220.5 31h10" /><path d="M230.5 31h10" /><g class="non-terminal ">
+<path d="M240.5 31h0.0" /><path d="M345.5 31h0.0" /><rect height="22" width="105" x="240.5" y="20"></rect><text x="293" y="35">PLIElement</text></g></g><path d="M345.5 31h10" /><path d="M 355.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="PLIVariableBoundArray"><h2>PLIVariableBoundArray</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 387.0 62" width="387.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g>
+<path d="M50 31h0.0" /><path d="M337.0 31h0.0" /><g class="non-terminal ">
+<path d="M50.0 31h0.0" /><path d="M121.0 31h0.0" /><rect height="22" width="71" x="50" y="20"></rect><text x="85.5" y="35">String</text></g><path d="M121.0 31h10" /><path d="M131.0 31h10" /><g class="non-terminal ">
+<path d="M141.0 31h0.0" /><path d="M212.0 31h0.0" /><rect height="22" width="71" x="141" y="20"></rect><text x="176.5" y="35">String</text></g><path d="M212.0 31h10" /><path d="M222.0 31h10" /><g class="non-terminal ">
+<path d="M232.0 31h0.0" /><path d="M337.0 31h0.0" /><rect height="22" width="105" x="232" y="20"></rect><text x="284.5" y="35">PLIElement</text></g></g><path d="M337.0 31h10" /><path d="M 347.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="String"><h2>String</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 179.5 62" width="179.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M129.5 31h0.0" /><rect height="22" width="79.5" x="50" y="20"></rect><text x="89.75" y="35">#string</text></g><path d="M129.5 31h10" /><path d="M 139.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section><section id="Integer"><h2>Integer</h2><div class="diagram"><svg class="railroad-diagram" height="62" viewBox="0 0 154.0 62" width="154.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 21v20m10 -20v20m-10 -10h20" /></g><path d="M40 31h10" /><g class="non-terminal ">
+<path d="M50 31h0.0" /><path d="M104.0 31h0.0" /><rect height="22" width="54" x="50" y="20"></rect><text x="77" y="35">#int</text></g><path d="M104.0 31h10" /><path d="M 114.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg></div></section>
+</main>
+</div>
+</body>
+</html>

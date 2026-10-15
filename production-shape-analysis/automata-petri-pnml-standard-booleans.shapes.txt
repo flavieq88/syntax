@@ -1,0 +1,14 @@
+# BGF production shape analysis
+source: automata-petri-pnml-standard-booleans.bgf
+productions: 14
+distinct_shapes: 5
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+10	N
+1	choice(N, N)
+1	choice(N, N, N, N)
+1	epsilon
+1	sequence(choice("true", "false"), N)

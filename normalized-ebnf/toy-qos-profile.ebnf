@@ -1,0 +1,11 @@
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("QoSComponent") ::= (select("operations", N("Operation")) (select("profile", N("QoSProfile")))+);
+N("Operation") ::= epsilon;
+N("QoSProfile") ::= N("CompoundProfile");
+N("QoSProfile") ::= N("SimpleProfile");
+N("CompoundProfile") ::= ((select("profileTransition", N("ProfileTransition")))+ (select("simpleProfile", N("SimpleProfile")))+);
+N("SimpleProfile") ::= (select("compoundProfile", N("CompoundProfile")) select("uses", N("QoSStatement")) select("provides", N("QoSStatement")));
+N("QoSStatement") ::= epsilon;
+N("ProfileTransition") ::= ((select("operations", N("Operation")))+ select("from", N("SimpleProfile")) select("to", N("SimpleProfile")) select("compoundProfile", N("CompoundProfile")));

@@ -1,0 +1,18 @@
+# BGF production shape analysis
+source: logo-klint.bgf
+productions: 9
+distinct_shapes: 9
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	N
+1	choice("xcor", "ycor", "heading", "towards", "pendown?", "sum", "difference", "product", "quotient", "remainder", "minus", "less?", "greater?", "equal?", "notequal?", "to", "if", "ifelse", "repeat", "forward", "back", "left", "right", "setxy", "setx", "sety", "home", "showturtle", "hideturtle", "clean", "clearscreen", "pendown", "penup", "local", "make")
+1	choice(N, N, "xcor", "ycor", "heading", sequence("towards", N, N), "pendown?", sequence("sum", N, N), sequence("difference", N, N), sequence("product", N, N), sequence("quotient", N, N), sequence("remainder", N, N), sequence("minus", N), sequence("less?", N, N), sequence("greater?", N, N), sequence("equal?", N, N), sequence("notequal?", N, N))
+1	choice(N, N, N)
+1	choice(sequence("if", N, N), sequence("ifelse", N, N, N), sequence("repeat", N, N), sequence("forward", N), sequence("back", N), sequence("left", N), sequence("right", N), sequence("setxy", N, N), sequence("setx", N), sequence("sety", N), "home", "showturtle", "hideturtle", "clean", "clearscreen", "pendown", "penup", sequence("pencolor", N), sequence("local", N), sequence("make", N, N))
+1	sequence("[", star(N), "]")
+1	sequence("to", N, star(N), N)
+1	sequence(N, star(N))
+1	star(N)

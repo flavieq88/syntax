@@ -1,0 +1,13 @@
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("ModelElement") ::= N("TagDefinition");
+N("ModelElement") ::= ((select("referenceTag", N("TaggedValue")))+ (select("stereotype", N("Stereotype")))+ (select("constraint", N("Constraint")))+ (select("taggedValue", N("TaggedValue")))+);
+N("Constraint") ::= ((select("constrainedElement", N("ModelElement")))+ select("constrainedStereotype", N("Stereotype")));
+N("TaggedValue") ::= (select("dataValue", N("String")) (select("referenceValue", N("ModelElement")))+ select("type", N("TagDefinition")));
+N("TagDefinition") ::= (select("tagType", N("String")) select("multiplicity", N("Multiplicity")) (select("typedValue", N("TaggedValue")))+ select("owner", N("Stereotype")));
+N("Multiplicity") ::= select("value", N("String"));
+N("GeneralizableElement") ::= N("Stereotype");
+N("Stereotype") ::= (select("icon", N("Geometry")) (select("baseClass", N("Name")))+ (select("definedTag", N("TagDefinition")))+ (select("stereotypeConstraint", N("Constraint")))+ (select("extendedElement", N("ModelElement")))+);
+N("Geometry") ::= select("value", N("String"));
+N("Name") ::= select("value", N("String"));

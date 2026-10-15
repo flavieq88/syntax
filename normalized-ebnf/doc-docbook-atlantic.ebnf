@@ -1,0 +1,8 @@
+N("DocBook") ::= (select("books", N("Book")))+;
+N("Book") ::= (select("articles", N("Article")))+;
+N("TitledElement") ::= N("Article");
+N("TitledElement") ::= N("Sect1");
+N("Article") ::= (select("sections_1", N("Sect1")))+;
+N("Sect1") ::= (select("paras", N("Para")))+;
+N("Para") ::= select("content", N("String"));
+N("String") ::= value("string");

@@ -1,0 +1,21 @@
+# BGF production shape analysis
+source: dsl-business-birt-classic.bgf
+productions: 14
+distinct_shapes: 12
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	N
+2	sequence(N, N, N, N)
+1	sequence(N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, plus(N), N)
+1	sequence(N, N, plus(N), N, N, N, N, N, N)
+1	sequence(N, N, plus(N), plus(N), N, N, N, N, N)
+1	sequence(N, plus(N), N, N, N)
+1	sequence(N, plus(N), N, N, N, N, N, N)
+1	sequence(plus(N), plus(N), plus(N))
+1	value("int")
+1	value("string")

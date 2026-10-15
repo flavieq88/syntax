@@ -1,0 +1,28 @@
+# BGF production shape analysis
+source: dsl-business-sbvr-v1.0-eclipse.bgf
+productions: 510
+distinct_shapes: 19
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+219	N
+155	sequence(N, N)
+47	epsilon
+26	plus(N)
+19	sequence(plus(N), plus(N))
+11	sequence(plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), N)
+8	choice(N, N, N)
+5	choice(N, N)
+4	sequence(N, plus(N), plus(N))
+3	sequence(N, N, N)
+2	choice(N, N, N, N)
+2	sequence(N, N, N, N)
+2	sequence(N, N, plus(N), N, N, N, N)
+2	sequence(N, plus(N))
+1	choice("true", "false")
+1	choice(N, N, N, N, N)
+1	choice(N, N, N, N, N, N, N, N)
+1	sequence(plus(N), plus(N), plus(N))
+1	value("string")

@@ -1,0 +1,14 @@
+# BGF production shape analysis
+source: automata-finite.bgf
+productions: 5
+distinct_shapes: 5
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	sequence(N, N)
+1	sequence(N, N, N)
+1	sequence(plus(N), plus(N), N, plus(N), plus(N))
+1	value("int")
+1	value("string")

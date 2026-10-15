@@ -1,0 +1,13 @@
+# BGF production shape analysis
+source: meta-syntax-bgf-v1.0-xsd.bgf
+productions: 7
+distinct_shapes: 4
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+4	value("string")
+1	choice(epsilon, epsilon, epsilon, N, N, sequence(N, N), star(N), star(N), N, N, N)
+1	sequence(optional(N), N, N)
+1	sequence(optional(value("string")), star(N), star(N))

@@ -1,0 +1,11 @@
+@root N("program");
+
+N("program") ::= (N("line"))*;
+N("line") ::= (N("ifdef") | (["//"] N("other_preprocessor_line") N("newline")) | (["//"] N("any_other_line") N("newline")));
+N("ifdef") ::= (["//"] N("ifdef_line") N("newline") (N("line"))* (N("elsif_part"))* [N("else_part")] ["//"] N("endifdef_line") N("newline"));
+N("elsif_part") ::= (["//"] N("elsifdef_line") N("newline") (N("line"))*);
+N("else_part") ::= (["//"] N("elsedef_line") N("newline") (N("line"))*);
+N("any_other_line") ::= (N("not_newline"))*;
+N("not_newline") ::= (N("long_comment") | (N("token")));
+N("long_comment") ::= (N("comment"))+;
+N("ifdef_token") ::= (N("ifdef_line") | N("elsedef_line") | N("elsifdef_line") | N("endifdef_line"));

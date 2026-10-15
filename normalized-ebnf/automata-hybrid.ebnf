@@ -1,0 +1,5 @@
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("FiniteTransition") ::= (select("trigger", N("String")) select("guard", N("String")) select("action", N("String")));
+N("FiniteState") ::= (select("name", N("String")) select("position", N("String")) select("isInit", N("Boolean")));

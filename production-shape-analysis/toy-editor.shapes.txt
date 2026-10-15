@@ -1,0 +1,16 @@
+# BGF production shape analysis
+source: toy-editor.bgf
+productions: 20
+distinct_shapes: 7
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+9	N
+4	sequence(N, N)
+2	sequence(N, N, N)
+2	sequence(N, plus(N))
+1	choice("true", "false")
+1	value("int")
+1	value("string")

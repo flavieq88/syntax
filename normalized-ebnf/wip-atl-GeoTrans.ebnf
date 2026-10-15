@@ -1,0 +1,6 @@
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("GeoTransfos") ::= (select("name", N("String")) (select("transfos", N("GeoTransfo")))+);
+N("GeoTransfo") ::= (select("name", N("String")) select("freeze", N("Boolean")) (select("subGeoTransfos", N("GeoTransfo")))+ select("superGeoTransfo", N("GeoTransfo")) (select("params", N("Param")))+);
+N("Param") ::= (select("name", N("String")) select("param", N("Double")) select("geoTransfo", N("GeoTransfo")));

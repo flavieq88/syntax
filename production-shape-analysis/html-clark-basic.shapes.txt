@@ -1,0 +1,47 @@
+# BGF production shape analysis
+source: html-clark-basic.bgf
+productions: 158
+distinct_shapes: 38
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+49	N
+36	sequence(N, N)
+22	value("string")
+7	optional(N)
+4	sequence(N, plus(N))
+3	sequence(N, N, N)
+3	sequence(N, optional(N))
+2	choice(N, N, N, N, N, N)
+2	sequence(N, plus(choice(N, N)))
+2	star(N)
+1	choice("text", "password", "checkbox", "radio", "submit", "reset", "hidden")
+1	choice(N, N, N)
+1	choice(N, N, N, N)
+1	choice(N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	optional(choice("left", "center", "right"))
+1	optional(choice("row", "col"))
+1	optional(choice("top", "middle", "bottom"))
+1	plus(N)
+1	sequence(N, N, N, N)
+1	sequence(N, N, N, optional(N), optional(N), optional(N))
+1	sequence(N, N, optional(choice("get", "post")), optional(N))
+1	sequence(N, optional("declare"), optional(N), optional(N), optional(N), optional(N), optional(N), optional(N), optional(N), optional(N), optional(N), optional(value("string")), optional(N))
+1	sequence(N, optional("preserve"))
+1	sequence(N, optional("selected"), optional(value("string")), value("string"))
+1	sequence(N, optional(N), optional(N))
+1	sequence(N, optional(N), optional(N), optional(N), optional(N), optional(N), optional(N), optional(N))
+1	sequence(N, optional(N), optional(N), optional(N), optional(N), optional(N), optional(N), optional(N), optional(N))
+1	sequence(N, optional(N), optional(N), optional(value("string")), optional(value("string")))
+1	sequence(N, optional(N), optional(value("string")), optional(N), N, optional(N), optional(N), N, N)
+1	sequence(N, optional(N), optional(value("string")), optional(value("string")), optional("checked"), optional(value("string")), optional(N), optional(N), optional(N))
+1	sequence(N, optional(N), plus(N))
+1	sequence(N, optional(value("string")), N, N, optional(N), value("string"))
+1	sequence(N, optional(value("string")), optional(N), optional("multiple"))
+1	sequence(N, star(N), N)
+1	sequence(N, value("string"))
+1	sequence(N, value("string"), optional(value("string")), optional(choice("data", "ref", "object")), optional(N))
+1	star(choice(value("string"), N))
+1	star(choice(value("string"), N, N))

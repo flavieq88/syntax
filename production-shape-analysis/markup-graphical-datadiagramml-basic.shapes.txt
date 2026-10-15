@@ -1,0 +1,28 @@
+# BGF production shape analysis
+source: markup-graphical-datadiagramml-basic.bgf
+productions: 80
+distinct_shapes: 19
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+55	N
+3	plus(N)
+3	sequence(N, plus(N))
+2	sequence(N, N)
+2	sequence(N, N, N)
+2	sequence(N, N, N, N, plus(N))
+1	choice("true", "false")
+1	sequence(N, N, N, N)
+1	sequence(N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, plus(N))
+1	sequence(N, N, N, N, N, N, N, N, N, plus(N))
+1	sequence(N, N, N, N, N, N, N, N, plus(N))
+1	sequence(N, N, N, N, N, N, N, plus(N))
+1	sequence(N, N, N, N, plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N))
+1	sequence(N, plus(N), plus(N))
+1	value("int")
+1	value("string")

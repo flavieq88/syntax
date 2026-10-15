@@ -1,0 +1,12 @@
+# BGF production shape analysis
+source: markup-textual-csv-rascal-abstract.bgf
+productions: 3
+distinct_shapes: 3
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice(marked("text", value("string")), marked("text", value("string")))
+1	marked("fields", star(N))
+1	marked("records", star(N))

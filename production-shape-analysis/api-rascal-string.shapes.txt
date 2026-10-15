@@ -1,0 +1,33 @@
+# BGF production shape analysis
+source: api-rascal-string.bgf
+productions: 42
+distinct_shapes: 24
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+10	marked("s", value("string"))
+3	sequence(marked("s", value("string")), marked("n", value("int")))
+3	sequence(marked("s", value("string")), marked("n", value("int")), marked("pad", value("string")))
+3	sequence(marked("subject", value("string")), marked("find", value("string")))
+3	sequence(marked("subject", value("string")), marked("find", value("string")), marked("replacement", value("string")))
+2	marked("src", value("string"))
+1	marked("ch", value("int"))
+1	marked("char", value("int"))
+1	marked("chars", star(value("int")))
+1	sequence(marked("input", value("string")), marked("find", value("string")))
+1	sequence(marked("s", value("string")), marked("begin", value("int")))
+1	sequence(marked("s", value("string")), marked("begin", value("int")), marked("end", value("int")))
+1	sequence(marked("s", value("string")), marked("dir", value("string")), marked("n", value("int")), marked("pad", value("string")))
+1	sequence(marked("s", value("string")), marked("i", value("int")))
+1	sequence(marked("s", value("string")), marked("r", value("int")))
+1	sequence(marked("s", value("string")), marked("re", value("string")))
+1	sequence(marked("sep", value("string")), marked("src", value("string")))
+1	sequence(marked("src", value("string")), marked("charSet", value("string")))
+1	sequence(marked("src", value("string")), marked("s", star(sequence(value("string"), value("string")))))
+1	sequence(marked("src", value("string")), marked("wrapLength", value("int")))
+1	sequence(marked("src", value("string")), marked("x", value("string")), marked("y", value("string")))
+1	sequence(marked("subject", value("string")), marked("mapping", star(sequence(value("string"), value("string")))))
+1	sequence(marked("subject", value("string")), marked("prefix", value("string")))
+1	sequence(marked("subject", value("string")), marked("suffix", value("string")))

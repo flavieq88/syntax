@@ -1,0 +1,19 @@
+# BGF production shape analysis
+source: toy-fl-concrete-sdf.bgf
+productions: 11
+distinct_shapes: 10
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	N
+1	"+"
+1	"-"
+1	"=="
+1	plus(N)
+1	sequence("(", N, ")")
+1	sequence("if", N, "then", N, "else", N)
+1	sequence(N, N, N)
+1	sequence(N, plus(N))
+1	sequence(N, plus(N), "=", N, plus(N))

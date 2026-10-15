@@ -1,0 +1,26 @@
+# BGF production shape analysis
+source: html-cordy.bgf
+productions: 18
+distinct_shapes: 17
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	star(N)
+1	choice("br", "hr", sequence("|", "img"), "meta", "base", "basefont", N, "dt")
+1	choice(N, N)
+1	choice(N, N, N, N, N)
+1	choice(N, N, N, N, N, N)
+1	choice(sequence("<", N, N, ">", optional(N), N), sequence("<", N, N, "/>", N))
+1	choice(sequence(N, N), N)
+1	choice(sequence(N, N), sequence(")", N), sequence(N, "("), N, sequence("<", N))
+1	sequence("<!", star(N), ">", N)
+1	sequence("<", N, N, ">", N)
+1	sequence("<", N, N, ">", sequence(N, N), N, N, "</", N, ">", N)
+1	sequence("</", N, ">")
+1	sequence("</", N, ">", N)
+1	sequence("=", N)
+1	sequence(N, N, optional(N))
+1	sequence(N, star(N), N)
+1	sequence(plus(N), N)

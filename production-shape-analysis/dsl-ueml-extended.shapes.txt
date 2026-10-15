@@ -1,0 +1,24 @@
+# BGF production shape analysis
+source: dsl-ueml-extended.bgf
+productions: 67
+distinct_shapes: 15
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+38	N
+7	plus(N)
+4	sequence(N, N)
+4	sequence(N, N, N)
+2	choice(N, N)
+2	epsilon
+2	sequence(plus(N))
+1	choice(N, N, N)
+1	sequence(N, plus(N), N)
+1	sequence(N, plus(N), N, plus(N))
+1	sequence(plus(N), N, N)
+1	sequence(plus(N), N, N, N, N)
+1	sequence(plus(N), N, plus(N))
+1	sequence(plus(N), N, plus(N), plus(N), N)
+1	sequence(plus(N), plus(N), N)

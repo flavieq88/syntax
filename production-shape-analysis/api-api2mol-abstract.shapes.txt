@@ -1,0 +1,19 @@
+# BGF production shape analysis
+source: api-api2mol-abstract.bgf
+productions: 20
+distinct_shapes: 10
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+8	N
+3	plus(N)
+2	sequence(value("string"), value("string"))
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	sequence(N, plus(value("string")), plus(N))
+1	sequence(plus(N))
+1	sequence(plus(value("string")), N, plus(N))
+1	sequence(value("string"))
+1	sequence(value("string"), plus(N))
+1	sequence(value("string"), value("string"), plus(N))

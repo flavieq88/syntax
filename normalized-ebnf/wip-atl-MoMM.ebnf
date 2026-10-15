@@ -1,0 +1,11 @@
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("ModelElement") ::= N("Attribute");
+N("ModelElement") ::= N("Relationship");
+N("ModelElement") ::= (select("level", N("Integer")) select("name", N("String")) select("potency", N("String")) select("hasClass", N("ModelElement")) (select("classElement", N("ModelElement")))+ select("elementTarget", N("Relationship")) select("elementSource", N("Relationship")) (select("attributes", N("Attribute")))+ select("attType", N("Attribute")));
+N("Attribute") ::= select("type", N("ModelElement"));
+N("Relationship") ::= N("Generalization");
+N("Relationship") ::= N("Association");
+N("Generalization") ::= (select("target", N("ModelElement")) select("source", N("ModelElement")));
+N("Association") ::= (select("maxSource", N("String")) select("maxTarget", N("String")) select("minSource", N("String")) select("minTarget", N("String")));

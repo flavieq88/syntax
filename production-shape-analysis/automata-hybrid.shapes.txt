@@ -1,0 +1,13 @@
+# BGF production shape analysis
+source: automata-hybrid.bgf
+productions: 5
+distinct_shapes: 4
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	sequence(N, N, N)
+1	choice("true", "false")
+1	value("int")
+1	value("string")

@@ -1,0 +1,14 @@
+# BGF production shape analysis
+source: toy-people-contact.bgf
+productions: 6
+distinct_shapes: 5
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	sequence(N, N)
+1	choice("true", "false")
+1	sequence(N, N, plus(N), plus(N))
+1	value("int")
+1	value("string")

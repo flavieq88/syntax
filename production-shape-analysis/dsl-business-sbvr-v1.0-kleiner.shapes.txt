@@ -1,0 +1,19 @@
+# BGF production shape analysis
+source: dsl-business-sbvr-v1.0-kleiner.bgf
+productions: 64
+distinct_shapes: 10
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+45	N
+8	sequence(N, N)
+2	choice(N, N)
+2	choice(N, N, N)
+2	plus(N)
+1	epsilon
+1	sequence(N, N, N)
+1	sequence(N, plus(N))
+1	value("int")
+1	value("string")

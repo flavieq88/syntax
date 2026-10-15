@@ -1,0 +1,8 @@
+N("AbstractNode") ::= N("Node");
+N("AbstractNode") ::= N("ConditionalNode");
+N("Node") ::= (select("inNode", N("Node")) select("outNode", N("Node")));
+N("ConditionalNode") ::= (select("trueConditionNode", N("Node")) select("falseConditionNode", N("Node")));
+N("Expression") ::= select("expressionName", N("String"));
+N("Boolean") ::= ("true" | "false");
+N("String") ::= value("string");
+N("Integer") ::= value("int");

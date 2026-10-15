@@ -1,0 +1,4 @@
+N("toolspecific.content") ::= [N("TokenGraphics")];
+N("TokenGraphics") ::= select("tokengraphics", (N("TokenPosition"))*);
+N("TokenPosition") ::= select("tokenposition", N("coordinate.attributes"));
+N("anyElement") ::= ((any | value("string") | N("anyElement")))*;

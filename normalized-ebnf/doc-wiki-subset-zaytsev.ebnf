@@ -1,0 +1,5 @@
+N("WikiText") @label("wss") ::= (N("WikiSymbol"))*;
+N("WikiLink") @label("barred") ::= ("[[" select("destination", N("PageName")) "|" select("description", (N("MWWord"))+) "]]");
+N("WikiLink") @label("simple") ::= ("[[" select("destination", N("PageName")) "]]");
+N("WikiSymbol") @label("w") ::= N("MWWord");
+N("WikiSymbol") @label("wl") ::= N("WikiLink");

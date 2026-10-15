@@ -1,0 +1,24 @@
+# BGF production shape analysis
+source: dsl-architecture-cadm-jossic.bgf
+productions: 51
+distinct_shapes: 15
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+24	N
+6	sequence(plus(N), plus(N), plus(N), plus(N))
+3	plus(N)
+3	sequence(plus(N), plus(N), plus(N))
+2	sequence(N, N)
+2	sequence(plus(N))
+2	sequence(plus(N), plus(N), plus(N), plus(N), plus(N))
+2	sequence(plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N))
+1	sequence(N, plus(N), plus(N))
+1	sequence(N, plus(N), plus(N), plus(N))
+1	sequence(plus(N), N)
+1	sequence(plus(N), N, plus(N), plus(N), plus(N))
+1	sequence(plus(N), plus(N))
+1	sequence(plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N), plus(N))
+1	value("string")

@@ -1,0 +1,24 @@
+# BGF production shape analysis
+source: doc-odf-v1.2-manifest.bgf
+productions: 19
+distinct_shapes: 15
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+4	value("string")
+2	N
+1	"1.2"
+1	sequence(N, N)
+1	sequence(N, N, optional(N), N)
+1	sequence(N, optional(N))
+1	sequence(N, optional(N), N, optional(choice("edit", "presentation-slide-show", "read-only", N)), optional(N))
+1	sequence(N, plus(N))
+1	sequence(choice("Blowfish CFB", N), N)
+1	sequence(choice("PBKDF2", N), N, N, optional(N))
+1	sequence(choice("SHA1", N), optional(N))
+1	sequence(choice("SHA1/1K", N), N)
+1	sequence(star(value("string")), N)
+1	star(sequence(optional(value("string")), N, optional(value("string"))))
+1	value("int")

@@ -1,0 +1,7 @@
+N("Node") ::= N("Device");
+N("Node") ::= N("ExecutionEnvironment");
+N("Device") ::= ((select("nestedNode", N("Node")))+ select("name", N("String")));
+N("ExecutionEnvironment") ::= ((select("nestedNode", N("Node")))+ select("name", N("String")));
+N("Specification") ::= ((select("ownedNode", N("Node")))+ (select("ownedCommunicationLink", N("CommunicationLink")))+);
+N("CommunicationLink") ::= (select("source", N("Node")) select("target", N("Node")) select("name", N("String")));
+N("String") ::= value("string");

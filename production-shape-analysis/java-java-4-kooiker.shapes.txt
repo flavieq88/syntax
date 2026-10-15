@@ -1,0 +1,143 @@
+# BGF production shape analysis
+source: java-java-4-kooiker.bgf
+productions: 257
+distinct_shapes: 134
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+93	N
+5	sequence(N, "[", "]")
+4	";"
+3	sequence("{", star(N), "}")
+3	sequence(N, "(", optional(sequence(N, star(sequence(",", N)))), ")")
+3	sequence(N, ";")
+2	sequence("!", N)
+2	sequence("+", N)
+2	sequence("++", N)
+2	sequence("-", N)
+2	sequence("--", N)
+2	sequence("new", N, plus(N), N)
+2	sequence("new", N, plus(N), star(N))
+2	sequence("while", "(", N, ")", N)
+2	sequence("~", N)
+2	sequence(N, "++")
+2	sequence(N, "--")
+2	sequence(N, ".", N)
+2	sequence(N, ":", N)
+2	sequence(N, "<", N)
+2	sequence(N, "<=", N)
+2	sequence(N, ">", N)
+2	sequence(N, ">=", N)
+2	sequence(N, "[", N, "]")
+1	"%="
+1	"&="
+1	"*="
+1	"+="
+1	"-="
+1	"/="
+1	"<<="
+1	"="
+1	">>="
+1	">>>="
+1	"^="
+1	"abstract"
+1	"boolean"
+1	"byte"
+1	"char"
+1	"double"
+1	"final"
+1	"float"
+1	"int"
+1	"long"
+1	"native"
+1	"private"
+1	"protected"
+1	"public"
+1	"short"
+1	"static"
+1	"synchronized"
+1	"this"
+1	"transient"
+1	"void"
+1	"volatile"
+1	"|="
+1	sequence("(", N, ")")
+1	sequence("(", N, ")", N)
+1	sequence("(", N, plus(N), ")", N)
+1	sequence("(", N, star(N), ")", N)
+1	sequence("@", N)
+1	sequence("[", "]")
+1	sequence("[", N, "]")
+1	sequence("[", optional(N), "]")
+1	sequence("assert", N, ";")
+1	sequence("break", optional(N), ";")
+1	sequence("case", N, ":")
+1	sequence("catch", "(", N, ")", N)
+1	sequence("continue", optional(N), ";")
+1	sequence("default", ":")
+1	sequence("do", N, "while", "(", N, ")", ";")
+1	sequence("extends", N)
+1	sequence("extends", sequence(N, star(sequence(",", N))))
+1	sequence("finally", N)
+1	sequence("for", "(", optional(N), ";", optional(N), ";", optional(N), ")", N)
+1	sequence("if", "(", N, ")", N)
+1	sequence("if", "(", N, ")", N, "else", N)
+1	sequence("implements", sequence(N, star(sequence(",", N))))
+1	sequence("import", N, ".", "*", ";")
+1	sequence("import", N, ";")
+1	sequence("new", N, "(", optional(sequence(N, star(sequence(",", N)))), ")")
+1	sequence("new", N, "(", optional(sequence(N, star(sequence(",", N)))), ")", N)
+1	sequence("package", N, ";")
+1	sequence("return", optional(N), ";")
+1	sequence("static", N)
+1	sequence("super", "(", optional(sequence(N, star(sequence(",", N)))), ")", ";")
+1	sequence("super", ".", N)
+1	sequence("super", ".", N, "(", optional(sequence(N, star(sequence(",", N)))), ")")
+1	sequence("switch", "(", N, ")", N)
+1	sequence("synchronized", "(", N, ")", N)
+1	sequence("this", "(", optional(sequence(N, star(sequence(",", N)))), ")", ";")
+1	sequence("throw", N, ";")
+1	sequence("throws", sequence(N, star(sequence(",", N))))
+1	sequence("try", N, plus(N))
+1	sequence("try", N, star(N), N)
+1	sequence("{", optional(N), star(N), "}")
+1	sequence("{", optional(sequence(N, star(sequence(",", N)))), optional(","), "}")
+1	sequence("{", star(N), star(N), "}")
+1	sequence(N, "!=", N)
+1	sequence(N, "%", N)
+1	sequence(N, "&", N)
+1	sequence(N, "&&", N)
+1	sequence(N, "*", N)
+1	sequence(N, "+", N)
+1	sequence(N, "-", N)
+1	sequence(N, ".", "class")
+1	sequence(N, ".", "this")
+1	sequence(N, ".", N, "(", optional(sequence(N, star(sequence(",", N)))), ")")
+1	sequence(N, "/", N)
+1	sequence(N, "<<", N)
+1	sequence(N, "=", N)
+1	sequence(N, "==", N)
+1	sequence(N, ">>", N)
+1	sequence(N, ">>>", N)
+1	sequence(N, "?", N, ":", N)
+1	sequence(N, "^", N)
+1	sequence(N, "instanceof", N)
+1	sequence(N, "|", N)
+1	sequence(N, "||", N)
+1	sequence(N, N)
+1	sequence(N, N, N)
+1	sequence(N, sequence(N, star(sequence(",", N))))
+1	sequence(N, star(sequence(",", N)))
+1	sequence(N, star(sequence(".", N)))
+1	sequence(optional(N), star(N), plus(N))
+1	sequence(plus(N), plus(N))
+1	sequence(star(N), "class", N, optional(N), optional(N), N)
+1	sequence(star(N), "interface", N, optional(N), N)
+1	sequence(star(N), N)
+1	sequence(star(N), N, N)
+1	sequence(star(N), N, N, optional(N))
+1	sequence(star(N), N, optional(N), N)
+1	sequence(star(N), N, sequence(N, star(sequence(",", N))), ";")
+1	star(N)

@@ -1,0 +1,13 @@
+N("Display") ::= ("[" N("SimpleString") "]");
+N("SimpleString") @label("raw") ::= N("Raw");
+N("SimpleString") @label("base64") ::= N("Base64");
+N("SimpleString") @label("hex") ::= N("HexaDecimal");
+N("SimpleString") @label("token") ::= N("Token");
+N("SimpleString") @label("quoted") ::= N("QuotedString");
+N("Base64") ::= ("|" (N("Base64Char"))* "|");
+N("SExp") @label("list") ::= N("List");
+N("SExp") @label("string") ::= N("String");
+N("HexaDecimal") ::= ("#" (N("HexDigit"))* "#");
+N("String") @label("display") ::= (N("Display") N("SimpleString"));
+N("String") @label("simple") ::= N("SimpleString");
+N("List") ::= ("(" (N("SExp"))* ")");

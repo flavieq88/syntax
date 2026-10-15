@@ -1,0 +1,10 @@
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");
+N("Plan") ::= ((select("sub_plans", N("Plan")))+ select("super_plan", N("Plan")) (select("objectives", N("Objective")))+ (select("actions", N("Action")))+);
+N("Objective") ::= (select("objective_plan", N("Plan")) (select("criterias", N("EvaluationCriteria")))+);
+N("EvaluationCriteria") ::= select("criteria_objective", N("Objective"));
+N("Action") ::= (select("action_plan", N("Plan")) (select("sub_actions", N("Action")))+ select("super_action", N("Action")) select("actor", N("Actor")) (select("resources", N("Resource")))+ (select("timeSpecs", N("TimeSpec")))+);
+N("Actor") ::= (select("actor_action", N("Action")) (select("sub_actors", N("Actor")))+ select("super_actor", N("Actor")));
+N("Resource") ::= select("resource_action", N("Action"));
+N("TimeSpec") ::= select("timeSpec_action", N("Action"));

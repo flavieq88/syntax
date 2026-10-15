@@ -1,0 +1,11 @@
+# BGF production shape analysis
+source: xmlware-xml-klint-vinju.bgf
+productions: 2
+distinct_shapes: 2
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice(N, sequence(N, value("string"), value("string")), sequence(N, value("string"), star(N)), value("string"), value("string"), value("string"), sequence(value("string"), value("string")), value("string"), value("int"))
+1	choice(sequence(value("string"), value("string")), epsilon)

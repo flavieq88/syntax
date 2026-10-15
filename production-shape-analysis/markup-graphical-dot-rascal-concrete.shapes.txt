@@ -1,0 +1,27 @@
+# BGF production shape analysis
+source: markup-graphical-dot-rascal-concrete.bgf
+productions: 30
+distinct_shapes: 18
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+7	N
+4	sequence(N, N)
+2	"graph"
+2	sequence(N, "=", N)
+2	star(N)
+1	"--"
+1	"->"
+1	"digraph"
+1	"edge"
+1	"node"
+1	plus(N)
+1	sequence(":", N, optional(N))
+1	sequence("[", star(N), "]")
+1	sequence(N, "=", N, ",")
+1	sequence(N, N, N)
+1	sequence(N, optional(";"))
+1	sequence(optional(sequence("subgraph", optional(N))), "{", N, "}")
+1	sequence(star(N), N, N, "{", N, "}", optional("\\n"))

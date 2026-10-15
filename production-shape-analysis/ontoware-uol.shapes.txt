@@ -1,0 +1,17 @@
+# BGF production shape analysis
+source: ontoware-uol.bgf
+productions: 12
+distinct_shapes: 8
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+5	N
+1	choice("true", "false")
+1	choice(N, N)
+1	epsilon
+1	plus(N)
+1	sequence(N, N, N, N)
+1	value("int")
+1	value("string")

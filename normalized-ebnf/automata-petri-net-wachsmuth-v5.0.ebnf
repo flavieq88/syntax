@@ -1,0 +1,9 @@
+N("Place") ::= (select("net", any) (select("out", any))+ (select("in", any))+ (select("token", any))+);
+N("Transition") ::= (select("net", any) (select("in", any))+ (select("out", any))+);
+N("Net") ::= ((select("place", any))+ (select("transition", any))+);
+N("Arc") ::= N("PTArc");
+N("Arc") ::= N("TPArc");
+N("PTArc") ::= (select("dst", any) select("src", any));
+N("TPArc") ::= (select("src", any) select("dst", any));
+N("Token") ::= select("place", any);
+N("Integer") ::= value("int");

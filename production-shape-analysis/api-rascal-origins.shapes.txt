@@ -1,0 +1,10 @@
+# BGF production shape analysis
+source: api-rascal-origins.bgf
+productions: 1
+distinct_shapes: 1
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice(marked("location", value("string")), marked("location", value("string")), epsilon)

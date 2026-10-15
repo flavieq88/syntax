@@ -1,0 +1,11 @@
+N("csvFile") ::= ((N("csvRecord"))* "EOF");
+N("csvRecord") ::= (N("csvStringList") ("\\n" | "EOF"));
+N("csvStringList") ::= (N("rawString") [("," N("csvStringList"))]);
+N("rawString") ::= (N("optionalSpaces") [(N("rawField") N("optionalSpaces"))]);
+N("optionalSpaces") ::= (N("whitespace"))*;
+N("whitespace") ::= (" " | "\\t");
+N("rawField") ::= (N("simpleField") | N("quotedField"));
+N("simpleField") ::= (not(("\\n" | N("EOF") | "\\t" | " " | "," | N("DQUOTE"))))+;
+N("quotedField") ::= (N("DQUOTE") N("escapedField") N("DQUOTE"));
+N("escapedField") ::= (N("subField") [(N("DQUOTE") N("DQUOTE") N("escapedField"))]);
+N("subField") ::= (not((N("DQUOTE") | N("EOF"))))+;

@@ -1,0 +1,15 @@
+N("String") ::= value("string");
+N("Actor") ::= ((select("decomposition", N("Decomposition")))+ (select("contribution", N("Contribution")))+ (select("meansEnd", N("MeansEnd")))+);
+N("Decomposition") ::= N("BooleanDecomposition");
+N("Decomposition") ::= select("PointOfView", N("Actor"));
+N("Contribution") ::= (select("metric", N("String")) select("contributer", N("Goal")) select("contributed", N("Goal")) select("PointOfView", N("Actor")));
+N("Goal") ::= ((select("contributionR", N("Contribution")))+ (select("contributionD", N("Contribution")))+ (select("meansEndS", N("MeansEnd")))+ (select("meansEndD", N("MeansEnd")))+ select("booleanDecomposition", N("BooleanDecomposition")) (select("booleanDecLink", N("BooleanDecLink")))+);
+N("MeansEnd") ::= (select("meansR", N("Resource")) select("means", N("Goal")) select("end", N("Goal")) select("PointOfView", N("Actor")) select("meansP", N("Plan")));
+N("Resource") ::= (select("meansEndR", N("MeansEnd")))+;
+N("Plan") ::= ((select("meansEndP", N("MeansEnd")))+ select("booleanDecompositionP", N("BooleanDecomposition")) (select("booleanDecLinkP", N("BooleanDecLink")))+);
+N("BooleanDecomposition") ::= (select("type", N("String")) select("root", N("Goal")) select("rootP", N("Plan")) (select("booleanDecLinkD", N("BooleanDecLink")))+);
+N("BooleanDecLink") ::= N("AndDecLink");
+N("BooleanDecLink") ::= N("OrDecLink");
+N("BooleanDecLink") ::= (select("booleanDecompositionB", N("BooleanDecomposition")) select("target", N("Goal")) select("targetP", N("Plan")));
+N("AndDecLink") ::= (select("booleanDecompositionB", N("BooleanDecomposition")) select("target", N("Goal")) select("targetP", N("Plan")));
+N("OrDecLink") ::= (select("booleanDecompositionB", N("BooleanDecomposition")) select("target", N("Goal")) select("targetP", N("Plan")));

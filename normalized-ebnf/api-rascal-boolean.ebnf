@@ -1,0 +1,5 @@
+N("bool") @label("arbBool") ::= epsilon;
+N("bool") @label("fromString") ::= marked("s", value("string"));
+N("int") @label("toInt") ::= marked("b", value("boolean"));
+N("real") @label("toReal") ::= marked("b", value("boolean"));
+N("str") @label("toString") ::= marked("b", value("boolean"));

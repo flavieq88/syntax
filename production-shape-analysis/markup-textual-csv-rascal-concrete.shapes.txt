@@ -1,0 +1,12 @@
+# BGF production shape analysis
+source: markup-textual-csv-rascal-concrete.bgf
+productions: 4
+distinct_shapes: 3
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	N
+1	seplistplus(N, ",")
+1	sepliststar(N, N)

@@ -1,0 +1,4 @@
+N("String") ::= value("string");
+N("Integer") ::= value("int");
+N("Family") ::= (select("name", N("String")) (select("members", N("Person")))+);
+N("Person") ::= (select("firstName", N("String")) select("closestFriend", N("Person")) (select("emailAddresses", N("String")))+);

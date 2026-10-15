@@ -1,0 +1,18 @@
+# BGF production shape analysis
+source: markup-graphical-kml-vepa.bgf
+productions: 186
+distinct_shapes: 9
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+143	N
+34	epsilon
+3	sequence(N, N, N, N)
+1	choice("true", "false")
+1	choice(epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon)
+1	sequence(plus(N))
+1	value("int")
+1	value("string")

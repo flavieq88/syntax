@@ -1,0 +1,1 @@
+N("JSO") ::= (select("jsnumber", select("n", value("int"))) | select("jsstring", select("s", value("string"))) | select("jsboolean", select("b", ("true" | "false"))) | select("jsarray", select("xs", (N("JSO"))*)) | select("jsobject", select("kvs", ((N("JSO") N("JSO")))*)) | select("jsnull", epsilon));

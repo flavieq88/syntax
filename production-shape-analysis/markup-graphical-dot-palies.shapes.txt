@@ -1,0 +1,23 @@
+# BGF production shape analysis
+source: markup-graphical-dot-palies.bgf
+productions: 43
+distinct_shapes: 14
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+24	N
+3	epsilon
+3	sequence(N, N, N)
+2	sequence(N, N)
+2	sequence(N, N, N, N, N, N)
+1	choice("true", "false")
+1	plus(N)
+1	sequence(N, N, N, N, N)
+1	sequence(N, N, N, N, N, plus(N), N, N, plus(N), N, N, N, N, N)
+1	sequence(N, N, plus(N), N, N, N, N, N, N, N, N)
+1	sequence(plus(N), N)
+1	sequence(plus(N), plus(N), N, N)
+1	value("int")
+1	value("string")

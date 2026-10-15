@@ -1,0 +1,7 @@
+N("BuiltInSort") ::= N("CyclicEnumeration");
+N("BuiltInOperator") ::= N("CyclicEnumOperator");
+N("CyclicEnumeration") ::= select("cyclicenumeration", N("FiniteEnumeration.content"));
+N("CyclicEnumOperator.content") ::= N("BuiltInOperator.content");
+N("CyclicEnumOperator") ::= (N("Successor") | N("Predecessor"));
+N("Successor") ::= select("successor", N("CyclicEnumOperator.content"));
+N("Predecessor") ::= select("predecessor", N("CyclicEnumOperator.content"));

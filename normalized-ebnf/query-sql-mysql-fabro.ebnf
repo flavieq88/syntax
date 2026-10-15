@@ -1,0 +1,16 @@
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("NamedElement") ::= N("DataBase");
+N("NamedElement") ::= N("Table");
+N("NamedElement") ::= N("Column");
+N("NamedElement") ::= N("EnumItem");
+N("DataBase") ::= (select("tables", N("Table")))+;
+N("Table") ::= ((select("columns", N("Column")))+ select("database", N("DataBase")));
+N("Column") ::= N("IntegerColumn");
+N("Column") ::= N("EnumColumn");
+N("Column") ::= (select("type", N("String")) select("isPrimaryKey", N("Boolean")) select("null", N("Boolean")) select("defaultValue", N("String")) select("comment", N("String")) select("table", N("Table")));
+N("IntegerColumn") ::= select("isAutoIncrement", N("Boolean"));
+N("EnumColumn") ::= select("enumSet", N("EnumSet"));
+N("EnumSet") ::= (select("enumItems", N("EnumItem")))+;
+N("EnumItem") ::= select("enumSet", N("EnumSet"));

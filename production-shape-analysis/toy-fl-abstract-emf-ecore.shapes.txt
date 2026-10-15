@@ -1,0 +1,19 @@
+# BGF production shape analysis
+source: toy-fl-abstract-emf-ecore.bgf
+productions: 12
+distinct_shapes: 10
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+3	sequence(N, N)
+1	N
+1	choice(N, N, N)
+1	choice(N, N, N, N, N)
+1	plus(N)
+1	sequence(N, N, N)
+1	sequence(N, plus(N))
+1	sequence(value("string"), plus(N), N)
+1	value("int")
+1	value("string")

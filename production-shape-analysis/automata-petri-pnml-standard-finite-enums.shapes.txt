@@ -1,0 +1,11 @@
+# BGF production shape analysis
+source: automata-petri-pnml-standard-finite-enums.bgf
+productions: 5
+distinct_shapes: 2
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+4	N
+1	star(N)

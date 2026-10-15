@@ -1,0 +1,11 @@
+@root N("configuration");
+
+N("configuration") ::= ((select("shortcut", N("shortcutType")) | select("tool", N("toolType")) | select("action", N("actionType")) | select("source", N("sourceType")) | select("target", N("targetType")) | select("comment", N("mixedType"))))*;
+N("actionType") ::= ([select("comment", value("string"))] (select("name", value("string")))+ select("definition", (select("command", N("commandtype")))+));
+N("shortcutType") ::= (select("name", value("string")) select("definition", ((N("expansion") | value("string")))*));
+N("expansion") ::= (select("expand", value("string")) | select("expand-action", epsilon) | select("expand-input", epsilon) | select("expand-output", epsilon) | select("expand-context", epsilon) | select("expand-yields", epsilon));
+N("commandtype") ::= (((N("expansion") | value("string")))* [select("err", value("string"))] [select("out", value("string"))]);
+N("sourceType") ::= (select("name", value("string")) select("extractor", (select("name", ((N("expansion") | value("string")))*) select("arguments", (select("argument", ((N("expansion") | value("string")))*))+))) [select("parser", select("command", N("commandtype")))] [select("evaluator", select("command", N("commandtype")))]);
+N("targetType") ::= (select("name", value("string")) (select("branch", (select("input", value("string")) (select("perform", value("string")))*)))+);
+N("toolType") ::= (select("name", N("Tools")) select("command", N("commandtype")));
+N("Tools") ::= (select("validator", epsilon) | select("diff", epsilon) | select("testset", epsilon));

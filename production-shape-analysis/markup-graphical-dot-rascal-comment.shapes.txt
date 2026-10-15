@@ -1,0 +1,21 @@
+# BGF production shape analysis
+source: markup-graphical-dot-rascal-comment.bgf
+productions: 13
+distinct_shapes: 12
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+2	sequence(N, optional(N))
+1	choice("n", "ne", "e", "se", "s", "sw", "w", "nw", "c", "_")
+1	choice(N, N, N, sequence(N, "=", N), N)
+1	choice(sequence(":", N, optional(sequence(":", N))), sequence(":", N))
+1	optional(sequence(N, optional(";"), optional(N)))
+1	sequence("[", optional(N), "]", optional(N))
+1	sequence(N, choice(N, N), optional(N))
+1	sequence(N, optional(sequence("=", N)), optional(","), optional(N))
+1	sequence(choice("graph", "node", "edge"), N)
+1	sequence(choice(N, N), N, optional(N))
+1	sequence(optional("strict"), choice("graph", "digraph"), optional(N), "{", N, "}")
+1	sequence(optional(sequence(N, optional(N))), "{", N, "}")

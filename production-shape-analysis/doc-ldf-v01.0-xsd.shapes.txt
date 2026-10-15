@@ -1,0 +1,17 @@
+# BGF production shape analysis
+source: doc-ldf-v01.0-xsd.bgf
+productions: 8
+distinct_shapes: 8
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	N
+1	epsilon
+1	sequence(star(choice(N, sequence(any, value("string"), optional(value("string"))), N, N)), star(N))
+1	sequence(value("string"), N)
+1	sequence(value("string"), value("string"), star(value("string")), value("string"), value("string"), optional(value("string")))
+1	sequence(value("string"), value("string"), value("string"), N)
+1	star(choice(any, value("string")))
+1	value("string")

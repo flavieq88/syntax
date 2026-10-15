@@ -1,0 +1,5 @@
+N("Place") ::= (select("net", N("Net")) (select("out", N("PTArc")))+ (select("in", N("TPArc")))+);
+N("Transition") ::= (select("net", N("Net")) (select("in", N("PTArc")))+ (select("out", N("TPArc")))+);
+N("Net") ::= ((select("place", N("Place")))+ (select("transition", N("Transition")))+);
+N("PTArc") ::= (select("dst", N("Transition")) select("src", N("Place")));
+N("TPArc") ::= (select("src", N("Transition")) select("dst", N("Place")));

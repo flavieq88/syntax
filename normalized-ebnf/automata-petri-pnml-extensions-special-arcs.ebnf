@@ -1,0 +1,2 @@
+N("specialarc.value") ::= ("normal" | "inhibitor" | "read" | "reset");
+N("ArcType") ::= select("arctype", N("specialarc.value"));

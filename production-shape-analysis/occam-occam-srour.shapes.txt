@@ -1,0 +1,21 @@
+# BGF production shape analysis
+source: occam-occam-srour.bgf
+productions: 36
+distinct_shapes: 12
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+17	N
+4	sequence(N, N, N)
+4	sequence(N, plus(N), plus(N), plus(N))
+3	sequence(plus(N), plus(N))
+1	choice("true", "false")
+1	sequence(N, N)
+1	sequence(N, N, N, N)
+1	sequence(N, N, N, N, N)
+1	sequence(N, N, plus(N))
+1	sequence(N, plus(N), plus(N), plus(N), N)
+1	value("int")
+1	value("string")

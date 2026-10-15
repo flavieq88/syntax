@@ -1,0 +1,17 @@
+N("Project") ::= (select("documents", N("Document")))+;
+N("TypedElement") ::= N("ElementWithIL");
+N("TypedElement") ::= N("CoverLink");
+N("TypedElement") ::= N("Attribute");
+N("ElementWithIL") ::= N("Document");
+N("ElementWithIL") ::= N("TextElement");
+N("Document") ::= (select("project", N("Project")) (select("sections", N("Section")))+);
+N("TextElement") ::= N("Section");
+N("TextElement") ::= N("AbstractRequirement");
+N("Section") ::= (select("document", N("Document")) (select("sectionChildren", N("Section")))+ select("sectionParent", N("Section")) (select("requirements", N("AbstractRequirement")))+);
+N("AbstractRequirement") ::= N("Requirement");
+N("AbstractRequirement") ::= N("MacroRequirement");
+N("Requirement") ::= (select("section", N("Section")) select("isContained", N("MacroRequirement")) (select("coverLinks", N("CoverLink")))+ (select("attribute", N("Attribute")))+);
+N("MacroRequirement") ::= (select("contains", N("AbstractRequirement")))+;
+N("CoverLink") ::= select("linkWith", N("AbstractRequirement"));
+N("Attribute") ::= select("value", N("String"));
+N("String") ::= value("string");

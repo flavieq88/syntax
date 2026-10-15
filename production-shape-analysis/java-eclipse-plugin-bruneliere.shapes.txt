@@ -1,0 +1,18 @@
+# BGF production shape analysis
+source: java-eclipse-plugin-bruneliere.bgf
+productions: 9
+distinct_shapes: 9
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	sequence(N, N)
+1	sequence(N, N, N)
+1	sequence(N, N, N, N, plus(N), plus(N), plus(N), plus(N))
+1	sequence(N, N, N, plus(N))
+1	sequence(N, N, N, plus(N), N)
+1	sequence(N, N, plus(N))
+1	sequence(N, plus(N))
+1	value("int")
+1	value("string")

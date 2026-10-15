@@ -1,0 +1,17 @@
+# BGF production shape analysis
+source: wip-atl-OpenQVT.bgf
+productions: 34
+distinct_shapes: 8
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+19	N
+6	sequence(N)
+4	sequence(N, N, N)
+1	sequence(N, N)
+1	sequence(N, N, N, N, N)
+1	sequence(N, N, N, plus(N))
+1	sequence(plus(N), N)
+1	value("string")

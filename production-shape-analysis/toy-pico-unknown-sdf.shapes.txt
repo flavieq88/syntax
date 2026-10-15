@@ -1,0 +1,23 @@
+# BGF production shape analysis
+source: toy-pico-unknown-sdf.bgf
+productions: 16
+distinct_shapes: 14
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+3	N
+1	"natural"
+1	"nil-type"
+1	"string"
+1	sequence("(", N, ")")
+1	sequence("begin", N, optional(sequence(N, star(sequence(";", N)))), "end")
+1	sequence("declare", optional(sequence(N, star(sequence(",", N)))), ";")
+1	sequence("if", N, "then", optional(sequence(N, star(sequence(";", N)))), "else", optional(sequence(N, star(sequence(";", N)))), "fi")
+1	sequence("while", N, "do", optional(sequence(N, star(sequence(";", N)))), "od")
+1	sequence(N, "+", N)
+1	sequence(N, "-", N)
+1	sequence(N, ":", N)
+1	sequence(N, ":=", N)
+1	sequence(N, "||", N)

@@ -1,0 +1,10 @@
+# BGF production shape analysis
+source: markup-textual-json-abstract-hills.bgf
+productions: 1
+distinct_shapes: 1
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice(epsilon, star(sequence(value("string"), N)), star(N), value("int"), value("int"), value("string"), choice("true", "false"))

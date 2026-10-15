@@ -1,0 +1,16 @@
+# BGF production shape analysis
+source: java-jvm-level0.bgf
+productions: 7
+distinct_shapes: 7
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+1	choice(sequence(value("int"), value("int"), value("int"), value("string")), sequence(value("int"), value("int"), value("int")))
+1	choice(sequence(value("int"), value("int"), value("string"), value("string"), value("string"), star(value("string")), value("string"), value("string"), value("string"), value("string"), value("string"), star(N), star(N), star(N)), sequence(value("int"), value("int"), value("string"), value("string"), value("string"), star(value("string")), star(N), star(N), star(N)))
+1	choice(sequence(value("int"), value("string"), value("string"), value("string")), sequence(value("int"), value("int")), value("int"), sequence(value("int"), value("int")), sequence(value("int"), value("int")), value("int"), sequence(value("int"), value("int")), sequence(value("int"), value("int")), value("string"), value("int"), value("int"), value("int"), value("int"), sequence(value("int"), star(value("int")), star(value("int"))), sequence(value("int"), value("string"), value("string"), value("string")), sequence(value("string"), value("int")), sequence(value("int"), value("int"), value("int"), star(value("int"))), sequence(value("int"), value("string")))
+1	choice(sequence(value("int"), value("string"), value("string"), value("string"), any), sequence(value("int"), value("string"), value("string"), value("string")))
+1	choice(sequence(value("string"), value("string"), value("string"), value("int")), sequence(value("string"), value("int")))
+1	sequence(value("int"), value("string"), value("string"), value("string"), star(value("string")), star(N), star(N), star(N))
+1	sequence(value("string"), value("string"), value("string"), value("int"), value("int"), value("int"))

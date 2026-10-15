@@ -1,0 +1,14 @@
+N("AddressInfo") ::= N("Office");
+N("AddressInfo") ::= N("Customer");
+N("Date") ::= (select("year", N("Integer")) select("month", N("Integer")) select("day", N("Integer")));
+N("ClassicModels") ::= ((select("offices", N("Office")))+ (select("productLines", N("ProductLine")))+ (select("customers", N("Customer")))+);
+N("ProductLine") ::= (select("productLineOwner", N("ClassicModels")) (select("products", N("Product")))+ select("name", N("String")) select("textDescription", N("String")) select("htmlDescription", N("String")));
+N("Product") ::= (select("productLine", N("ProductLine")) select("code", N("String")) select("name", N("String")) select("scale", N("String")) select("vendor", N("String")) select("description", N("String")) select("quantityInStock", N("Integer")) select("buyPrice", N("Double")) select("MSRP", N("Double")));
+N("Office") ::= (select("officeOwner", N("ClassicModels")) select("code", N("String")) (select("employees", N("Employee")))+ select("territory", N("String")));
+N("Employee") ::= (select("office", N("Office")) select("number", N("Integer")) (select("employeeCustomers", N("Customer")))+ select("lastName", N("String")) select("firstName", N("String")) select("extension", N("String")) select("email", N("String")) select("reportsTo", N("Employee")) select("jobTitle", N("String")));
+N("Customer") ::= (select("customerOwner", N("ClassicModels")) select("number", N("Integer")) (select("orders", N("Order")))+ (select("payments", N("Payment")))+ select("salesRepEmployee", N("Employee")) select("name", N("String")) select("contactLastName", N("String")) select("contactFirstName", N("String")) select("creditLimit", N("Double")));
+N("Payment") ::= (select("customer", N("Customer")) select("checkNumber", N("String")) select("date", N("Date")) select("amount", N("Double")));
+N("Order") ::= (select("customer", N("Customer")) (select("orderDetails", N("OrderDetail")))+ select("number", N("Integer")) select("date", N("Date")) select("requiredDate", N("Date")) select("shippedDate", N("Date")) select("status", N("String")) select("comments", N("String")));
+N("OrderDetail") ::= (select("order", N("Order")) select("product", N("Product")) select("quantityOrdered", N("Integer")) select("priceEach", N("Double")));
+N("String") ::= value("string");
+N("Integer") ::= value("int");

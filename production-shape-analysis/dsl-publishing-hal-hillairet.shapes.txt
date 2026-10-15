@@ -1,0 +1,27 @@
+# BGF production shape analysis
+source: dsl-publishing-hal-hillairet.bgf
+productions: 62
+distinct_shapes: 18
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+34	N
+4	sequence(N, N)
+3	sequence(N, N, N)
+3	sequence(N, N, N, N, N)
+3	sequence(N, N, N, N, N, N, N, N, N)
+2	sequence(N, N, N, N)
+2	sequence(N, N, N, N, N, N)
+1	choice("true", "false")
+1	choice(epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	epsilon
+1	plus(N)
+1	sequence(N, plus(N))
+1	sequence(plus(N), plus(N))
+1	sequence(plus(N), plus(N), plus(N), plus(N))
+1	value("int")
+1	value("string")

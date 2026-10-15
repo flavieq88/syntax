@@ -1,0 +1,64 @@
+# BGF production shape analysis
+source: doc-wiki-mediawiki-ebnf.bgf
+productions: 60
+distinct_shapes: 55
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+3	N
+3	sequence(choice(N, N, ":", "*", "#"), N, N)
+2	sequence(N, star(N))
+1	"[["
+1	"]]"
+1	"|}"
+1	"~~~"
+1	"~~~~"
+1	"~~~~~"
+1	any
+1	choice("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
+1	choice("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+1	choice(N, N)
+1	choice(N, N, "-", "_", ".", "~", "!", "*", "'", "(", ")", ";", ":", "@", "&", "=", "+", "$", ",", "/", "?", "%", "#", "[", "]")
+1	choice(N, sequence(N, N, optional(N), N, N))
+1	choice(sequence(N, "!", star(choice(N, N)), N), sequence(N, choice("!!", "||"), star(choice(N, N)), N))
+1	choice(sequence(N, "|", star(choice(N, N)), N), sequence(N, "||", star(choice(N, N)), N))
+1	sequence("#", N)
+1	sequence("#REDIRECT", N)
+1	sequence("''", N, "''")
+1	sequence("'''", N, "'''")
+1	sequence("'''''", N, "'''''")
+1	sequence("*", N)
+1	sequence("----", star("-"))
+1	sequence("/*", N, "*/")
+1	sequence("<!--", optional(N), "-->")
+1	sequence("<comment", optional(N), ">", optional(N), "</comment>")
+1	sequence("<nowiki>", N, "</nowiki>")
+1	sequence("{{", N, star(sequence("|", N)), "}}")
+1	sequence("{{{", N, star(sequence("|", N)), "}}}")
+1	sequence("{|", star(choice(N, N)), N)
+1	sequence("|+", N, N)
+1	sequence(N, " ", N)
+1	sequence(N, "=", optional(N), N, optional(N), "=", N)
+1	sequence(N, "==", optional(N), N, optional(N), "==", N)
+1	sequence(N, "===", optional(N), N, optional(N), "===", N)
+1	sequence(N, "====", optional(N), N, optional(N), "====", N)
+1	sequence(N, "=====", optional(N), N, optional(N), "=====", N)
+1	sequence(N, "======", optional(N), N, optional(N), "======", N)
+1	sequence(N, "|-", star("-"), star(choice(N, N)), N)
+1	sequence(N, N, optional(sequence("|", N)), N, N)
+1	sequence(N, optional(N), N, N)
+1	sequence(N, optional(choice("-", " ")), N, N, N, optional(choice("-", " ")), N, N, N, N, N, optional(sequence(choice("-", " "), choice(N, "X", "x"))))
+1	sequence(N, star(sequence(N, N)))
+1	sequence(choice(N, N), star(sequence(N, choice(N, N))))
+1	sequence(optional(N), ":", N)
+1	sequence(optional(N), N)
+1	sequence(optional(choice(sequence(N, ":"), ":")), N)
+1	sequence(optional(sequence(N, "=")), N)
+1	sequence(star(N), "://", star(N))
+1	sequence(star(choice(N, N)), "__FORCETOC__", star(choice(N, N)))
+1	sequence(star(choice(N, N)), "__NOEDITSECTION__", star(choice(N, N)))
+1	sequence(star(choice(N, N)), "__NOTOC__", star(choice(N, N)))
+1	sequence(star(choice(N, N)), "__TOC__", star(choice(N, N)))
+1	star(N)

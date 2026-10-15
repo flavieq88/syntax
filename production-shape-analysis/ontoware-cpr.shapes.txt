@@ -1,0 +1,17 @@
+# BGF production shape analysis
+source: ontoware-cpr.bgf
+productions: 10
+distinct_shapes: 8
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+3	N
+1	choice("true", "false")
+1	sequence(N, plus(N))
+1	sequence(N, plus(N), N)
+1	sequence(N, plus(N), N, N, plus(N), plus(N))
+1	sequence(plus(N), N, plus(N), plus(N))
+1	value("int")
+1	value("string")

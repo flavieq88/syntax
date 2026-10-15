@@ -1,0 +1,14 @@
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("ControllerAttribute") ::= select("controller", N("Controller"));
+N("Controller") ::= ((select("controllerAttribute", N("ControllerAttribute")))+ select("behavior", N("StateMachine")));
+N("StateMachine") ::= (select("states", N("State")))+;
+N("State") ::= N("SubControllerState");
+N("State") ::= N("ViewState");
+N("State") ::= ((select("substates", N("State")))+ select("theContainer", N("State")) (select("outGoing", N("StateTransition")))+ (select("incoming", N("StateTransition")))+);
+N("SubControllerState") ::= select("controller", N("Controller"));
+N("ViewState") ::= ((select("substates", N("State")))+ select("theContainer", N("State")) (select("outGoing", N("StateTransition")))+ (select("incoming", N("StateTransition")))+);
+N("StateTransition") ::= (select("source", N("State")) select("target", N("State")) select("trigger", N("Event")) select("effect", N("StateMachineAction")));
+N("StateMachineAction") ::= epsilon;
+N("Event") ::= epsilon;

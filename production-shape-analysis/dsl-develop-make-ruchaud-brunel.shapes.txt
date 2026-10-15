@@ -1,0 +1,15 @@
+# BGF production shape analysis
+source: dsl-develop-make-ruchaud-brunel.bgf
+productions: 13
+distinct_shapes: 6
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+8	N
+1	choice("true", "false")
+1	sequence(N, N, N)
+1	sequence(N, N, plus(N))
+1	sequence(plus(N), plus(N))
+1	value("string")

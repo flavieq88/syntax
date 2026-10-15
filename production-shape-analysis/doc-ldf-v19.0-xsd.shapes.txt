@@ -1,0 +1,36 @@
+# BGF production shape analysis
+source: doc-ldf-v19.0-xsd.bgf
+productions: 51
+distinct_shapes: 27
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+8	N
+5	sequence(N, plus(N))
+4	plus(N)
+4	sequence(N, optional(value("string")), star(value("string")), optional(value("string")))
+3	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+2	choice(epsilon, epsilon, epsilon, epsilon)
+2	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+2	sequence(N, N)
+2	star(choice(any, value("string")))
+2	value("string")
+1	choice(N, N, N)
+1	choice(N, N, N, N, N, N)
+1	choice(N, N, N, sequence(value("string"), value("string")), sequence(N, N))
+1	choice(epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	choice(epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon, epsilon)
+1	choice(epsilon, value("string"), N, N, N, N, plus(choice(N, N, N, N, N, N, N, N, any)), sequence(star(choice(any, value("string"))), value("string")), N)
+1	epsilon
+1	plus(any)
+1	sequence(N, choice(value("string"), value("string")))
+1	sequence(choice(sequence(N, value("string")), plus(value("string"))), value("string"), N, choice(value("string"), value("string")), star(N), value("string"))
+1	sequence(optional(value("string")), choice(value("string"), value("string")))
+1	sequence(optional(value("string")), value("string"), optional(value("string")))
+1	sequence(star(N), plus(N))
+1	sequence(value("string"), N)
+1	sequence(value("string"), choice(value("string"), value("string")), optional(value("string")))
+1	sequence(value("string"), star(value("string")), optional(value("string")))

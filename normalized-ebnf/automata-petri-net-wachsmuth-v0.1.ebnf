@@ -1,0 +1,3 @@
+N("Place") ::= (select("net", N("Net")) (select("src", N("Transition")))+ (select("dst", N("Transition")))+);
+N("Transition") ::= (select("net", N("Net")) (select("src", N("Place")))+ (select("dst", N("Place")))+);
+N("Net") ::= ((select("place", N("Place")))+ (select("transition", N("Transition")))+);

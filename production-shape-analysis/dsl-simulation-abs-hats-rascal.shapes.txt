@@ -1,0 +1,51 @@
+# BGF production shape analysis
+source: dsl-simulation-abs-hats-rascal.bgf
+productions: 456
+distinct_shapes: 42
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+165	N
+104	sequence(N, N, N)
+63	sequence(N, N)
+19	sequence(N, N, N, N, N)
+16	sequence(N, N, N, N)
+11	epsilon
+6	sequence(N, optional(N), N)
+5	sequence(N, N, N, N, N, N)
+5	sequence(N, N, N, N, optional(N), N)
+5	sequence(N, optional(N))
+4	sequence(N, N, optional(N))
+4	sequence(optional(N), N)
+3	sequence(N, N, N, N, N, N, N, N)
+3	sequence(N, N, N, optional(N), N)
+3	sequence(N, N, optional(N), N)
+3	sequence(N, star("/"), star(N), "/")
+3	sequence(optional(N), N, N)
+2	sequence(N, N, N, N, N, N, N)
+2	sequence(N, N, N, N, N, N, N, N, N, N)
+2	sequence(N, N, optional(N), N, N)
+2	sequence(optional(N), N, N, N, N)
+2	sequence(optional(N), N, N, N, N, N)
+2	sequence(optional(N), N, N, N, N, N, optional(N), N, N, N, N)
+2	sequence(optional(N), N, N, N, N, optional(N), N, N, N, N)
+2	sequence(optional(N), N, N, optional(N), N, optional(N), N)
+2	sequence(optional(N), N, N, optional(N), optional(N), N, optional(N), optional(N), optional(N), N)
+1	sequence(N, N, N, N, N, N, N, N, N)
+1	sequence(N, N, N, N, star("/"), star(N), "/")
+1	sequence(N, N, N, optional(N), N, N)
+1	sequence(N, N, N, optional(N), N, N, N, N)
+1	sequence(N, N, N, optional(N), optional(N), N, optional(N), N)
+1	sequence(N, N, optional(N), N, optional(N), optional(N))
+1	sequence(N, N, optional(N), optional(N), optional(N))
+1	sequence(N, optional(N), N, N, optional(N), N)
+1	sequence(N, optional(N), optional(N), optional(N), optional(N))
+1	sequence(optional(N), N, N, N)
+1	sequence(optional(N), N, N, N, optional(N), N)
+1	sequence(optional(N), N, N, optional(N), N)
+1	sequence(optional(N), N, N, optional(N), N, N, N)
+1	sequence(optional(N), N, optional(N), N)
+1	sequence(optional(N), optional(N), optional(N), optional(N), N)
+1	sequence(star("/"), star(N), "/")

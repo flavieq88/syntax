@@ -1,0 +1,17 @@
+# BGF production shape analysis
+source: dsl-multi-agent-passi-simon.bgf
+productions: 19
+distinct_shapes: 8
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+8	epsilon
+4	sequence(N, N)
+2	N
+1	sequence(N, N, N, N)
+1	sequence(N, N, N, N, plus(N), plus(N), plus(N))
+1	sequence(N, plus(N), plus(N), plus(N), plus(N))
+1	sequence(plus(N), N)
+1	value("string")

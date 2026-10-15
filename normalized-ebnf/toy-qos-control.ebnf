@@ -1,0 +1,10 @@
+N("DateType") ::= (select("day", N("Integer")) select("month", N("Integer")) select("year", N("Integer")));
+N("ControlsSequence") ::= (select("controls", N("Control")))+;
+N("Control") ::= (select("c_controlsSequence", N("ControlsSequence")) select("responsible", N("String")) select("component", N("String")) select("developmentPhase", N("String")) select("scope", N("String")) select("date", N("DateType")) select("controlledElt", N("String")) select("eltRef", N("String")) select("eltAuthor", N("String")) select("formRef", N("String")) select("type", N("ControlType")));
+N("ControlType") ::= N("BugTracking");
+N("BugTracking") ::= (select("bugs", N("Bug")))+;
+N("Bug") ::= (select("b_bugTracking", N("BugTracking")) select("number", N("Integer")) select("componentVersion", N("String")) select("description", N("String")) select("status", N("BugStatusType")) select("originator", N("String")) select("responsible", N("String")) select("commentsAnswers", N("String")) select("openDate", N("String")) select("closeDate", N("String")));
+N("BugStatusType") ::= (select("bst_open", epsilon) | select("bst_closed", epsilon) | select("bst_skipped", epsilon));
+N("Integer") ::= value("int");
+N("String") ::= value("string");
+N("Boolean") ::= ("true" | "false");

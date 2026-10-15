@@ -1,0 +1,13 @@
+# BGF production shape analysis
+source: automata-petri-path-concrete.bgf
+productions: 8
+distinct_shapes: 4
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+4	N
+2	plus(N)
+1	choice("true", "false")
+1	value("string")

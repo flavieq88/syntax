@@ -1,0 +1,9 @@
+N("SeminarSchedulingSystem") ::= ((select("presenter", N("Presenter")))+ (select("seminar", N("Seminar")))+);
+N("Presenter") ::= (select("name", N("String")) select("seminarSchedulingSystem", N("SeminarSchedulingSystem")) (select("qualifiedFor", N("Seminar")))+ (select("offering", N("Offering")))+);
+N("Seminar") ::= (select("title", N("String")) select("seminarSchedulingSystem", N("SeminarSchedulingSystem")) (select("qualified", N("Presenter")))+ (select("offering", N("Offering")))+);
+N("Offering") ::= (select("is_cancelled", N("Boolean")) select("date", N("Date")) (select("attendee", N("Attendee")))+ select("presenter", N("Presenter")) select("seminar", N("Seminar")));
+N("Date") ::= (select("year", N("Integer")) select("month", N("Integer")) select("day", N("Integer")));
+N("Attendee") ::= (select("name", N("String")) (select("offering", N("Offering")))+);
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");

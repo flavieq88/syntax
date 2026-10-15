@@ -1,0 +1,15 @@
+# BGF production shape analysis
+source: toy-oop-simple-class.bgf
+productions: 9
+distinct_shapes: 6
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+3	N
+2	sequence(N, N, N)
+1	choice("true", "false")
+1	sequence(N)
+1	sequence(N, N, plus(N))
+1	value("string")

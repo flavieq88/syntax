@@ -1,0 +1,9 @@
+N("Architecture") ::= select("describedBy", N("ArchitectureDescription"));
+N("ArchitectureDescription") ::= ((select("selects", N("ArchitectureView")))+ (select("organizedBy", N("ArchitectureView")))+);
+N("ArchitectureView") ::= ((select("selectedBy", N("ArchitectureDescription")))+ (select("constituents", N("ModelElement")))+ (select("conformsTo", N("ArchitectureViewPoint")))+);
+N("ArchitectureViewPoint") ::= (select("defines", N("MainView")) (select("views", N("ArchitectureView")))+);
+N("MainView") ::= ((select("isProjectedOnto", N("ArchitectureView")))+ (select("consistsOf", N("ModelElement")))+);
+N("ModelElement") ::= epsilon;
+N("Boolean") ::= ("true" | "false");
+N("Integer") ::= value("int");
+N("String") ::= value("string");

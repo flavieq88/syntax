@@ -1,0 +1,4 @@
+N("MSProject") ::= (select("tasks", N("Task")))+;
+N("NamedElement") ::= N("Task");
+N("Task") ::= (select("UID", N("String")) (select("predecessors", N("Task")))+);
+N("String") ::= value("string");

@@ -1,0 +1,16 @@
+N("BuiltInSort") ::= N("String");
+N("BuiltInOperator") ::= N("StringOperator");
+N("BuiltInConstant") ::= N("StringConstant");
+N("String") ::= select("string", epsilon);
+N("StringConstant.content") ::= select("value", value("string"));
+N("StringConstant") ::= select("stringconstant", (N("StringConstant.content") N("BuiltInConstant.content")));
+N("StringOperator.content") ::= N("BuiltInOperator.content");
+N("StringOperator") ::= (N("StringLessThan") | N("StringLessThanOrEqual") | N("StringGreaterThan") | N("StringGreaterThanOrEqual") | N("StringConcatenation") | N("StringAppend") | N("StringLength") | N("Substring"));
+N("StringLessThan") ::= select("lts", N("StringOperator.content"));
+N("StringLessThanOrEqual") ::= select("leqs", N("StringOperator.content"));
+N("StringGreaterThan") ::= select("gts", N("StringOperator.content"));
+N("StringGreaterThanOrEqual") ::= select("geqs", N("StringOperator.content"));
+N("StringConcatenation") ::= select("stringconcatenation", N("StringOperator.content"));
+N("StringLength") ::= select("stringlength", N("StringOperator.content"));
+N("StringAppend") ::= select("stringappend", N("StringOperator.content"));
+N("Substring") ::= select("substring", (select("start", value("int")) select("length", value("int")) N("StringOperator.content")));

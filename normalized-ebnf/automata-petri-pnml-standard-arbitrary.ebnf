@@ -1,0 +1,6 @@
+N("Declaration") ::= N("Unparsed");
+N("SortDeclaration") ::= N("ArbitrarySort");
+N("OperatorDeclaration") ::= N("ArbitraryOperator");
+N("ArbitrarySort") ::= select("arbitrarysort", N("SortDeclaration.content"));
+N("ArbitraryOperator") ::= select("arbitraryoperator", (N("OperatorDeclaration.content") (select("input", N("Sort")))* select("output", N("Sort"))));
+N("Unparsed") ::= select("unparsed", (N("Declaration.content") (N("anyElement"))*));

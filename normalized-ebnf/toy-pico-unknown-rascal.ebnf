@@ -1,0 +1,19 @@
+@root N("Program");
+
+N("Type") @label("natural") ::= "natural";
+N("Type") @label("nil") ::= "nil-type";
+N("Type") @label("string") ::= "string";
+N("Statement") @label("assign") ::= (marked("var", N("Id")) ":=" marked("val", N("Expression")));
+N("Statement") @label("cond") ::= ("if" marked("cond", N("Expression")) "then" marked("thenPart", sep*(N("Statement"), ";")) "else" marked("elsePart", sep*(N("Statement"), ";")) "fi");
+N("Statement") @label("loop") ::= ("while" marked("cond", N("Expression")) "do" marked("body", sep*(N("Statement"), ";")) "od");
+N("Statement") @label("cond") ::= ("if" marked("cond", N("Expression")) "then" marked("thenPart", sep*(N("Statement"), ";")) "fi");
+N("Program") @label("program") ::= ("begin" marked("decls", N("Declarations")) marked("body", sep*(N("Statement"), ";")) "end");
+N("Declarations") ::= ("declare" marked("decls", sep*(N("IdType"), ",")) ";");
+N("Expression") @label("strcon") ::= marked("string", N("String"));
+N("Expression") @label("id") ::= marked("name", N("Id"));
+N("Expression") @label("natcon") ::= marked("natcon", N("Natural"));
+N("Expression") ::= ("(" marked("e", N("Expression")) ")");
+N("Expression") @label("concat") ::= (marked("lhs", N("Expression")) "||" marked("rhs", N("Expression")));
+N("Expression") @label("min") ::= (marked("lhs", N("Expression")) "-" marked("rhs", N("Expression")));
+N("Expression") @label("add") ::= (marked("lhs", N("Expression")) "+" marked("rhs", N("Expression")));
+N("IdType") @label("idtype") ::= (marked("id", N("Id")) ":" marked("t", N("Type")));

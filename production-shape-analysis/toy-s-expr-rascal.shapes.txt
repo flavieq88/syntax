@@ -1,0 +1,15 @@
+# BGF production shape analysis
+source: toy-s-expr-rascal.bgf
+productions: 13
+distinct_shapes: 6
+nonterminal_names: ignored
+selectors: ignored
+terminals: preserved
+
+count	shape
+8	N
+1	sequence("#", star(N), "#")
+1	sequence("(", star(N), ")")
+1	sequence("[", N, "]")
+1	sequence("|", star(N), "|")
+1	sequence(N, N)

@@ -483,3 +483,11 @@ production-shape normalization, recurring-structure mining, containment
 evidence, HTML embedding, and generated JavaScript safety. It also parses every
 grammar in the full `grammar-zoo` corpus.
 
+
+## Related work
+
+- Zaytsev, V. (2015). Grammar Zoo: A corpus of experimental grammarware. *Science of Computer Programming*, 98, 28–51. https://doi.org/10.1016/j.scico.2014.07.010 — the source of every grammar in this repository.
+- Lämmel, R., & Verhoef, C. (2001). Semi-automatic grammar recovery. *Software: Practice and Experience*, 31(15), 1395–1438. https://doi.org/10.1002/spe.423 — how grammars like these are recovered from documentation and code.
+- Power, J. F., & Malloy, B. A. (2004). A metrics suite for grammar-based software. *Journal of Software Maintenance and Evolution: Research and Practice*, 16(6), 405–426. https://doi.org/10.1002/smr.293 — size, complexity, and structure metrics over BNF/EBNF grammars, close in spirit to the production-shape analysis here.
+- Stefik, A., & Siebert, S. (2013). An empirical investigation into programming language syntax. *ACM Transactions on Computing Education*, 13(4), 1–40. https://doi.org/10.1145/2534973 — how readily novices learn the syntax of several languages.
+- Nanz, S., & Furia, C. A. (2015). A comparative study of programming languages in Rosetta Code. In *Proceedings of the 37th IEEE/ACM International Conference on Software Engineering (ICSE)* (pp. 778–788). IEEE. https://doi.org/10.1109/ICSE.2015.90 — compares eight languages on the same programming tasks.

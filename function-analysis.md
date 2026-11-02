@@ -1277,3 +1277,31 @@ not something a context-free grammar can express as a production. Neither
 grammar has anything resembling a modifier rule for this reason, which is
 expected — not a gap in the extraction, just a mechanism that operates
 below the level a BGF grammar can capture.
+
+## References
+
+The grammar claims in this document are checked against the productions in
+`normalized-ebnf-flavie-adapted/` and need no outside source. The design-history
+remarks marked as general knowledge are not cited claim by claim; the works
+below are the background reading for them. HOPL-II and HOPL-III are the
+proceedings of the second (1993) and third (2007) ACM SIGPLAN History of
+Programming Languages conferences.
+
+**Corpus**
+
+- Zaytsev, V. (2015). Grammar Zoo: A corpus of experimental grammarware. *Science of Computer Programming*, 98, 28–51. https://doi.org/10.1016/j.scico.2014.07.010 — the source corpus every grammar here comes from.
+- Lämmel, R., & Verhoef, C. (2001). Semi-automatic grammar recovery. *Software: Practice and Experience*, 31(15), 1395–1438. https://doi.org/10.1002/spe.423 — the recovery of the VS COBOL II grammar used as this corpus's COBOL (`cobol-vscobolii-lammel-gdk`).
+
+**General**
+
+- Sebesta, R. W. (2019). *Concepts of Programming Languages* (12th ed.). Pearson. — textbook comparison of the same construct-by-construct design choices across many languages.
+- Hoare, C. A. R. (1973). *Hints on Programming Language Design* (Stanford AI Lab Memo AIM-224 / STAN-CS-73-403). Stanford University, Computer Science Department. — design-rationale background.
+
+**Language histories**
+
+- Ritchie, D. M. (1993). The development of the C language. In *HOPL-II* (pp. 201–208). ACM. https://doi.org/10.1145/154766.155580
+- Wirth, N. (2007). Modula-2 and Oberon. In *HOPL-III*. ACM. https://doi.org/10.1145/1238844.1238847
+- Ierusalimschy, R., de Figueiredo, L. H., & Celes, W. (2007). The evolution of Lua. In *HOPL-III*. ACM. https://doi.org/10.1145/1238844.1238846
+- Armstrong, J. (2007). A history of Erlang. In *HOPL-III*. ACM. https://doi.org/10.1145/1238844.1238850
+- Hudak, P., Hughes, J., Peyton Jones, S., & Wadler, P. (2007). A history of Haskell: Being lazy with class. In *HOPL-III*. ACM. https://doi.org/10.1145/1238844.1238856
+- Kay, A. C. (1993). The early history of Smalltalk. In *HOPL-II* (pp. 69–95). ACM. https://doi.org/10.1145/154766.155364

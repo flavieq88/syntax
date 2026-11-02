@@ -1,42 +1,58 @@
-# The dangling-else problem across `grammar-zoo-flavie`
+# The dangling-else problem across `grammar-zoo-flavie-adapted`
 
 The dangling-else problem: in `if a then if b then s1 else s2`, it is unclear
 whether `else s2` belongs to the inner `if b` or the outer `if a`. This
-analyzes how each grammar in `grammar-zoo-flavie` resolves it, based on the
-actual `if`/`then`/`else` productions in `normalized-ebnf-flavie/`, not just
-general language knowledge.
+analyzes how each grammar in `grammar-zoo-flavie-adapted` resolves it, based
+on the actual `if`/`then`/`else` productions in
+`normalized-ebnf-flavie-adapted/`, not just general language knowledge.
 
-Three grammars in the corpus — `cobol-bruneliere`, `ml-ocaml-amble`, and
-`pl1-bruneliere` — turned out to be abstract data-model schemas (COBOL/PL-I
-record layouts, and a process/state-machine model in the file labeled
-"OCaml"), not full language syntax. They have no if-statement production at
-all and are excluded below. That leaves **17 languages** with a real
-conditional-statement production, out of 21 grammars now in the corpus —
-including a second, much richer PL/I grammar
-(`pl1-os-v2r3-lammel-verhoef.bgf`) that genuinely does have one, discussed
-in its own subsection below with an important caveat attached, and a
-second, genuinely complete COBOL grammar
-(`cobol-vscobolii-lammel-gdk.bgf`, IBM VS COBOL II) that replaces the
-original data-schema file for every purpose in this document. (Erlang is
-also real syntax newly added to the corpus but isn't folded into this
-particular comparison yet.)
+This covers all **20 languages** in the corpus, all of them full language
+syntax. Nineteen have a real conditional production; the twentieth,
+Smalltalk, has no conditional syntax at all, which turns out to be its own
+answer to the problem (strategy 5). COBOL here is
+`cobol-vscobolii-lammel-gdk.bgf` (IBM VS COBOL II).
 
-## Three resolution strategies, cleanly split
+## Five resolution strategies, cleanly split
 
-### 1. Mandatory closing keyword — ambiguity structurally impossible
+### 1. Mandatory closing delimiter — ambiguity structurally impossible
 
 | Language | Production |
 |---|---|
 | Ada | `"if" cond "then" seq (elsif...)* [else seq] "end" "if" ";"` |
 | Eiffel | `"if" Then_part_list [Else_part] "end"` |
 | Modula-3 | `"IF" Expr "THEN" Stmts (ELSIF...)* [ELSE Stmts] "END"` |
-| Fortran-90 (block form) | `IfThenStmt ... (ElseIfStmt)* ... EndIfStmt` — mandatory `END IF` |
+| Lua 5.2 | `"if" exp "then" block ("elseif" exp "then" block)* ["else" block] "end"` (an alternative of `stat`) |
+| Fortran-90 (block form) | `IfConstruct ::= IfThenStmt ConditionalBody (ElseIfConstruct)* [ElseConstruct] EndIfStmt` — mandatory `END IF`/`ENDIF` |
 | Basic/VB6 (block form) | `full_if_statement` requires `end if` |
+| Erlang | `ifExpr ::= "if" ifClauses "end"`, `ifClauses ::= ifClause (";" ifClause)*`, `ifClause ::= guard clauseBody` |
+| Swift | `if_statement ::= "if" if_condition code_block [else_clause]`, `else_clause ::= ("else" code_block) \| ("else" if_statement)`, `code_block ::= "{" [statements] "}"` |
 
 Every nested `if` consumes its own terminator, so
 `if a then if b then s1 else s2 end if end if` can only parse one way
 regardless of nesting depth — no grammar-level or parser-level tie-breaking
 is needed.
+
+Two of these rows need a note:
+
+- **Erlang** has no `else` keyword anywhere in the grammar. An `if` is a
+  `;`-separated list of `guard -> body` clauses, and the "otherwise" branch
+  is just one more clause (by convention `true -> ...`; that idiom and the
+  runtime `if_clause` error when no guard matches are general Erlang
+  knowledge, not something the grammar shows). The trailing optional part
+  is therefore the `(";" ifClause)*` repetition rather than an `else`, and
+  it would have exactly the same dangling problem without a terminator: in
+  a hypothetical `end`-less `if A -> if B -> x; C -> y`, the `C -> y`
+  clause could belong to either `if`. The mandatory `end` is what settles
+  it, exactly as in Ada.
+  `caseExpr ::= "case" expr "of" crClauses "end"` has the same shape, and
+  both are expressions (alternatives of `exprMax`), not statements.
+- **Swift** gets the same guarantee from braces instead of a keyword:
+  the `then` branch is always a `code_block`, so an `else` can only ever
+  appear right after a `}` that closes exactly one `if`. The one unbraced
+  form, `"else" if_statement`, is only allowed *after* `else`, where it is
+  harmless: the nested `if_statement` again requires its own braced block.
+  Swift is the only language in the corpus that keeps C's
+  `if`-plus-condition shape but makes the body's delimiter mandatory.
 
 ### 2. Layout as the delimiter, not a keyword
 
@@ -53,13 +69,18 @@ is needed.
 | C99 | `"if" ( expr ) statement \| "if" ( expr ) statement "else" statement` |
 | C++98 | identical shape |
 | C# 4.0 | identical shape |
-| Java 5 | identical shape |
-| Dart | identical shape |
-| JavaScript (Synytskyy/Cordy) | identical shape |
+| Java 5 | same language, written with an optional `["else" statement]` tail |
+| Dart | same language, written with an optional `[ELSE statement]` tail |
+| JavaScript (Synytskyy/Cordy) | same language, written with an optional `[js_else_clause]` tail |
 | Pascal/Delphi | `"if" expr "then" nested_stm [else_stm]`, where `nested_stm` recurses straight back to `statement` with no bracketing |
-| PL/I | `"IF" expression "THEN" unit1 [("ELSE" unit2)]` — the textbook two-alternative shape again, but see the dedicated subsection below for a real caveat on what this particular grammar can and can't prove |
 
-All eight share the textbook two-alternative shape with no
+Strictly, only C99, C++98, and C# 4.0 write it as the textbook pair of
+alternatives (`if-statement` in C# uses `embedded-statement` for the body).
+Java, Dart, and JavaScript write the same language as one alternative with
+an optional tail, e.g. Java's `"if" parExpression statement ["else"
+statement]` and JavaScript's `"if" "(" js_expn ")"
+js_declaration_or_statement [js_else_clause]`. The two spellings generate
+identical strings and have the identical ambiguity. All seven lack any
 "matched/open-statement" split (the classical Algol-60-revised fix isn't used
 anywhere in this corpus). The BGF files can't show *how* it's resolved —
 that information isn't part of a context-free grammar — but by
@@ -67,43 +88,7 @@ convention/spec prose it's always "attach `else` to the nearest `if` still
 missing one," enforced in real parsers as a shift preference (LALR default)
 or hand-coded lookahead. No BGF file in the corpus carries any
 disambiguation annotation (the format has no precedence/priority markup), so
-this really is invisible at the grammar level for all eight.
-
-### PL/I: a caveat this corpus hasn't needed before — the grammar is too incomplete to prove its own ambiguity
-
-PL/I's `unit1` and `unit2` — the "then" and "else" bodies — are both
-undefined in `pl1-os-v2r3-lammel-verhoef.bgf`, one of the roughly 160
-genuine phrase-structure gaps this grammar's own upstream source admits it
-never captured (see `adapt_lexical_grammar.py`'s docstring for the full
-accounting). That matters specifically here: the standard argument for why
-`if`/`then`/`else` is ambiguous needs *both* an optional trailing clause
-*and* a body slot that can recurse back into another `if` with no
-delimiter (the "Generalizing the pattern" section below spells this out
-precisely). This grammar shows the first half directly — `[("ELSE"
-unit2)]` is visibly optional — but it structurally cannot show the second
-half, because `unit1` has no production at all in this file. A grammar
-this incomplete can state the problem but not prove it.
-
-Real PL/I is well-documented, outside this specific extraction, as having
-exactly the classic ambiguity (`unit` expands to an ordinary statement,
-which can itself be another `IF`, with no `END` required), resolved by the
-same nearest-unmatched-`IF` convention as C — PL/I is in fact one of the
-languages dangling-else is traditionally illustrated with in compiler
-textbooks, alongside Algol 60 and Pascal. That's general language
-knowledge, not something this particular BGF file can back up, and it's
-worth being as explicit about that gap here as this document already is
-elsewhere about the "nearest if" convention being invisible to every CFG
-in strategy 3's camp.
-
-One more detail worth flagging on its own, independent of the above: this
-grammar's `%`-prefixed preprocessor sublanguage (PL/I has a genuine
-textual, compile-time macro layer, using `%` the way C uses `#`) has its
-*own*, separate if/then/else form with the identical shape:
-`"%" "IF" preprocessor_expression "%" "THEN" preprocessor-unit1 [("%"
-"ELSE" preprocessor-unit2)]`. No other language in this corpus has two
-independent conditional-statement grammars living side by side in one
-file — a real, citable PL/I structural feature, even though (same caveat)
-its own body slots are equally undefined here.
+this really is invisible at the grammar level for all seven.
 
 ### 4. No optional clause to dangle — the ambiguity precondition itself is absent
 
@@ -125,6 +110,36 @@ its own body slots are equally undefined here.
   nothing (what an omitted `else` would mean) isn't a coherent option in the
   first place — unlike C's `if (x) foo();`, where "do nothing otherwise" is
   a perfectly normal thing for a *statement* to mean.
+
+### 5. No conditional syntax at all — conditionals are ordinary messages
+
+- **Smalltalk** (Redline grammar): the grammar has no `if`, `then`,
+  `else`, or any other control-flow keyword. There is no `ifTrue:` either;
+  it isn't a token in the grammar. A Smalltalk conditional (by general
+  language knowledge, `x > 0 ifTrue: [...] ifFalse: [...]`) is just an
+  instance of the generic keyword-message rules:
+
+  ```
+  keywordSend    ::= binarySend keywordMessage
+  keywordMessage ::= ws (keywordPair ws)+
+  keywordPair    ::= KEYWORD ws binarySend ws
+  KEYWORD        ::= IDENTIFIER COLON
+  block          ::= BLOCK_START [blockParamList] ws [sequence] BLOCK_END
+  ```
+
+  Two things in these rules keep the dangling-else shape from arising.
+  First, a keyword argument is a `binarySend`, which can't itself be a
+  `keywordSend`, so a nested keyword message has to go inside `( ... )`
+  (`subexpression`) or `[ ... ]` (`block`). Second,
+  `(keywordPair ws)+` means every consecutive `keyword:` part belongs to
+  the same, outermost message: `a ifTrue: b ifTrue: [s1] ifFalse: [s2]`
+  parses as one send of a three-part selector `ifTrue:ifTrue:ifFalse:` to
+  `a` (which would just fail at runtime as an unknown message), never as a
+  nested conditional. To nest, you have to write the brackets:
+  `a ifTrue: [b ifTrue: [s1] ifFalse: [s2]]`, and the `]` marks where the
+  inner conditional ends. So Smalltalk denies condition (2) of the
+  generalization below, but for every keyword message at once and with no
+  conditional-specific grammar at all.
 
 ## Mixed/hybrid cases
 
@@ -152,11 +167,14 @@ its own body slots are equally undefined here.
   removes the ambiguity completely for that one `IF`, the same trade a
   VB6 programmer makes with `end if`. What makes COBOL distinct is that
   this exact `[END-XXX [statements]]` shape isn't special-cased for `IF`
-  at all — it's the *uniform* pattern `statements` uses for roughly twenty
-  different statement kinds alike (`END-ADD`, `END-COMPUTE`,
-  `END-DELETE`, `END-DIVIDE`, `END-MULTIPLY`, `END-READ`, `END-REWRITE`,
-  `END-START`, `END-STRING`, `END-SUBTRACT`, `END-UNSTRING`, `END-WRITE`,
-  …), all independently optional. COBOL doesn't give `IF` a special
+  at all — it's the *uniform* pattern `statements` uses for seventeen
+  different statement kinds alike (`END-ADD`, `END-CALL`, `END-COMPUTE`,
+  `END-DELETE`, `END-DIVIDE`, `END-EVALUATE`, `END-IF`, `END-MULTIPLY`,
+  `END-READ`, `END-RETURN`, `END-REWRITE`, `END-SEARCH`, `END-START`,
+  `END-STRING`, `END-SUBTRACT`, `END-UNSTRING`, `END-WRITE`), all
+  independently optional. (`END-PERFORM` is the exception: it lives inside
+  the in-line forms of `perform_statement_format_*` themselves and is
+  mandatory there.) COBOL doesn't give `IF` a special
   carve-out the way VB6/PHP do — it applies the identical "ambiguous by
   default, opt into an explicit terminator" trade-off everywhere a
   compound statement can embed another one.
@@ -168,22 +186,28 @@ The split runs along **language lineage, not decade**:
 - **Wirth/Ada-family "structured programming" languages** (Ada, Eiffel,
   Modula-3, Fortran-90's block form) all independently chose explicit
   termination — likely a direct reaction to Pascal's dangling-else being the
-  field's canonical cautionary example.
+  field's canonical cautionary example. **Lua** belongs here too: its
+  `if ... then ... elseif ... else ... end` is the Modula-3 production
+  almost token for token, and Lua uses the same `... end` closing for
+  `while`/`for`/`do` blocks (general knowledge: Lua's designers cite
+  Modula as a syntactic influence).
 - **C-lineage languages** (C, C++, C#, Java, Dart, JavaScript) all inherited
-  the exact same ambiguous production verbatim across 40+ years, and all
-  inherited the same "nearest if" folk-rule to resolve it — none of them
-  fixed it at the grammar level even when free to.
-- **Pascal itself** is the odd one out: despite being contemporaneous with
-  Wirth's own later fix in Modula, classic/Delphi Pascal keeps the ambiguous
-  form.
+  the exact same ambiguous production across 40+ years (in two equivalent
+  spellings), and all inherited the same "nearest if" folk-rule to resolve
+  it. **Swift** is the one exception in the corpus: it keeps the C-family
+  look (no `then`, no `end`, braces) but makes the braces mandatory, which
+  is enough to remove the ambiguity. So "C-like syntax" and "dangling else"
+  are separable after all; the other six just never chose to separate them.
+- **Pascal itself** is the odd one out: Wirth fixed the problem a few years
+  later in Modula, yet classic/Delphi Pascal keeps the ambiguous form.
 - **Python** is the only language here that solves it via layout rather
-  than a keyword, consistent with it dropping block delimiters everywhere
+  than an explicit token (keyword or brace), consistent with it dropping block delimiters everywhere
   else in the grammar.
 - Languages that give programmers a **choice of two if-forms** (VB6, PHP)
   tend to pair a delimited one with a C-style compact one, suggesting
   compact-but-ambiguous and safe-but-verbose are seen as a deliberate
   trade-off, not just a legacy accident.
-- **COBOL (1959)**, the oldest language in this entire corpus, shows the
+- **COBOL (1959)**, the oldest language in this corpus after Fortran, shows the
   "give both forms" accommodation in its most systematic version —
   optional `END-IF` alongside the ambiguous fallback, applied uniformly
   to nearly every compound statement rather than as a special exception
@@ -191,14 +215,7 @@ The split runs along **language lineage, not decade**:
   `END-XXX` scope terminators) was a later standard addition, retrofitted
   onto a language whose original 1959 design relied on the terminating
   period and "nearest if" convention alone — directly parallel to
-  Fortran's own later `END IF` retrofit in strategy 1 below.
-- **PL/I (1964)** inherited the same ambiguous shape as Pascal did, for a
-  similar reason: it was an IBM committee design unifying COBOL- and
-  Fortran-style business/scientific programming under one Algol-flavored
-  control-flow syntax, prioritizing a familiar `IF`/`THEN`/`ELSE` shape
-  over a clean fix the field already knew about by 1964 — the same
-  "known but minor, not worth a clean break" calculus Pascal's designers
-  made a decade later.
+  Fortran's own later `END IF` retrofit in strategy 1 above.
 - **Haskell** is a fourth lineage entirely, and it solves the problem for a
   reason none of the other three groups share: `if` is an *expression*
   there, not a *statement*. Once every branch of a conditional has to
@@ -206,10 +223,21 @@ The split runs along **language lineage, not decade**:
   a sensible question to ask, and the mandatory-`else` shape falls out as a
   consequence of that choice rather than a dangling-else fix bolted on
   separately.
+- **Erlang** shows that being expression-oriented doesn't settle it on its
+  own: its `ifExpr` and `caseExpr` are expressions too, but their clause
+  lists are open-ended, so Erlang needs the mandatory `end` anyway. Its
+  `if` is closer to Dijkstra's guarded commands (a list of `guard -> body`
+  clauses with no privileged `else`) than to either Haskell's or Ada's
+  `if`; the guarded-command connection is general knowledge, not something
+  the grammar states.
+- **Smalltalk** sits outside all of these: with no conditional syntax at
+  all, there is nothing language-specific to fix. Conditionals inherit
+  whatever the general message-send rules give them, and those rules
+  already require `( )` or `[ ]` around any nested keyword message.
 
 ## Pros, cons, and design motivation for each strategy
 
-### 1. Mandatory closing keyword (Ada, Eiffel, Modula-3, Fortran block-`IF`, VB6 full form)
+### 1. Mandatory closing delimiter (Ada, Eiffel, Modula-3, Lua, Fortran block-`IF`, VB6 full form, Erlang; Swift via mandatory braces)
 
 **Pros**
 
@@ -231,13 +259,15 @@ The split runs along **language lineage, not decade**:
 - Verbose — `end if` (or `end`) on every conditional adds real boilerplate,
   especially painful for short guard-clauses (`if x then return; end if;`
   vs. C's `if (x) return;`).
-- Where the terminator is generic (`end` in Modula-3/Eiffel rather than a
-  construct-specific keyword), a misplaced `end` during refactoring can
+- Where the terminator is generic (`end` in Modula-3/Eiffel/Lua/Erlang, or
+  `}` in Swift, rather than a construct-specific keyword), a misplaced `end` during refactoring can
   silently close the wrong block — you trade the dangling-`else` bug for a
   milder version of the same class of mistake.
 - Extra tokens to type/parse for the overwhelmingly common one-line-body
   case, which is a real ergonomic cost even though it's the rare deeply
-  nested case that actually needed the safety.
+  nested case that actually needed the safety. Swift's braces are the
+  cheapest version of this cost (two characters), which is likely part of
+  why it is the variant a C-family language could adopt.
 
 **Why it was chosen this way**: Ada, Modula-3, and Eiffel all descend from
 the "structured programming" / correctness-first tradition (Wirth,
@@ -250,7 +280,14 @@ caused by "which branch does this else belong to" is not an acceptable
 risk. Fortran's block `IF`/`END IF` was added later (FORTRAN 77/90) as a
 retrofit once the community wanted ALGOL-like structured control flow
 instead of `GOTO`-and-labels — its addition is a direct historical
-acknowledgment that the old style was error-prone.
+acknowledgment that the old style was error-prone. The three newer entries
+are general-knowledge cases too: Lua (1993) took its block syntax from the
+Modula/Pascal tradition and simply used `end` for every block; Erlang
+closes every multi-clause construct with `end` (the grammar shows this for
+`ifExpr`, `caseExpr`, `receiveExpr`, and the clause form of `funExpr`), so
+`if` is not special-cased; and Swift (2014) is a late C-family design that
+adopted mandatory braces outright, as Go and Rust also did, after decades
+of the C-family style guides already demanding them.
 
 ### 2. Layout/indentation as the delimiter (Python)
 
@@ -369,6 +406,41 @@ risky, it's not well-typed — the fix is a consequence of the type
 discipline, not a grammar patch aimed at this specific ambiguity the way
 Ada's `end if` or Python's layout rule are.
 
+### 5. No conditional syntax; conditionals are messages (Smalltalk)
+
+**Pros**
+
+- Nothing to get wrong in the grammar: conditionals get the same
+  bracketing rules as every other keyword message, so the dangling-else
+  shape can't arise for them specifically.
+- Extremely small grammar. The Redline grammar has no statement-level
+  control flow at all, and new control structures can be added as library
+  methods without touching the parser (general knowledge: this is how
+  Smalltalk implements loops like `whileTrue:` and `to:do:` as well).
+
+**Cons**
+
+- Every branch body has to be written as a block (`[ ... ]`), even a
+  one-expression one, because only a block delays evaluation until the
+  receiver picks a branch.
+- The grammar can't tell a conditional from any other message send, so
+  tools that want to see control flow (or compilers that want to optimize
+  it) have to recognize `ifTrue:ifFalse:` by selector name. (General
+  knowledge: real Smalltalk compilers do inline these selectors as a
+  special case, which is a semantic rule the grammar doesn't record.)
+- An accidental missing bracket doesn't produce a nested conditional with
+  the wrong attachment, it produces a single message with a longer,
+  usually nonexistent selector, so the mistake shows up at runtime rather
+  than at parse time.
+
+**Why it was chosen this way**: this isn't a dangling-else fix either.
+Smalltalk's design goal (general knowledge: Kay and Ingalls at Xerox PARC)
+was "everything is an object, all computation is message sends," and
+conditionals are just `ifTrue:`/`ifFalse:` methods on the Boolean classes.
+The absence of the ambiguity is a side effect of how keyword messages are
+parsed, in the same way that Haskell's mandatory `else` is a side effect of
+its type discipline.
+
 ## Generalizing the pattern: what actually causes this class of ambiguity
 
 Dangling-else is one instance of a broader, precise phenomenon: it is
@@ -378,7 +450,7 @@ body slot that can recursively contain another instance of the *same*
 construct with no delimiter marking where that inner instance ends. When
 both hold, a parser genuinely cannot tell which enclosing instance the
 trailing clause binds to. Two more real cases of exactly this shape turn
-up elsewhere in `grammar-zoo-flavie` — one resolved, one not — plus a
+up elsewhere in `grammar-zoo-flavie-adapted` — one resolved, one not — plus a
 useful counter-example that pins down why some optional trailing clauses
 never cause this problem at all.
 
@@ -414,9 +486,9 @@ directly, with no `end if` anywhere in this form.
 `If a Then If b Then s1 Else s2` is exactly as ambiguous in VB6's one-line
 form as it is in C.
 
-This is a real correction to the table above, which filed VB6 in the
-"avoids the ambiguity" camp on the strength of its `full_if_statement`/
-`end if` form. What's actually true is VB6 has **both** forms side by
+This qualifies the strategy-1 table above, which lists VB6 only on the
+strength of its `full_if_statement`/`end if` block form. What's actually
+true is VB6 has **both** forms side by
 side — the safe, delimited one and the ambiguous, undelimited one — the
 same "keep the old mechanism, add the new one, never retire either"
 pattern already documented for VB6 in the companion analyses (its
@@ -457,7 +529,14 @@ shows exactly why:
 bare, unbraced `statement` that `if`/`while`/`for` bodies are allowed to be
 in C-family languages. Because the body's boundary is always explicit,
 there is no nesting ambiguity for a trailing clause to be confused about.
-This holds uniformly across C++, C#, Java, and Dart. It confirms the
+For `try`, this holds uniformly across C++ (`"try" compound-statement
+handler-seq`), C#, Java, and Dart: every `try`, `catch`, and `finally`
+body is a braced block. For `switch` it holds in C#, Java, and Dart, but
+not in C99 or C++98, whose `"switch" "(" ... ")" statement` takes a bare
+statement just like `if`. That doesn't reintroduce the problem there,
+though, because C/C++ `switch` has no trailing optional clause of its own
+(`default` is a label inside the body, not a clause after it), so only
+condition (2) holds. It confirms the
 precise condition above: the problem is not "has an optional trailing
 clause," it is "optional trailing clause *plus* a body that is allowed to
 omit its own delimiter."

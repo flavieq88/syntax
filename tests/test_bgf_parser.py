@@ -102,7 +102,7 @@ class BGFParserTests(unittest.TestCase):
     def test_entire_grammar_zoo_parses(self):
         corpus = Path(__file__).parents[1] / "grammar-zoo"
         files = sorted(corpus.glob("*.bgf"))
-        self.assertEqual(len(files), 588)
+        self.assertEqual(len(files), 585)
         for path in files:
             with self.subTest(path=path.name):
                 grammar = parse(path)

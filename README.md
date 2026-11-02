@@ -436,11 +436,11 @@ token classes (`SPOFF`/`SPON`, `IN`/`EX`, `id`, `number`, `stringlit`, ...).
 These names are undefined by design in the source corpus — this tool reports
 them rather than inventing definitions for them. `grammar-zoo-flavie-adapted/`
 (see next section) is the corpus with those gaps actually filled in; running
-this checker against it reports 17/17 grammars clean.
+this checker against it reports 20/20 grammars clean.
 
 ## `adapt_lexical_grammar.py`: filling in the lexical grammar
 
-`check_bgf_references.py` shows that 13 of the 17 `grammar-zoo-flavie`
+`check_bgf_references.py` shows that 19 of the 20 `grammar-zoo-flavie`
 grammars reference nonterminals with no production in the same file — either
 because the original fetched source only covers phrase-structure syntax (the
 ISO C99/C++98/C# standards keep their lexical grammar in a separate clause),

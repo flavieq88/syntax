@@ -33,6 +33,8 @@ pip install -r requirements.txt
 | `adapt_lexical_grammar.py` | Fill in `grammar-zoo-flavie`'s lexical-grammar gaps, sourced not invented |
 | `tests/` | Unit and corpus-wide tests |
 | `dangling-else-analysis.md` | How each `grammar-zoo-flavie` language resolves the dangling-else ambiguity |
+| `number-tokens-analysis.md` | How each language keeps numbers and names apart, and the letters used inside numeric literals |
+| `keywords-analysis.md` | Keyword counts, shared keywords with different meanings, and the readability/writability/reliability trade-offs |
 
 Generated results currently live in:
 
@@ -48,6 +50,8 @@ Generated results currently live in:
 | `corpus-analysis/recurring-structures.html` | Interactive full-corpus report |
 | `corpus-analysis/curated-recurring-structures.json` | Curated-corpus data |
 | `corpus-analysis/curated-recurring-structures.html` | Interactive curated report |
+| `corpus-analysis/flavie-adapted-recurring-structures.json` | `grammar-zoo-flavie-adapted` subtree and pattern data |
+| `corpus-analysis/flavie-adapted-recurring-structures.html` | Interactive `grammar-zoo-flavie-adapted` report |
 
 ## Quick start
 
@@ -86,6 +90,20 @@ python3 mine_bgf.py \
 python3 render_analysis_html.py \
   corpus-analysis/curated-recurring-structures.json \
   corpus-analysis/curated-recurring-structures.html
+```
+
+Analyze the adapted `grammar-zoo-flavie` corpus:
+
+```bash
+python3 mine_bgf.py \
+  grammar-zoo-flavie-adapted \
+  corpus-analysis/flavie-adapted-recurring-structures.json \
+  --minimum-frequency 2 \
+  --examples 5
+
+python3 render_analysis_html.py \
+  corpus-analysis/flavie-adapted-recurring-structures.json \
+  corpus-analysis/flavie-adapted-recurring-structures.html
 ```
 
 Regenerate the `grammar-zoo-flavie` artifacts:
